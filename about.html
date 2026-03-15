@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About & Team — Ascensia</title>
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/nav.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/main.css">
+<style>
+/* ─── ABOUT-SPECIFIC ─── */
+.story-section {
+  padding: var(--sp-2xl) var(--sp-lg);
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 100px;
+  align-items: center;
+}
+.story-large-num {
+  font-family: var(--serif);
+  font-size: clamp(100px,16vw,200px);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.06em;
+  color: rgba(196,164,145,0.07);
+  margin-bottom: 32px;
+  display: block;
+}
+.story-body { font-size: 17px; font-weight: 300; line-height: 1.9; color: rgba(245,240,235,0.55); }
+.story-body p { margin-bottom: 24px; }
+.story-body p:last-child { margin-bottom: 0; }
+.story-body em { font-style: italic; color: var(--gold); }
+.story-body strong { color: var(--cream); font-weight: 400; }
+
+/* Values */
+.values-section {
+  padding: var(--sp-xl) var(--sp-lg);
+  background: var(--charcoal-2);
+}
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 1px;
+  background: rgba(196,164,145,0.08);
+  margin-top: 64px;
+}
+.value-card {
+  background: var(--charcoal-2);
+  padding: 48px 36px;
+  transition: background 0.35s;
+}
+.value-card:hover { background: #1a1512; }
+.value-letter {
+  font-family: var(--serif);
+  font-size: 64px;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--rose) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.value-title {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 12px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.value-desc {
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.8;
+  color: rgba(245,240,235,0.4);
+}
+
+/* Team section */
+#team {
+  padding: var(--sp-xl) var(--sp-lg);
+}
+.team-intro {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 80px;
+  align-items: end;
+  margin-bottom: 80px;
+}
+.team-intro .right { font-size: 17px; font-weight: 300; line-height: 1.85; color: rgba(245,240,235,0.45); padding-top: 12px; }
+
+/* Featured team member — full width */
+.team-featured {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 0;
+  background: rgba(196,164,145,0.04);
+  border: var(--line-dim);
+  margin-bottom: 1px;
+  cursor: none;
+  transition: background 0.4s;
+  overflow: hidden;
+}
+.team-featured:hover { background: rgba(212,168,83,0.04); }
+.team-featured-visual {
+  background: #1a1512;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 60px;
+  position: relative;
+  overflow: hidden;
+  border-right: var(--line-dim);
+}
+.team-featured-initials {
+  font-family: var(--serif);
+  font-size: 100px;
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  color: var(--rose);
+  opacity: 0.5;
+  position: relative;
+  z-index: 1;
+}
+.team-featured-bg-lines {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 40px;
+  gap: 14px;
+  pointer-events: none;
+}
+.team-featured-bg-lines span {
+  display: block;
+  height: 1px;
+  background: rgba(196,164,145,0.1);
+  border-radius: 1px;
+}
+.team-featured-content {
+  padding: 64px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.featured-role {
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.featured-name {
+  font-family: var(--serif);
+  font-size: clamp(36px, 4vw, 54px);
+  font-weight: 300;
+  color: var(--cream);
+  margin-bottom: 10px;
+  line-height: 1.15;
+}
+.featured-origin {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--copper);
+  margin-bottom: 28px;
+}
+.featured-bio {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.85;
+  color: rgba(245,240,235,0.5);
+  margin-bottom: 28px;
+  max-width: 480px;
+}
+.featured-quote {
+  font-family: var(--serif);
+  font-size: 19px;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.55;
+  color: var(--cream);
+  border-left: 2px solid var(--gold);
+  padding-left: 24px;
+  max-width: 460px;
+}
+
+/* Team grid - full width, large cards */
+.team-grid-large {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 1px;
+  background: rgba(196,164,145,0.1);
+}
+.tcard {
+  background: var(--charcoal-2);
+  padding: 52px 44px 48px;
+  cursor: none;
+  transition: background 0.4s;
+  position: relative;
+  overflow: hidden;
+}
+.tcard:hover { background: #1e1916; }
+.tcard-left-bar {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 2px;
+  background: var(--gold);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.55s var(--ease-out);
+}
+.tcard:hover .tcard-left-bar { transform: scaleY(1); }
+.tcard-avatar {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: rgba(196,164,145,0.1);
+  border: 1px solid rgba(196,164,145,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 26px;
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 300;
+  color: var(--rose);
+  transition: border-color 0.3s;
+}
+.tcard:hover .tcard-avatar { border-color: var(--gold); }
+.tcard-name {
+  font-family: var(--serif);
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 5px;
+}
+.tcard-role {
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--copper);
+  margin-bottom: 18px;
+}
+.tcard-bio {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.8;
+  color: rgba(245,240,235,0.4);
+  margin-bottom: 18px;
+}
+.tcard-origin {
+  font-size: 11px;
+  color: var(--rose);
+  opacity: 0.8;
+  margin-bottom: 20px;
+}
+.tcard-quote {
+  padding-top: 18px;
+  border-top: var(--line-dim);
+  font-family: var(--serif);
+  font-size: 15px;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.6;
+  color: rgba(245,240,235,0.45);
+}
+
+/* Pilot school */
+.pilot-band {
+  padding: var(--sp-xl) var(--sp-lg);
+  background: rgba(212,168,83,0.04);
+  border-top: var(--line-gold);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.pilot-label {
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.pilot-name {
+  font-family: var(--serif);
+  font-size: clamp(28px,4vw,48px);
+  font-weight: 300;
+  color: var(--cream);
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+.pilot-desc {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.85;
+  color: rgba(245,240,235,0.45);
+}
+.pilot-stat {
+  font-family: var(--serif);
+  font-size: clamp(60px,8vw,100px);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: rgba(212,168,83,0.15);
+}
+.pilot-stat-label {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--copper);
+  margin-top: 8px;
+}
+
+@media(max-width:900px){
+  .story-section { grid-template-columns:1fr; gap:52px; }
+  .values-grid   { grid-template-columns:repeat(2,1fr); }
+  .team-intro    { grid-template-columns:1fr; gap:40px; }
+  .team-featured { grid-template-columns:1fr; }
+  .team-featured-visual { min-height:200px; }
+  .team-grid-large { grid-template-columns:1fr; }
+  .pilot-band    { grid-template-columns:1fr; gap:40px; }
+}
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo">
+    <div class="logo-mark static"><span></span><span></span><span></span><span></span><span></span></div>
+    <span class="logo-wordmark">Ascensia</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="program.html">Program</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="partners.html">Partners</a></li>
+    <li><a href="apply.html" class="nav-cta">Apply</a></li>
+  </ul>
+  <button class="nav-hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-mobile">
+  <a href="program.html">Program</a>
+  <a href="about.html">About</a>
+  <a href="partners.html">Partners</a>
+  <a href="apply.html">Apply</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <p class="page-hero-label">About Ascensia</p>
+  <h1>
+    <span class="hero-line-wrap"><span class="hero-line-inner" style="animation-delay:.5s">Built by people</span></span>
+    <span class="hero-line-wrap"><span class="hero-line-inner" style="animation-delay:.68s">who <span style="font-style:italic;color:var(--gold)">lived</span> the gap.</span></span>
+  </h1>
+  <p class="page-hero-sub">Every person on the Ascensia team has a personal connection to the problem — either they lived it themselves, or they watched someone they loved lose to it. That's not a marketing line. It's why the organization exists.</p>
+</div>
+
+<!-- STORY SECTION -->
+<section id="story" class="story-section">
+  <div class="reveal">
+    <span class="story-large-num" aria-hidden="true">2025</span>
+    <div class="section-eyebrow">Our story</div>
+    <h2 class="section-heading">
+      The program<br>we wish had<br><em>existed.</em>
+    </h2>
+  </div>
+  <div class="story-body reveal r-d2">
+    <p>Ascensia started with a simple observation: the students who most need access to world-class universities are the ones least likely to know those universities are financially within reach. The Harvard financial aid program. The eight need-blind schools. The 60% of international students who receive aid. None of this is secret — it's just never been put in front of the right people.</p>
+    <p>The founders weren't admissions professionals or academics. They were students from underrepresented regions who found their way through — by accident, through a chance encounter, through stubborn research at midnight — and realized that the distance between <em>"I couldn't have done this"</em> and <em>"I did this"</em> was mostly information. And one person who had already done it.</p>
+    <p>That's what Ascensia is. <strong>The information, and the person.</strong> Structured as a program. Free to every student. Designed to compound: every cohort produces mentors for the next.</p>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="values-section">
+  <div class="reveal">
+    <div class="section-eyebrow rose">What we stand for</div>
+    <h2 class="section-heading">Four principles.<br>No exceptions.</h2>
+  </div>
+  <div class="values-grid">
+    <div class="value-card reveal">
+      <div class="value-letter">E</div>
+      <h3 class="value-title">Excellence</h3>
+      <p class="value-desc">We hold our curriculum, mentors, and students to the highest standard — not as gatekeeping, but as respect. These students are competing for the best institutions in the world and we treat them accordingly.</p>
+    </div>
+    <div class="value-card reveal r-d1">
+      <div class="value-letter">A</div>
+      <h3 class="value-title">Access</h3>
+      <p class="value-desc">The students who need this most are often the ones least likely to find it. That asymmetry is the entire reason Ascensia exists. Every decision — funding model, program design, outreach — runs through this lens.</p>
+    </div>
+    <div class="value-card reveal r-d2">
+      <div class="value-letter">A</div>
+      <h3 class="value-title">Authenticity</h3>
+      <p class="value-desc">We help students find and amplify their real story — never a manufactured persona. The best applications are honest. We believe that because it's true and because it's the right thing to believe.</p>
+    </div>
+    <div class="value-card reveal r-d3">
+      <div class="value-letter">C</div>
+      <h3 class="value-title">Community</h3>
+      <p class="value-desc">Every student who goes through Ascensia becomes part of something bigger than their own application. The community is how the program gets stronger over time — and how the next student's path is shorter than the last one's.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="team-intro">
+    <div class="reveal">
+      <div class="section-eyebrow">The team</div>
+      <h2 class="section-heading">People first.<br>Everything else follows.</h2>
+    </div>
+    <p class="right reveal r-d2">
+      The Ascensia team is recruited, not assembled. Every person here has a reason
+      that isn't a job title — a student they lost to the gap, a door they opened
+      for themselves and want to hold open for someone else. This is that team.
+    </p>
+  </div>
+
+  <!-- Featured founder -->
+  <div class="team-featured reveal">
+    <div class="team-featured-visual">
+      <div class="team-featured-bg-lines" aria-hidden="true">
+        <span style="width:20%"></span><span style="width:35%"></span>
+        <span style="width:55%"></span><span style="width:70%"></span>
+        <span style="width:85%"></span><span style="width:95%"></span>
+      </div>
+      <div class="team-featured-initials">AY</div>
+    </div>
+    <div class="team-featured-content">
+      <div class="featured-role">CEO &amp; Founder</div>
+      <h2 class="featured-name">Ahmed Yostr</h2>
+      <div class="featured-origin">Johannesburg, South Africa</div>
+      <p class="featured-bio">
+        Ahmed built Ascensia because he watched peers with extraordinary ability
+        never apply to the universities that would have changed their lives —
+        not because they weren't good enough, but because the information never reached them.
+        His background spans educational access, program design, and technology, and
+        he has spent years working at the intersection of opportunity and geography.
+      </p>
+      <p class="featured-quote">
+        "The most painful moment in this work isn't watching a student get rejected.
+        It's realizing they never even knew they could apply."
+      </p>
+    </div>
+  </div>
+
+  <!-- Team grid -->
+  <div class="team-grid-large">
+    <div class="tcard reveal">
+      <div class="tcard-left-bar"></div>
+      <div class="tcard-avatar">NM</div>
+      <h3 class="tcard-name">Nadia M.</h3>
+      <div class="tcard-role">Head of Curriculum</div>
+      <p class="tcard-bio">Nadia built the 17-track curriculum from the ground up — drawing on her own experience navigating a US admissions process from Cairo with no counselor and one library computer. Every module carries that context.</p>
+      <div class="tcard-origin">Cairo, Egypt</div>
+      <p class="tcard-quote">"I built the curriculum I needed at 16 and didn't have."</p>
+    </div>
+    <div class="tcard reveal r-d1">
+      <div class="tcard-left-bar"></div>
+      <div class="tcard-avatar">KO</div>
+      <h3 class="tcard-name">Kwame O.</h3>
+      <div class="tcard-role">Head of Mentorship</div>
+      <p class="tcard-bio">Kwame runs the mentor matching system — recruiting, training, and supporting current university students to guide Ascensia applicants. He completed this journey from Accra to Yale and knows what that mentorship actually requires.</p>
+      <div class="tcard-origin">Accra, Ghana · Yale '23</div>
+      <p class="tcard-quote">"A mentor who lived it is worth ten consultants who didn't."</p>
+    </div>
+    <div class="tcard reveal r-d2">
+      <div class="tcard-left-bar"></div>
+      <div class="tcard-avatar">PS</div>
+      <h3 class="tcard-name">Priya S.</h3>
+      <div class="tcard-role">Head of Partnerships</div>
+      <p class="tcard-bio">Priya manages relationships with funders, partner schools, and universities. She comes from the philanthropic sector with a decade of experience designing high-impact programs in South Asia and East Africa.</p>
+      <div class="tcard-origin">Mumbai, India</div>
+      <p class="tcard-quote">"Funders don't just invest in programs. They invest in people."</p>
+    </div>
+    <div class="tcard reveal">
+      <div class="tcard-left-bar"></div>
+      <div class="tcard-avatar">JR</div>
+      <h3 class="tcard-name">Jorge R.</h3>
+      <div class="tcard-role">Head of Technology</div>
+      <p class="tcard-bio">Jorge builds and maintains the platforms that Ascensia runs on — from the application system to the mentor matching tools. He completed his own admissions journey from Bogotá to MIT entirely self-guided and brings that experience into every product decision.</p>
+      <div class="tcard-origin">Bogotá, Colombia · MIT '24</div>
+      <p class="tcard-quote">"Technology should make the path shorter, not more complicated."</p>
+    </div>
+    <div class="tcard reveal r-d1">
+      <div class="tcard-left-bar"></div>
+      <div class="tcard-avatar">AA</div>
+      <h3 class="tcard-name">Amina A.</h3>
+      <div class="tcard-role">Head of Student Experience</div>
+      <p class="tcard-bio">Amina oversees the student journey from application to graduation — ensuring that every student feels seen, supported, and challenged throughout the program. She brings a background in counseling psychology and deep familiarity with the emotional weight of this process.</p>
+      <div class="tcard-origin">Nairobi, Kenya</div>
+      <p class="tcard-quote">"The application is the destination. The student is the journey."</p>
+    </div>
+    <div class="tcard reveal r-d2">
+      <div class="tcard-left-bar"></div>
+      <div class="tcard-avatar">TH</div>
+      <h3 class="tcard-name">Tariq H.</h3>
+      <div class="tcard-role">Head of Marketing</div>
+      <p class="tcard-bio">Tariq leads outreach, storytelling, and brand — ensuring that the right students find Ascensia and that the right funders understand what it does. He previously ran communications for two Pan-African education initiatives and brings both reach and precision to everything he builds.</p>
+      <div class="tcard-origin">Karachi, Pakistan</div>
+      <p class="tcard-quote">"The story of this program is the most powerful thing we have."</p>
+    </div>
+  </div>
+</section>
+
+<!-- PILOT SCHOOL -->
+<div class="pilot-band reveal">
+  <div>
+    <div class="pilot-label">Pilot Partner · 2025</div>
+    <h3 class="pilot-name">African Leadership Academy</h3>
+    <p class="pilot-desc">
+      Ascensia's first cohort will run in partnership with the African Leadership Academy in Johannesburg —
+      a globally recognized institution that identifies and develops the continent's most promising
+      young leaders. ALA's student profile is precisely the population Ascensia was built to serve:
+      high-potential students from across Africa who have already beaten enormous odds to get where they are.
+    </p>
+  </div>
+  <div>
+    <div class="pilot-stat" data-parallax="0.1">ALA</div>
+    <div class="pilot-stat-label">Pilot school · Johannesburg</div>
+  </div>
+</div>
+
+<footer id="main-footer"></footer>
+
+<script src="js/main.js"></script>
+<script src="js/cursor.js"></script>
+<script src="js/scroll.js"></script>
+</body>
+</html>

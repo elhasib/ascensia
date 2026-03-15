@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apply — Ascensia</title>
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/nav.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/main.css">
+<style>
+/* Apply tabs */
+.apply-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: var(--line-dim);
+  margin-bottom: 0;
+}
+.apply-tab {
+  padding: 20px 44px;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(245,240,235,0.35);
+  cursor: none;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+  background: none;
+  border-left: none; border-right: none; border-top: none;
+  font-family: var(--sans);
+}
+.apply-tab:hover { color: var(--cream); }
+.apply-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+.apply-panel-content { display: none; }
+.apply-panel-content.active { display: block; }
+
+/* Student application */
+.student-apply {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 100px;
+  padding: var(--sp-xl) var(--sp-lg);
+  align-items: start;
+}
+.apply-sidebar { position: sticky; top: 120px; }
+.apply-sidebar h2 { font-family: var(--serif); font-size: clamp(28px,4vw,46px); font-weight:300; line-height:1.2; margin-bottom: 20px; }
+.apply-sidebar p { font-size: 15px; font-weight: 300; line-height: 1.85; color: rgba(245,240,235,0.45); margin-bottom: 20px; }
+
+.apply-checklist {
+  margin: 32px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  font-size: 14px;
+  font-weight: 300;
+  color: rgba(245,240,235,0.5);
+  line-height: 1.6;
+}
+.check-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+  margin-top: 6px;
+}
+
+/* Application form */
+.app-form {
+  background: rgba(196,164,145,0.03);
+  border: var(--line-dim);
+  padding: 52px 48px;
+}
+.app-form-title {
+  font-family: var(--serif);
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 36px;
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+.form-label { font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--copper); }
+.form-input, .form-select, .form-textarea {
+  background: rgba(196,164,145,0.05);
+  border: var(--line);
+  color: var(--cream);
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 300;
+  padding: 13px 16px;
+  border-radius: 1px;
+  transition: border-color 0.2s, background 0.2s;
+  outline: none;
+  width: 100%;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: rgba(212,168,83,0.4);
+  background: rgba(196,164,145,0.08);
+}
+.form-input::placeholder { color: rgba(196,164,145,0.3); }
+.form-select option { background: var(--charcoal-2); }
+.form-textarea { min-height: 100px; resize: vertical; }
+.form-section-title {
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--rose);
+  margin: 28px 0 16px;
+  padding-top: 28px;
+  border-top: var(--line-dim);
+}
+.form-submit { margin-top: 28px; width: 100%; padding: 18px; font-size: 12px; }
+
+/* Mentor application */
+#mentors { padding: var(--sp-xl) var(--sp-lg); }
+.mentor-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 100px;
+  align-items: start;
+}
+
+/* FAQ */
+.faq-section { padding: var(--sp-xl) var(--sp-lg); background: var(--charcoal-2); }
+.faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(196,164,145,0.08); margin-top:52px; }
+.faq-item { background: var(--charcoal-2); padding: 36px 32px; cursor: none; }
+.faq-q { font-family: var(--serif); font-size: 19px; font-weight: 400; color: var(--cream); margin-bottom: 12px; line-height: 1.3; }
+.faq-a { font-size: 14px; font-weight: 300; line-height: 1.8; color: rgba(245,240,235,0.4); }
+
+@media(max-width:900px){
+  .student-apply { grid-template-columns:1fr; gap:52px; }
+  .apply-sidebar { position: static; }
+  .form-row { grid-template-columns:1fr; }
+  .mentor-two-col { grid-template-columns:1fr; gap:52px; }
+  .faq-grid { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo">
+    <div class="logo-mark static"><span></span><span></span><span></span><span></span><span></span></div>
+    <span class="logo-wordmark">Ascensia</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="program.html">Program</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="partners.html">Partners</a></li>
+    <li><a href="apply.html" class="nav-cta active">Apply</a></li>
+  </ul>
+  <button class="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-mobile">
+  <a href="program.html">Program</a>
+  <a href="about.html">About</a>
+  <a href="partners.html">Partners</a>
+  <a href="apply.html">Apply</a>
+</div>
+
+<div class="page-hero">
+  <p class="page-hero-label">Applications Open · Cohort 2025</p>
+  <h1>
+    <span class="hero-line-wrap"><span class="hero-line-inner" style="animation-delay:.5s">This is where</span></span>
+    <span class="hero-line-wrap"><span class="hero-line-inner" style="animation-delay:.68s">it <span style="font-style:italic;color:var(--gold)">starts.</span></span></span>
+  </h1>
+  <p class="page-hero-sub">Whether you're a student ready to compete for the world's best universities, a recent graduate ready to mentor the next one, or a partner ready to fund the gap — this is where the conversation begins.</p>
+</div>
+
+<!-- TABS -->
+<div style="padding:0 var(--sp-lg)">
+  <div class="apply-tabs">
+    <button class="apply-tab active" onclick="switchTab('students',this)">For students</button>
+    <button class="apply-tab" id="mentors-tab" onclick="switchTab('mentors',this)">For mentors</button>
+  </div>
+</div>
+
+<!-- STUDENT APPLICATION -->
+<div class="apply-panel-content active" id="panel-students">
+  <div class="student-apply">
+    <div class="apply-sidebar reveal">
+      <div class="section-eyebrow">Student application</div>
+      <h2>Apply for<br>Cohort 2025.</h2>
+      <p>Applications are open to students in Grades 10–11 from Africa, South Asia, Latin America, and the Middle East. No fee. No requirement that you already have a plan or a counselor — that's exactly why Ascensia exists.</p>
+      <p>The program is free. Selection is based on potential and commitment, not grades alone.</p>
+      <div class="apply-checklist">
+        <div class="check-item"><div class="check-dot"></div>Currently in Grade 10 or Grade 11</div>
+        <div class="check-item"><div class="check-dot"></div>From Africa, South Asia, Latin America, or the Middle East</div>
+        <div class="check-item"><div class="check-dot"></div>Interested in applying to top universities globally</div>
+        <div class="check-item"><div class="check-dot"></div>Committed to the 14–16 month program</div>
+        <div class="check-item"><div class="check-dot"></div>No fee — the program is free to all accepted students</div>
+      </div>
+      <a href="program.html" class="btn btn-outline" style="font-size:11px">Read the full program →</a>
+    </div>
+
+    <div class="app-form reveal r-d2">
+      <h3 class="app-form-title">Student Application — Cohort 2025</h3>
+
+      <div class="form-section-title">About you</div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">First name</label><input type="text" class="form-input" placeholder="Your first name"></div>
+        <div class="form-group"><label class="form-label">Last name</label><input type="text" class="form-input" placeholder="Your last name"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Email address</label><input type="email" class="form-input" placeholder="your@email.com"></div>
+        <div class="form-group"><label class="form-label">Country</label><input type="text" class="form-input" placeholder="Country of residence"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Current grade / year</label>
+          <select class="form-select"><option value="" disabled selected>Select grade</option><option>Grade 10 / Year 11</option><option>Grade 11 / Year 12</option></select>
+        </div>
+        <div class="form-group"><label class="form-label">School type</label>
+          <select class="form-select"><option value="" disabled selected>Select type</option><option>Government / public school</option><option>Private national school</option><option>International school (IB, Cambridge)</option><option>Other</option></select>
+        </div>
+      </div>
+
+      <div class="form-section-title">Your ambitions</div>
+      <div class="form-group"><label class="form-label">Which universities are you interested in?</label><input type="text" class="form-input" placeholder="e.g. Harvard, MIT, Oxford, McGill — even if you're not sure yet"></div>
+      <div class="form-group"><label class="form-label">What subject or field are you considering?</label><input type="text" class="form-input" placeholder="e.g. Engineering, Medicine, Economics — or 'not sure yet'"></div>
+      <div class="form-group"><label class="form-label">Tell us about yourself</label><textarea class="form-textarea" placeholder="What makes you — you? What are you working on, what do you care about, and why are you applying to Ascensia? No word limit. Be honest."></textarea></div>
+
+      <div class="form-section-title">Access to guidance</div>
+      <div class="form-group"><label class="form-label">Does your school have a college counselor?</label>
+        <select class="form-select"><option value="" disabled selected>Select</option><option>Yes — dedicated full-time counselor</option><option>Yes — but they handle many other things</option><option>No — teachers advise informally</option><option>No guidance available at all</option></select>
+      </div>
+      <div class="form-group"><label class="form-label">Have you spoken to anyone who attended a top university?</label>
+        <select class="form-select"><option value="" disabled selected>Select</option><option>Yes, in person</option><option>Yes, online</option><option>No, but I'd like to</option><option>No, and I haven't tried</option></select>
+      </div>
+
+      <button class="btn btn-gold form-submit" style="cursor:none">Submit application</button>
+      <p style="font-size:11px;color:rgba(196,164,145,0.4);margin-top:14px;line-height:1.6">Applications are reviewed on a rolling basis. You will hear from us within 3 weeks of submission.</p>
+    </div>
+  </div>
+</div>
+
+<!-- MENTOR APPLICATION -->
+<div class="apply-panel-content" id="panel-mentors">
+  <section id="mentors" style="padding-top:60px">
+    <div class="mentor-two-col">
+      <div class="reveal">
+        <div class="section-eyebrow rose">Mentor application</div>
+        <h2 class="section-heading" style="margin-bottom:24px">
+          Your story is<br>the <em>most valuable</em><br>thing we have.
+        </h2>
+        <p class="section-body" style="margin-bottom:20px">If you recently got into a top university from an underrepresented region — you are exactly who the next Ascensia student needs. Not a ten-year veteran. Not an advisor. You, this year, with the information still fresh.</p>
+        <p class="section-body" style="margin-bottom:36px">Mentorship is structured, supported, and meaningful. You'll be matched with one student, guided through the relationship, and supported throughout. Time commitment is approximately 1–2 hours per week during the program's most intensive periods.</p>
+        <div class="univ-tags">
+          <span class="univ-tag">Harvard</span><span class="univ-tag">MIT</span>
+          <span class="univ-tag">Yale</span><span class="univ-tag">Princeton</span>
+          <span class="univ-tag">McGill</span><span class="univ-tag">Sciences Po</span>
+          <span class="univ-tag">Oxford</span><span class="univ-tag">Cambridge</span>
+          <span class="univ-tag">ETH Zurich</span><span class="univ-tag">Toronto</span>
+          <span class="univ-tag">LSE</span><span class="univ-tag">Other top universities</span>
+        </div>
+      </div>
+      <div class="app-form reveal r-d2">
+        <h3 class="app-form-title">Mentor Application</h3>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">First name</label><input type="text" class="form-input" placeholder="First name"></div>
+          <div class="form-group"><label class="form-label">Last name</label><input type="text" class="form-input" placeholder="Last name"></div>
+        </div>
+        <div class="form-group"><label class="form-label">Email address</label><input type="email" class="form-input" placeholder="your@university.edu"></div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">University</label><input type="text" class="form-input" placeholder="e.g. Harvard University"></div>
+          <div class="form-group"><label class="form-label">Year / Class</label><input type="text" class="form-input" placeholder="e.g. Class of 2027"></div>
+        </div>
+        <div class="form-group"><label class="form-label">Where are you originally from?</label><input type="text" class="form-input" placeholder="City, country"></div>
+        <div class="form-group"><label class="form-label">What subject are you studying?</label><input type="text" class="form-input" placeholder="Major / field of study"></div>
+        <div class="form-group"><label class="form-label">Why do you want to mentor?</label><textarea class="form-textarea" placeholder="What was your experience like? What do you wish you'd known? What would you tell a student applying from where you came from?"></textarea></div>
+        <button class="btn btn-gold form-submit" style="cursor:none">Apply as a mentor</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="reveal">
+    <div class="section-eyebrow">Common questions</div>
+    <h2 class="section-heading">Things people<br>usually ask.</h2>
+  </div>
+  <div class="faq-grid">
+    <div class="faq-item reveal">
+      <h4 class="faq-q">Is the program really free?</h4>
+      <p class="faq-a">Yes, entirely. The program is grant-funded and partnership-funded. No student is ever turned away for financial reasons — that principle is structural, not aspirational.</p>
+    </div>
+    <div class="faq-item reveal r-d1">
+      <h4 class="faq-q">What grades / years are eligible?</h4>
+      <p class="faq-a">Students currently in Grade 10 or Grade 11 (Year 11 or Year 12 in UK systems). We accept students across all school types — government, private national, and international schools.</p>
+    </div>
+    <div class="faq-item reveal">
+      <h4 class="faq-q">What countries are eligible?</h4>
+      <p class="faq-a">Ascensia currently targets Africa, South Asia, Latin America, and the Middle East. If you're in another region and believe you fit the profile, apply — we read every application individually.</p>
+    </div>
+    <div class="faq-item reveal r-d1">
+      <h4 class="faq-q">How much time does the program take?</h4>
+      <p class="faq-a">The program runs 14–16 months from orientation through application submission. Expect approximately 3–5 hours per week during the school year, with heavier periods around essay season and application deadlines.</p>
+    </div>
+    <div class="faq-item reveal">
+      <h4 class="faq-q">What if my grades aren't perfect?</h4>
+      <p class="faq-a">We select for potential, not perfection. We want students who, with Ascensia's support, can become competitive — not students who are already fully prepared. If you have drive and ambition, apply.</p>
+    </div>
+    <div class="faq-item reveal r-d1">
+      <h4 class="faq-q">When will I hear back?</h4>
+      <p class="faq-a">Applications are reviewed on a rolling basis. You will receive a response within three weeks of submission. If you are invited to continue, the next step is a short interview with a member of the Ascensia team.</p>
+    </div>
+  </div>
+</section>
+
+<footer id="main-footer"></footer>
+<script src="js/main.js"></script>
+<script src="js/cursor.js"></script>
+<script src="js/scroll.js"></script>
+<script>
+function switchTab(panel, btn) {
+  document.querySelectorAll('.apply-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.apply-panel-content').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('panel-' + panel).classList.add('active');
+  if (panel === 'mentors') {
+    setTimeout(() => {
+      document.getElementById('mentors').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 50);
+  }
+}
+</script>
+</body>
+</html>

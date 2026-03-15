@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Ascensia prepares talented students from Africa, South Asia, Latin America, and the Middle East to compete for — and win — admission to top global universities.">
+<title>Ascensia — Talent Is Everywhere. Opportunity Isn't. Yet.</title>
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/nav.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/main.css">
+<style>
+/* ─── HOME-SPECIFIC ─── */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 var(--sp-lg);
+  position: relative;
+  overflow: hidden;
+}
+.hero-orbit { position: absolute; top: 50%; left: 58%; pointer-events: none; }
+.hero-orbit .orbit-ring:nth-child(1) { width: 700px;  height: 700px; }
+.hero-orbit .orbit-ring:nth-child(2) { width: 1000px; height: 1000px; border-color: rgba(196,164,145,0.04); }
+.hero-orbit .orbit-ring:nth-child(3) { width: 1300px; height: 1300px; border-color: rgba(196,164,145,0.025); }
+
+/* Rising line sculpture */
+.hero-sculpture {
+  position: absolute;
+  right: var(--sp-lg);
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-end;
+  pointer-events: none;
+}
+.sculpt-line {
+  height: 1.5px;
+  background: var(--gold);
+  border-radius: 1px;
+  opacity: 0;
+  animation: lineIn 0.8s var(--ease-out) both;
+}
+.sculpt-line:nth-child(1){ width:14px;   animation-delay:1.3s; }
+.sculpt-line:nth-child(2){ width:40px;   animation-delay:1.45s; }
+.sculpt-line:nth-child(3){ width:90px;   animation-delay:1.6s; }
+.sculpt-line:nth-child(4){ width:170px;  animation-delay:1.75s; }
+.sculpt-line:nth-child(5){ width:280px;  animation-delay:1.9s; }
+.sculpt-line:nth-child(6){ width:400px;  animation-delay:2.05s; background:rgba(196,164,145,0.4); }
+.sculpt-line:nth-child(7){ width:500px;  animation-delay:2.2s; background:rgba(196,164,145,0.2); }
+
+.hero-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--copper);
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.4s both;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 36px; height: 0.5px;
+  background: var(--copper);
+}
+.hero-h1 {
+  font-family: var(--serif);
+  font-size: clamp(62px, 9vw, 122px);
+  font-weight: 300;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  max-width: 820px;
+}
+.hero-h1 .italic { font-style: italic; color: var(--gold); }
+.hero-sub {
+  margin-top: 40px;
+  max-width: 420px;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.85;
+  color: rgba(245,240,235,0.5);
+  opacity: 0;
+  animation: fadeUp 0.9s 1.2s both;
+}
+.hero-actions {
+  margin-top: 48px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  opacity: 0;
+  animation: fadeUp 0.9s 1.4s both;
+}
+.btn-ghost-hero {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgba(245,240,235,0.4);
+  transition: color 0.2s;
+  cursor: none;
+  font-weight: 300;
+}
+.btn-ghost-hero .arr { transition: transform 0.2s; }
+.btn-ghost-hero:hover { color: var(--cream); }
+.btn-ghost-hero:hover .arr { transform: translateX(5px); }
+.hero-scroll-wrap {
+  position: absolute;
+  bottom: 44px;
+  left: var(--sp-lg);
+  opacity: 0;
+  animation: fadeUp 0.8s 2.2s both;
+}
+
+/* ─── STATEMENT ─── */
+#statement {
+  padding: var(--sp-2xl) var(--sp-lg);
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 100px;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.statement-ghost {
+  position: absolute;
+  left: -20px; top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--serif);
+  font-size: clamp(160px, 22vw, 300px);
+  font-weight: 300;
+  letter-spacing: -0.06em;
+  color: rgba(196,164,145,0.04);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+.pullquote {
+  font-family: var(--serif);
+  font-size: clamp(22px, 3vw, 38px);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.45;
+  color: var(--cream);
+  border-left: 2px solid var(--gold);
+  padding-left: 36px;
+  position: relative;
+}
+.pullquote-attr {
+  display: block;
+  margin-top: 20px;
+  padding-left: 36px;
+  font-size: 10px;
+  font-style: normal;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--copper);
+  font-family: var(--sans);
+}
+
+/* ─── STATS ─── */
+#stats { padding: var(--sp-xl) 0; }
+.stats-head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: end;
+  padding: 0 var(--sp-lg) var(--sp-lg);
+}
+
+/* ─── PROGRAM OVERVIEW ─── */
+#program-preview {
+  padding: var(--sp-2xl) var(--sp-lg);
+  background: var(--charcoal-2);
+  position: relative;
+  overflow: hidden;
+}
+.program-preview-header {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+  align-items: end;
+  margin-bottom: 80px;
+}
+
+/* ─── MENTOR PREVIEW ─── */
+#mentor-preview {
+  padding: var(--sp-2xl) var(--sp-lg);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: center;
+}
+
+/* ─── MAP SECTION ─── */
+#map-section {
+  padding: var(--sp-xl) var(--sp-lg);
+  background: var(--charcoal-2);
+}
+.map-wrapper {
+  margin-top: 52px;
+  position: relative;
+}
+#world-map {
+  position: relative;
+  width: 100%;
+  padding-bottom: 50%;
+  background: #0E0B09;
+  border: var(--line-dim);
+  overflow: hidden;
+}
+#world-map svg.map-svg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+}
+
+/* Simple SVG world map silhouette embedded inline */
+.map-bg-text {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  font-family: var(--serif);
+  font-size: 11vw;
+  font-weight: 300;
+  letter-spacing: -0.05em;
+  color: rgba(196,164,145,0.03);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ─── VISION ─── */
+/* uses .vision-section from main.css */
+
+/* ─── HOME APPLY ─── */
+/* uses .apply-split from main.css */
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  #statement { grid-template-columns: 1fr; gap: 52px; }
+  .stats-head { grid-template-columns: 1fr; }
+  .program-preview-header { grid-template-columns: 1fr; gap: 44px; }
+  #mentor-preview { grid-template-columns: 1fr; gap: 60px; }
+  .hero-sculpture { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- Cursor -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- ═══ NAV ═══ -->
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo">
+    <div class="logo-mark animated"><span></span><span></span><span></span><span></span><span></span></div>
+    <span class="logo-wordmark">Ascensia</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="program.html">Program</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="partners.html">Partners</a></li>
+    <li><a href="apply.html" class="nav-cta">Apply</a></li>
+  </ul>
+  <button class="nav-hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-mobile">
+  <a href="program.html">Program</a>
+  <a href="about.html">About</a>
+  <a href="partners.html">Partners</a>
+  <a href="apply.html">Apply</a>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <div class="hero-orbit">
+    <div class="orbit-ring"></div>
+    <div class="orbit-ring reverse fast"></div>
+    <div class="orbit-ring slow"></div>
+  </div>
+
+  <div class="hero-sculpture" aria-hidden="true">
+    <div class="sculpt-line"></div>
+    <div class="sculpt-line"></div>
+    <div class="sculpt-line"></div>
+    <div class="sculpt-line"></div>
+    <div class="sculpt-line"></div>
+    <div class="sculpt-line"></div>
+    <div class="sculpt-line"></div>
+  </div>
+
+  <p class="hero-eyebrow">Global Admissions Preparation · Cohort 2025</p>
+
+  <h1 class="hero-h1">
+    <span class="hero-line-wrap"><span class="hero-line-inner" style="animation-delay:.5s">Talent is</span></span>
+    <span class="hero-line-wrap"><span class="hero-line-inner italic" style="animation-delay:.68s">everywhere.</span></span>
+    <span class="hero-line-wrap"><span class="hero-line-inner" style="animation-delay:.86s">Opportunity</span></span>
+    <span class="hero-line-wrap"><span class="hero-line-inner" style="animation-delay:1.04s">isn't. <span class="italic">Yet.</span></span></span>
+  </h1>
+
+  <p class="hero-sub">
+    Ascensia prepares the world's highest-potential students — from Africa,
+    South Asia, Latin America, and the Middle East — to compete for and win
+    admission to top global universities. At no cost to students, ever.
+  </p>
+
+  <div class="hero-actions">
+    <a href="apply.html" class="btn btn-gold">Apply for Cohort 2025</a>
+    <a href="program.html" class="btn-ghost-hero">Explore the program <span class="arr">→</span></a>
+  </div>
+
+  <div class="hero-scroll-wrap">
+    <div class="scroll-indicator">
+      <div class="scroll-track"><div class="scroll-thumb"></div></div>
+      <span class="scroll-label">Scroll</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MARQUEE ═══ -->
+<div class="marquee-band" aria-hidden="true">
+  <div class="marquee-track"></div>
+</div>
+
+<!-- ═══ STATEMENT ═══ -->
+<section id="statement">
+  <div class="statement-ghost" aria-hidden="true">A</div>
+
+  <div class="reveal">
+    <div class="section-eyebrow">The problem</div>
+    <h2 class="section-heading">
+      The world loses<br>
+      breakthrough minds<br>
+      every year. Not from<br>
+      lack of <em>talent —</em><br>
+      from lack of access.
+    </h2>
+  </div>
+
+  <div class="reveal r-d2">
+    <p class="pullquote">
+      Harvard will pay full tuition for a student whose family earns under $85,000 a year.
+      Most students who qualify have never heard that.
+      <span class="pullquote-attr">— The founding premise of Ascensia</span>
+    </p>
+  </div>
+</section>
+
+<!-- ═══ STATISTICS ═══ -->
+<section id="stats">
+  <div class="stats-head">
+    <div class="reveal">
+      <div class="section-eyebrow">The access gap</div>
+      <h2 class="section-heading">The data<br>behind the silence.</h2>
+    </div>
+    <p class="section-body reveal r-d2">
+      Each number here represents a generation of students who had the ability
+      to attend a world-class university — and never applied. Not because they
+      weren't capable. Because the system never told them it was possible.
+    </p>
+  </div>
+
+  <div class="stats-block">
+    <div class="stat-row reveal">
+      <div class="stat-index">01</div>
+      <div class="stat-number-cell">
+        <div class="stat-number">
+          <span data-target="400">0</span><span class="ratio-one">: 1</span>
+        </div>
+      </div>
+      <div class="stat-col-divider"></div>
+      <div class="stat-text-cell">
+        <p>Average student-to-counselor ratio in US public high schools. In most state schools across sub-Saharan Africa and South Asia, dedicated college counselors are virtually nonexistent.</p>
+        <span class="stat-source">NACAC / ASCA</span>
+      </div>
+    </div>
+
+    <div class="stat-row reveal">
+      <div class="stat-index">02</div>
+      <div class="stat-number-cell">
+        <div class="stat-number" style="color:var(--gold)">
+          <span data-target="38">0</span><span class="unit">pt</span>
+        </div>
+      </div>
+      <div class="stat-col-divider"></div>
+      <div class="stat-text-cell">
+        <p>Percentage-point enrollment gap between high-income and low-income families, driven by non-academic factors — cost perception and the absence of anyone who has done it before.</p>
+        <span class="stat-source">Brookings, 2023</span>
+      </div>
+    </div>
+
+    <div class="stat-row reveal">
+      <div class="stat-index">03</div>
+      <div class="stat-number-cell">
+        <div class="stat-number" style="color:var(--rose)">
+          <span data-target="8">0</span>
+        </div>
+      </div>
+      <div class="stat-col-divider"></div>
+      <div class="stat-text-cell">
+        <p>Universities in the US with need-blind admissions for international students. Harvard, Yale, Princeton, MIT, Amherst, Bowdoin, Dartmouth, Brown — each will cover 100% of demonstrated need. Most of their potential applicants have never heard of them.</p>
+        <span class="stat-source">Verified 2025</span>
+      </div>
+    </div>
+
+    <div class="stat-row reveal">
+      <div class="stat-index">04</div>
+      <div class="stat-number-cell">
+        <div class="stat-number">
+          <span data-target="60">0</span><span class="unit">%</span>
+        </div>
+      </div>
+      <div class="stat-col-divider"></div>
+      <div class="stat-text-cell">
+        <p>Of international students at US universities receive some form of financial aid. The crisis isn't that aid doesn't exist. It's that qualified students don't apply because they assume they can't afford it.</p>
+        <span class="stat-source">IIE, 2023</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="harvard-band reveal">
+    <div class="harvard-letter" aria-hidden="true">H</div>
+    <div>
+      <p class="harvard-quote-text">
+        "We came to the conclusion that we weren't reaching all the talented
+        students who might think of Harvard as an opportunity."
+      </p>
+      <cite class="harvard-cite">Griffin Director of Financial Aid — Harvard Gazette, 2018</cite>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROGRAM PREVIEW ═══ -->
+<section id="program-preview" class="grid-bg">
+  <div class="program-preview-header">
+    <div class="reveal">
+      <div class="section-eyebrow rose">The program</div>
+      <h2 class="section-heading">One complete<br>system. Nothing<br>left out.</h2>
+    </div>
+    <p class="section-body reveal r-d2">
+      Ascensia is a <strong>14–16 month cohort-based program</strong> that takes
+      high-potential students from the start of junior year through final application
+      submission. Every component is designed to work together. The program is
+      <strong>grant-funded and free to every student.</strong>
+    </p>
+  </div>
+
+  <div class="pillars-grid">
+    <div class="pillar reveal">
+      <div class="pillar-top-line"></div>
+      <div class="pillar-num">01</div>
+      <h3 class="pillar-title">Curriculum</h3>
+      <p class="pillar-desc">17 tracks covering every dimension of the application — testing, essays, financial aid, college research, non-US admissions, and more. Built for every global school system.</p>
+    </div>
+    <div class="pillar reveal r-d1">
+      <div class="pillar-top-line"></div>
+      <div class="pillar-num">02</div>
+      <h3 class="pillar-title">Mentorship</h3>
+      <p class="pillar-desc">1:1 matching with a current student at one of the applicant's target universities. No textbook or consultant can replicate someone who just walked through the same door.</p>
+    </div>
+    <div class="pillar reveal r-d2">
+      <div class="pillar-top-line"></div>
+      <div class="pillar-num">03</div>
+      <h3 class="pillar-title">Application Support</h3>
+      <p class="pillar-desc">Hands-on guidance through every component — essays, activity descriptions, recommendation strategy, financial aid forms, and deadline management across all platforms.</p>
+    </div>
+    <div class="pillar reveal r-d3">
+      <div class="pillar-top-line"></div>
+      <div class="pillar-num">04</div>
+      <h3 class="pillar-title">Community</h3>
+      <p class="pillar-desc">The cohort model creates shared accountability and a network that persists for life. Every graduate joins the alumni mentor network — making the program stronger with every class.</p>
+    </div>
+  </div>
+
+  <div style="margin-top:52px; text-align:center">
+    <a href="program.html" class="btn btn-outline reveal r-d2">See the full program →</a>
+  </div>
+</section>
+
+<!-- ═══ MENTOR PREVIEW ═══ -->
+<section id="mentor-preview">
+  <div class="reveal">
+    <div class="section-eyebrow">The mentor network</div>
+    <h2 class="section-heading" style="margin-bottom:28px">
+      The most<br>valuable guide is<br>someone who<br><em>just got in.</em>
+    </h2>
+    <p class="section-body" style="margin-bottom:36px">
+      A Harvard sophomore who lived this process last year knows things no advisor,
+      no book, and no search result can tell a student applying today. That person
+      is both the product and the moat.
+    </p>
+    <div class="univ-tags">
+      <span class="univ-tag">Harvard</span>
+      <span class="univ-tag">MIT</span>
+      <span class="univ-tag">Yale</span>
+      <span class="univ-tag">Princeton</span>
+      <span class="univ-tag">McGill</span>
+      <span class="univ-tag">Sciences Po</span>
+      <span class="univ-tag">Oxford</span>
+      <span class="univ-tag">LSE</span>
+      <span class="univ-tag">ETH Zurich</span>
+    </div>
+  </div>
+
+  <div class="mentor-stack reveal r-d3">
+    <div class="mcard">
+      <div class="mcard-school">Harvard University · Class of 2028</div>
+      <p class="mcard-quote">"I had a 3.9 GPA and no one at my school had ever applied to Harvard. I didn't know where to start — or that they'd cover almost everything for my family."</p>
+      <div class="mcard-name">Amara K.</div>
+      <div class="mcard-origin">Accra, Ghana</div>
+    </div>
+    <div class="mcard">
+      <div class="mcard-school">MIT · Class of 2027</div>
+      <p class="mcard-quote">"My family earns under $60,000. MIT costs us nothing. Nobody told us that was real — and I almost didn't apply because I assumed it was impossible."</p>
+      <div class="mcard-name">Raza M.</div>
+      <div class="mcard-origin">Lahore, Pakistan</div>
+    </div>
+    <div class="mcard">
+      <div class="mcard-school">Yale University · Class of 2027</div>
+      <p class="mcard-quote">"What I needed wasn't more information. It was someone who had actually walked through the door and could tell me it was real."</p>
+      <div class="mcard-name">Chioma O.</div>
+      <div class="mcard-origin">Lagos, Nigeria</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MAP SECTION ═══ -->
+<section id="map-section">
+  <div class="reveal">
+    <div class="section-eyebrow rose">Where we work</div>
+    <h2 class="section-heading">
+      Students from here.<br>
+      Opportunities <em>everywhere.</em>
+    </h2>
+  </div>
+  <p class="section-body reveal r-d2" style="margin-top:20px;max-width:520px">
+    Ascensia targets the regions with the greatest concentration of high-potential
+    students who lack access to a functional guidance system. Hover the map
+    to see the connections we're building.
+  </p>
+
+  <div class="map-wrapper">
+    <div id="world-map">
+      <!-- World map SVG background -->
+      <svg class="map-svg" viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg">
+        <rect width="1000" height="500" fill="transparent"/>
+        <!-- Simplified continent silhouettes -->
+        <!-- North America -->
+        <path d="M80,60 L200,55 L230,80 L220,120 L200,150 L180,180 L160,200 L140,220 L120,230 L100,220 L80,200 L70,170 L65,140 L70,100 Z" fill="rgba(196,164,145,0.07)" stroke="rgba(196,164,145,0.12)" stroke-width="0.5"/>
+        <!-- Central America -->
+        <path d="M140,220 L160,230 L165,250 L155,260 L145,255 L135,240 Z" fill="rgba(196,164,145,0.07)" stroke="rgba(196,164,145,0.12)" stroke-width="0.5"/>
+        <!-- South America -->
+        <path d="M160,270 L220,265 L250,290 L260,330 L255,380 L240,420 L210,440 L180,430 L160,400 L150,360 L148,320 L152,290 Z" fill="rgba(196,164,145,0.07)" stroke="rgba(196,164,145,0.12)" stroke-width="0.5"/>
+        <!-- Europe -->
+        <path d="M430,55 L490,50 L510,70 L505,100 L490,110 L470,105 L450,95 L435,80 Z" fill="rgba(196,164,145,0.07)" stroke="rgba(196,164,145,0.12)" stroke-width="0.5"/>
+        <!-- Africa -->
+        <path d="M450,160 L510,155 L540,175 L545,220 L535,270 L525,320 L510,360 L490,380 L465,375 L445,350 L435,310 L430,265 L435,220 L440,185 Z" fill="rgba(196,164,145,0.09)" stroke="rgba(196,164,145,0.14)" stroke-width="0.5"/>
+        <!-- Middle East -->
+        <path d="M520,140 L570,135 L590,155 L585,185 L565,195 L540,190 L520,175 Z" fill="rgba(196,164,145,0.07)" stroke="rgba(196,164,145,0.12)" stroke-width="0.5"/>
+        <!-- South Asia -->
+        <path d="M600,155 L660,150 L680,170 L675,210 L655,225 L630,220 L610,205 L600,185 Z" fill="rgba(196,164,145,0.09)" stroke="rgba(196,164,145,0.14)" stroke-width="0.5"/>
+        <!-- East Asia -->
+        <path d="M680,90 L760,85 L790,110 L785,160 L760,175 L730,165 L700,145 L685,120 Z" fill="rgba(196,164,145,0.07)" stroke="rgba(196,164,145,0.12)" stroke-width="0.5"/>
+        <!-- Australia -->
+        <path d="M730,300 L810,295 L840,320 L835,365 L810,380 L770,375 L745,355 L735,325 Z" fill="rgba(196,164,145,0.06)" stroke="rgba(196,164,145,0.1)" stroke-width="0.5"/>
+        <!-- Russia/North Asia (simplified) -->
+        <path d="M500,30 L800,25 L830,60 L820,100 L780,85 L700,80 L620,75 L540,65 L505,55 Z" fill="rgba(196,164,145,0.05)" stroke="rgba(196,164,145,0.08)" stroke-width="0.5"/>
+        <!-- Grid lines for atmosphere -->
+        <line x1="0" y1="250" x2="1000" y2="250" stroke="rgba(196,164,145,0.04)" stroke-width="0.5"/>
+        <line x1="500" y1="0" x2="500" y2="500" stroke="rgba(196,164,145,0.04)" stroke-width="0.5"/>
+      </svg>
+      <div class="map-bg-text" aria-hidden="true">ASCENSIA</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ VISION ═══ -->
+<section class="vision-section">
+  <div class="vision-rings-wrap" aria-hidden="true">
+    <div class="vision-ring"></div>
+    <div class="vision-ring"></div>
+    <div class="vision-ring"></div>
+    <div class="vision-ring"></div>
+    <div class="vision-ring"></div>
+  </div>
+  <div class="vision-inner reveal">
+    <div class="section-eyebrow gold" style="justify-content:center">Our vision</div>
+    <h2 class="vision-title">
+      A world where your university<br>
+      is determined by your potential —<br>
+      <em>not where you were born.</em>
+    </h2>
+    <p class="vision-body">
+      Intelligence and talent are distributed evenly across the world. Opportunity is not.
+      Every student who completes Ascensia becomes proof that the gap can be closed —
+      and every one who becomes a mentor ensures the next student has a shorter
+      distance to travel.
+    </p>
+  </div>
+</section>
+
+<!-- ═══ APPLY SPLIT ═══ -->
+<div class="apply-split">
+  <div class="apply-panel apply-light reveal">
+    <div class="section-eyebrow" style="color:var(--copper)">For students</div>
+    <h2 class="apply-headline">Apply for<br>Cohort 2025.</h2>
+    <p class="apply-desc">Applications are open to students in Grades 10–11 across Africa, South Asia, Latin America, and the Middle East. No fee. No prerequisite except ambition and the willingness to do the work.</p>
+    <a href="apply.html" class="btn btn-dark">Apply as a student</a>
+    <div class="apply-deco-num" aria-hidden="true">25</div>
+  </div>
+  <div class="apply-panel apply-dark reveal r-d2">
+    <div class="section-eyebrow rose">For mentors & partners</div>
+    <h2 class="apply-headline">Join the<br>network.</h2>
+    <p class="apply-desc">If you recently got into a top university from an underrepresented region, your story is the most valuable thing we have to offer the next student. If you represent a foundation or institution, we'd welcome that conversation.</p>
+    <a href="apply.html#mentors" class="btn btn-gold">Join as a mentor</a>
+    <div class="apply-deco-num" aria-hidden="true">+</div>
+  </div>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer id="main-footer"></footer>
+
+<script src="js/main.js"></script>
+<script src="js/cursor.js"></script>
+<script src="js/scroll.js"></script>
+<script src="js/map.js"></script>
+</body>
+</html>

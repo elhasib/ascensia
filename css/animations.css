@@ -1,0 +1,235 @@
+/* ═══════════════════════════════════════
+   ASCENSIA — ANIMATIONS
+═══════════════════════════════════════ */
+
+/* ─── KEYFRAMES ─── */
+@keyframes lineIn {
+  from { transform: scaleX(0); opacity: 0; }
+  to   { transform: scaleX(1); opacity: 1; }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes lineReveal {
+  from { transform: translateY(105%); }
+  to   { transform: translateY(0); }
+}
+@keyframes spinSlow {
+  to { transform: translate(-50%,-50%) rotate(360deg); }
+}
+@keyframes spinReverse {
+  to { transform: translate(-50%,-50%) rotate(-360deg); }
+}
+@keyframes scrollThumb {
+  0%   { top: -60%; }
+  100% { top: 140%; }
+}
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes ringPulse {
+  0%,100% { opacity: 0.7; transform: translate(-50%,-50%) scale(1); }
+  50%     { opacity: 0.3; transform: translate(-50%,-50%) scale(1.025); }
+}
+@keyframes arrowPulse {
+  0%,100% { opacity: 0.3; transform: translateX(0); }
+  50%     { opacity: 0.9; transform: translateX(5px); }
+}
+@keyframes countPath {
+  from { stroke-dashoffset: 1; }
+  to   { stroke-dashoffset: 0; }
+}
+@keyframes shimmer {
+  from { background-position: -200% center; }
+  to   { background-position: 200% center; }
+}
+@keyframes float {
+  0%,100% { transform: translateY(0px); }
+  50%     { transform: translateY(-8px); }
+}
+@keyframes scaleIn {
+  from { transform: scale(0.94); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+@keyframes timelineDot {
+  from { transform: scale(0); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+@keyframes progressFill {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+@keyframes worldPing {
+  0%   { transform: translate(-50%,-50%) scale(1); opacity: 0.8; }
+  100% { transform: translate(-50%,-50%) scale(3); opacity: 0; }
+}
+
+/* ─── HERO TEXT ENTRANCE ─── */
+.hero-line-wrap {
+  overflow: hidden;
+  display: block;
+}
+.hero-line-inner {
+  display: block;
+  transform: translateY(110%);
+  animation: lineReveal 1s var(--ease-out) both;
+}
+
+/* ─── SPINNING RINGS ─── */
+.orbit-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 0.5px solid rgba(196,164,145,0.07);
+  top: 50%; left: 50%;
+  animation: spinSlow 80s linear infinite;
+  pointer-events: none;
+}
+.orbit-ring.reverse { animation-name: spinReverse; }
+.orbit-ring.fast    { animation-duration: 45s; }
+.orbit-ring.slow    { animation-duration: 120s; }
+
+/* ─── SCROLL INDICATOR ─── */
+.scroll-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.scroll-track {
+  width: 1px; height: 64px;
+  background: rgba(196,164,145,0.15);
+  position: relative;
+  overflow: hidden;
+}
+.scroll-thumb {
+  position: absolute;
+  top: -60%; left: 0;
+  width: 1px; height: 50%;
+  background: linear-gradient(to bottom, transparent, var(--gold));
+  animation: scrollThumb 2.2s 2s ease-in-out infinite;
+}
+.scroll-label {
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--copper);
+  writing-mode: vertical-rl;
+}
+
+/* ─── MARQUEE ─── */
+.marquee-band {
+  background: var(--gold);
+  padding: 17px 0;
+  overflow: hidden;
+}
+.marquee-track {
+  display: flex;
+  white-space: nowrap;
+  animation: marqueeScroll 28s linear infinite;
+}
+.marquee-track:hover { animation-play-state: paused; }
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 22px;
+  padding: 0 36px;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--charcoal);
+  font-weight: 400;
+  flex-shrink: 0;
+}
+.marquee-dot {
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  background: rgba(30,23,20,0.3);
+  flex-shrink: 0;
+}
+
+/* ─── CURSOR ─── */
+#cursor {
+  position: fixed;
+  width: 10px; height: 10px;
+  background: var(--gold);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%,-50%);
+  transition: width 0.3s var(--ease-out),
+              height 0.3s var(--ease-out),
+              background 0.3s;
+  mix-blend-mode: screen;
+}
+#cursor-ring {
+  position: fixed;
+  width: 36px; height: 36px;
+  border: 1px solid rgba(212,168,83,0.45);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%,-50%);
+  transition: width 0.35s var(--ease-out),
+              height 0.35s var(--ease-out),
+              border-color 0.3s,
+              background 0.3s;
+}
+/* States triggered by JS data attributes on body */
+body[data-cursor="hover"] #cursor {
+  width: 16px; height: 16px;
+  background: var(--rose);
+}
+body[data-cursor="hover"] #cursor-ring {
+  width: 52px; height: 52px;
+  border-color: rgba(196,164,145,0.6);
+}
+body[data-cursor="text"] #cursor {
+  width: 4px; height: 28px;
+  border-radius: 2px;
+  background: var(--gold);
+}
+body[data-cursor="text"] #cursor-ring {
+  width: 0; height: 0;
+  border-color: transparent;
+}
+body[data-cursor="card"] #cursor {
+  width: 60px; height: 60px;
+  background: rgba(212,168,83,0.12);
+  border-radius: 50%;
+}
+body[data-cursor="card"] #cursor-ring {
+  width: 64px; height: 64px;
+  border-color: rgba(212,168,83,0.3);
+}
+
+/* ─── STAT ROW HOVER ─── */
+.stat-row {
+  transition: background 0.4s;
+}
+.stat-row:hover { background: rgba(196,164,145,0.04); }
+.stat-row:hover .stat-number { color: var(--gold); }
+
+/* ─── GOLD SHIMMER TEXT ─── */
+.shimmer {
+  background: linear-gradient(90deg,
+    var(--gold) 0%, var(--gold-light) 40%,
+    var(--gold) 60%, var(--gold-dim) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

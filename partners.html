@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Partners — Ascensia</title>
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/nav.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/main.css">
+<style>
+.partners-intro-section {
+  padding: var(--sp-2xl) var(--sp-lg);
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 100px;
+  align-items: center;
+}
+.ptype-grid {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 1px;
+  background: rgba(196,164,145,0.08);
+  margin-bottom: 1px;
+}
+.pcard {
+  background: var(--charcoal-2);
+  padding: 52px 36px;
+  transition: background 0.35s;
+  cursor: none;
+}
+.pcard:hover { background: #1a1512; }
+.pcard-icon {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: var(--line);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 28px;
+  transition: border-color 0.3s, background 0.3s;
+}
+.pcard:hover .pcard-icon { border-color: var(--gold); background: rgba(212,168,83,0.08); }
+.pcard-icon svg { width: 18px; height: 18px; stroke: var(--copper); fill: none; stroke-width: 1; }
+.pcard:hover .pcard-icon svg { stroke: var(--gold); }
+.pcard-title { font-family: var(--serif); font-size: 22px; font-weight: 400; color: var(--cream); margin-bottom: 14px; }
+.pcard-text  { font-size: 13px; font-weight: 300; line-height: 1.8; color: rgba(245,240,235,0.35); }
+
+.model-band {
+  display: grid;
+  grid-template-columns: 1fr 0.5px 1fr 0.5px 1fr;
+  background: rgba(196,164,145,0.05);
+  border-top: var(--line-dim);
+  border-bottom: var(--line-dim);
+}
+.model-cell { padding: 52px; text-align: center; }
+.model-divider { background: var(--line-dim); }
+.model-big { font-family: var(--serif); font-size: clamp(22px,3vw,36px); font-weight: 300; color: var(--cream); margin-bottom: 8px; }
+.model-label { font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--copper); }
+
+.efficiency-section {
+  padding: var(--sp-xl) var(--sp-lg);
+  background: var(--charcoal-2);
+}
+.efficiency-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 1px;
+  background: rgba(196,164,145,0.08);
+  margin-top: 60px;
+}
+.eff-card {
+  background: var(--charcoal-2);
+  padding: 48px 36px;
+}
+.eff-num {
+  font-family: var(--serif);
+  font-size: clamp(48px,6vw,80px);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.eff-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--copper); margin-bottom: 14px; }
+.eff-desc  { font-size: 13px; font-weight: 300; line-height: 1.8; color: rgba(245,240,235,0.4); }
+
+/* Contact section */
+#contact {
+  padding: var(--sp-xl) var(--sp-lg);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: center;
+}
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.form-group { display: flex; flex-direction: column; gap: 8px; }
+.form-label { font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--copper); }
+.form-input, .form-select, .form-textarea {
+  background: rgba(196,164,145,0.05);
+  border: var(--line);
+  color: var(--cream);
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 300;
+  padding: 14px 18px;
+  border-radius: 1px;
+  transition: border-color 0.2s, background 0.2s;
+  outline: none;
+  width: 100%;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: rgba(212,168,83,0.4);
+  background: rgba(196,164,145,0.08);
+}
+.form-select option { background: var(--charcoal-2); }
+.form-textarea { min-height: 120px; resize: vertical; }
+
+@media(max-width:1100px){ .ptype-grid{grid-template-columns:repeat(2,1fr);} }
+@media(max-width:900px){
+  .partners-intro-section{grid-template-columns:1fr;gap:52px;}
+  .ptype-grid{grid-template-columns:1fr;}
+  .model-band{grid-template-columns:1fr;}
+  .model-divider{display:none;}
+  .efficiency-grid{grid-template-columns:1fr;}
+  #contact{grid-template-columns:1fr;gap:60px;}
+}
+</style>
+</head>
+<body>
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo">
+    <div class="logo-mark static"><span></span><span></span><span></span><span></span><span></span></div>
+    <span class="logo-wordmark">Ascensia</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="program.html">Program</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="partners.html" class="active">Partners</a></li>
+    <li><a href="apply.html" class="nav-cta">Apply</a></li>
+  </ul>
+  <button class="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-mobile">
+  <a href="program.html">Program</a>
+  <a href="about.html">About</a>
+  <a href="partners.html">Partners</a>
+  <a href="apply.html">Apply</a>
+</div>
+
+<div class="page-hero">
+  <p class="page-hero-label">For Partners & Funders</p>
+  <h1>
+    <span class="hero-line-wrap"><span class="hero-line-inner" style="animation-delay:.5s">A model built</span></span>
+    <span class="hero-line-wrap"><span class="hero-line-inner" style="animation-delay:.68s">to <span style="font-style:italic;color:var(--gold)">scale</span> with capital.</span></span>
+  </h1>
+  <p class="page-hero-sub">Every dollar invested in Ascensia produces a measurable, verifiable result — a student placed at a top university who could not otherwise have gotten there. The cost per outcome is among the most efficient in global education.</p>
+</div>
+
+<section class="partners-intro-section">
+  <div class="reveal">
+    <div class="section-eyebrow">Why partner</div>
+    <h2 class="section-heading">The return<br>is <em>permanent.</em></h2>
+  </div>
+  <div class="reveal r-d2">
+    <p class="section-body" style="margin-bottom:24px">Ascensia's funding model is designed for partnerships with foundations, universities, corporations, and governments. The program doesn't create dependency — it creates multipliers. Every student who graduates becomes a mentor, making the next cohort cheaper to run and more effective to deliver.</p>
+    <p class="section-body">Intelligence and talent are evenly distributed across the world. The students Ascensia serves have already proven they belong in the conversation. The gap isn't ability — it's information, access, and one person who has already walked through the door.</p>
+  </div>
+</section>
+
+<!-- Partner types -->
+<section style="padding:0 var(--sp-lg) var(--sp-xl)">
+  <div class="ptype-grid">
+    <div class="pcard reveal">
+      <div class="pcard-icon"><svg viewBox="0 0 18 18"><path d="M9 1L11 7H17L12 11L14 17L9 13L4 17L6 11L1 7H7L9 1Z"/></svg></div>
+      <h3 class="pcard-title">Philanthropic Foundations</h3>
+      <p class="pcard-text">Mastercard Foundation, Gates Foundation, Aga Khan Foundation, and peers committed to expanding access to elite higher education for underrepresented global students. Ascensia offers a direct, measurable channel for that mission.</p>
+    </div>
+    <div class="pcard reveal r-d1">
+      <div class="pcard-icon"><svg viewBox="0 0 18 18"><circle cx="9" cy="9" r="7"/><ellipse cx="9" cy="9" rx="3.5" ry="7"/><line x1="2" y1="9" x2="16" y2="9"/></svg></div>
+      <h3 class="pcard-title">Universities</h3>
+      <p class="pcard-text">Institutions seeking genuinely diverse, globally representative incoming classes. Ascensia delivers prepared, informed international applicants from underrepresented regions — students who would never have applied without the program.</p>
+    </div>
+    <div class="pcard reveal r-d2">
+      <div class="pcard-icon"><svg viewBox="0 0 18 18"><rect x="2" y="5" width="14" height="10" rx="1.5"/><path d="M6 5V3.5C6 2.7 6.7 2 7.5 2h3C11.3 2 12 2.7 12 3.5V5"/></svg></div>
+      <h3 class="pcard-title">Corporate Partners</h3>
+      <p class="pcard-text">Companies building talent pipelines from underrepresented regions. Today's Ascensia student is tomorrow's most promising hire. A long-term investment in human capital with traceable, verifiable returns.</p>
+    </div>
+    <div class="pcard reveal r-d3">
+      <div class="pcard-icon"><svg viewBox="0 0 18 18"><path d="M9 2L2 6V9C2 13 5.5 16.5 9 17C12.5 16.5 16 13 16 9V6L9 2Z"/></svg></div>
+      <h3 class="pcard-title">Governments</h3>
+      <p class="pcard-text">Ministries of education and national development agencies placing top national talent at global institutions as a component of long-term human capital strategy. Ascensia provides infrastructure for that pipeline.</p>
+    </div>
+  </div>
+
+  <div class="model-band reveal">
+    <div class="model-cell">
+      <div class="model-big">Cohort-based</div>
+      <div class="model-label">Delivery model</div>
+    </div>
+    <div class="model-divider"></div>
+    <div class="model-cell">
+      <div class="model-big">Grant-funded</div>
+      <div class="model-label">Revenue model</div>
+    </div>
+    <div class="model-divider"></div>
+    <div class="model-cell">
+      <div class="model-big">ALA · Pilot 2025</div>
+      <div class="model-label">First partner school</div>
+    </div>
+  </div>
+</section>
+
+<!-- Efficiency -->
+<section class="efficiency-section">
+  <div class="reveal">
+    <div class="section-eyebrow gold">The case</div>
+    <h2 class="section-heading">The data that matters<br>to a funder.</h2>
+  </div>
+  <div class="efficiency-grid">
+    <div class="eff-card reveal">
+      <div class="eff-num">$0</div>
+      <div class="eff-label">Cost to every student</div>
+      <p class="eff-desc">No student is ever turned away for financial reasons. The program is funded entirely through grants and partnerships — allowing selection on merit, not ability to pay.</p>
+    </div>
+    <div class="eff-card reveal r-d1">
+      <div class="eff-num">8</div>
+      <div class="eff-label">Need-blind universities</div>
+      <p class="eff-desc">The schools Ascensia prepares students for will cover 100% of demonstrated financial need for international students. A student from a family earning under $85,000 may pay nothing at Harvard. The gap is awareness, not money.</p>
+    </div>
+    <div class="eff-card reveal r-d2">
+      <div class="eff-num">∞</div>
+      <div class="eff-label">The alumni multiplier</div>
+      <p class="eff-desc">Every student who completes Ascensia becomes a mentor for the next cohort. The program compounds: each class makes the next one cheaper, more informed, and more effective to run. The return on early investment grows permanently.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+  <div class="reveal">
+    <div class="section-eyebrow rose">Get in touch</div>
+    <h2 class="section-heading">
+      Start the<br><em>conversation.</em>
+    </h2>
+    <p class="section-body" style="margin-top:24px;max-width:400px">
+      Whether you represent a foundation, a university, a corporation, or a government ministry — if the Ascensia mission is aligned with yours, we'd welcome a conversation about what partnership looks like.
+    </p>
+    <div style="margin-top:36px">
+      <p style="font-size:13px;color:var(--copper);letter-spacing:0.08em">hello@ascensia.org</p>
+    </div>
+  </div>
+
+  <div class="contact-form reveal r-d2">
+    <div class="form-group">
+      <label class="form-label">Your name</label>
+      <input type="text" class="form-input" placeholder="Full name">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Organization</label>
+      <input type="text" class="form-input" placeholder="Foundation, university, or company">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Partnership type</label>
+      <select class="form-select">
+        <option value="" disabled selected>Select your interest</option>
+        <option>Philanthropic Foundation</option>
+        <option>University Partnership</option>
+        <option>Corporate Partner</option>
+        <option>Government / Ministry</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Message</label>
+      <textarea class="form-textarea" placeholder="Tell us about your interest in Ascensia and what partnership might look like from your side."></textarea>
+    </div>
+    <button class="btn btn-gold" style="align-self:flex-start;cursor:none">Send message</button>
+  </div>
+</section>
+
+<footer id="main-footer"></footer>
+<script src="js/main.js"></script>
+<script src="js/cursor.js"></script>
+<script src="js/scroll.js"></script>
+</body>
+</html>

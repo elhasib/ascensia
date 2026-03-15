@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Program — Ascensia</title>
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/nav.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/main.css">
+<style>
+/* Program-specific only */
+.program-intro {
+  padding: var(--sp-2xl) var(--sp-lg);
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 100px;
+  align-items: center;
+}
+.program-intro-right { font-size: 17px; font-weight: 300; line-height: 1.9; color: rgba(245,240,235,0.5); }
+.program-intro-right p { margin-bottom: 24px; }
+.program-intro-right strong { color: var(--cream); font-weight: 400; }
+
+/* Timeline section */
+#timeline {
+  padding: var(--sp-2xl) var(--sp-lg);
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 100px;
+  background: var(--charcoal-2);
+  position: relative;
+}
+.timeline-sticky {
+  position: sticky;
+  top: 120px;
+  align-self: start;
+}
+
+/* Curriculum section */
+#curriculum {
+  padding: var(--sp-2xl) 0;
+}
+.curriculum-head {
+  padding: 0 var(--sp-lg) var(--sp-lg);
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+  align-items: end;
+}
+.tracks-drag-hint {
+  padding: 20px var(--sp-lg) 0;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(196,164,145,0.3);
+}
+.drag-arrows span {
+  font-size: 13px;
+  color: var(--copper);
+  opacity: 0.5;
+  animation: arrowPulse 1.6s ease-in-out infinite;
+}
+.drag-arrows span:nth-child(2) { animation-delay: 0.25s; }
+.drag-arrows span:nth-child(3) { animation-delay: 0.5s; }
+
+/* Mentor section */
+#mentors {
+  padding: var(--sp-2xl) var(--sp-lg);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: center;
+}
+
+/* Who section */
+#who {
+  padding: var(--sp-2xl) var(--sp-lg);
+  background: var(--charcoal-2);
+}
+.who-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 100px;
+  align-items: center;
+  margin-top: 64px;
+}
+.who-right {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: rgba(196,164,145,0.1);
+}
+.who-fact {
+  background: var(--charcoal-2);
+  padding: 40px 32px;
+  transition: background 0.35s;
+}
+.who-fact:hover { background: #1a1512; }
+.who-bar { width: 28px; height: 2px; background: var(--gold); margin-bottom: 22px; transition: width 0.4s; }
+.who-fact:hover .who-bar { width: 52px; }
+.who-title { font-family: var(--serif); font-size: 19px; font-weight: 400; color: var(--cream); margin-bottom: 10px; line-height: 1.3; }
+.who-text { font-size: 13px; font-weight: 300; line-height: 1.8; color: rgba(245,240,235,0.4); }
+
+@media(max-width:900px){
+  .program-intro { grid-template-columns:1fr; gap:52px; }
+  #timeline { grid-template-columns:1fr; }
+  .curriculum-head { grid-template-columns:1fr; gap:40px; }
+  #mentors { grid-template-columns:1fr; gap:60px; }
+  .who-grid { grid-template-columns:1fr; gap:52px; }
+  .who-right { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo">
+    <div class="logo-mark static"><span></span><span></span><span></span><span></span><span></span></div>
+    <span class="logo-wordmark">Ascensia</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="program.html" class="active">Program</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="partners.html">Partners</a></li>
+    <li><a href="apply.html" class="nav-cta">Apply</a></li>
+  </ul>
+  <button class="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-mobile">
+  <a href="program.html">Program</a>
+  <a href="about.html">About</a>
+  <a href="partners.html">Partners</a>
+  <a href="apply.html">Apply</a>
+</div>
+
+<div class="page-hero">
+  <p class="page-hero-label">The Program</p>
+  <h1>
+    <span class="hero-line-wrap"><span class="hero-line-inner" style="animation-delay:.5s">14 to 16 months.</span></span>
+    <span class="hero-line-wrap"><span class="hero-line-inner" style="animation-delay:.68s"><span style="font-style:italic;color:var(--gold)">Everything</span> you need.</span></span>
+  </h1>
+  <p class="page-hero-sub">One complete program — curriculum, mentorship, application support, and community — designed specifically for international students applying to top global universities. Free to every student who is accepted.</p>
+</div>
+
+<!-- INTRO -->
+<section class="program-intro">
+  <div class="reveal">
+    <div class="section-eyebrow">What it is</div>
+    <h2 class="section-heading">One system.<br>Nothing left out.</h2>
+    <a href="apply.html" class="btn btn-gold" style="margin-top:36px">Apply for Cohort 2025</a>
+  </div>
+  <div class="program-intro-right reveal r-d2">
+    <p>Ascensia is a <strong>14–16 month cohort-based program</strong> that takes high-potential students from the start of their junior year through final application submission. Every component — curriculum, mentorship, application support, and community — is designed to work together, not in isolation.</p>
+    <p>The program is <strong>grant-funded and free to every student who is accepted.</strong> No student is turned away for financial reasons. That principle is structural, not aspirational — the funding model is built around it.</p>
+    <p>The pilot cohort will run in partnership with the <strong>African Leadership Academy</strong> in Johannesburg. Applications are open to students in Grades 10–11 across Africa, South Asia, Latin America, and the Middle East.</p>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section style="padding:0 var(--sp-lg) var(--sp-xl)">
+  <div class="pillars-grid">
+    <div class="pillar reveal">
+      <div class="pillar-top-line"></div>
+      <div class="pillar-num">01</div>
+      <h3 class="pillar-title">Curriculum</h3>
+      <p class="pillar-desc">17 tracks covering every dimension of the application. Built for students across all global school systems — IB, A-Level, WAEC, CBSE, Baccalauréat, and more.</p>
+    </div>
+    <div class="pillar reveal r-d1">
+      <div class="pillar-top-line"></div>
+      <div class="pillar-num">02</div>
+      <h3 class="pillar-title">Mentorship</h3>
+      <p class="pillar-desc">1:1 matching with a current student at one of the applicant's target universities. Weekly structured sessions, real accountability, and a relationship that lasts beyond acceptance.</p>
+    </div>
+    <div class="pillar reveal r-d2">
+      <div class="pillar-top-line"></div>
+      <div class="pillar-num">03</div>
+      <h3 class="pillar-title">Application Support</h3>
+      <p class="pillar-desc">Hands-on guidance through every component of every application — essays, activities, recommendation strategy, financial aid forms, and deadline management.</p>
+    </div>
+    <div class="pillar reveal r-d3">
+      <div class="pillar-top-line"></div>
+      <div class="pillar-num">04</div>
+      <h3 class="pillar-title">Community</h3>
+      <p class="pillar-desc">A cohort of peers navigating the same process, plus permanent access to the Ascensia alumni network. Every graduate becomes a mentor — the program compounds with every class.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline">
+  <div class="timeline-sticky reveal">
+    <div class="section-eyebrow rose">The journey</div>
+    <h2 class="section-heading">
+      A path built<br>around the<br>student's year.
+    </h2>
+    <p class="section-body" style="margin-top:24px">
+      The program maps to the natural rhythm of a high school student's junior
+      and senior years — meeting them at each decision point with exactly
+      the support they need, exactly when they need it.
+    </p>
+  </div>
+
+  <div class="timeline-container reveal r-d2">
+    <div class="timeline-spine"></div>
+    <div class="timeline-progress"></div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-phase">Phase 1 · Months 1–4</div>
+      <h3 class="timeline-heading">Foundation & Self-Discovery</h3>
+      <p class="timeline-body">Students enter during Grade 10 or early Grade 11. The first phase focuses on building the academic and personal foundation: understanding the landscape, identifying strengths and gaps, constructing a realistic but ambitious college list, and beginning standardized test strategy.</p>
+      <span class="timeline-tag">Orientation · College list · Testing strategy</span>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-phase">Phase 2 · Months 5–10</div>
+      <h3 class="timeline-heading">Building the Profile</h3>
+      <p class="timeline-body">Activities, research opportunities, awards, and course selection — every element that will appear in the application is actively shaped during this period. The mentor relationship begins here, with weekly sessions and structured accountability. This is the phase where the application is actually built, not just planned.</p>
+      <span class="timeline-tag">Mentor match · Activities · Research · Testing</span>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-phase">Phase 3 · Months 11–15</div>
+      <h3 class="timeline-heading">Writing, Essays & Submission</h3>
+      <p class="timeline-body">The most intensive phase — personal statement development, supplement essays for every school, interview preparation, financial aid navigation, and final application submission across all platforms. Students submit applications to a balanced, financially viable college list built over the preceding months.</p>
+      <span class="timeline-tag">Essays · Financial aid · Submission</span>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-phase">Phase 4 · Months 15–16+</div>
+      <h3 class="timeline-heading">Decision & Alumni Transition</h3>
+      <p class="timeline-body">Financial aid comparison, appeals where appropriate, and decision guidance. Students transition from participants to alumni mentors — trained and ready to guide the next cohort through the same process they just completed. The program gets more valuable with every class.</p>
+      <span class="timeline-tag">Decisions · Aid appeals · Mentor training</span>
+    </div>
+  </div>
+</section>
+
+<!-- CURRICULUM -->
+<section id="curriculum">
+  <div class="curriculum-head">
+    <div class="reveal">
+      <div class="section-eyebrow">What we teach</div>
+      <h2 class="section-heading">17 tracks.<br>Every system.</h2>
+    </div>
+    <p class="section-body reveal r-d2">
+      The only comprehensive admissions preparation curriculum designed specifically for
+      international students — covering every application system globally, with dedicated
+      tracks for specialized paths including athletics, creative portfolios, research
+      publications, and non-US admissions in full.
+    </p>
+  </div>
+
+  <div class="tracks-scroll" id="tracks-container">
+    <div class="track-card reveal"><div class="track-num">T1</div><h4 class="track-title">Standardized Testing</h4><p class="track-desc">SAT, ACT, AP, IB, A-Level, and all international equivalents. Every test, every strategy.</p></div>
+    <div class="track-card reveal r-d1"><div class="track-num">T2</div><h4 class="track-title">Academics & Course Selection</h4><p class="track-desc">Transcripts, GPA, rigor, and academic positioning across every school system.</p></div>
+    <div class="track-card reveal r-d1"><div class="track-num">T3</div><h4 class="track-title">Essays & Writing</h4><p class="track-desc">Personal statement, all supplement types, UCAS personal statement.</p></div>
+    <div class="track-card reveal r-d2"><div class="track-num">T4</div><h4 class="track-title">Activities & Extracurriculars</h4><p class="track-desc">Building, describing, and presenting your activity profile with precision.</p></div>
+    <div class="track-card reveal r-d2"><div class="track-num">T5</div><h4 class="track-title">Honors & Awards</h4><p class="track-desc">Competitions, olympiads, recognition programs — how to find and win them.</p></div>
+    <div class="track-card reveal r-d3"><div class="track-num">T6</div><h4 class="track-title">Personal Development</h4><p class="track-desc">Stress, resilience, authenticity, and processing outcomes at every stage.</p></div>
+    <div class="track-card reveal r-d3"><div class="track-num">T7</div><h4 class="track-title">Majors & Careers</h4><p class="track-desc">Choosing and writing compellingly about your intended major.</p></div>
+    <div class="track-card reveal r-d4"><div class="track-num">T8</div><h4 class="track-title">Applications</h4><p class="track-desc">Every platform — Common App, QuestBridge, UCAS, Coalition — every section, every deadline.</p></div>
+    <div class="track-card reveal r-d4"><div class="track-num">T9</div><h4 class="track-title">College List & Research</h4><p class="track-desc">Building a balanced, financially viable list that matches ambition with strategy.</p></div>
+    <div class="track-card reveal r-d5"><div class="track-num">T10</div><h4 class="track-title">Summer Programs</h4><p class="track-desc">Funded programs, competitive programs, and self-directed projects that strengthen the profile.</p></div>
+    <div class="track-card reveal r-d5"><div class="track-num">T11</div><h4 class="track-title">Research & Publications</h4><p class="track-desc">Finding opportunities, conducting original research, and publishing as a high school student.</p></div>
+    <div class="track-card reveal"><div class="track-num">T12</div><h4 class="track-title">Creative Portfolios</h4><p class="track-desc">Arts supplements across all creative disciplines — visual art, music, theatre, writing.</p></div>
+    <div class="track-card reveal r-d1"><div class="track-num">T13</div><h4 class="track-title">Athletics Admissions</h4><p class="track-desc">Recruited athlete process, D1/D2/D3, Ivy athletics — the full picture.</p></div>
+    <div class="track-card reveal r-d2"><div class="track-num">T14</div><h4 class="track-title">Non-US Admissions</h4><p class="track-desc">UK, Canada, Europe, Asia, Africa — complete, detailed coverage for every system.</p></div>
+    <div class="track-card reveal r-d3"><div class="track-num">T15</div><h4 class="track-title">Scholarships</h4><p class="track-desc">Merit, need-based, external, and international scholarships — how to find and win them.</p></div>
+    <div class="track-card reveal r-d4"><div class="track-num">T16</div><h4 class="track-title">Financial Aid</h4><p class="track-desc">Need-blind vs need-aware, CSS Profile, appeals, negotiation, and aid comparison.</p></div>
+    <div class="track-card reveal r-d5"><div class="track-num">T17</div><h4 class="track-title">Applying Sideways</h4><p class="track-desc">Lesser-known schools with exceptional outcomes and generous international aid packages.</p></div>
+  </div>
+
+  <div class="tracks-drag-hint" aria-hidden="true">
+    <div class="drag-arrows"><span>›</span><span>›</span><span>›</span></div>
+    Drag to explore all 17 tracks
+  </div>
+</section>
+
+<!-- MENTORS -->
+<section id="mentors">
+  <div class="reveal">
+    <div class="section-eyebrow">The mentor network</div>
+    <h2 class="section-heading" style="margin-bottom:28px">
+      Someone who<br><em>just got in.</em>
+    </h2>
+    <p class="section-body" style="margin-bottom:36px">
+      Other programs give students information. Ascensia gives students information and the person who just lived it.
+      A current Harvard sophomore who navigated this from Lagos knows things that no ten-year veteran advisor can tell
+      a student applying today. The mentor network is both the product and the structural moat.
+    </p>
+    <div class="univ-tags" style="margin-bottom:36px">
+      <span class="univ-tag">Harvard</span><span class="univ-tag">MIT</span>
+      <span class="univ-tag">Yale</span><span class="univ-tag">Princeton</span>
+      <span class="univ-tag">McGill</span><span class="univ-tag">Sciences Po</span>
+      <span class="univ-tag">Oxford</span><span class="univ-tag">Cambridge</span>
+      <span class="univ-tag">ETH Zurich</span><span class="univ-tag">Toronto</span><span class="univ-tag">LSE</span>
+    </div>
+    <a href="apply.html#mentors" class="btn btn-outline">Join as a mentor →</a>
+  </div>
+
+  <div class="mentor-stack reveal r-d3">
+    <div class="mcard">
+      <div class="mcard-school">Harvard University · Class of 2028</div>
+      <p class="mcard-quote">"I had a 3.9 GPA and no one at my school had ever applied to Harvard. I didn't know where to start — or that they'd cover almost everything."</p>
+      <div class="mcard-name">Amara K.</div><div class="mcard-origin">Accra, Ghana</div>
+    </div>
+    <div class="mcard">
+      <div class="mcard-school">MIT · Class of 2027</div>
+      <p class="mcard-quote">"My family earns under $60,000. MIT costs us nothing. Nobody told us that was real — and I almost didn't apply because I assumed it was impossible."</p>
+      <div class="mcard-name">Raza M.</div><div class="mcard-origin">Lahore, Pakistan</div>
+    </div>
+    <div class="mcard">
+      <div class="mcard-school">Yale University · Class of 2027</div>
+      <p class="mcard-quote">"What I needed wasn't more information. It was someone who had actually walked through the door and could tell me it was real."</p>
+      <div class="mcard-name">Chioma O.</div><div class="mcard-origin">Lagos, Nigeria</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO WE SERVE -->
+<section id="who">
+  <div class="reveal">
+    <div class="section-eyebrow rose">Who we serve</div>
+    <h2 class="section-heading">We select for potential,<br>not perfection.</h2>
+  </div>
+  <div class="who-grid">
+    <div class="reveal r-d1">
+      <div style="padding:36px 40px;border-left:2px solid var(--gold);background:rgba(212,168,83,0.04);margin-bottom:32px">
+        <p style="font-family:var(--serif);font-size:20px;font-weight:300;font-style:italic;line-height:1.6;color:var(--cream)">"We don't only select students who are already perfectly qualified. We select students who, with Ascensia's support, can become qualified."</p>
+      </div>
+      <a href="apply.html" class="btn btn-gold">Apply for Cohort 2025</a>
+    </div>
+    <div class="who-right reveal r-d2">
+      <div class="who-fact"><div class="who-bar"></div><h4 class="who-title">Grades 10–11</h4><p class="who-text">Students enter at the start of junior year — early enough to shape the profile, late enough to have real material to work with.</p></div>
+      <div class="who-fact"><div class="who-bar"></div><h4 class="who-title">Africa · South Asia · Latin America · Middle East</h4><p class="who-text">Regions with the highest concentration of students who have the ability to compete globally but lack access to guidance.</p></div>
+      <div class="who-fact"><div class="who-bar"></div><h4 class="who-title">Any school type</h4><p class="who-text">Government, private, international — the program is built to serve students across every educational system without prejudice.</p></div>
+      <div class="who-fact"><div class="who-bar"></div><h4 class="who-title">Zero cost to students</h4><p class="who-text">Grant and partnership funded. No student is ever turned away for financial reasons. Non-negotiable.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer id="main-footer"></footer>
+<script src="js/main.js"></script>
+<script src="js/cursor.js"></script>
+<script src="js/scroll.js"></script>
+</body>
+</html>
