@@ -93,22 +93,6 @@
     });
   });
 
-  /* ─── PARALLAX ─── */
-  const parallaxEls = document.querySelectorAll('[data-parallax]');
-
-  if (parallaxEls.length) {
-    function updateParallax() {
-      parallaxEls.forEach(el => {
-        const speed = parseFloat(el.dataset.parallax) || 0.15;
-        const rect  = el.getBoundingClientRect();
-        const center = rect.top + rect.height / 2 - window.innerHeight / 2;
-        el.style.transform = `translateY(${center * speed}px)`;
-      });
-    }
-    window.addEventListener('scroll', updateParallax, { passive: true });
-    updateParallax();
-  }
-
   /* ─── HERO SCULPTURE PARALLAX ─── */
   const sculpture = document.querySelector('.hero-sculpture');
   if (sculpture) {

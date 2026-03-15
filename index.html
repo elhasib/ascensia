@@ -115,7 +115,7 @@
 .hero-scroll-wrap {
   position: absolute;
   bottom: 44px;
-  left: var(--sp-lg);
+  right: var(--sp-lg);
   opacity: 0;
   animation: fadeUp 0.8s 2.2s both;
 }
@@ -200,43 +200,6 @@
   align-items: center;
 }
 
-/* ─── MAP SECTION ─── */
-#map-section {
-  padding: var(--sp-xl) var(--sp-lg);
-  background: var(--charcoal-2);
-}
-.map-wrapper {
-  margin-top: 52px;
-  position: relative;
-}
-#world-map {
-  position: relative;
-  width: 100%;
-  padding-bottom: 50%;
-  background: #0E0B09;
-  border: var(--line-dim);
-  overflow: hidden;
-}
-#world-map svg.map-svg {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-}
-
-/* Simple SVG world map silhouette embedded inline */
-.map-bg-text {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%,-50%);
-  font-family: var(--serif);
-  font-size: 11vw;
-  font-weight: 300;
-  letter-spacing: -0.05em;
-  color: rgba(196,164,145,0.03);
-  white-space: nowrap;
-  pointer-events: none;
-  user-select: none;
-}
 
 /* ─── VISION ─── */
 /* uses .vision-section from main.css */
@@ -536,56 +499,6 @@
   </div>
 </section>
 
-<!-- ═══ MAP SECTION ═══ -->
-<section id="map-section">
-  <div class="reveal">
-    <div class="section-eyebrow rose">Where we work</div>
-    <h2 class="section-heading">
-      Students from here.<br>
-      Opportunities <em>everywhere.</em>
-    </h2>
-  </div>
-  <p class="section-body reveal r-d2" style="margin-top:20px;max-width:520px">
-    Ascensia targets the regions with the greatest concentration of high-potential
-    students who lack access to a functional guidance system. Hover the map
-    to see the connections we're building.
-  </p>
-
-  <div class="map-wrapper">
-    <div id="world-map">
-      <!-- World map SVG background -->
-      <svg class="map-svg" viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg">
-        <rect width="1000" height="500" fill="transparent"/>
-        <!-- Simplified continent silhouettes -->
-        <!-- North America -->
-        <path d="M80,60 L200,55 L230,80 L220,120 L200,150 L180,180 L160,200 L140,220 L120,230 L100,220 L80,200 L70,170 L65,140 L70,100 Z" fill="rgba(196,164,145,0.07)" stroke="rgba(196,164,145,0.12)" stroke-width="0.5"/>
-        <!-- Central America -->
-        <path d="M140,220 L160,230 L165,250 L155,260 L145,255 L135,240 Z" fill="rgba(196,164,145,0.07)" stroke="rgba(196,164,145,0.12)" stroke-width="0.5"/>
-        <!-- South America -->
-        <path d="M160,270 L220,265 L250,290 L260,330 L255,380 L240,420 L210,440 L180,430 L160,400 L150,360 L148,320 L152,290 Z" fill="rgba(196,164,145,0.07)" stroke="rgba(196,164,145,0.12)" stroke-width="0.5"/>
-        <!-- Europe -->
-        <path d="M430,55 L490,50 L510,70 L505,100 L490,110 L470,105 L450,95 L435,80 Z" fill="rgba(196,164,145,0.07)" stroke="rgba(196,164,145,0.12)" stroke-width="0.5"/>
-        <!-- Africa -->
-        <path d="M450,160 L510,155 L540,175 L545,220 L535,270 L525,320 L510,360 L490,380 L465,375 L445,350 L435,310 L430,265 L435,220 L440,185 Z" fill="rgba(196,164,145,0.09)" stroke="rgba(196,164,145,0.14)" stroke-width="0.5"/>
-        <!-- Middle East -->
-        <path d="M520,140 L570,135 L590,155 L585,185 L565,195 L540,190 L520,175 Z" fill="rgba(196,164,145,0.07)" stroke="rgba(196,164,145,0.12)" stroke-width="0.5"/>
-        <!-- South Asia -->
-        <path d="M600,155 L660,150 L680,170 L675,210 L655,225 L630,220 L610,205 L600,185 Z" fill="rgba(196,164,145,0.09)" stroke="rgba(196,164,145,0.14)" stroke-width="0.5"/>
-        <!-- East Asia -->
-        <path d="M680,90 L760,85 L790,110 L785,160 L760,175 L730,165 L700,145 L685,120 Z" fill="rgba(196,164,145,0.07)" stroke="rgba(196,164,145,0.12)" stroke-width="0.5"/>
-        <!-- Australia -->
-        <path d="M730,300 L810,295 L840,320 L835,365 L810,380 L770,375 L745,355 L735,325 Z" fill="rgba(196,164,145,0.06)" stroke="rgba(196,164,145,0.1)" stroke-width="0.5"/>
-        <!-- Russia/North Asia (simplified) -->
-        <path d="M500,30 L800,25 L830,60 L820,100 L780,85 L700,80 L620,75 L540,65 L505,55 Z" fill="rgba(196,164,145,0.05)" stroke="rgba(196,164,145,0.08)" stroke-width="0.5"/>
-        <!-- Grid lines for atmosphere -->
-        <line x1="0" y1="250" x2="1000" y2="250" stroke="rgba(196,164,145,0.04)" stroke-width="0.5"/>
-        <line x1="500" y1="0" x2="500" y2="500" stroke="rgba(196,164,145,0.04)" stroke-width="0.5"/>
-      </svg>
-      <div class="map-bg-text" aria-hidden="true">ASCENSIA</div>
-    </div>
-  </div>
-</section>
-
 <!-- ═══ VISION ═══ -->
 <section class="vision-section">
   <div class="vision-rings-wrap" aria-hidden="true">
@@ -635,6 +548,5 @@
 <script src="js/main.js"></script>
 <script src="js/cursor.js"></script>
 <script src="js/scroll.js"></script>
-<script src="js/map.js"></script>
 </body>
 </html>

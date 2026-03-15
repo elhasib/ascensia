@@ -41,32 +41,25 @@
   0%,100% { opacity: 0.3; transform: translateX(0); }
   50%     { opacity: 0.9; transform: translateX(5px); }
 }
-@keyframes countPath {
-  from { stroke-dashoffset: 1; }
+
   to   { stroke-dashoffset: 0; }
 }
-@keyframes shimmer {
-  from { background-position: -200% center; }
+
   to   { background-position: 200% center; }
 }
-@keyframes float {
-  0%,100% { transform: translateY(0px); }
+
   50%     { transform: translateY(-8px); }
 }
-@keyframes scaleIn {
-  from { transform: scale(0.94); opacity: 0; }
+
   to   { transform: scale(1); opacity: 1; }
 }
-@keyframes timelineDot {
-  from { transform: scale(0); opacity: 0; }
+
   to   { transform: scale(1); opacity: 1; }
 }
-@keyframes progressFill {
-  from { width: 0; }
+
   to   { width: 100%; }
 }
-@keyframes worldPing {
-  0%   { transform: translate(-50%,-50%) scale(1); opacity: 0.8; }
+
   100% { transform: translate(-50%,-50%) scale(3); opacity: 0; }
 }
 
@@ -189,15 +182,6 @@ body[data-cursor="hover"] #cursor-ring {
   width: 52px; height: 52px;
   border-color: rgba(196,164,145,0.6);
 }
-body[data-cursor="text"] #cursor {
-  width: 4px; height: 28px;
-  border-radius: 2px;
-  background: var(--gold);
-}
-body[data-cursor="text"] #cursor-ring {
-  width: 0; height: 0;
-  border-color: transparent;
-}
 body[data-cursor="card"] #cursor {
   width: 60px; height: 60px;
   background: rgba(212,168,83,0.12);
@@ -214,18 +198,6 @@ body[data-cursor="card"] #cursor-ring {
 }
 .stat-row:hover { background: rgba(196,164,145,0.04); }
 .stat-row:hover .stat-number { color: var(--gold); }
-
-/* ─── GOLD SHIMMER TEXT ─── */
-.shimmer {
-  background: linear-gradient(90deg,
-    var(--gold) 0%, var(--gold-light) 40%,
-    var(--gold) 60%, var(--gold-dim) 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: shimmer 4s linear infinite;
-}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

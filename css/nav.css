@@ -68,7 +68,6 @@ nav#main-nav.scrolled {
 .nav-cta::after { display: none !important; }
 .nav-cta:hover {
   background: var(--cream) !important;
-  transform: translateY(-1px);
 }
 
 /* Mobile hamburger */
