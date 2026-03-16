@@ -3,15 +3,43 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Ascensia prepares talented students from Africa, South Asia, Latin America, and the Middle East to compete for — and win — admission to top global universities.">
 <title>Ascensia — Talent Is Everywhere. Opportunity Isn't. Yet.</title>
+  <!-- Primary meta -->
+  <meta name="description" content="Ascensia prepares high-potential students from Africa, South Asia, Latin America, and the Middle East to compete for — and win — admission to top global universities. Free to every student.">
+  <meta name="theme-color" content="#1E1714">
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://ascensia.org/">
+  <meta property="og:title"       content="Ascensia — Talent Is Everywhere. Opportunity Isn't. Yet.">
+  <meta property="og:description" content="Ascensia prepares high-potential students from Africa, South Asia, Latin America, and the Middle East to compete for — and win — admission to top global universities. Free to every student.">
+  <meta property="og:image"       content="https://ascensia.org/og-image.jpg">
+  <meta property="og:site_name"   content="Ascensia">
+  <!-- Twitter / X -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Ascensia — Talent Is Everywhere. Opportunity Isn't. Yet.">
+  <meta name="twitter:description" content="Ascensia prepares high-potential students from Africa, South Asia, Latin America, and the Middle East to compete for — and win — admission to top global universities. Free to every student.">
+  <meta name="twitter:image"       content="https://ascensia.org/og-image.jpg">
+  <!-- Security meta tags -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
+  <!-- Favicon — ascending lines mark -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%231E1714'/><line x1='6' y1='26' x2='12' y2='26' stroke='%23D4A853' stroke-width='1.8' stroke-linecap='round'/><line x1='6' y1='21' x2='17' y2='21' stroke='%23D4A853' stroke-width='1.8' stroke-linecap='round'/><line x1='6' y1='16' x2='22' y2='16' stroke='%23D4A853' stroke-width='1.8' stroke-linecap='round'/><line x1='6' y1='11' x2='26' y2='11' stroke='%23D4A853' stroke-width='1.8' stroke-linecap='round'/></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%231E1714'/><line x1='6' y1='26' x2='12' y2='26' stroke='%23D4A853' stroke-width='1.8' stroke-linecap='round'/><line x1='6' y1='21' x2='17' y2='21' stroke='%23D4A853' stroke-width='1.8' stroke-linecap='round'/><line x1='6' y1='16' x2='22' y2='16' stroke='%23D4A853' stroke-width='1.8' stroke-linecap='round'/><line x1='6' y1='11' x2='26' y2='11' stroke='%23D4A853' stroke-width='1.8' stroke-linecap='round'/></svg>">
+  <!-- Font preconnect & preload (non-blocking) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Outfit:wght@200;300;400;500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Outfit:wght@200;300;400;500&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Outfit:wght@200;300;400;500&display=swap"></noscript>
+
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/nav.css">
 <link rel="stylesheet" href="css/animations.css">
 <link rel="stylesheet" href="css/main.css">
 <style>
-/* ─── HOME-SPECIFIC ─── my name is zebi*/
-
+/* ─── HOME-SPECIFIC ─── */
 #hero {
   min-height: 100vh;
   display: flex;
@@ -525,6 +553,52 @@
   </div>
 </section>
 
+<!-- ═══ COST COUNTER ═══ -->
+<section id="cost-section" style="
+  padding: 120px var(--sp-lg);
+  background: var(--charcoal-2);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-top: var(--line-dim);
+  border-bottom: var(--line-dim);
+">
+  <div style="
+    position:absolute; inset:0; display:flex;
+    align-items:center; justify-content:center;
+    pointer-events:none; overflow:hidden;
+  ">
+    <div style="
+      font-family:var(--serif); font-size:40vw; font-weight:300;
+      color:rgba(196,164,145,0.025); line-height:1; letter-spacing:-0.06em;
+      white-space:nowrap; user-select:none;
+    ">$0</div>
+  </div>
+  <div style="position:relative;z-index:1;" class="reveal">
+    <div class="section-eyebrow gold" style="justify-content:center">Cost to every student</div>
+    <div id="cost-display" style="
+      font-family: var(--serif);
+      font-size: clamp(80px, 16vw, 200px);
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: -0.05em;
+      color: var(--cream);
+      margin: 20px 0 28px;
+      transition: color 0.5s;
+    ">$<span id="cost-num">0</span></div>
+    <p style="
+      font-family: var(--serif);
+      font-size: clamp(18px, 2.5vw, 28px);
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(245,240,235,0.4);
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.5;
+    ">to every student Ascensia has ever accepted,<br>and every student it ever will.</p>
+  </div>
+</section>
+
 <!-- ═══ APPLY SPLIT ═══ -->
 <div class="apply-split">
   <div class="apply-panel apply-light reveal">
@@ -549,5 +623,71 @@
 <script src="js/main.js"></script>
 <script src="js/cursor.js"></script>
 <script src="js/scroll.js"></script>
-</body>
+<script>
+/* ─── COST COUNTER SPECTACLE ─── */
+(function() {
+  const display = document.getElementById('cost-num');
+  const section = document.getElementById('cost-section');
+  if (!display || !section) return;
+
+  let fired = false;
+  const obs = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting && !fired) {
+      fired = true;
+      obs.disconnect();
+
+      // Count up to a large number, then dramatically drop to 0
+      const peak = 48000;
+      const dur1 = 1400; // count up
+      const dur2 = 600;  // hold
+      const dur3 = 300;  // drop to 0
+      const start = performance.now();
+
+      function fmt(n) {
+        return n >= 1000 ? n.toLocaleString() : n;
+      }
+
+      (function up(now) {
+        const p = Math.min((now - start) / dur1, 1);
+        const ease = p < 1 ? 1 - Math.pow(1 - p, 3) : 1;
+        display.textContent = fmt(Math.round(ease * peak));
+        if (p < 1) { requestAnimationFrame(up); return; }
+
+        // Hold briefly then drop
+        setTimeout(() => {
+          const drop = performance.now();
+          (function down(now2) {
+            const p2 = Math.min((now2 - drop) / dur3, 1);
+            const ease2 = Math.pow(p2, 2);
+            const val = Math.round(peak * (1 - ease2));
+            display.textContent = fmt(val);
+            if (p2 < 1) { requestAnimationFrame(down); return; }
+            display.textContent = '0';
+            // Flash gold on landing
+            document.getElementById('cost-display').style.color = 'var(--gold)';
+            setTimeout(() => {
+              document.getElementById('cost-display').style.color = '';
+            }, 800);
+          })(performance.now());
+        }, dur2);
+      })(performance.now());
+    }
+  }, { threshold: 0.5 });
+  obs.observe(section);
+})();
+
+/* ─── HERO SCROLL WEIGHT ANIMATION ─── */
+(function() {
+  const lines = document.querySelectorAll('.hero-line-inner');
+  if (!lines.length || !CSS.supports('font-variation-settings', '"wght" 300')) return;
+
+  window.addEventListener('scroll', () => {
+    const progress = Math.min(scrollY / (window.innerHeight * 0.6), 1);
+    const weight = 300 + Math.round(progress * 100); // 300 → 400
+    lines.forEach(el => {
+      el.style.fontVariationSettings = `"wght" ${weight}`;
+    });
+  }, { passive: true });
+})();
+</script>
 </html>

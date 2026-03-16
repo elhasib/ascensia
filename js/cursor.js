@@ -3,6 +3,12 @@
 ═══════════════════════════════════════ */
 
 (function() {
+  // No custom cursor on touch/pointer-coarse devices
+  if (window.matchMedia('(hover: none), (pointer: coarse)').matches) {
+    document.body.style.cursor = 'auto';
+    return;
+  }
+
   const dot  = document.getElementById('cursor');
   const ring = document.getElementById('cursor-ring');
   if (!dot || !ring) return;

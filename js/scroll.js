@@ -9,14 +9,18 @@
   /* ─── REVEAL ON SCROLL ─── */
   const reveals = document.querySelectorAll('.reveal');
   if (reveals.length) {
-    const ro = new IntersectionObserver(entries => {
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  const ro = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting) {
           e.target.classList.add('in');
           ro.unobserve(e.target);
         }
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -44px 0px' });
+    }, {
+      threshold: isMobile ? 0.04 : 0.1,
+      rootMargin: isMobile ? '0px 0px -20px 0px' : '0px 0px -44px 0px'
+    });
     reveals.forEach(el => ro.observe(el));
   }
 
