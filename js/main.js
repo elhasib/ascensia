@@ -35,11 +35,11 @@
         <div>
           <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
             <div class="logo-mark static">
-              <span style="background:var(--rose)"></span>
-              <span style="background:var(--rose)"></span>
-              <span style="background:var(--rose)"></span>
-              <span style="background:var(--rose)"></span>
-              <span style="background:var(--rose)"></span>
+              <span style="background:var(--gold)"></span>
+              <span style="background:var(--gold)"></span>
+              <span style="background:var(--gold)"></span>
+              <span style="background:var(--gold)"></span>
+              <span style="background:var(--gold)"></span>
             </div>
             <span class="logo-wordmark">Ascensia</span>
           </div>
