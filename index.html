@@ -33,7 +33,7 @@
 .beta-banner {
   background: rgba(212,168,83,0.1);
   border-bottom: 0.5px solid rgba(212,168,83,0.25);
-  padding: 10px var(--sp-lg);
+  padding: 11px var(--sp-lg);
   text-align: center;
   font-size: 11px;
   letter-spacing: 0.14em;
@@ -44,8 +44,12 @@
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 600;
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-nav#main-nav { top: 40px; }
+nav#main-nav { top: 42px; }
 
 /* ── HERO ── */
 #hero {
@@ -72,6 +76,8 @@ nav#main-nav { top: 40px; }
   gap: 12px;
   align-items: flex-end;
   pointer-events: none;
+  max-width: 40vw;
+  overflow: hidden;
 }
 .sculpt-line {
   height: 1.5px;
@@ -86,7 +92,7 @@ nav#main-nav { top: 40px; }
 .sculpt-line:nth-child(4){ width:170px;  animation-delay:1.75s; }
 .sculpt-line:nth-child(5){ width:280px;  animation-delay:1.9s; }
 .sculpt-line:nth-child(6){ width:400px;  animation-delay:2.05s; }
-.sculpt-line:nth-child(7){ width:500px;  animation-delay:2.2s; }
+.sculpt-line:nth-child(7){ width:400px;  animation-delay:2.2s; }
 .hero-eyebrow {
   font-size: 10px;
   letter-spacing: 0.3em;
@@ -295,7 +301,7 @@ nav#main-nav { top: 40px; }
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
   nav#main-nav { top: 0; }
-  .beta-banner { position: relative; }
+  .beta-banner { position: relative; white-space: normal; }
   #statement { grid-template-columns: 1fr; gap: 52px; }
   .research-band { grid-template-columns: 1fr 1fr; }
   .stats-head { grid-template-columns: 1fr; }
@@ -325,7 +331,6 @@ nav#main-nav { top: 40px; }
   <ul class="nav-links">
     <li><a href="program.html">Program</a></li>
     <li><a href="about.html">About</a></li>
-    <li><a href="partners.html">Partners</a></li>
     <li><a href="mailto:team@ascensia.foundation">Contact</a></li>
   </ul>
   <button class="nav-hamburger" aria-label="Menu">
@@ -335,7 +340,6 @@ nav#main-nav { top: 40px; }
 <div class="nav-mobile">
   <a href="program.html">Program</a>
   <a href="about.html">About</a>
-  <a href="partners.html">Partners</a>
   <a href="mailto:team@ascensia.foundation">Contact</a>
 </div>
 
@@ -355,7 +359,6 @@ nav#main-nav { top: 40px; }
     <div class="sculpt-line"></div>
     <div class="sculpt-line"></div>
   </div>
-  <p class="hero-eyebrow">Nonprofit · Global Admissions Preparation · Cohort 2026</p>
   <h1 class="hero-h1">
     <span class="hero-line-wrap"><span class="hero-line-inner" style="animation-delay:.5s">Democratizing</span></span>
     <span class="hero-line-wrap"><span class="hero-line-inner italic" style="animation-delay:.68s">Global Admissions.</span></span>
@@ -579,29 +582,6 @@ nav#main-nav { top: 40px; }
   </div>
 </section>
 
-<!-- $0 counter -->
-<section id="cost-section" style="
-  padding: 120px var(--sp-lg);
-  background: var(--charcoal-2);
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  border-top: var(--line-dim);
-  border-bottom: var(--line-dim);
-">
-  <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;overflow:hidden;">
-    <div style="font-family:var(--serif);font-size:40vw;font-weight:300;color:rgba(196,164,145,0.025);line-height:1;letter-spacing:-0.06em;white-space:nowrap;user-select:none;">$0</div>
-  </div>
-  <div style="position:relative;z-index:1;" class="reveal">
-    <div class="section-eyebrow gold" style="justify-content:center">Cost to every admitted student</div>
-    <div id="cost-display" style="font-family:var(--serif);font-size:clamp(80px,16vw,200px);font-weight:300;line-height:1;letter-spacing:-0.05em;color:var(--cream);margin:20px 0 28px;transition:color 0.5s;">
-      $<span id="cost-num">0</span>
-    </div>
-    <p style="font-family:var(--serif);font-size:clamp(16px,2.2vw,26px);font-weight:300;font-style:italic;color:rgba(245,240,235,0.4);max-width:560px;margin:0 auto;line-height:1.6;">
-      Ascensia admits students without regard to their ability to pay.<br>Full need-based and merit-based financial aid is available.
-    </p>
-  </div>
-</section>
 
 <!-- Contact split -->
 <div class="contact-split">
@@ -623,7 +603,7 @@ nav#main-nav { top: 40px; }
       If you represent a foundation, university, or institution aligned with this mission,
       we welcome that conversation.
     </p>
-    <a href="partners.html" class="btn btn-gold" style="align-self:flex-start">View partner information</a>
+    <a href="mailto:team@ascensia.foundation" class="btn btn-gold" style="align-self:flex-start">team@ascensia.foundation</a>
   </div>
 </div>
 
@@ -634,40 +614,6 @@ nav#main-nav { top: 40px; }
 <script src="js/cursor.js"></script>
 <script src="js/scroll.js"></script>
 <script>
-/* Cost counter */
-(function() {
-  const display = document.getElementById('cost-num');
-  const section = document.getElementById('cost-section');
-  if (!display || !section) return;
-  let fired = false;
-  const obs = new IntersectionObserver(entries => {
-    if (entries[0].isIntersecting && !fired) {
-      fired = true;
-      obs.disconnect();
-      const peak = 48000, dur1 = 1400, dur2 = 600, dur3 = 300;
-      const start = performance.now();
-      function fmt(n){ return n >= 1000 ? n.toLocaleString() : n; }
-      (function up(now) {
-        const p = Math.min((now - start) / dur1, 1);
-        const ease = p < 1 ? 1 - Math.pow(1-p, 3) : 1;
-        display.textContent = fmt(Math.round(ease * peak));
-        if (p < 1) { requestAnimationFrame(up); return; }
-        setTimeout(() => {
-          const drop = performance.now();
-          (function down(now2) {
-            const p2 = Math.min((now2-drop)/dur3, 1);
-            display.textContent = fmt(Math.round(peak*(1-Math.pow(p2,2))));
-            if (p2 < 1) { requestAnimationFrame(down); return; }
-            display.textContent = '0';
-            document.getElementById('cost-display').style.color = 'var(--gold)';
-            setTimeout(() => { document.getElementById('cost-display').style.color = ''; }, 800);
-          })(performance.now());
-        }, dur2);
-      })(performance.now());
-    }
-  }, { threshold: 0.5 });
-  obs.observe(section);
-})();
 /* Hero scroll weight */
 (function() {
   const lines = document.querySelectorAll('.hero-line-inner');

@@ -12,7 +12,7 @@
       'Harvard · MIT · Yale · Princeton',
       'Need-blind financial aid',
       'Global admissions preparation',
-      '17 curriculum tracks',
+      '9 curriculum tracks',
       'Africa · South Asia · Latin America · Middle East',
       'Free to every student',
       'Cohort 2026 now open',
@@ -59,7 +59,7 @@
           <ul class="footer-links">
             <li><a href="about.html">About Ascensia</a></li>
             <li><a href="about.html#team">The team</a></li>
-            <li><a href="partners.html">For partners</a></li>
+            <li><a href="about.html">About Ascensia</a></li>
             <li><a href="about.html#story">Our story</a></li>
           </ul>
         </div>
@@ -67,7 +67,7 @@
           <p class="footer-col-title">Connect</p>
           <ul class="footer-links">
             <li><a href="mailto:team@ascensia.foundation">team@ascensia.foundation</a></li>
-            <li><a href="partners.html">Partner with us</a></li>
+            <li><a href="mailto:team@ascensia.foundation">Contact us</a></li>
             <li><a href="apply.html">Program status</a></li>
             <li><a href="https://ascensia.foundation">ascensia.foundation</a></li>
           </ul>
