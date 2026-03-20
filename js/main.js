@@ -15,7 +15,7 @@
       '17 curriculum tracks',
       'Africa · South Asia · Latin America · Middle East',
       'Free to every student',
-      'Cohort 2025 now open',
+      'Cohort 2026 now open',
       'The world\'s most talented students',
     ];
     const doubled = [...items, ...items];
@@ -43,22 +43,22 @@
             </div>
             <span class="logo-wordmark">Ascensia</span>
           </div>
-          <p class="footer-brand-tagline">"Talent is everywhere. Opportunity isn't. Yet."</p>
+          <p class="footer-brand-tagline">Democratizing Global Admissions</p>
         </div>
         <div>
           <p class="footer-col-title">Program</p>
           <ul class="footer-links">
             <li><a href="program.html">How it works</a></li>
             <li><a href="program.html#curriculum">Curriculum</a></li>
-            <li><a href="program.html#mentors">Mentor network</a></li>
-            <li><a href="program.html#timeline">Timeline</a></li>
+            <li><a href="program.html#mentors">Mentorship</a></li>
+            <li><a href="program.html#roadmap">Roadmap</a></li>
           </ul>
         </div>
         <div>
           <p class="footer-col-title">Organization</p>
           <ul class="footer-links">
             <li><a href="about.html">About Ascensia</a></li>
-            <li><a href="about.html#team">Our team</a></li>
+            <li><a href="about.html#team">The team</a></li>
             <li><a href="partners.html">For partners</a></li>
             <li><a href="about.html#story">Our story</a></li>
           </ul>
@@ -66,19 +66,18 @@
         <div>
           <p class="footer-col-title">Connect</p>
           <ul class="footer-links">
-            <li><a href="apply.html">Apply — Cohort 2025</a></li>
-            <li><a href="apply.html#mentors">Become a mentor</a></li>
-            <li><a href="partners.html#contact">Partner with us</a></li>
-            <li><a href="mailto:hello@ascensia.org">hello@ascensia.org</a></li>
+            <li><a href="mailto:team@ascensia.foundation">team@ascensia.foundation</a></li>
+            <li><a href="partners.html">Partner with us</a></li>
+            <li><a href="apply.html">Program status</a></li>
+            <li><a href="https://ascensia.foundation">ascensia.foundation</a></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
-        <p class="footer-copy">© 2025 Ascensia · Global Admissions Preparation Program · All rights reserved</p>
+        <p class="footer-copy">&copy; 2026 Ascensia &middot; Nonprofit Global Admissions Preparation &middot; All rights reserved</p>
         <div class="footer-legal">
           <a href="#">Privacy</a>
           <a href="#">Terms</a>
-          <a href="#">Brand</a>
         </div>
       </div>
     `;
