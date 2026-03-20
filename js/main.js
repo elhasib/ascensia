@@ -5,26 +5,7 @@
 
 (function() {
 
-  /* ─── MARQUEE ─── */
-  const marqueeTrack = document.querySelector('.marquee-track');
-  if (marqueeTrack) {
-    const items = [
-      'Harvard · MIT · Yale · Princeton',
-      'Need-blind financial aid',
-      'Global admissions preparation',
-      '9 curriculum tracks',
-      'Africa · South Asia · Latin America · Middle East',
-      'Free to every student',
-      'Cohort 2026 now open',
-      'The world\'s most talented students',
-    ];
-    const doubled = [...items, ...items];
-    doubled.forEach(text => {
-      const el = document.createElement('span');
-      el.className = 'marquee-item';
-      el.innerHTML = `${text}<span class="marquee-dot"></span>`;
-      marqueeTrack.appendChild(el);
-    });
+);
   }
 
   /* ─── FOOTER BUILD (shared across all pages) ─── */
