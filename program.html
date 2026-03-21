@@ -28,6 +28,7 @@
 <link rel="stylesheet" href="css/animations.css">
 <link rel="stylesheet" href="css/main.css">
 <style>
+.page-hero { padding-top: 180px; }
 .beta-banner {
   background: rgba(212,168,83,0.1);
   border-bottom: 0.5px solid rgba(212,168,83,0.25);
@@ -42,7 +43,11 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 600;
 }
+nav#main-nav { top: 42px; }
 .program-intro {
   padding: var(--sp-2xl) var(--sp-lg);
   display: grid;
@@ -176,7 +181,10 @@
   .who-grid { grid-template-columns:1fr; gap:52px; }
   .who-right { grid-template-columns:1fr; }
   .roadmap-phases { grid-template-columns:1fr; }
+  nav#main-nav { top: 0; }
+  .beta-banner { position: relative; white-space: normal; }
 }
+
 </style>
 </head>
 <body>

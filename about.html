@@ -28,6 +28,7 @@
 <link rel="stylesheet" href="css/animations.css">
 <link rel="stylesheet" href="css/main.css">
 <style>
+.page-hero { padding-top: 180px; }
 .beta-banner {
   background: rgba(212,168,83,0.1);
   border-bottom: 0.5px solid rgba(212,168,83,0.25);
@@ -42,7 +43,11 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 600;
 }
+nav#main-nav { top: 42px; }
 .story-section {
   padding: var(--sp-2xl) var(--sp-lg);
   display: grid;
@@ -252,6 +257,24 @@
   background: var(--gold);
   padding: 4px 10px; border-radius: 1px;
 }
+.tcard-linkedin {
+  display: flex;          /* change from inline-flex to flex */
+  align-items: center;
+  gap: 7px;
+  margin-top: 12px; 
+
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(196,164,145,0.45);
+  text-decoration: none;
+  cursor: none;
+  transition: color 0.2s;
+  font-family: var(--sans);
+}
+.tcard-linkedin:hover { color: var(--gold); }
+.tcard-linkedin svg { flex-shrink: 0; transition: opacity 0.2s; opacity: 0.5; }
+.tcard-linkedin:hover svg { opacity: 1; }
 /* Research progress */
 .progress-section {
   padding: var(--sp-xl) var(--sp-lg);
@@ -287,6 +310,8 @@
   .team-grid-large { grid-template-columns:repeat(2,1fr); }
   .team-grid-equal { grid-template-columns:repeat(3,1fr); }
   .progress-grid { grid-template-columns:1fr; }
+  nav#main-nav { top: 0; }
+  .beta-banner { position: relative; white-space: normal; }
 }
 @media(max-width:600px){
   .team-grid-large { grid-template-columns:1fr; }
@@ -325,6 +350,120 @@
   <p class="page-hero-sub">Our team comes from the very regions we serve: Egypt, Kenya, and Venezuela. We experienced firsthand what it means to be a high-potential student in a system where the pathway to top universities is largely invisible. Ascensia is the program we needed and did not have.</p>
 </div>
 
+
+<!-- Team -->
+<section id="team">
+  <div class="team-intro">
+    <div class="reveal">
+      <div class="section-eyebrow">The team</div>
+      <h2 class="section-heading">Five people.<br>One shared experience.</h2>
+    </div>
+    <p class="right reveal r-d2">
+      Five team members. Our team spans Egypt, Kenya, and Venezuela.
+      Every member either experienced this gap directly or has dedicated their work to
+      understanding and closing it.
+    </p>
+  </div>
+
+  <!-- Equal 5-card grid -->
+  <div class="team-grid-equal">
+    <div class="tcard reveal">
+      <div class="tcard-left-bar"></div>
+      <div class="tcard-avatar">
+        <img src="images/mash.png" alt="Mohamed Mashhour">
+      </div>
+      <h3 class="tcard-name">Mohamed Mashhour</h3>
+      <div class="tcard-role">Chief Executive Officer</div>
+      <p class="tcard-bio">Mohamed leads Ascensia's strategy, partnerships, and program design. He navigated the international admissions process from Egypt and built Ascensia to give the next generation of students the infrastructure he had to build for himself.</p>
+      <span class="tcard-badge" style="background:var(--copper);color:var(--charcoal)">Egypt</span>
+      <a href="https://linkedin.com/in/THEIR-HANDLE" target="_blank" rel="noopener noreferrer" class="tcard-linkedin">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--gold)" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+            <circle cx="4" cy="4" r="2"/>
+        </svg>
+        LinkedIn
+        </a>
+    </div>
+
+    <div class="tcard reveal r-d1">
+      <div class="tcard-left-bar"></div>
+      <div class="tcard-avatar">
+        <img src="images/jer.png" alt="Jeremy Muchilwa">
+      </div>
+      <h3 class="tcard-name">Jeremy Muchilwa</h3>
+      <div class="tcard-role">Chief Operating Officer</div>
+      <p class="tcard-bio">Jeremy oversees Ascensia's operations, cohort management, and program delivery. From Kenya, he brings firsthand experience of navigating educational access gaps across East Africa.</p>
+      <span class="tcard-badge" style="background:var(--copper);color:var(--charcoal)">Kenya</span>
+      <a href="https://linkedin.com/in/THEIR-HANDLE" target="_blank" rel="noopener noreferrer" class="tcard-linkedin">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--gold)" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+            <circle cx="4" cy="4" r="2"/>
+        </svg>
+        LinkedIn
+        </a>
+    </div>
+
+    <div class="tcard reveal r-d2">
+      <div class="tcard-left-bar"></div>
+      <div class="tcard-avatar">
+        <img src="images/camila.png" alt="Camila Caruso">
+      </div>
+      <h3 class="tcard-name">Camila Caruso</h3>
+      <div class="tcard-role">Chief Communications Officer</div>
+      <p class="tcard-bio">Camila leads Ascensia's communications, brand, and outreach strategy. From Venezuela, she shapes how Ascensia reaches students and funders across the globe.</p>
+      <span class="tcard-badge" style="background:var(--copper);color:var(--charcoal)">Venezuela</span>
+      <a href="https://linkedin.com/in/THEIR-HANDLE" target="_blank" rel="noopener noreferrer" class="tcard-linkedin">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--gold)" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+            <circle cx="4" cy="4" r="2"/>
+        </svg>
+        LinkedIn
+        </a>    
+    </div>
+
+    <div class="tcard reveal r-d3">
+      <div class="tcard-left-bar"></div>
+      <div class="tcard-avatar">
+        <img src="images/bassem.png" alt="Youssef Bassem">
+      </div>
+      <h3 class="tcard-name">Youssef Bassem</h3>
+      <div class="tcard-role">Chief Program Officer</div>
+      <p class="tcard-bio">Youssef designed and built the 9-track curriculum at the core of Ascensia's program. He brings a deep understanding of what international students need to navigate global admissions.</p>
+      <span class="tcard-badge" style="background:var(--copper);color:var(--charcoal)">Egypt</span>
+      <a href="https://linkedin.com/in/THEIR-HANDLE" target="_blank" rel="noopener noreferrer" class="tcard-linkedin">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--gold)" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+            <circle cx="4" cy="4" r="2"/>
+        </svg>
+        LinkedIn
+        </a>    
+    </div>
+
+    <div class="tcard reveal r-d4">
+      <div class="tcard-left-bar"></div>
+      <div class="tcard-avatar">
+        <img src="images/youssef.png" alt="Youssef Nassar">
+      </div>
+      <h3 class="tcard-name">Youssef Nassar</h3>
+      <div class="tcard-role">Chief Technology Officer</div>
+      <p class="tcard-bio">Youssef leads the technical infrastructure underpinning Ascensia's digital platforms, mentorship matching, and curriculum delivery. He builds the tools that make the program scalable.</p>
+      <span class="tcard-badge" style="background:var(--copper);color:var(--charcoal)">Egypt</span>
+      <a href="https://linkedin.com/in/THEIR-HANDLE" target="_blank" rel="noopener noreferrer" class="tcard-linkedin">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--gold)" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+            <circle cx="4" cy="4" r="2"/>
+        </svg>
+        LinkedIn
+        </a>    
+    </div>
+  </div>
+
+  <!-- Team tagline -->
+  <div class="team-tagline reveal">
+    <p class="team-tagline-text">We are the people we have been waiting for.</p>
+  </div>
+</section>
+
 <!-- Story -->
 <section id="story" class="story-section">
   <div class="reveal">
@@ -335,10 +474,13 @@
   </div>
   <div class="story-body reveal r-d2">
     <p>Even as students at institutions like STEM High School and the African Leadership Academy, our team saw the scale of what was missing. Participation in selective global programs gave us access to international networks that transformed our trajectories. It also made visible the millions of talented peers left behind without any comparable guidance or mentorship.</p>
-    <p>Some of us were able to connect with peers at top institutions through selective program networks, but only within those immediate circles. Beyond such programs, there is effectively no pathway for most students navigating this process. Ascensia is built to close that gap through <strong>structured, matched mentorship</strong> rather than leaving it to chance.</p>
-    <p>Our primary research, conducted in March 2026 across 77 student respondents in Egypt and Nigeria, confirmed what we already knew from experience. The demand is real. <strong>87% of respondents expressed strong interest in the Ascensia model.</strong> The infrastructure to meet that demand does not currently exist at any meaningful scale.</p>
+    <p>Some of us were able to connect with peers at top institutions through selective program networks, but only within those immediate circles. Beyond such programs, there is effectively no pathway for most students navigating this process. Ascensia is built to close that gap through structured, matched mentorship rather than leaving it to chance.</p>
+    <p>Our primary research, conducted in March 2026 across 77 student respondents in Egypt and Nigeria, confirmed what we already knew from experience. The demand is real. 87% of respondents expressed strong interest in the Ascensia model. The infrastructure to meet that demand does not currently exist at any meaningful scale.</p>
   </div>
 </section>
+
+
+
 
 <!-- Values -->
 <section class="values-section">
@@ -370,79 +512,7 @@
   </div>
 </section>
 
-<!-- Team -->
-<section id="team">
-  <div class="team-intro">
-    <div class="reveal">
-      <div class="section-eyebrow">The team</div>
-      <h2 class="section-heading">Five people.<br>One shared experience.</h2>
-    </div>
-    <p class="right reveal r-d2">
-      Five team members. Our team spans Egypt, Kenya, and Venezuela.
-      Every member either experienced this gap directly or has dedicated their work to
-      understanding and closing it. That is not a coincidence. It is the qualification.
-    </p>
-  </div>
 
-  <!-- Equal 5-card grid -->
-  <div class="team-grid-equal">
-    <div class="tcard reveal">
-      <div class="tcard-left-bar"></div>
-      <div class="tcard-avatar">
-        <img src="images/mash.png" alt="Mohamed Mashhour">
-      </div>
-      <h3 class="tcard-name">Mohamed Mashhour</h3>
-      <div class="tcard-role">Chief Executive Officer</div>
-      <p class="tcard-bio">Mohamed leads Ascensia's strategy, partnerships, and program design. He navigated the international admissions process from Egypt and built Ascensia to give the next generation of students the infrastructure he had to build for himself.</p>
-      <span class="tcard-badge" style="background:var(--copper);color:var(--charcoal)">Egypt</span>
-    </div>
-    <div class="tcard reveal r-d1">
-      <div class="tcard-left-bar"></div>
-      <div class="tcard-avatar">
-        <img src="images/jer.png" alt="Jeremy Muchilwa">
-      </div>
-      <h3 class="tcard-name">Jeremy Muchilwa</h3>
-      <div class="tcard-role">Chief Operating Officer</div>
-      <p class="tcard-bio">Jeremy oversees Ascensia's operations, cohort management, and program delivery. From Kenya, he brings firsthand experience of navigating educational access gaps across East Africa.</p>
-      <span class="tcard-badge" style="background:var(--copper);color:var(--charcoal)">Kenya</span>
-    </div>
-    <div class="tcard reveal r-d2">
-      <div class="tcard-left-bar"></div>
-      <div class="tcard-avatar">
-        <img src="images/camila.png" alt="Camila Caruso">
-      </div>
-      <h3 class="tcard-name">Camila Caruso</h3>
-      <div class="tcard-role">Chief Communications Officer</div>
-      <p class="tcard-bio">Camila leads Ascensia's communications, brand, and outreach strategy. From Venezuela, she shapes how Ascensia reaches students and funders across the globe.</p>
-      <span class="tcard-badge" style="background:var(--copper);color:var(--charcoal)">Venezuela</span>
-    </div>
-    <div class="tcard reveal r-d3">
-      <div class="tcard-left-bar"></div>
-      <div class="tcard-avatar">
-        <img src="images/bassem.png" alt="Youssef Bassem">
-      </div>
-      <h3 class="tcard-name">Youssef Bassem</h3>
-      <div class="tcard-role">Chief Program Officer</div>
-      <p class="tcard-bio">Youssef designed and built the 9-track curriculum at the core of Ascensia's program. He brings a deep understanding of what international students need to navigate global admissions.</p>
-      <span class="tcard-badge" style="background:var(--copper);color:var(--charcoal)">Egypt</span>
-    </div>
-    <div class="tcard reveal r-d4">
-      <div class="tcard-left-bar"></div>
-      <div class="tcard-avatar">
-        <img src="images/youssef.png" alt="Youssef Nassar">
-      </div>
-      <h3 class="tcard-name">Youssef Nassar</h3>
-      <div class="tcard-role">Chief Technology Officer</div>
-      <p class="tcard-bio">Youssef leads the technical infrastructure underpinning Ascensia's digital platforms, mentorship matching, and curriculum delivery. He builds the tools that make the program scalable.</p>
-      <span class="tcard-badge" style="background:var(--copper);color:var(--charcoal)">Egypt</span>
-    </div>
-  </div>
-
-  <!-- Team tagline -->
-  <div class="team-tagline reveal">
-    <p class="team-tagline-text">We are the people we have been waiting for.</p>
-  </div>
-</section>
 
 <!-- Progress -->
 <section class="progress-section">
