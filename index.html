@@ -3,316 +3,379 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Ascensia is a nonprofit global admissions preparation program. We help high-potential students from underserved backgrounds access top universities through mentorship, curriculum, and application support. Need-blind admissions. Full financial aid available.">
-<meta name="theme-color" content="#1E1714">
-<meta property="og:type"        content="website">
-<meta property="og:url"         content="https://ascensia.foundation/">
-<meta property="og:title"       content="Ascensia | Democratizing Global Admissions">
-<meta property="og:description" content="A nonprofit preparing high-potential students from underserved backgrounds to win admission to top global universities.">
-<meta property="og:image"       content="https://ascensia.foundation/og-image.jpg">
-<meta property="og:site_name"   content="Ascensia">
-<meta name="twitter:card"        content="summary_large_image">
-<meta name="twitter:title"       content="Ascensia | Democratizing Global Admissions">
-<meta name="twitter:description" content="A nonprofit preparing high-potential students from underserved backgrounds to win admission to top global universities.">
-<meta name="twitter:image"       content="https://ascensia.foundation/og-image.jpg">
-<meta http-equiv="X-Content-Type-Options" content="nosniff">
-<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="description" content="Ascensia prepares students from underserved regions for admission to top universities worldwide — through curriculum, mentorship, and community. Free, always.">
+<meta name="theme-color" content="#080910">
+<meta property="og:title" content="Ascensia — Democratizing Global Admissions">
+<meta property="og:image" content="https://ascensia.foundation/og-image.jpg">
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Outfit:wght@200;300;400;500&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Outfit:wght@200;300;400;500&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Outfit:wght@200;300;400;500&display=swap"></noscript>
-<title>Ascensia | Democratizing Global Admissions</title>
-<link rel="canonical" href="https://ascensia.foundation/">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Jost:wght@200;300;400;500&display=swap">
+<title>Ascensia — Democratizing Global Admissions</title>
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/nav.css">
 <link rel="stylesheet" href="css/animations.css">
 <link rel="stylesheet" href="css/main.css">
 <style>
-  
 /* ── BETA BANNER ── */
 .beta-banner {
-  background: #1a1108;
-  border-bottom: 0.5px solid rgba(212,168,83,0.25);
+  background: var(--indigo);
+  border-bottom: var(--line-gold);
   padding: 11px var(--sp-lg);
   text-align: center;
-  font-size: 11px;
-  letter-spacing: 0.14em;
+  font-size: 10px;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--gold-dim);
   font-family: var(--sans);
-  font-weight: 400;
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 600;
-  line-height: 1.4;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
-nav#main-nav { top: 42px; }
+nav#main-nav { top: 40px; }
 
-/* ── HERO ── */
+/* ─────────────────────────────────────────
+   HERO — full-height, star canvas,
+   centered, almost nothing
+───────────────────────────────────────── */
 #hero {
+  position: relative;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 0 var(--sp-lg);
-  padding-left: clamp(40px, 6vw, 100px);
-  position: relative;
-  overflow: hidden;
-}
-.hero-orbit { position: absolute; top: 50%; left: 58%; pointer-events: none; }
-.hero-orbit .orbit-ring:nth-child(1) { width: 700px;  height: 700px; }
-.hero-orbit .orbit-ring:nth-child(2) { width: 1000px; height: 1000px; border-color: rgba(196,164,145,0.04); }
-.hero-orbit .orbit-ring:nth-child(3) { width: 1300px; height: 1300px; border-color: rgba(196,164,145,0.025); }
-.hero-sculpture {
-  position: absolute;
-  right: var(--sp-lg);
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  align-items: flex-end;
-  pointer-events: none;
-  max-width: 40vw;
-  overflow: hidden;
-}
-.sculpt-line {
-  height: 1.5px;
-  background: var(--gold);
-  border-radius: 1px;
-  opacity: 0;
-  animation: lineIn 0.8s var(--ease-out) both;
-}
-.sculpt-line:nth-child(1){ width:14px;   animation-delay:1.3s; }
-.sculpt-line:nth-child(2){ width:40px;   animation-delay:1.45s; }
-.sculpt-line:nth-child(3){ width:90px;   animation-delay:1.6s; }
-.sculpt-line:nth-child(4){ width:170px;  animation-delay:1.75s; }
-.sculpt-line:nth-child(5){ width:280px;  animation-delay:1.9s; }
-.sculpt-line:nth-child(6){ width:400px;  animation-delay:2.05s; }
-.sculpt-line:nth-child(7){ width:400px;  animation-delay:2.2s; }
-.hero-eyebrow {
-  font-size: 10px;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--copper);
-  margin-bottom: 28px;
-  display: flex;
   align-items: center;
-  gap: 14px;
+  justify-content: center;
+  text-align: center;
+  padding: 0 var(--sp-lg);
+  overflow: hidden;
+  /* continuous background that flows into next sections */
+  background: var(--ink);
+}
+
+#star-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  /* canvas fades out toward the bottom so sections merge */
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 55%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 0%, black 55%, transparent 100%);
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 560px;
+}
+
+/* Wordmark above — tiny, breathing */
+.hero-org {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 52px;
   opacity: 0;
   animation: fadeUp 0.8s 0.4s both;
 }
-.hero-eyebrow::before {
-  content: '';
-  width: 36px; height: 0.5px;
-  background: var(--copper);
-}
-.hero-h1 {
+
+/* The one line that matters */
+.hero-line {
   font-family: var(--serif);
-  font-size: clamp(38px, 5.2vw, 76px);
-  font-weight: 300;
-  line-height: 1.08;
-  letter-spacing: -0.015em;
-  max-width: 720px;
-}
-.hero-h1 .italic { font-style: italic; color: var(--gold); }
-.hero-sub {
-  margin-top: 32px;
-  max-width: 440px;
-  font-size: 16px;
-  font-weight: 300;
-  line-height: 1.85;
-  color: rgba(245,240,235,0.5);
-  opacity: 0;
-  animation: fadeUp 0.9s 1.2s both;
-}
-.hero-actions {
-  margin-top: 44px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  opacity: 0;
-  animation: fadeUp 0.9s 1.4s both;
-}
-.hero-scroll-wrap {
-  position: absolute;
-  bottom: 44px;
-  right: var(--sp-lg);
-  opacity: 0;
-  animation: fadeUp 0.8s 2.2s both;
-}
-/* ── STATEMENT ── */
-#statement {
-  padding: var(--sp-2xl) var(--sp-lg);
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 100px;
-  align-items: center;
-  position: relative;
+  font-size: clamp(40px, 6.5vw, 88px);
+  font-weight: 400;
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  color: var(--cream);
   overflow: hidden;
 }
-.statement-ghost {
-  position: absolute;
-  left: -20px; top: 50%;
-  transform: translateY(-50%);
-  font-family: var(--serif);
-  font-size: clamp(160px, 22vw, 300px);
-  font-weight: 300;
-  letter-spacing: -0.06em;
-  color: rgba(196,164,145,0.04);
-  line-height: 1;
-  pointer-events: none;
-  user-select: none;
+.hero-line-inner {
+  display: block;
+  transform: translateY(110%);
+  animation: lineReveal 1.2s var(--ease-out) both;
 }
-.pullquote {
-  font-family: var(--serif);
-  font-size: clamp(20px, 2.6vw, 34px);
-  font-weight: 300;
-  font-style: italic;
-  line-height: 1.5;
-  color: var(--cream);
-  border-left: 2px solid var(--gold);
-  padding-left: 36px;
+.hero-line em { font-style: italic; color: var(--gold); }
+
+/* Single CTA — plenty of air */
+.hero-cta {
+  margin-top: 56px;
+  opacity: 0;
+  animation: fadeUp 0.9s 1.3s both;
+}
+
+/* Scroll breath at bottom */
+.hero-scroll {
+  position: absolute;
+  bottom: 44px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  opacity: 0;
+  animation: fadeIn 1s 2s both;
+}
+
+/* ─────────────────────────────────────────
+   MANIFESTO — editorial pull, no box, no break
+   Background flows continuously from hero ink
+───────────────────────────────────────── */
+#manifesto {
+  background: var(--ink);
+  padding: clamp(100px, 14vw, 200px) var(--sp-lg);
+  text-align: center;
   position: relative;
 }
-.pullquote-attr {
-  display: block;
-  margin-top: 20px;
-  padding-left: 36px;
-  font-size: 10px;
-  font-style: normal;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--copper);
-  font-family: var(--sans);
+.manifesto-rule {
+  width: 1px;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, var(--gold-dim), transparent);
+  margin: 0 auto 64px;
+  opacity: 0.4;
 }
-/* ── RESEARCH BANNER ── */
-.research-band {
-  background: var(--charcoal-2);
-  border-top: var(--line-dim);
-  border-bottom: var(--line-dim);
-  padding: 60px var(--sp-lg);
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  background-color: rgba(196,164,145,0.08);
-}
-.rstat {
-  background: var(--charcoal-2);
-  padding: 40px 32px;
-  text-align: center;
-}
-.rstat-num {
+.manifesto-text {
   font-family: var(--serif);
-  font-size: clamp(44px, 5.5vw, 72px);
-  font-weight: 300;
-  line-height: 1;
-  letter-spacing: -0.04em;
-  color: var(--gold);
-  margin-bottom: 12px;
-}
-.rstat-label {
-  font-size: 12px;
-  font-weight: 300;
-  line-height: 1.6;
-  color: rgba(245,240,235,0.45);
-  max-width: 180px;
+  font-size: clamp(26px, 3.6vw, 48px);
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  color: var(--cream);
+  max-width: 720px;
   margin: 0 auto;
 }
-.rstat-source {
-  margin-top: 10px;
-  font-size: 9px;
-  letter-spacing: 0.18em;
+.manifesto-text em { font-style: italic; color: var(--gold); }
+.manifesto-note {
+  margin-top: 48px;
+  font-size: 13px;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--copper);
-  opacity: 0.6;
+  color: var(--cream-dimmer);
+  font-family: var(--sans);
 }
-/* ── STATS ── */
-#stats { padding: var(--sp-xl) 0; }
-.stats-head {
+
+/* ─────────────────────────────────────────
+   DATA + SURVEY — one merged section,
+   sparse, numbers speak
+───────────────────────────────────────── */
+#data {
+  background: var(--ink-2);
+  padding: clamp(80px, 10vw, 140px) var(--sp-lg);
+  border-top: var(--line-dim);
+}
+.data-header {
+  max-width: 480px;
+  margin: 0 auto clamp(60px, 8vw, 100px);
+  text-align: center;
+}
+.data-header .section-eyebrow { justify-content: center; }
+.data-header p {
+  margin-top: 20px;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.9;
+  color: var(--cream-dim);
+}
+
+/* Three big numbers in a row */
+.data-trio {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(237,232,220,0.055);
+  margin-bottom: 1px;
+}
+.data-cell {
+  background: var(--ink-2);
+  padding: clamp(36px, 5vw, 64px) clamp(28px, 4vw, 56px);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: background 0.4s;
+}
+.data-cell:hover { background: var(--indigo); }
+.data-num {
+  font-family: var(--serif);
+  font-size: clamp(56px, 7vw, 96px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--cream);
+  transition: color 0.4s;
+}
+.data-cell:hover .data-num { color: var(--gold); }
+.data-label {
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--cream-dimmer);
+  max-width: 240px;
+}
+.data-source {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  opacity: 0.6;
+  margin-top: auto;
+}
+
+/* Survey footnote strip */
+.data-footnote {
+  background: var(--ink-2);
+  border-top: var(--line-gold);
+  padding: 28px var(--sp-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.data-footnote-text {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--cream-dim);
+  max-width: 540px;
+  font-style: italic;
+  font-family: var(--serif);
+}
+.data-footnote-meta {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cream-dimmer);
+  white-space: nowrap;
+}
+
+/* ─────────────────────────────────────────
+   PROGRAM PREVIEW — lean, no bloat
+───────────────────────────────────────── */
+#program-preview {
+  background: var(--ink);
+  padding: clamp(80px, 10vw, 160px) var(--sp-lg);
+  border-top: var(--line-dim);
+}
+.preview-head {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 80px;
   align-items: end;
-  padding: 0 var(--sp-lg) var(--sp-lg);
+  margin-bottom: 72px;
 }
-/* ── PROGRAM PREVIEW ── */
-#program-preview {
-  padding: var(--sp-2xl) var(--sp-lg);
-  background: var(--charcoal-2);
+.preview-head p {
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 1.9;
+  color: var(--cream-dim);
+}
+
+/* Pillars grid */
+
+/* ─────────────────────────────────────────
+   VISION — centered, rings, breathing
+───────────────────────────────────────── */
+.vision-section {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(100px,14vw,180px) var(--sp-lg);
+  background: var(--ink-2);
   position: relative;
   overflow: hidden;
+  text-align: center;
+  border-top: var(--line-dim);
 }
-.program-preview-header {
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 80px;
-  align-items: end;
-  margin-bottom: 80px;
+.vision-rings-wrap { position: absolute; top:50%; left:50%; pointer-events: none; }
+.vision-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 0.5px solid rgba(217,185,106,0.055);
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  animation: ringPulse 6s ease-in-out infinite;
 }
-/* ── VISION ── */
-/* uses .vision-section from main.css */
-/* ── CONTACT SPLIT ── */
+.vision-ring:nth-child(1) { width:180px;  height:180px; }
+.vision-ring:nth-child(2) { width:400px;  height:400px; animation-delay:.8s; }
+.vision-ring:nth-child(3) { width:680px;  height:680px; animation-delay:1.6s; }
+.vision-ring:nth-child(4) { width:980px;  height:980px; animation-delay:2.4s; }
+.vision-ring:nth-child(5) { width:1360px; height:1360px; animation-delay:3.2s; }
+.vision-inner { position: relative; z-index:1; max-width: 800px; }
+.vision-title {
+  font-family: var(--serif);
+  font-size: clamp(38px,5.5vw,76px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  color: var(--cream);
+  margin-bottom: 32px;
+}
+.vision-title em { font-style: italic; color: var(--gold); }
+.vision-body {
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 1.9;
+  color: var(--cream-dimmer);
+  max-width: 480px;
+  margin: 0 auto 44px;
+}
+
+/* ─────────────────────────────────────────
+   CONTACT SPLIT
+───────────────────────────────────────── */
 .contact-split {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  min-height: 50vh;
+  border-top: var(--line-dim);
 }
 .contact-panel {
-  padding: 80px var(--sp-lg);
+  padding: clamp(60px,8vw,110px) var(--sp-lg);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  position: relative;
-  overflow: hidden;
 }
-.contact-light { background: var(--cream); color: var(--charcoal); }
-.contact-dark  { background: var(--charcoal-3); color: var(--cream); }
+.contact-light {
+  background: var(--cream);
+  color: var(--ink);
+}
+.contact-dark {
+  background: var(--ink-3);
+  color: var(--cream);
+  border-left: var(--line-dim);
+}
 .contact-headline {
   font-family: var(--serif);
-  font-size: clamp(28px, 3.5vw, 48px);
-  font-weight: 300;
-  line-height: 1.2;
+  font-size: clamp(30px,4vw,52px);
+  font-weight: 400;
+  line-height: 1.12;
   margin-bottom: 20px;
 }
-.contact-light .contact-headline { color: var(--charcoal); }
+.contact-light .contact-headline { color: var(--ink); }
 .contact-dark  .contact-headline { color: var(--cream); }
 .contact-desc {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 300;
   line-height: 1.85;
   max-width: 380px;
   margin-bottom: 32px;
 }
-.contact-light .contact-desc { color: var(--text-dim); }
-.contact-dark  .contact-desc { color: rgba(245,240,235,0.4); }
+.contact-light .contact-desc { color: rgba(8,9,16,0.5); }
+.contact-dark  .contact-desc  { color: var(--cream-dimmer); }
 .contact-email {
-  font-size: 13px;
-  letter-spacing: 0.08em;
+  font-size: 14px;
+  letter-spacing: 0.06em;
   color: var(--gold);
-  text-decoration: none;
-  font-weight: 400;
-  transition: opacity 0.2s;
+  transition: opacity .2s;
 }
-.contact-email:hover { opacity: 0.75; }
+.contact-email:hover { opacity: 0.7; }
+
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
   nav#main-nav { top: 0; }
-  .beta-banner { position: relative; white-space: normal; }
-  #statement { grid-template-columns: 1fr; gap: 52px; }
-  .research-band { grid-template-columns: 1fr 1fr; }
-  .stats-head { grid-template-columns: 1fr; }
-  .program-preview-header { grid-template-columns: 1fr; gap: 44px; }
-  .hero-sculpture { display: none; }
+  .beta-banner  { position: relative; }
+  .preview-head { grid-template-columns: 1fr; gap: 40px; }
+  .data-trio    { grid-template-columns: 1fr; }
   .contact-split { grid-template-columns: 1fr; }
-}
-@media (max-width: 600px) {
-  .research-band { grid-template-columns: 1fr; }
+  .contact-dark  { border-left: none; border-top: var(--line-dim); }
 }
 </style>
 </head>
@@ -321,10 +384,8 @@ nav#main-nav { top: 42px; }
 <div id="cursor"></div>
 <div id="cursor-ring"></div>
 
-<!-- Beta notice -->
-<div class="beta-banner">Beta website. Ascensia has not yet launched. Content is subject to change.</div>
+<div class="beta-banner">Beta &mdash; Ascensia has not yet launched</div>
 
-<!-- Nav -->
 <nav id="main-nav">
   <a href="index.html" class="nav-logo">
     <div class="logo-mark animated"><span></span><span></span><span></span><span></span><span></span></div>
@@ -333,49 +394,35 @@ nav#main-nav { top: 42px; }
   <ul class="nav-links">
     <li><a href="program.html">Program</a></li>
     <li><a href="about.html">About</a></li>
-    <li><a href="mailto:team@ascensia.foundation">Contact</a></li>
+    <li><a href="mailto:team@ascensia.foundation" class="nav-cta">Get in touch</a></li>
   </ul>
-  <button class="nav-hamburger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
+  <button class="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 <div class="nav-mobile">
   <a href="program.html">Program</a>
   <a href="about.html">About</a>
-  <a href="mailto:team@ascensia.foundation">Contact</a>
+  <a href="mailto:team@ascensia.foundation">Get in touch</a>
 </div>
 
-<!-- Hero -->
+<!-- ── HERO ── -->
 <section id="hero">
-  <div class="hero-orbit">
-    <div class="orbit-ring"></div>
-    <div class="orbit-ring reverse fast"></div>
-    <div class="orbit-ring slow"></div>
+  <canvas id="star-canvas"></canvas>
+
+  <div class="hero-inner">
+    <p class="hero-org">Ascensia &nbsp;&middot;&nbsp; Global Admissions</p>
+
+    <h1 class="hero-line">
+      <span class="hero-line-inner" style="animation-delay:.5s">
+        Every bright mind<br><em>deserves a door.</em>
+      </span>
+    </h1>
+
+    <div class="hero-cta">
+      <a href="program.html" class="btn btn-gold">See how it works</a>
+    </div>
   </div>
-  <div class="hero-sculpture" aria-hidden="true">
-    <div class="sculpt-line"></div>
-    <div class="sculpt-line"></div>
-    <div class="sculpt-line"></div>
-    <div class="sculpt-line"></div>
-    <div class="sculpt-line"></div>
-    <div class="sculpt-line"></div>
-    <div class="sculpt-line"></div>
-  </div>
-  <!--p class="hero-eyebrow">Nonprofit · Global Admissions Preparation · Cohort 2026</p-->
-  <h1 class="hero-h1">
-    <span class="hero-line-wrap"><span class="hero-line-inner" style="animation-delay:.5s">Democratizing</span></span>
-    <span class="hero-line-wrap"><span class="hero-line-inner italic" style="animation-delay:.68s">Global Admissions.</span></span>
-  </h1>
-  <p class="hero-sub">
-    Ascensia is a nonprofit that empowers high-potential students from underserved
-    backgrounds to win admission to top global universities through structured curriculum,
-    matched mentorship, and application support.
-  </p>
-  <div class="hero-actions">
-    <a href="program.html" class="btn btn-gold">Explore the program</a>
-    <a href="about.html" class="btn btn-outline">About us</a>
-  </div>
-  <div class="hero-scroll-wrap">
+
+  <div class="hero-scroll">
     <div class="scroll-indicator">
       <div class="scroll-track"><div class="scroll-thumb"></div></div>
       <span class="scroll-label">Scroll</span>
@@ -383,243 +430,207 @@ nav#main-nav { top: 42px; }
   </div>
 </section>
 
+<!-- ── MANIFESTO ── -->
+<section id="manifesto">
+  <div class="manifesto-rule" aria-hidden="true"></div>
+  <p class="manifesto-text reveal">
+    Thousands of universities reserve billions in aid for students from exactly
+    the regions we come from. Most of those students never apply —
+    because <em>no one told them it was possible.</em>
+  </p>
+  <p class="manifesto-note reveal r-d2">Ascensia exists to change that.</p>
+</section>
 
-<!-- Statement: Amara's story -->
-<section id="statement">
-  <div class="statement-ghost" aria-hidden="true">A</div>
-  <div class="reveal">
-    <div class="section-eyebrow">The problem</div>
-    <h2 class="section-heading">
-      The door is open.<br>
-      Most students<br>
-      never know it<br>
-      <em>exists.</em>
-    </h2>
+<!-- ── DATA ── -->
+<section id="data">
+  <div class="data-header reveal">
+    <div class="section-eyebrow">What the research shows</div>
+    <p>We surveyed 77 students across five countries. The gap is real, specific, and closeable.</p>
   </div>
-  <div class="reveal r-d2">
-    <p class="pullquote">
-      Amara graduates top of her class in Lagos. Her physics teacher says she is the most
-      gifted student he has taught in 15 years. Harvard would cover 100% of her costs.
-      Eight universities would not even consider her family's income before admitting her.
-      Amara does not apply. No one told her.
-      <span class="pullquote-attr">From Ascensia's founding case</span>
+
+  <div class="data-trio">
+    <div class="data-cell reveal">
+      <div class="data-num">87%</div>
+      <div class="data-label">of surveyed students had no dedicated college counselor at their school</div>
+      <div class="data-source">Ascensia Survey &middot; n=77 &middot; 2026</div>
+    </div>
+    <div class="data-cell reveal r-d1">
+      <div class="data-num">74%</div>
+      <div class="data-label">had never spoken to anyone currently at a top university about applying</div>
+      <div class="data-source">Ascensia Survey &middot; n=77 &middot; 2026</div>
+    </div>
+    <div class="data-cell reveal r-d2">
+      <div class="data-num">8</div>
+      <div class="data-label">US universities cover 100% of demonstrated financial need for international students</div>
+      <div class="data-source">Institution financial aid pages</div>
+    </div>
+  </div>
+
+  <div class="data-footnote reveal">
+    <p class="data-footnote-text">
+      "We came to the conclusion that we weren't reaching all talented students who might think of us as an opportunity."
     </p>
+    <span class="data-footnote-meta">Harvard Griffin Director of Financial Aid &middot; 2018</span>
   </div>
 </section>
 
-<!-- Primary research stats -->
-<div class="research-band">
-  <div class="rstat reveal">
-    <div class="rstat-num">91%</div>
-    <div class="rstat-label">of surveyed students want to study at a university outside their home country</div>
-    <div class="rstat-source">Ascensia Survey, n=77, March 2026</div>
-  </div>
-  <div class="rstat reveal r-d1">
-    <div class="rstat-num">87%</div>
-    <div class="rstat-label">have no dedicated college counselor at their school</div>
-    <div class="rstat-source">Ascensia Survey, n=77, March 2026</div>
-  </div>
-  <div class="rstat reveal r-d2">
-    <div class="rstat-num">65%</div>
-    <div class="rstat-label">are unaware of or uncertain about need-blind admissions</div>
-    <div class="rstat-source">Ascensia Survey, n=77, March 2026</div>
-  </div>
-  <div class="rstat reveal r-d3">
-    <div class="rstat-num">87%</div>
-    <div class="rstat-label">expressed strong interest in the Ascensia model</div>
-    <div class="rstat-source">Ascensia Survey, n=77, March 2026</div>
-  </div>
-</div>
-
-<!-- Statistics: secondary research -->
-<section id="stats">
-  <div class="stats-head">
+<!-- ── PROGRAM PREVIEW ── -->
+<section id="program-preview">
+  <div class="preview-head">
     <div class="reveal">
-      <div class="section-eyebrow">The access gap</div>
-      <h2 class="section-heading">The data<br>behind the silence.</h2>
+      <div class="section-eyebrow">The program</div>
+      <h2 class="section-heading">One system.<br><em>Nothing left out.</em></h2>
     </div>
-    <p class="section-body reveal r-d2">
-      Four interlocking failures prevent talented students from applying to the world's
-      most selective universities. The gaps are structural, not personal. The information
-      exists. The financial support exists. The pathway does not.
-    </p>
-  </div>
-  <div class="stats-block">
-    <div class="stat-row reveal">
-      <div class="stat-index">01</div>
-      <div class="stat-number-cell">
-        <div class="stat-number">
-          <span data-target="400">0</span><span class="ratio-one"> to 1</span>
-        </div>
-      </div>
-      <div class="stat-col-divider"></div>
-      <div class="stat-text-cell">
-        <p>Student-to-counselor ratio in US public high schools, already far below the 250:1 standard recommended by the American School Counselor Association. In most African and South Asian state schools, the figure is substantially worse.</p>
-        <span class="stat-source">ASCA, NACAC</span>
-      </div>
-    </div>
-    <div class="stat-row reveal">
-      <div class="stat-index">02</div>
-      <div class="stat-number-cell">
-        <div class="stat-number" style="color:var(--gold)">
-          <span data-target="8">0</span>
-        </div>
-      </div>
-      <div class="stat-col-divider"></div>
-      <div class="stat-text-cell">
-        <p>US universities are fully need-blind for international applicants, committing to cover 100% of demonstrated financial need. For families earning below $100,000 annually, Harvard's expected parent contribution is zero.</p>
-        <span class="stat-source">Harvard College Financial Aid</span>
-      </div>
-    </div>
-    <div class="stat-row reveal">
-      <div class="stat-index">03</div>
-      <div class="stat-number-cell">
-        <div class="stat-number" style="color:var(--rose)">
-          <span data-target="74">0</span><span class="unit">%</span>
-        </div>
-      </div>
-      <div class="stat-col-divider"></div>
-      <div class="stat-text-cell">
-        <p>Of students surveyed had never spoken to anyone currently attending a top university about the application process. Of those, 48% said they actively wished they could. The peer mentorship infrastructure does not exist at any meaningful scale for most students.</p>
-        <span class="stat-source">Ascensia Survey, n=77, March 2026</span>
-      </div>
-    </div>
-    <div class="stat-row reveal">
-      <div class="stat-index">04</div>
-      <div class="stat-number-cell">
-        <div class="stat-number">
-          <span data-target="58">0</span><span class="unit">%</span>
-        </div>
-      </div>
-      <div class="stat-col-divider"></div>
-      <div class="stat-text-cell">
-        <p>Cannot accurately describe financial aid at top US universities, even within a relatively informed and well-connected cohort. The true gap across broader populations is expected to be substantially larger.</p>
-        <span class="stat-source">Ascensia Survey, n=77, March 2026</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="harvard-band reveal">
-    <div class="harvard-letter" aria-hidden="true">H</div>
-    <div>
-      <p class="harvard-quote-text">
-        "We did a great deal of research to make sure we were reaching all talented students who might think of Harvard as an opportunity, and we actually came to the conclusion that we weren't."
-      </p>
-      <cite class="harvard-cite">Sally C. Donahue, Griffin Director of Financial Aid, Harvard College. Harvard Gazette, June 2018.</cite>
-    </div>
-  </div>
-</section>
-
-<!-- Program preview -->
-<section id="program-preview" class="grid-bg">
-  <div class="program-preview-header">
-    <div class="reveal">
-      <div class="section-eyebrow rose">The program</div>
-      <h2 class="section-heading">One complete<br>system. Nothing<br>left out.</h2>
-    </div>
-    <p class="section-body reveal r-d2">
-      Ascensia is a nonprofit tech-enabled mentorship program. Every component works together
-      by design: a 9-track curriculum built specifically for international students,
-      matched 1:1 mentorship from someone currently enrolled at a target university,
-      hands-on application support, and a cohort community that persists beyond graduation.
-      Admissions are need-blind. Full need-based and merit-based financial aid is available.
+    <p class="reveal r-d2">
+      A 14-month cohort program — curriculum, matched mentorship, application support,
+      and a permanent alumni network. Free to every admitted student.
     </p>
   </div>
   <div class="pillars-grid">
-    <div class="pillar reveal">
-      <div class="pillar-top-line"></div>
-      <div class="pillar-num">01</div>
-      <h3 class="pillar-title">Curriculum</h3>
-      <p class="pillar-desc">9 tracks covering every component of global admissions: essays, testing, financial aid, activities, college list, and non-US systems. Built from scratch for international students from underrepresented backgrounds.</p>
-    </div>
-    <div class="pillar reveal r-d1">
-      <div class="pillar-top-line"></div>
-      <div class="pillar-num">02</div>
-      <h3 class="pillar-title">Mentorship</h3>
-      <p class="pillar-desc">Each student is matched 1:1 with a current student at one of their target universities, by school, region, and field. Someone who applied in the last few cycles, sharing their actual experience and materials.</p>
-    </div>
-    <div class="pillar reveal r-d2">
-      <div class="pillar-top-line"></div>
-      <div class="pillar-num">03</div>
-      <h3 class="pillar-title">Application Support</h3>
-      <p class="pillar-desc">Hands-on guidance through every submission: essays, financial aid forms, CSS Profile, activity descriptions, recommendation strategy, and deadlines. Active support at every step.</p>
-    </div>
-    <div class="pillar reveal r-d3">
-      <div class="pillar-top-line"></div>
-      <div class="pillar-num">04</div>
-      <h3 class="pillar-title">Network</h3>
-      <p class="pillar-desc">Students move through the program as a cohort, with peer review and shared accountability. Every graduate enters the alumni mentor network permanently. Each cohort makes the next one stronger.</p>
-    </div>
+    <div class="pillar reveal"><div class="pillar-top-line"></div><div class="pillar-num">01</div><h3 class="pillar-title">Curriculum</h3><p class="pillar-desc">Nine tracks covering every component of global admissions — built for international students, not adapted from something else.</p></div>
+    <div class="pillar reveal r-d1"><div class="pillar-top-line"></div><div class="pillar-num">02</div><h3 class="pillar-title">Mentorship</h3><p class="pillar-desc">Each student is matched 1:1 with someone currently enrolled at one of their target universities. Someone who just did what you're trying to do.</p></div>
+    <div class="pillar reveal r-d2"><div class="pillar-top-line"></div><div class="pillar-num">03</div><h3 class="pillar-title">Application Support</h3><p class="pillar-desc">Hands-on help through every submission — essays, financial aid forms, activity lists, recommendation strategy, and deadlines.</p></div>
+    <div class="pillar reveal r-d3"><div class="pillar-top-line"></div><div class="pillar-num">04</div><h3 class="pillar-title">Community</h3><p class="pillar-desc">Students move through as a cohort. Every graduate joins the alumni mentor network permanently. The program gets stronger with each year.</p></div>
   </div>
-  <div style="margin-top:52px; text-align:center">
-    <a href="program.html" class="btn btn-outline reveal r-d2">See the full program</a>
+  <div style="text-align:center; margin-top:56px;">
+    <a href="program.html" class="btn btn-outline reveal r-d2">Full program overview</a>
   </div>
 </section>
 
-<!-- Vision -->
+<!-- ── VISION ── -->
 <section class="vision-section">
   <div class="vision-rings-wrap" aria-hidden="true">
-    <div class="vision-ring"></div>
-    <div class="vision-ring"></div>
-    <div class="vision-ring"></div>
-    <div class="vision-ring"></div>
+    <div class="vision-ring"></div><div class="vision-ring"></div>
+    <div class="vision-ring"></div><div class="vision-ring"></div>
     <div class="vision-ring"></div>
   </div>
   <div class="vision-inner reveal">
-    <div class="section-eyebrow gold" style="justify-content:center">Our vision</div>
+    <div class="section-eyebrow" style="justify-content:center">Our belief</div>
     <h2 class="vision-title">
-      A world where university admission<br>
-      is determined by potential,<br>
-      <em>not by circumstance.</em>
+      Admission should be decided<br>by who you are,<br>
+      <em>not where you started.</em>
     </h2>
     <p class="vision-body">
-      Sixty-five percent of surveyed students could not accurately describe need-blind admissions,
-      the policy that would make attendance free for most of their families.
-      We are building the infrastructure to close that gap.
+      We are building the infrastructure to make that more true, one cohort at a time.
     </p>
+    <a href="about.html" class="btn btn-outline">Our story</a>
   </div>
 </section>
 
-
-<!-- Contact split -->
+<!-- ── CONTACT ── -->
 <div class="contact-split">
   <div class="contact-panel contact-light reveal">
-    <div class="section-eyebrow" style="color:var(--copper)">For students and schools</div>
+    <div class="section-eyebrow" style="color:rgba(8,9,16,0.35)">For students &amp; schools</div>
     <h2 class="contact-headline">Get in touch.</h2>
     <p class="contact-desc">
-      Ascensia is currently preparing for its pilot cohort. If you are a student, educator,
-      or school counselor who wants to learn more or be notified when we open applications,
-      reach out directly.
+      Ascensia is preparing its first cohort. If you want to be notified when
+      applications open, reach out directly.
     </p>
     <a href="mailto:team@ascensia.foundation" class="contact-email">team@ascensia.foundation</a>
   </div>
   <div class="contact-panel contact-dark reveal r-d2">
-    <div class="section-eyebrow rose">For partners and funders</div>
-    <h2 class="contact-headline" style="color:var(--cream)">Partner<br>with us.</h2>
-    <p class="contact-desc" style="color:rgba(245,240,235,0.4);">
-      Ascensia is a nonprofit seeking grant and partnership funding to support its first cohort.
-      If you represent a foundation, university, or institution aligned with this mission,
-      we welcome that conversation.
+    <div class="section-eyebrow">For partners &amp; funders</div>
+    <h2 class="contact-headline">Partner<br>with us.</h2>
+    <p class="contact-desc">
+      We are a nonprofit seeking grant and partnership funding for our first cohort.
+      If you represent a foundation or institution aligned with this mission, we welcome
+      that conversation.
     </p>
-    <a href="mailto:team@ascensia.foundation" class="btn btn-gold" style="align-self:flex-start">team@ascensia.foundation</a>
+    <a href="mailto:team@ascensia.foundation" class="btn btn-gold" style="align-self:flex-start">Reach out</a>
   </div>
 </div>
 
-<!-- Footer -->
 <footer id="main-footer"></footer>
 
 <script src="js/main.js"></script>
 <script src="js/cursor.js"></script>
 <script src="js/scroll.js"></script>
+
+<!-- Star canvas — seamless, fades into page -->
 <script>
-/* Hero scroll weight */
 (function() {
-  const lines = document.querySelectorAll('.hero-line-inner');
-  if (!lines.length || !CSS.supports('font-variation-settings', '"wght" 300')) return;
-  window.addEventListener('scroll', () => {
-    const p = Math.min(scrollY / (window.innerHeight * 0.6), 1);
-    lines.forEach(el => { el.style.fontVariationSettings = `"wght" ${300 + Math.round(p*100)}`; });
-  }, { passive: true });
+  const canvas = document.getElementById('star-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H, stars = [], particles = [];
+  const BG = '#080910'; // matches --ink exactly
+
+  function resize() {
+    W = canvas.width  = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+
+  function initStars() {
+    stars = Array.from({ length: 180 }, () => ({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      r: Math.random() * 1.1 + 0.2,
+      base: Math.random() * 0.45 + 0.06,
+      phase: Math.random() * Math.PI * 2,
+      speed: Math.random() * 0.009 + 0.003,
+    }));
+  }
+
+  function initParticles() {
+    particles = Array.from({ length: 40 }, () => ({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      r: Math.random() * 1.6 + 0.5,
+      vy: Math.random() * 0.35 + 0.08,
+      vx: (Math.random() - 0.5) * 0.12,
+      life: Math.random() * 360,
+      maxLife: Math.random() * 200 + 280,
+    }));
+  }
+
+  function frame() {
+    // Fill with exact same ink color — canvas IS the background
+    ctx.fillStyle = BG;
+    ctx.fillRect(0, 0, W, H);
+
+    // Twinkle stars
+    stars.forEach(s => {
+      s.phase += s.speed;
+      const a = s.base * (0.5 + 0.5 * Math.sin(s.phase));
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,255,255,${a})`;
+      ctx.fill();
+    });
+
+    // Gold rising particles
+    particles.forEach((p, i) => {
+      p.life++;
+      p.x += p.vx;
+      p.y -= p.vy;
+      const prog = p.life / p.maxLife;
+      const a = prog < 0.12 ? (prog / 0.12) * 0.55
+              : prog > 0.72 ? ((1 - prog) / 0.28) * 0.55
+              : 0.55;
+      if (p.life >= p.maxLife || p.y < -6) {
+        particles[i] = {
+          x: Math.random() * W, y: H + 4,
+          r: Math.random() * 1.6 + 0.5,
+          vy: Math.random() * 0.35 + 0.08,
+          vx: (Math.random() - 0.5) * 0.12,
+          life: 0, maxLife: Math.random() * 200 + 280,
+        };
+        return;
+      }
+      const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 2.8);
+      grad.addColorStop(0, `rgba(217,185,106,${a})`);
+      grad.addColorStop(1, `rgba(217,185,106,0)`);
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r * 2.8, 0, Math.PI * 2);
+      ctx.fillStyle = grad;
+      ctx.fill();
+    });
+
+    requestAnimationFrame(frame);
+  }
+
+  window.addEventListener('resize', () => { resize(); initStars(); });
+  resize(); initStars(); initParticles(); frame();
 })();
 </script>
 </body>

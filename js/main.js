@@ -1,14 +1,10 @@
 /* ═══════════════════════════════════════
    ASCENSIA — MAIN JS
-   Marquee build, shared utilities
 ═══════════════════════════════════════ */
 
 (function() {
 
-);
-  }
-
-  /* ─── FOOTER BUILD (shared across all pages) ─── */
+  /* ─── FOOTER BUILD ─── */
   const footer = document.getElementById('main-footer');
   if (footer) {
     footer.innerHTML = `
@@ -16,11 +12,7 @@
         <div>
           <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
             <div class="logo-mark static">
-              <span style="background:var(--gold)"></span>
-              <span style="background:var(--gold)"></span>
-              <span style="background:var(--gold)"></span>
-              <span style="background:var(--gold)"></span>
-              <span style="background:var(--gold)"></span>
+              <span></span><span></span><span></span><span></span><span></span>
             </div>
             <span class="logo-wordmark">Ascensia</span>
           </div>
@@ -32,7 +24,7 @@
             <li><a href="program.html">How it works</a></li>
             <li><a href="program.html#curriculum">Curriculum</a></li>
             <li><a href="program.html#mentors">Mentorship</a></li>
-            <li><a href="program.html#roadmap">Roadmap</a></li>
+            <li><a href="program.html#timeline">Timeline</a></li>
           </ul>
         </div>
         <div>
@@ -40,7 +32,6 @@
           <ul class="footer-links">
             <li><a href="about.html">About Ascensia</a></li>
             <li><a href="about.html#team">The team</a></li>
-            <li><a href="about.html">About Ascensia</a></li>
             <li><a href="about.html#story">Our story</a></li>
           </ul>
         </div>
@@ -49,7 +40,6 @@
           <ul class="footer-links">
             <li><a href="mailto:team@ascensia.foundation">team@ascensia.foundation</a></li>
             <li><a href="mailto:team@ascensia.foundation">Contact us</a></li>
-            <li><a href="apply.html">Program status</a></li>
             <li><a href="https://ascensia.foundation">ascensia.foundation</a></li>
           </ul>
         </div>
@@ -62,19 +52,6 @@
         </div>
       </div>
     `;
-  }
-
-  /* ─── NAV BUILD (shared) ─── */
-  const nav = document.getElementById('main-nav');
-  if (nav) {
-    // Mark current page
-    const current = window.location.pathname.split('/').pop() || 'index.html';
-    nav.querySelectorAll('.nav-links a').forEach(a => {
-      const href = a.getAttribute('href');
-      if (href && (href === current || (current === '' && href === 'index.html'))) {
-        a.classList.add('active');
-      }
-    });
   }
 
   /* ─── SMOOTH ANCHOR SCROLL ─── */

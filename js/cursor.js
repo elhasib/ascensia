@@ -3,7 +3,6 @@
 ═══════════════════════════════════════ */
 
 (function() {
-  // No custom cursor on touch/pointer-coarse devices
   if (window.matchMedia('(hover: none), (pointer: coarse)').matches) {
     document.body.style.cursor = 'auto';
     return;
@@ -13,12 +12,10 @@
   const ring = document.getElementById('cursor-ring');
   if (!dot || !ring) return;
 
-  let mx = 0, my = 0;
-  let rx = 0, ry = 0;
+  let mx = 0, my = 0, rx = 0, ry = 0;
 
   document.addEventListener('mousemove', e => {
-    mx = e.clientX;
-    my = e.clientY;
+    mx = e.clientX; my = e.clientY;
     dot.style.left = mx + 'px';
     dot.style.top  = my + 'px';
   });
@@ -39,7 +36,7 @@
     const t = e.target;
     if (t.closest('a, button, .btn, .univ-tag, .track-card')) {
       setCursorState('hover');
-    } else if (t.closest('.mcard, .tcard, .stat-row')) {
+    } else if (t.closest('.mcard, .tcard, .stat-row, .pillar, .value-card')) {
       setCursorState('card');
     } else {
       setCursorState('');
@@ -47,7 +44,6 @@
   });
 
   document.addEventListener('mouseleave', () => setCursorState(''));
-
   document.addEventListener('mousedown', () => {
     dot.style.transform = 'translate(-50%,-50%) scale(0.65)';
   });
@@ -55,19 +51,19 @@
     dot.style.transform = 'translate(-50%,-50%) scale(1)';
   });
 
-  // ─── Spotlight on team/tcard ───
-  document.querySelectorAll('.tcard, .team-featured').forEach(card => {
+  /* Spotlight on team cards — updated to match indigo palette */
+  document.querySelectorAll('.tcard').forEach(card => {
     card.addEventListener('mousemove', e => {
       const r = card.getBoundingClientRect();
       const x = ((e.clientX - r.left) / r.width)  * 100;
       const y = ((e.clientY - r.top)  / r.height) * 100;
       card.style.background =
-        `radial-gradient(circle at ${x}% ${y}%, rgba(212,168,83,0.07) 0%, #120F0D 65%)`;
+        `radial-gradient(circle at ${x}% ${y}%, rgba(232,196,106,0.06) 0%, #0C0E1A 65%)`;
     });
     card.addEventListener('mouseleave', () => { card.style.background = ''; });
   });
 
-  // ─── 3D tilt on mentor cards ───
+  /* 3D tilt on mentor cards */
   document.querySelectorAll('.mcard').forEach(card => {
     card.addEventListener('mousemove', e => {
       const r = card.getBoundingClientRect();

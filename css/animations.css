@@ -2,13 +2,12 @@
    ASCENSIA — ANIMATIONS
 ═══════════════════════════════════════ */
 
-/* ─── KEYFRAMES ─── */
 @keyframes lineIn {
   from { transform: scaleX(0); opacity: 0; }
   to   { transform: scaleX(1); opacity: 1; }
 }
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(22px); }
+  from { opacity: 0; transform: translateY(24px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 @keyframes fadeIn {
@@ -16,14 +15,8 @@
   to   { opacity: 1; }
 }
 @keyframes lineReveal {
-  from { transform: translateY(105%); }
+  from { transform: translateY(108%); }
   to   { transform: translateY(0); }
-}
-@keyframes spinSlow {
-  to { transform: translate(-50%,-50%) rotate(360deg); }
-}
-@keyframes spinReverse {
-  to { transform: translate(-50%,-50%) rotate(-360deg); }
 }
 @keyframes scrollThumb {
   0%   { top: -60%; }
@@ -34,36 +27,39 @@
   to   { transform: translateX(-50%); }
 }
 @keyframes ringPulse {
-  0%,100% { opacity: 0.7; transform: translate(-50%,-50%) scale(1); }
-  50%     { opacity: 0.3; transform: translate(-50%,-50%) scale(1.025); }
+  0%,100% { opacity: 0.6; transform: translate(-50%,-50%) scale(1); }
+  50%     { opacity: 0.2; transform: translate(-50%,-50%) scale(1.03); }
 }
-@keyframes arrowPulse {
-  0%,100% { opacity: 0.3; transform: translateX(0); }
-  50%     { opacity: 0.9; transform: translateX(5px); }
+@keyframes worldPing {
+  0%   { transform: translate(-50%,-50%) scale(1); opacity: 0.8; }
+  100% { transform: translate(-50%,-50%) scale(3.5); opacity: 0; }
+}
+@keyframes particleRise {
+  0%   { transform: translateY(0) scale(1); opacity: 0; }
+  10%  { opacity: 1; }
+  85%  { opacity: 0.6; }
+  100% { transform: translateY(-100vh) scale(0.4); opacity: 0; }
+}
+@keyframes starTwinkle {
+  0%, 100% { opacity: 0.15; transform: scale(1); }
+  50%       { opacity: 0.9;  transform: scale(1.4); }
+}
+@keyframes glowPulse {
+  0%,100% { opacity: 0.4; }
+  50%      { opacity: 0.75; }
+}
+@keyframes horizonRise {
+  from { transform: translateY(60px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+@keyframes spinSlow {
+  to { transform: translate(-50%,-50%) rotate(360deg); }
+}
+@keyframes spinReverse {
+  to { transform: translate(-50%,-50%) rotate(-360deg); }
 }
 
-  to   { stroke-dashoffset: 0; }
-}
-
-  to   { background-position: 200% center; }
-}
-
-  50%     { transform: translateY(-8px); }
-}
-
-  to   { transform: scale(1); opacity: 1; }
-}
-
-  to   { transform: scale(1); opacity: 1; }
-}
-
-  to   { width: 100%; }
-}
-
-  100% { transform: translate(-50%,-50%) scale(3); opacity: 0; }
-}
-
-/* ─── HERO TEXT ENTRANCE ─── */
+/* ── HERO TEXT ── */
 .hero-line-wrap {
   overflow: hidden;
   display: block;
@@ -71,23 +67,24 @@
 .hero-line-inner {
   display: block;
   transform: translateY(110%);
-  animation: lineReveal 1s var(--ease-out) both;
+  animation: lineReveal 1.1s var(--ease-out) both;
 }
 
-/* ─── SPINNING RINGS ─── */
+/* ── ORBIT (kept for vision section) ── */
 .orbit-ring {
   position: absolute;
   border-radius: 50%;
-  border: 0.5px solid rgba(196,164,145,0.07);
+  border: 0.5px solid rgba(232,196,106,0.06);
   top: 50%; left: 50%;
-  animation: spinSlow 80s linear infinite;
+  transform: translate(-50%,-50%);
+  animation: spinSlow 90s linear infinite;
   pointer-events: none;
 }
 .orbit-ring.reverse { animation-name: spinReverse; }
-.orbit-ring.fast    { animation-duration: 45s; }
-.orbit-ring.slow    { animation-duration: 120s; }
+.orbit-ring.fast    { animation-duration: 50s; }
+.orbit-ring.slow    { animation-duration: 140s; }
 
-/* ─── SCROLL INDICATOR ─── */
+/* ── SCROLL INDICATOR ── */
 .scroll-indicator {
   display: flex;
   flex-direction: column;
@@ -96,7 +93,7 @@
 }
 .scroll-track {
   width: 1px; height: 64px;
-  background: rgba(196,164,145,0.15);
+  background: rgba(240,235,224,0.1);
   position: relative;
   overflow: hidden;
 }
@@ -105,26 +102,29 @@
   top: -60%; left: 0;
   width: 1px; height: 50%;
   background: linear-gradient(to bottom, transparent, var(--gold));
-  animation: scrollThumb 2.2s 2s ease-in-out infinite;
+  animation: scrollThumb 2.4s 2s ease-in-out infinite;
 }
 .scroll-label {
   font-size: 9px;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--copper);
+  color: var(--gold-dim);
   writing-mode: vertical-rl;
+  font-family: var(--sans);
 }
 
-/* ─── MARQUEE ─── */
+/* ── MARQUEE ── */
 .marquee-band {
-  background: var(--gold);
-  padding: 17px 0;
+  background: var(--indigo-mid);
+  border-top: var(--line-gold);
+  border-bottom: var(--line-gold);
+  padding: 16px 0;
   overflow: hidden;
 }
 .marquee-track {
   display: flex;
   white-space: nowrap;
-  animation: marqueeScroll 28s linear infinite;
+  animation: marqueeScroll 32s linear infinite;
 }
 .marquee-track:hover { animation-play-state: paused; }
 .marquee-item {
@@ -132,71 +132,50 @@
   align-items: center;
   gap: 22px;
   padding: 0 36px;
-  font-size: 11px;
-  letter-spacing: 0.2em;
+  font-size: 10px;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--charcoal);
+  color: var(--gold-dim);
   font-weight: 400;
   flex-shrink: 0;
 }
 .marquee-dot {
   width: 3px; height: 3px;
   border-radius: 50%;
-  background: rgba(30,23,20,0.3);
+  background: rgba(232,196,106,0.3);
   flex-shrink: 0;
 }
 
-/* ─── CURSOR ─── */
+/* ── CURSOR ── */
 #cursor {
   position: fixed;
-  width: 10px; height: 10px;
+  width: 8px; height: 8px;
   background: var(--gold);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%,-50%);
-  transition: width 0.3s var(--ease-out),
-              height 0.3s var(--ease-out),
-              background 0.3s;
+  transition: width 0.3s var(--ease-out), height 0.3s var(--ease-out), background 0.3s;
   mix-blend-mode: screen;
 }
 #cursor-ring {
   position: fixed;
-  width: 36px; height: 36px;
-  border: 1px solid rgba(212,168,83,0.45);
+  width: 32px; height: 32px;
+  border: 1px solid rgba(232,196,106,0.4);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9998;
   transform: translate(-50%,-50%);
-  transition: width 0.35s var(--ease-out),
-              height 0.35s var(--ease-out),
-              border-color 0.3s,
-              background 0.3s;
+  transition: width 0.4s var(--ease-out), height 0.4s var(--ease-out), border-color 0.3s, background 0.3s;
 }
-/* States triggered by JS data attributes on body */
-body[data-cursor="hover"] #cursor {
-  width: 16px; height: 16px;
-  background: var(--rose);
-}
-body[data-cursor="hover"] #cursor-ring {
-  width: 52px; height: 52px;
-  border-color: rgba(196,164,145,0.6);
-}
-body[data-cursor="card"] #cursor {
-  width: 60px; height: 60px;
-  background: rgba(212,168,83,0.12);
-  border-radius: 50%;
-}
-body[data-cursor="card"] #cursor-ring {
-  width: 64px; height: 64px;
-  border-color: rgba(212,168,83,0.3);
-}
+body[data-cursor="hover"] #cursor { width: 14px; height: 14px; background: var(--rose); }
+body[data-cursor="hover"] #cursor-ring { width: 48px; height: 48px; border-color: rgba(240,235,224,0.5); }
+body[data-cursor="card"]  #cursor { width: 52px; height: 52px; background: rgba(232,196,106,0.1); }
+body[data-cursor="card"]  #cursor-ring { width: 56px; height: 56px; border-color: rgba(232,196,106,0.25); }
 
-/* ─── STAT ROW HOVER ─── */
-.stat-row {
-  transition: background 0.4s;
-}
-.stat-row:hover { background: rgba(196,164,145,0.04); }
+/* ── STAT ROW HOVER ── */
+.stat-row { transition: background 0.4s; }
+.stat-row:hover { background: rgba(232,196,106,0.03); }
 .stat-row:hover .stat-number { color: var(--gold); }
 
 @media (prefers-reduced-motion: reduce) {
