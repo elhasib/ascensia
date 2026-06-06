@@ -3,310 +3,343 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Ascensia's 9-track admissions curriculum — built for international students. Free.">
 <title>The Program | Ascensia</title>
-<link rel="canonical" href="https://ascensia.foundation/program.html">
-<meta name="description" content="Ascensia's 9-track admissions curriculum — built for international students. Mentorship, application support, and community. Free.">
-<meta name="theme-color" content="#07080F">
-<meta property="og:title" content="The Program | Ascensia">
-<meta property="og:image" content="https://ascensia.foundation/og-image.jpg">
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Jost:wght@200;300;400;500&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Lora:wght@400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/nav.css">
 <link rel="stylesheet" href="css/animations.css">
 <link rel="stylesheet" href="css/main.css">
 <style>
-.beta-banner {
-  background: rgba(26,29,58,0.95);
-  border-bottom: 0.5px solid rgba(232,196,106,0.2);
-  padding: 10px var(--sp-lg);
-  text-align: center;
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gold-dim);
-  font-family: var(--sans);
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 600;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-nav#main-nav { top: 38px; }
+/* ── PROGRAM-SPECIFIC ── */
 
-.program-intro {
-  padding: clamp(80px,10vw,160px) var(--sp-lg);
-  display: grid;
-  grid-template-columns: 1fr 1.3fr;
-  gap: 100px;
-  align-items: center;
-  background: var(--ink-2);
+/* track cards */
+.tracks-wrap{
+  overflow-x:auto;scrollbar-width:none;
+  padding:0 var(--sheet-pad) 8px;
+  -webkit-overflow-scrolling:touch;
 }
-.program-intro-right { font-size: 17px; font-weight: 300; line-height: 1.95; color: var(--cream-dim); }
-.program-intro-right p { margin-bottom: 24px; }
-.program-intro-right strong { color: var(--cream); font-weight: 400; }
-
-#timeline {
-  padding: clamp(80px,10vw,160px) var(--sp-lg);
-  display: grid;
-  grid-template-columns: 1fr 1.4fr;
-  gap: 100px;
-  background: var(--ink);
-  position: relative;
+.tracks-wrap::-webkit-scrollbar{display:none;}
+.tracks-row{
+  display:flex;gap:1px;
+  background:rgba(28,20,9,.07);
+  min-width:max-content;
 }
-.timeline-sticky { position: sticky; top: 120px; align-self: start; }
-
-#curriculum { padding: clamp(80px,10vw,160px) 0; background: var(--ink-2); }
-.curriculum-head {
-  padding: 0 var(--sp-lg) clamp(48px,6vw,80px);
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 80px;
-  align-items: end;
+.track-card{
+  background:var(--sheet-bg);padding:32px 26px;
+  width:220px;flex-shrink:0;
+  transition:background .3s;
+  position:relative;overflow:hidden;
 }
-.tracks-drag-hint {
-  padding: 20px var(--sp-lg) 0;
-  font-size: 9px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(240,235,224,0.22);
-  display: flex;
-  align-items: center;
-  gap: 12px;
+.track-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1.5px;
+  background:var(--gold);transform:scaleX(0);transform-origin:left;
+  transition:transform .45s var(--ease);
+}
+.track-card:hover{background:var(--sheet-bg-alt);}
+.track-card:hover::before{transform:scaleX(1);}
+.track-num{
+  font-family:var(--sans);font-size:9px;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--gold-dim);margin-bottom:14px;
+}
+.track-title{
+  font-family:var(--serif);font-size:18px;font-weight:400;
+  color:var(--ink);margin-bottom:10px;line-height:1.25;
+}
+.track-desc{
+  font-family:var(--sans);font-size:12px;font-weight:300;
+  line-height:1.72;color:var(--ink-3);
 }
 
-#mentors {
-  padding: clamp(80px,10vw,160px) var(--sp-lg);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 100px;
-  align-items: center;
+/* timeline */
+.timeline{position:relative;padding-left:0;}
+.tl-item{
+  display:grid;grid-template-columns:80px 1fr;
+  gap:24px;padding:36px 0;
+  border-top:var(--rule);
 }
-.mentor-stat-row { display:flex; gap:40px; margin-top:36px; flex-wrap:wrap; }
-.mentor-stat-num { font-family:var(--serif); font-size:44px; font-weight:400; line-height:1; color:var(--gold); letter-spacing:-0.03em; margin-bottom:6px; }
-.mentor-stat-label { font-size:11px; font-weight:300; color:var(--cream-dimmer); line-height:1.5; max-width:140px; }
+.tl-item:last-child{border-bottom:var(--rule);}
+.tl-phase{
+  font-family:var(--sans);font-size:9px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--gold-dim);
+  padding-top:6px;
+}
+.tl-title{
+  font-family:var(--serif);font-size:clamp(20px,2.8vw,28px);
+  font-weight:400;color:var(--ink);margin-bottom:10px;line-height:1.2;
+}
+.tl-body{
+  font-family:var(--sans);font-size:14px;font-weight:300;
+  line-height:1.8;color:var(--ink-2);max-width:480px;
+}
+.tl-tag{
+  display:inline-block;margin-top:12px;
+  font-family:var(--sans);font-size:9px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink);background:var(--gold-faint);
+  padding:4px 12px;border-radius:2px;
+  border:.5px solid rgba(201,164,74,.2);
+}
 
-#who { padding: clamp(80px,10vw,160px) var(--sp-lg); background:var(--ink-2); }
-.who-grid { display:grid; grid-template-columns:1fr 1.4fr; gap:100px; align-items:center; margin-top:64px; }
-.who-right { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:rgba(240,235,224,0.06); }
-.who-fact { background:var(--ink-2); padding:36px 28px; transition:background 0.35s; }
-.who-fact:hover { background:var(--indigo); }
-.who-bar { width:28px; height:2px; background:var(--gold); margin-bottom:18px; transition:width 0.4s var(--ease-out); }
-.who-fact:hover .who-bar { width:52px; }
-.who-title { font-family:var(--serif); font-size:18px; font-weight:400; color:var(--cream); margin-bottom:8px; line-height:1.3; }
-.who-text { font-size:13px; font-weight:300; line-height:1.85; color:rgba(240,235,224,0.38); }
+/* who-grid */
+.who-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:2px;background:rgba(28,20,9,.07);
+  margin-top:36px;
+}
+.who-fact{
+  background:var(--sheet-bg);padding:32px 28px;
+  transition:background .3s;
+}
+.who-fact:hover{background:var(--sheet-bg-alt);}
+.who-bar{
+  width:24px;height:1.5px;background:var(--gold);
+  margin-bottom:16px;transition:width .4s var(--ease);
+}
+.who-fact:hover .who-bar{width:44px;}
+.who-title{
+  font-family:var(--serif);font-size:18px;font-weight:400;
+  color:var(--ink);margin-bottom:8px;line-height:1.3;
+}
+.who-text{
+  font-family:var(--sans);font-size:14px;font-weight:300;
+  line-height:1.8;color:var(--ink-2);
+}
 
-.mentor-panel { background:var(--ink); padding:36px 32px; display:flex; flex-direction:column; gap:1px; }
-.mentor-panel-row { background:var(--indigo); padding:36px 32px; margin-bottom:1px; transition:background 0.3s; }
-.mentor-panel-row:hover { background:var(--indigo-mid); }
-.mentor-panel-row:last-child { margin-bottom:0; }
-.mentor-panel-label { font-size:9px; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold-dim); margin-bottom:12px; }
-.mentor-panel-text { font-size:14px; font-weight:300; line-height:1.8; color:var(--cream-dim); }
-
-@media(max-width:900px){
-  nav#main-nav { top:0; }
-  .beta-banner { position:relative; white-space:normal; }
-  .program-intro { grid-template-columns:1fr; gap:52px; }
-  #timeline { grid-template-columns:1fr; }
-  .curriculum-head { grid-template-columns:1fr; gap:40px; }
-  #mentors { grid-template-columns:1fr; gap:60px; }
-  .who-grid { grid-template-columns:1fr; gap:52px; }
-  .who-right { grid-template-columns:1fr; }
+@media(max-width:700px){
+  .tl-item{grid-template-columns:60px 1fr;gap:16px;}
+  .who-grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
 <body>
-<div id="cursor"></div>
-<div id="cursor-ring"></div>
-<div class="beta-banner">Beta — Ascensia has not yet launched. Content subject to change.</div>
-<nav id="main-nav">
-  <a href="index.html" class="nav-logo">
-    <div class="logo-mark static"><span></span><span></span><span></span><span></span><span></span></div>
-    <span class="logo-wordmark">Ascensia</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="program.html" class="active">Program</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="mailto:team@ascensia.foundation">Contact</a></li>
-  </ul>
-  <button class="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
-</nav>
+<div id="cur"></div>
+<div id="cur-r"></div>
+
+<div class="page-wrap">
+
+  <!--
+    BLOB GRADIENTS — artistic direction:
+    Grad_15 (blue/purple) floating top-right at .11 opacity.
+    Grad_17 (teal/blue crescent) bottom-left at .08 opacity.
+    Let them drift off the page edges — they're ambient, not focal.
+  -->
+  <div class="blob blob-1">
+    <!-- <img src="images/gradients/Grad_15.png" alt=""> -->
+  </div>
+  <div class="blob blob-2">
+    <!-- <img src="images/gradients/Grad_17.png" alt=""> -->
+  </div>
+
+  <div class="sheet">
+    <nav class="nav">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-mark">
+          <span></span><span></span><span></span><span></span>
+        </div>
+        Ascensia
+      </a>
+      <ul class="nav-links">
+        <li><a href="program.html" class="active">Program</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="mailto:team@ascensia.foundation" class="nav-cta">Get in touch</a></li>
+      </ul>
+      <button class="nav-burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <!-- HERO -->
+    <div class="page-hero">
+      <p class="page-hero-label">The Program</p>
+      <h1>
+        <span class="hero-line"><span>9 tracks.</span></span>
+        <span class="hero-line"><span>Everything you need.</span></span>
+      </h1>
+      <p class="page-hero-sub">
+        A free mentorship and curriculum program built for international students from underserved regions. Structured, personal, and built to last.
+      </p>
+    </div>
+
+    <!-- INTRO -->
+    <section class="pad">
+      <p class="eyebrow r">What it is</p>
+      <h2 class="section-h r r-d1">One system.<br><span class="mk">Nothing left out.</span></h2>
+      <p class="r r-d2" style="font-size:17px;line-height:1.88;color:var(--ink-2);margin-bottom:18px;">
+        Ascensia is a 14-month cohort program built from scratch for international students from underrepresented regions. A 9-track curriculum, matched 1:1 mentorship, hands-on application support, and a cohort community — all working together, at no cost to the student.
+      </p>
+      <p class="r r-d3" style="font-size:17px;line-height:1.88;color:var(--ink-2);">
+        Admissions are need-blind. The pilot cohort will onboard 20 students from Egypt and South Africa, matched with 20 mentors from top universities globally.
+      </p>
+    </section>
+
+    <div class="rule"></div>
+
+    <!--
+      ILLUSTRATION ZONE — "the 4 pillars"
+      Artistic direction: four small hand-drawn icons in a loose row,
+      one for each pillar: a book (curriculum), two figures (mentorship),
+      a pen/paper (application), a circle of dots (community).
+      Rough, sketch-like. No fill, just ink lines. Spaced generously.
+      Suggested size: banner, 700×130px.
+    -->
+    <div class="illus-zone">
+      <div class="illus-box short r" data-label="Illustration — four pillars (curriculum / mentorship / support / community)"></div>
+    </div>
+
+    <div class="rule"></div>
+
+    <!-- TIMELINE -->
+    <section class="pad" id="timeline">
+      <p class="eyebrow r">The journey</p>
+      <h2 class="section-h r r-d1">Structured around<br>the student's year.</h2>
+      <div class="timeline" style="margin-top:40px;">
+        <div class="tl-item r">
+          <div class="tl-phase">Phase 1</div>
+          <div>
+            <h3 class="tl-title">Foundation</h3>
+            <p class="tl-body">Students are onboarded, matched with their mentor, and introduced to the full curriculum. College list strategy, financial aid orientation, and standardized testing planning all happen here.</p>
+            <span class="tl-tag">Orientation · College list · Testing</span>
+          </div>
+        </div>
+        <div class="tl-item r r-d1">
+          <div class="tl-phase">Phase 2</div>
+          <div>
+            <h3 class="tl-title">Profile Building</h3>
+            <p class="tl-body">Activities, academic positioning, honors, and extracurricular documentation are shaped and refined. The mentor relationship is in full operation with regular structured sessions.</p>
+            <span class="tl-tag">Mentor sessions · Activities · Positioning</span>
+          </div>
+        </div>
+        <div class="tl-item r r-d2">
+          <div class="tl-phase">Phase 3</div>
+          <div>
+            <h3 class="tl-title">Writing and Submission</h3>
+            <p class="tl-body">Personal statement development, supplement essays, financial aid form completion, recommendation strategy, and final application submission across all platforms.</p>
+            <span class="tl-tag">Essays · Financial aid · Submission</span>
+          </div>
+        </div>
+        <div class="tl-item r r-d3">
+          <div class="tl-phase">Phase 4</div>
+          <div>
+            <h3 class="tl-title">Decisions and Transition</h3>
+            <p class="tl-body">Financial aid comparison, appeals support, and decision guidance. Students transition into the alumni mentor network, trained to guide the next cohort through the same process.</p>
+            <span class="tl-tag">Decisions · Appeals · Alumni network</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="rule-warm"></div>
+
+    <!-- CURRICULUM TRACKS -->
+    <section id="curriculum" style="padding:72px 0;">
+      <div style="padding:0 var(--sheet-pad);margin-bottom:36px;">
+        <p class="eyebrow r">What we teach</p>
+        <h2 class="section-h r r-d1">9 tracks.<br>Built from scratch.</h2>
+        <p class="r r-d2" style="font-size:16px;line-height:1.8;color:var(--ink-2);max-width:480px;">
+          Every track was designed for international students from underserved backgrounds. Nothing here is adapted from a US domestic program.
+        </p>
+      </div>
+
+      <div class="tracks-wrap">
+        <div class="tracks-row">
+          <div class="track-card r"><div class="track-num">T1</div><h4 class="track-title">Standardized Tests</h4><p class="track-desc">SAT, ACT, AP, IB, A-Level, and international equivalents. Strategy, preparation, and how scores are actually read.</p></div>
+          <div class="track-card r r-d1"><div class="track-num">T2</div><h4 class="track-title">Academic Courses</h4><p class="track-desc">Transcripts, GPA, course rigor, and academic positioning across every major school system globally.</p></div>
+          <div class="track-card r r-d2"><div class="track-num">T3</div><h4 class="track-title">Essays and Writing</h4><p class="track-desc">Personal statement, all supplement types, UCAS personal statement. Finding and communicating a genuine story.</p></div>
+          <div class="track-card r r-d3"><div class="track-num">T4</div><h4 class="track-title">Activities</h4><p class="track-desc">Building, describing, and presenting an activity profile with clarity and precision across every platform.</p></div>
+          <div class="track-card r r-d4"><div class="track-num">T5</div><h4 class="track-title">Honors and Awards</h4><p class="track-desc">Competitions, olympiads, recognition programs. How to find them, present them, and how they're evaluated.</p></div>
+          <div class="track-card r"><div class="track-num">T6</div><h4 class="track-title">Application Platforms</h4><p class="track-desc">Common App, QuestBridge, UCAS, Coalition, and all major platforms. Every section, every deadline.</p></div>
+          <div class="track-card r r-d1"><div class="track-num">T7</div><h4 class="track-title">College List</h4><p class="track-desc">Building a balanced, financially viable list that matches ambition with strategy. Fit, selectivity, and aid policies.</p></div>
+          <div class="track-card r r-d2"><div class="track-num">T8</div><h4 class="track-title">Non-US Admissions</h4><p class="track-desc">UK, Canada, Europe, Australia, and other systems. Complete coverage for students building a global list.</p></div>
+          <div class="track-card r r-d3"><div class="track-num">T9</div><h4 class="track-title">Financial Aid</h4><p class="track-desc">Need-blind vs need-aware, CSS Profile, appeals, aid comparison. What full coverage actually means in practice.</p></div>
+        </div>
+      </div>
+      <p style="padding:12px var(--sheet-pad) 0;font-family:var(--sans);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);">→ drag to explore</p>
+    </section>
+
+    <div class="rule"></div>
+
+    <!-- WHO WE SERVE -->
+    <section class="pad" id="who">
+      <p class="eyebrow r">Who we serve</p>
+      <h2 class="section-h r r-d1">Need-blind.<br>Open to all.</h2>
+      <p class="r r-d2" style="font-size:17px;line-height:1.88;color:var(--ink-2);max-width:520px;margin-bottom:8px;">
+        Any student with the ambition and academic foundation to compete for top global universities is eligible to apply. No student is turned away for financial reasons.
+      </p>
+      <div class="who-grid r r-d3">
+        <div class="who-fact">
+          <div class="who-bar"></div>
+          <h4 class="who-title">Any grade, any school</h4>
+          <p class="who-text">Students in Grades 10 and 11 are prioritized. Grade 12 students with strong profiles may be considered on a case-by-case basis.</p>
+        </div>
+        <div class="who-fact">
+          <div class="who-bar"></div>
+          <h4 class="who-title">Any background</h4>
+          <p class="who-text">Ascensia was built for students who lack access to counseling and mentorship. There are no geographic restrictions on eligibility.</p>
+        </div>
+        <div class="who-fact">
+          <div class="who-bar"></div>
+          <h4 class="who-title">Need-blind admissions</h4>
+          <p class="who-text">Full need-based and merit-based financial aid is available. No student is turned away due to financial circumstances.</p>
+        </div>
+        <div class="who-fact">
+          <div class="who-bar"></div>
+          <h4 class="who-title">Potential first</h4>
+          <p class="who-text">We select students who, with the program's support, can become competitive applicants — not only those who already are.</p>
+        </div>
+      </div>
+    </section>
+
+    <!--
+      ILLUSTRATION ZONE — "open door / eligibility"
+      Artistic direction: a simple hand-drawn open gate or doorway,
+      with a gentle path leading toward it. Minimal line art.
+      Could include a small figure walking through.
+      Suggested size: short banner, 700×140px.
+    -->
+    <div class="illus-zone">
+      <div class="illus-box short r" data-label="Illustration — open door / eligibility / welcome"></div>
+    </div>
+
+    <!-- CLOSING -->
+    <section class="closing">
+      <p class="closing-label">Ready to begin</p>
+      <a href="mailto:team@ascensia.foundation" class="closing-email r">team@ascensia.foundation</a>
+      <p class="closing-note r r-d1">Applications open soon.</p>
+      <nav class="closing-nav r r-d2">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+      </nav>
+      <p class="closing-copy">&copy; 2026 Ascensia. Nonprofit. All rights reserved.</p>
+    </section>
+
+  </div><!-- /sheet -->
+</div><!-- /page-wrap -->
+
 <div class="nav-mobile">
   <a href="program.html">Program</a>
   <a href="about.html">About</a>
   <a href="mailto:team@ascensia.foundation">Contact</a>
 </div>
 
-<div class="page-hero">
-  <p class="page-hero-label">The Program</p>
-  <h1>
-    <span class="hero-line-wrap"><span class="hero-line-inner" style="animation-delay:.5s">9 tracks.</span></span>
-    <span class="hero-line-wrap"><span class="hero-line-inner" style="animation-delay:.68s"><em style="font-style:italic;color:var(--gold)">Everything</em> you need.</span></span>
-  </h1>
-  <p class="page-hero-sub">
-    A free mentorship and curriculum program built specifically for international students
-    from underserved regions. Structured, personal, and built to last.
-  </p>
-</div>
-
-<!-- Intro -->
-<section class="program-intro">
-  <div class="reveal">
-    <div class="section-eyebrow">What it is</div>
-    <h2 class="section-heading">One system.<br><em>Nothing left out.</em></h2>
-  </div>
-  <div class="program-intro-right reveal r-d2">
-    <p>Ascensia is a 14-month cohort program built from scratch for international students from underrepresented regions. A 9-track curriculum, matched 1:1 mentorship, hands-on application support, and a cohort community — all working together, at no cost to the student.</p>
-    <p>Admissions are need-blind. No student is turned away for financial reasons. The pilot cohort will onboard 20 students from Egypt and South Africa, matched with 20 mentors from top universities globally.</p>
-    <p><strong>Any student with the ambition and academic foundation to compete for top global universities is eligible.</strong></p>
-  </div>
-</section>
-
-<!-- Pillars -->
-<section style="padding:0 var(--sp-lg) clamp(80px,10vw,140px)">
-  <div class="pillars-grid">
-    <div class="pillar reveal"><div class="pillar-top-line"></div><div class="pillar-num">01</div><h3 class="pillar-title">Curriculum</h3><p class="pillar-desc">9 tracks covering every component of global admissions. Built for international students — not adapted from US domestic programs. Essays, testing, financial aid, activities, and non-US systems.</p></div>
-    <div class="pillar reveal r-d1"><div class="pillar-top-line"></div><div class="pillar-num">02</div><h3 class="pillar-title">Mentorship</h3><p class="pillar-desc">Matched 1:1 with someone currently enrolled at one of their target universities, by school, region, and field. Not historical advice — someone who just went through the same process.</p></div>
-    <div class="pillar reveal r-d2"><div class="pillar-top-line"></div><div class="pillar-num">03</div><h3 class="pillar-title">Application Support</h3><p class="pillar-desc">Hands-on help through every submission: essays, financial aid forms, activity lists, recommendation strategy, and every deadline. Active and specific at every step.</p></div>
-    <div class="pillar reveal r-d3"><div class="pillar-top-line"></div><div class="pillar-num">04</div><h3 class="pillar-title">Community</h3><p class="pillar-desc">Students move through the program as a cohort. Every graduate enters the alumni mentor network permanently. Each cohort makes the next one stronger.</p></div>
-  </div>
-</section>
-
-<!-- Timeline -->
-<section id="timeline">
-  <div class="timeline-sticky reveal">
-    <div class="section-eyebrow">The journey</div>
-    <h2 class="section-heading">Structured around<br>the student's<br>academic year.</h2>
-    <p class="section-body" style="margin-top:24px">
-      The program maps to the natural rhythm of a student's junior and senior years,
-      delivering the right support at each decision point in the process.
-    </p>
-  </div>
-  <div class="timeline-container reveal r-d2">
-    <div class="timeline-spine"></div>
-    <div class="timeline-progress"></div>
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-phase">Phase 1</div>
-      <h3 class="timeline-heading">Foundation and Orientation</h3>
-      <p class="timeline-body">Students are onboarded, matched with their mentor, and introduced to the full curriculum. College list strategy, financial aid orientation, and standardized testing planning all happen here.</p>
-      <span class="timeline-tag">Orientation · College list · Testing strategy</span>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-phase">Phase 2</div>
-      <h3 class="timeline-heading">Profile Building</h3>
-      <p class="timeline-body">Activities, academic positioning, honors, and extracurricular documentation are shaped and refined. The mentor relationship is in full operation with regular structured sessions.</p>
-      <span class="timeline-tag">Mentor sessions · Activities · Academic positioning</span>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-phase">Phase 3</div>
-      <h3 class="timeline-heading">Writing and Submission</h3>
-      <p class="timeline-body">Personal statement development, supplement essays, financial aid form completion, recommendation strategy, and final application submission across all platforms.</p>
-      <span class="timeline-tag">Essays · Financial aid · Submission</span>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-phase">Phase 4</div>
-      <h3 class="timeline-heading">Decisions and Transition</h3>
-      <p class="timeline-body">Financial aid comparison, appeals support, and decision guidance. Students transition into the alumni mentor network, trained to guide the next cohort through the same process.</p>
-      <span class="timeline-tag">Decisions · Appeals · Mentor transition</span>
-    </div>
-  </div>
-</section>
-
-<!-- Curriculum tracks -->
-<section id="curriculum">
-  <div class="curriculum-head">
-    <div class="reveal">
-      <div class="section-eyebrow">What we teach</div>
-      <h2 class="section-heading">9 tracks.<br>Built from scratch.</h2>
-    </div>
-    <p class="section-body reveal r-d2">
-      Every track was designed for international students from underserved backgrounds.
-      Nothing here is adapted from a US domestic program.
-    </p>
-  </div>
-  <div class="tracks-scroll">
-    <div class="track-card reveal"><div class="track-num">T1</div><h4 class="track-title">Standardized Tests</h4><p class="track-desc">SAT, ACT, AP, IB, A-Level, and all international equivalents. Strategy, preparation, and how admissions offices actually use scores.</p></div>
-    <div class="track-card reveal r-d1"><div class="track-num">T2</div><h4 class="track-title">Academic Courses</h4><p class="track-desc">Transcripts, GPA, course rigor, and academic positioning across every major school system globally.</p></div>
-    <div class="track-card reveal r-d2"><div class="track-num">T3</div><h4 class="track-title">Essays and Writing</h4><p class="track-desc">Personal statement, all supplement types, UCAS personal statement. Finding and communicating a genuine story.</p></div>
-    <div class="track-card reveal r-d3"><div class="track-num">T4</div><h4 class="track-title">Activities</h4><p class="track-desc">Building, describing, and presenting an activity profile with clarity and precision across every application platform.</p></div>
-    <div class="track-card reveal r-d4"><div class="track-num">T5</div><h4 class="track-title">Honors and Awards</h4><p class="track-desc">Competitions, olympiads, recognition programs. How to find them, present them, and how admissions offices evaluate them.</p></div>
-    <div class="track-card reveal"><div class="track-num">T6</div><h4 class="track-title">Application Platforms</h4><p class="track-desc">Common App, QuestBridge, UCAS, Coalition, and all major platforms. Every section, every deadline, every submission.</p></div>
-    <div class="track-card reveal r-d1"><div class="track-num">T7</div><h4 class="track-title">College List Strategy</h4><p class="track-desc">Building a balanced, financially viable list that matches ambition with strategy. Understanding fit, selectivity, and aid policies.</p></div>
-    <div class="track-card reveal r-d2"><div class="track-num">T8</div><h4 class="track-title">Non-US Admissions</h4><p class="track-desc">UK, Canada, Europe, Australia, and other systems. Complete coverage for students building a global college list.</p></div>
-    <div class="track-card reveal r-d3"><div class="track-num">T9</div><h4 class="track-title">Need-Based Financial Aid</h4><p class="track-desc">Need-blind vs need-aware, CSS Profile, appeals, aid comparison, and what full financial coverage actually means in practice.</p></div>
-  </div>
-  <div class="tracks-drag-hint" aria-hidden="true">&#8250;&#8250;&#8250; &nbsp; Drag to explore all 9 tracks</div>
-</section>
-
-<!-- Mentorship -->
-<section id="mentors">
-  <div class="reveal">
-    <div class="section-eyebrow">The advisor network</div>
-    <h2 class="section-heading" style="margin-bottom:24px">The thing we<br>all needed most.<br><em>A real guide.</em></h2>
-    <p class="section-body" style="margin-bottom:24px">
-      Someone who had already been through the exact process you are navigating.
-      Ascensia builds that connection systematically rather than leaving it to chance.
-    </p>
-    <div class="mentor-stat-row">
-      <div>
-        <div class="mentor-stat-num">74%</div>
-        <div class="mentor-stat-label">of surveyed students had never spoken to anyone at a top university about applications</div>
-      </div>
-      <div>
-        <div class="mentor-stat-num">48%</div>
-        <div class="mentor-stat-label">of those actively wished they could</div>
-      </div>
-    </div>
-    <p style="font-size:10px;color:var(--cream-dimmer);margin-top:16px;letter-spacing:0.12em;text-transform:uppercase;">Ascensia Survey · n=77 · 2026</p>
-  </div>
-  <div class="reveal r-d2">
-    <div class="mentor-panel-row">
-      <div class="mentor-panel-label">For students</div>
-      <p class="mentor-panel-text">Someone who applied in the last few cycles, sharing their actual process and materials. Not generic advice — a real guide from the same starting point as you.</p>
-    </div>
-    <div class="mentor-panel-row">
-      <div class="mentor-panel-label">For mentors</div>
-      <p class="mentor-panel-text">Give someone the guide you never had. Build a lifelong cross-border network. Mentors in the first cohort receive a cohort-based stipend.</p>
-    </div>
-    <div class="mentor-panel-row">
-      <div class="mentor-panel-label">For universities</div>
-      <p class="mentor-panel-text">A pipeline of prepared, informed international applicants from underrepresented regions. Students who arrive already supported and ready.</p>
-    </div>
-  </div>
-</section>
-
-<!-- Who we serve -->
-<section id="who">
-  <div class="reveal">
-    <div class="section-eyebrow">Who we serve</div>
-    <h2 class="section-heading">Need-blind admissions.<br>Open to all.</h2>
-  </div>
-  <div class="who-grid">
-    <div class="reveal r-d1">
-      <div style="padding:32px 36px;border-left:2px solid var(--gold);background:var(--gold-faint);margin-bottom:28px">
-        <p style="font-family:var(--serif);font-size:18px;font-weight:400;font-style:italic;line-height:1.6;color:var(--cream);">Ascensia does not discriminate on the basis of geography, school type, or background. Any student with the ambition and academic foundation to compete for top global universities is eligible to apply.</p>
-      </div>
-      <a href="mailto:team@ascensia.foundation" class="btn btn-outline">Express interest</a>
-    </div>
-    <div class="who-right reveal r-d2">
-      <div class="who-fact"><div class="who-bar"></div><h4 class="who-title">Any grade, any school</h4><p class="who-text">Students in Grades 10 and 11 are prioritized. Grade 12 students with exceptional profiles may also be considered on a case-by-case basis.</p></div>
-      <div class="who-fact"><div class="who-bar"></div><h4 class="who-title">Any background</h4><p class="who-text">Ascensia was built for students who lack access to counseling, mentorship, and support. There are no geographic restrictions on eligibility.</p></div>
-      <div class="who-fact"><div class="who-bar"></div><h4 class="who-title">Need-blind admissions</h4><p class="who-text">Full need-based and merit-based financial aid is available. No student is turned away due to financial circumstances — ever.</p></div>
-      <div class="who-fact"><div class="who-bar"></div><h4 class="who-title">Selection philosophy</h4><p class="who-text">We select students who, with the program's support, can become competitive applicants — not only those who already are. Potential is the primary criterion.</p></div>
-    </div>
-  </div>
-</section>
-
-<footer id="main-footer"></footer>
-<script src="js/main.js"></script>
 <script src="js/cursor.js"></script>
 <script src="js/scroll.js"></script>
+<script>
+/* drag scroll on tracks */
+(function(){
+  const el=document.querySelector('.tracks-wrap');
+  if(!el)return;
+  let down=false,sx,sl;
+  el.addEventListener('mousedown',e=>{down=true;sx=e.pageX-el.offsetLeft;sl=el.scrollLeft;});
+  el.addEventListener('mouseleave',()=>down=false);
+  el.addEventListener('mouseup',()=>down=false);
+  el.addEventListener('mousemove',e=>{
+    if(!down)return;e.preventDefault();
+    el.scrollLeft=sl-(e.pageX-el.offsetLeft-sx)*1.2;
+  });
+})();
+</script>
 </body>
 </html>

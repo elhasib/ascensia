@@ -1,153 +1,57 @@
-/* ═══════════════════════════════════════
-   ASCENSIA — SCROLL
-   Reveal, count-up, timeline progress,
-   parallax, drag-scroll
-═══════════════════════════════════════ */
+/* ASCENSIA — SCROLL & NAV */
+(function(){
 
-(function() {
+  /* hero headline */
+  document.querySelectorAll('.hero-line span').forEach(s=>s.classList.add('go'));
 
-  /* ─── REVEAL ON SCROLL ─── */
-  const reveals = document.querySelectorAll('.reveal');
-  if (reveals.length) {
-    const isMobile = window.matchMedia('(max-width: 768px)').matches;
-  const ro = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('in');
-          ro.unobserve(e.target);
-        }
+  /* reveal on scroll */
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting)return;
+      e.target.classList.add('in');
+      e.target.querySelectorAll('.mk,.mk-r').forEach((m,i)=>{
+        setTimeout(()=>m.classList.add('in'),180+i*160);
       });
-    }, {
-      threshold: isMobile ? 0.04 : 0.1,
-      rootMargin: isMobile ? '0px 0px -20px 0px' : '0px 0px -44px 0px'
+      io.unobserve(e.target);
     });
-    reveals.forEach(el => ro.observe(el));
+  },{threshold:.12,rootMargin:'0px 0px -28px 0px'});
+  document.querySelectorAll('.r').forEach(el=>io.observe(el));
+
+  /* hero markers fire after headline animation */
+  setTimeout(()=>{
+    document.querySelectorAll('.hero .mk,.hero .mk-r').forEach(m=>m.classList.add('in'));
+  },1400);
+
+  /* nav scroll class */
+  const nav=document.querySelector('.nav');
+  if(nav){
+    window.addEventListener('scroll',()=>{
+      nav.classList.toggle('scrolled',window.scrollY>40);
+    },{passive:true});
   }
 
-  /* ─── COUNT-UP NUMBERS ─── */
-  function countUp(el) {
-    const target  = +el.dataset.target;
-    const dur     = 1800;
-    const start   = performance.now();
-    const suffix  = el.dataset.suffix || '';
-    (function frame(now) {
-      const p    = Math.min((now - start) / dur, 1);
-      const ease = 1 - Math.pow(1 - p, 4);   // ease-out-quart
-      el.textContent = Math.round(ease * target) + suffix;
-      if (p < 1) requestAnimationFrame(frame);
-      else el.textContent = target + suffix;
-    })(start);
+  /* mobile nav */
+  const burger=document.querySelector('.nav-burger');
+  const mob=document.querySelector('.nav-mobile');
+  if(burger&&mob){
+    burger.addEventListener('click',()=>{
+      const open=burger.classList.toggle('open');
+      mob.classList.toggle('open',open);
+      document.body.style.overflow=open?'hidden':'';
+    });
+    mob.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+      burger.classList.remove('open');
+      mob.classList.remove('open');
+      document.body.style.overflow='';
+    }));
   }
 
-  const countObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.querySelectorAll('[data-target]').forEach(countUp);
-        countObs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.35 });
-  document.querySelectorAll('.stat-row, .count-trigger').forEach(el => countObs.observe(el));
-
-  /* ─── TIMELINE SCROLL PROGRESS ─── */
-  const tlContainer = document.querySelector('.timeline-container');
-  const tlProgress  = document.querySelector('.timeline-progress');
-  const tlItems     = document.querySelectorAll('.timeline-item');
-
-  if (tlContainer && tlProgress) {
-    function updateTimeline() {
-      const rect = tlContainer.getBoundingClientRect();
-      const winH = window.innerHeight;
-      const totalH = rect.height;
-
-      // How far we've scrolled through the container
-      const scrolled = Math.max(0, winH * 0.6 - rect.top);
-      const progress = Math.min(scrolled / totalH, 1);
-
-      tlProgress.style.height = (progress * totalH) + 'px';
-
-      // Activate items
-      tlItems.forEach(item => {
-        const ir = item.getBoundingClientRect();
-        item.classList.toggle('active', ir.top < winH * 0.65);
-      });
-    }
-
-    window.addEventListener('scroll', updateTimeline, { passive: true });
-    updateTimeline();
-  }
-
-  /* ─── DRAG SCROLL — track cards ─── */
-  document.querySelectorAll('.tracks-scroll').forEach(el => {
-    let isDown = false, startX, scrollLeft;
-
-    el.addEventListener('mousedown', e => {
-      isDown = true;
-      startX = e.pageX - el.offsetLeft;
-      scrollLeft = el.scrollLeft;
-      el.style.cursor = 'grabbing';
-    });
-    el.addEventListener('mouseleave', () => { isDown = false; el.style.cursor = ''; });
-    el.addEventListener('mouseup',    () => { isDown = false; el.style.cursor = ''; });
-    el.addEventListener('mousemove',  e => {
-      if (!isDown) return;
-      e.preventDefault();
-      const x = e.pageX - el.offsetLeft;
-      el.scrollLeft = scrollLeft - (x - startX) * 1.3;
+  /* smooth anchor scroll */
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',e=>{
+      const t=document.getElementById(a.getAttribute('href').slice(1));
+      if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
     });
   });
-
-  /* ─── HERO SCULPTURE PARALLAX ─── */
-  const sculpture = document.querySelector('.hero-sculpture');
-  if (sculpture) {
-    window.addEventListener('scroll', () => {
-      sculpture.style.transform =
-        `translateY(calc(-50% + ${scrollY * 0.12}px))`;
-    }, { passive: true });
-  }
-
-  /* ─── NAV SCROLL ─── */
-  const nav = document.getElementById('main-nav');
-  if (nav) {
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', scrollY > 60);
-    }, { passive: true });
-  }
-
-  /* ─── ACTIVE NAV LINKS ─── */
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a[href]');
-
-  if (sections.length && navLinks.length) {
-    const sectionObs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          const id = e.target.id;
-          navLinks.forEach(a => {
-            a.classList.toggle('active', a.getAttribute('href').includes(id));
-          });
-        }
-      });
-    }, { threshold: 0.4 });
-    sections.forEach(s => sectionObs.observe(s));
-  }
-
-  /* ─── MOBILE NAV ─── */
-  const hamburger  = document.querySelector('.nav-hamburger');
-  const mobileMenu = document.querySelector('.nav-mobile');
-  if (hamburger && mobileMenu) {
-    hamburger.addEventListener('click', () => {
-      const open = hamburger.classList.toggle('open');
-      mobileMenu.classList.toggle('open', open);
-      document.body.style.overflow = open ? 'hidden' : '';
-    });
-    mobileMenu.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => {
-        hamburger.classList.remove('open');
-        mobileMenu.classList.remove('open');
-        document.body.style.overflow = '';
-      });
-    });
-  }
 
 })();

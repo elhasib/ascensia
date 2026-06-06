@@ -4,7 +4,7 @@
 
 (function() {
 
-  /* ─── FOOTER BUILD ─── */
+  /* footer removed */
   const footer = document.getElementById('main-footer');
   if (footer) {
     footer.innerHTML = `

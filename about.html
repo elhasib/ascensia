@@ -3,537 +3,331 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About & Team | Ascensia</title>
-<meta name="description" content="Meet the Ascensia team — people who experienced the global admissions gap firsthand and built the program they needed and did not have.">
-<meta name="theme-color" content="#080910">
-<meta property="og:title" content="About & Team | Ascensia">
-<meta property="og:image" content="https://ascensia.foundation/og-image.jpg">
+<meta name="description" content="Meet the Ascensia team — people who experienced the global admissions gap firsthand.">
+<title>About | Ascensia</title>
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Jost:wght@200;300;400;500&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Lora:wght@400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/nav.css">
 <link rel="stylesheet" href="css/animations.css">
 <link rel="stylesheet" href="css/main.css">
 <style>
-.beta-banner {
-  background: var(--indigo);
-  border-bottom: var(--line-gold);
-  padding: 11px var(--sp-lg);
-  text-align: center;
-  font-size: 10px;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--gold-dim);
-  font-family: var(--sans);
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 600;
-}
-nav#main-nav { top: 40px; }
+/* ── ABOUT-SPECIFIC ── */
 
-/* ── PAGE HERO ── */
-.page-hero {
-  background: var(--ink);
-  padding: 200px var(--sp-lg) 120px;
-  position: relative;
-  overflow: hidden;
+.story-body{
+  font-size:18px;font-weight:400;line-height:1.88;
+  color:var(--ink-2);margin-bottom:22px;
 }
-.page-hero-canvas {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  pointer-events: none; opacity: 0.5;
-  -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
-  mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+.story-body em{font-style:italic;color:var(--gold-dim);}
+.story-body:last-of-type{margin-bottom:0;}
+
+/* values grid */
+.values-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;background:rgba(28,20,9,.07);
+  margin-top:40px;
 }
-.page-hero-inner { position: relative; z-index: 1; max-width: 760px; }
-.page-hero-label {
-  font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 28px;
-  display: flex; align-items: center; gap: 14px;
-  opacity: 0; animation: fadeUp 0.8s 0.3s both;
+.value-card{
+  background:var(--sheet-bg);padding:36px 26px;
+  transition:background .3s;
 }
-.page-hero-label::before { content:''; width:24px; height:0.5px; background:currentColor; }
-.page-hero h1 {
-  font-family: var(--serif);
-  font-size: clamp(52px, 7.5vw, 96px);
-  font-weight: 400; line-height: 1.04; letter-spacing: -0.015em;
-  overflow: hidden;
+.value-card:hover{background:var(--sheet-bg-alt);}
+.value-letter{
+  font-family:var(--serif);font-size:48px;font-weight:400;
+  line-height:1;margin-bottom:14px;
+  color:transparent;
+  background:linear-gradient(135deg,var(--gold) 0%,var(--rose) 100%);
+  -webkit-background-clip:text;background-clip:text;
 }
-.page-hero-sub {
-  margin-top: 32px; max-width: 480px;
-  font-size: 17px; font-weight: 300; line-height: 1.85;
-  color: var(--cream-dim);
-  opacity: 0; animation: fadeUp 0.9s 0.9s both;
+.value-title{
+  font-family:var(--serif);font-size:18px;font-weight:400;
+  color:var(--ink);margin-bottom:10px;
+}
+.value-desc{
+  font-family:var(--sans);font-size:14px;font-weight:300;
+  line-height:1.8;color:var(--ink-2);
 }
 
-/* ── STORY ── */
-.story-section {
-  background: var(--ink);
-  padding: clamp(80px, 10vw, 140px) var(--sp-lg);
-  display: grid;
-  grid-template-columns: 1fr 1.5fr;
-  gap: 100px;
-  align-items: start;
-  border-top: var(--line-dim);
-}
-.story-body { font-size: 17px; font-weight: 300; line-height: 1.95; color: var(--cream-dim); }
-.story-body p { margin-bottom: 26px; }
-.story-body p:last-child { margin-bottom: 0; }
-.story-body em { font-style: italic; color: var(--gold); }
 
-/* ── VALUES ── */
-.values-section {
-  background: var(--ink-2);
-  padding: clamp(80px, 10vw, 140px) var(--sp-lg);
-  border-top: var(--line-dim);
+.team-tagline{
+  text-align:center;padding:52px var(--sheet-pad);
+  border-top:var(--rule);
 }
-.values-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  background: rgba(237,232,220,0.055);
-  margin-top: 60px;
-}
-.value-card {
-  background: var(--ink-2);
-  padding: 48px 34px;
-  transition: background 0.35s;
-}
-.value-card:hover { background: var(--indigo); }
-.value-letter {
-  font-family: var(--serif);
-  font-size: 60px; font-weight: 400; line-height: 1;
-  letter-spacing: -0.04em; margin-bottom: 18px;
-  background: linear-gradient(135deg, var(--gold) 0%, var(--rose) 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-}
-.value-title { font-family: var(--serif); font-size: 20px; font-weight: 400; color: var(--cream); margin-bottom: 12px; }
-.value-desc  { font-size: 14px; font-weight: 300; line-height: 1.85; color: rgba(237,232,220,0.38); }
-
-/* ── TEAM ── */
-#team {
-  background: var(--ink);
-  padding: clamp(80px, 10vw, 140px) var(--sp-lg);
-  border-top: var(--line-dim);
-}
-.team-intro {
-  display: grid; grid-template-columns: 1fr 1.4fr;
-  gap: 80px; align-items: end; margin-bottom: 72px;
-}
-.team-intro p { font-size: 17px; font-weight: 300; line-height: 1.9; color: var(--cream-dim); }
-
-/*
-  Equal 3-column grid — no one is bigger.
-  Six people = 2 rows of 3.
-  Quirky editorial element: alternating photo heights via nth-child
-  but card dimensions stay the same.
-*/
-.team-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: rgba(237,232,220,0.055);
+.team-tagline p{
+  font-family:var(--serif);
+  font-size:clamp(18px,2.5vw,26px);font-weight:400;font-style:italic;
+  color:var(--ink-2);max-width:480px;margin:0 auto;line-height:1.5;
 }
 
-.tcard {
-  background: var(--ink);
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  overflow: hidden;
-  transition: background 0.4s;
+@media(max-width:860px){
+  .values-grid{grid-template-columns:1fr 1fr;}
+  .team-grid-3{grid-template-columns:1fr 1fr;}
 }
-.tcard:hover { background: var(--indigo); }
-
-/* Gold accent line — slides in on hover */
-.tcard-bar {
-  height: 2px; background: var(--gold);
-  transform: scaleX(0); transform-origin: left;
-  transition: transform 0.55s var(--ease-out);
-  flex-shrink: 0;
-}
-.tcard:hover .tcard-bar { transform: scaleX(1); }
-
-/* Photo area — same height for every card */
-.tcard-photo {
-  width: 100%; height: 240px;
-  overflow: hidden; position: relative;
-  background: var(--indigo-mid);
-}
-.tcard-photo img {
-  width: 100%; height: 100%;
-  object-fit: cover; object-position: top center;
-  filter: saturate(0.65) contrast(1.08);
-  transition: filter 0.5s, transform 0.6s var(--ease-out);
-}
-.tcard:hover .tcard-photo img {
-  filter: saturate(0.85) contrast(1.12);
-  transform: scale(1.04);
-}
-.tcard-photo-fade {
-  position: absolute; inset: 0;
-  background: linear-gradient(to bottom, transparent 48%, var(--ink) 100%);
-  transition: background 0.4s;
-}
-.tcard:hover .tcard-photo-fade {
-  background: linear-gradient(to bottom, transparent 48%, var(--indigo) 100%);
-}
-
-/* Body */
-.tcard-body { padding: 28px 32px 36px; flex: 1; }
-.tcard-role {
-  font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase;
-  color: var(--gold-dim); margin-bottom: 8px;
-}
-.tcard-name {
-  font-family: var(--serif); font-size: 26px; font-weight: 400;
-  color: var(--cream); margin-bottom: 6px; line-height: 1.15;
-}
-.tcard-univ {
-  display: inline-block; font-size: 10px; letter-spacing: 0.16em;
-  text-transform: uppercase; color: var(--gold);
-  border: 0.5px solid rgba(217,185,106,0.22);
-  padding: 4px 12px; border-radius: 1px; margin-bottom: 14px;
-}
-.tcard-bio {
-  font-size: 14px; font-weight: 300; line-height: 1.8;
-  color: rgba(237,232,220,0.38); margin-bottom: 18px;
-}
-.tcard-linkedin {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
-  color: rgba(237,232,220,0.3); text-decoration: none; transition: color 0.2s;
-}
-.tcard-linkedin:hover { color: var(--gold); }
-
-/* Quirky editorial element: alternating gold fragment in the photo area */
-.tcard:nth-child(2n) .tcard-photo::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0;
-  width: 40px; height: 2px;
-  background: var(--gold);
-  opacity: 0.4;
-}
-.tcard:nth-child(3n) .tcard-photo::after {
-  width: 70px;
-}
-
-/* Team closing line */
-.team-tagline {
-  margin-top: 1px;
-  background: var(--ink);
-  border-top: var(--line-dim);
-  padding: 72px var(--sp-lg);
-  text-align: center;
-}
-.team-tagline-text {
-  font-family: var(--serif);
-  font-size: clamp(22px, 3vw, 38px);
-  font-weight: 400; font-style: italic;
-  color: var(--cream-dimmer);
-  max-width: 560px; margin: 0 auto; line-height: 1.5;
-}
-
-/* ── RESPONSIVE ── */
-@media (max-width: 900px) {
-  nav#main-nav { top: 0; }
-  .beta-banner  { position: relative; }
-  .story-section { grid-template-columns: 1fr; gap: 52px; }
-  .team-intro    { grid-template-columns: 1fr; gap: 40px; }
-  .values-grid   { grid-template-columns: repeat(2, 1fr); }
-  .team-grid     { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 600px) {
-  .values-grid { grid-template-columns: 1fr; }
-  .team-grid   { grid-template-columns: 1fr; }
+@media(max-width:520px){
+  .values-grid{grid-template-columns:1fr;}
+  .team-grid-3{grid-template-columns:1fr;}
 }
 </style>
 </head>
 <body>
-<div id="cursor"></div>
-<div id="cursor-ring"></div>
-<div class="beta-banner">Beta &mdash; Ascensia has not yet launched</div>
+<div id="cur"></div>
+<div id="cur-r"></div>
 
-<nav id="main-nav">
-  <a href="index.html" class="nav-logo">
-    <div class="logo-mark static"><span></span><span></span><span></span><span></span><span></span></div>
-    <span class="logo-wordmark">Ascensia</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="program.html">Program</a></li>
-    <li><a href="about.html" class="active">About</a></li>
-    <li><a href="mailto:team@ascensia.foundation" class="nav-cta">Get in touch</a></li>
-  </ul>
-  <button class="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
-</nav>
+<div class="page-wrap">
+
+  <!--
+    BLOB GRADIENTS — artistic direction:
+    Grad_01 (blue/pink blob) top-right at .10 opacity.
+    Grad_14 (yellow/purple) bottom-left at .08 opacity.
+    Rotate Grad_01 about 20deg so it half-bleeds off the right edge.
+  -->
+  <div class="blob blob-1">
+    <!-- <img src="images/gradients/Grad_01.png" alt=""> -->
+  </div>
+  <div class="blob blob-2">
+    <!-- <img src="images/gradients/Grad_14.png" alt=""> -->
+  </div>
+
+  <div class="sheet">
+    <nav class="nav">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-mark">
+          <span></span><span></span><span></span><span></span>
+        </div>
+        Ascensia
+      </a>
+      <ul class="nav-links">
+        <li><a href="program.html">Program</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="mailto:team@ascensia.foundation" class="nav-cta">Get in touch</a></li>
+      </ul>
+      <button class="nav-burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <!-- HERO -->
+    <div class="page-hero">
+      <p class="page-hero-label">About Ascensia</p>
+      <h1>
+        <span class="hero-line"><span>Built by people</span></span>
+        <span class="hero-line"><span>who lived the gap.</span></span>
+      </h1>
+      <p class="page-hero-sub">
+        Every member of the team either navigated international admissions from an underserved region, or has spent their career working to close the gap that defines it.
+      </p>
+    </div>
+
+    <!-- STORY -->
+    <section class="pad" id="story">
+      <p class="eyebrow r">Our story</p>
+      <h2 class="section-h r r-d1">Why we built this.</h2>
+
+      <!--
+        ILLUSTRATION ZONE — "the origin story"
+        Artistic direction: a small figure alone at a desk, surrounded by question marks
+        or closed doors, contrasted with an open window or a hand reaching through.
+        Conveys the feeling of navigating something without a guide.
+        Keep it sparse and ink-only. Could be two panels side by side.
+        Suggested size: short square pair, or a wide 700×160px banner.
+      -->
+      <div class="illus-zone" style="padding:0;margin:32px 0;">
+        <div class="illus-box wide r" data-label="Illustration — alone at the desk / question marks / no guide"></div>
+      </div>
+
+      <p class="story-body r r-d2">
+        Ascensia started with a simple observation: universities in the United States, Canada, and Europe have billions of dollars in financial aid reserved for students from exactly the regions we come from. <em>Most of those students never apply</em> — because they have no idea the money exists, no one to guide them through the process, and no model of what success looks like.
+      </p>
+      <p class="story-body r r-d3">
+        The members of this team applied to top universities from Egypt, Kenya, and Venezuela. We know what that process looks like without a counselor, without money for consultants, without a single person in your school who has done it before. We built Ascensia because we spent years wishing it existed.
+      </p>
+      <p class="story-body r r-d4">
+        The program is free. <em>It will always be free.</em> The problem is not that students lack motivation — it is that they lack access to the infrastructure that makes the process legible. That is what we are building.
+      </p>
+    </section>
+
+    <div class="rule"></div>
+
+    <!-- VALUES -->
+    <section class="pad">
+      <p class="eyebrow r">What we believe</p>
+      <h2 class="section-h r r-d1">Four principles<br>that shape everything.</h2>
+      <div class="values-grid r r-d2">
+        <div class="value-card">
+          <div class="value-letter">A</div>
+          <div class="value-title">Access</div>
+          <p class="value-desc">Admission should reflect talent, effort, and potential — not geography, income, or luck of network. We exist to make that more true.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-letter">R</div>
+          <div class="value-title">Rigor</div>
+          <p class="value-desc">We hold our students to a high standard, because the universities we prepare them for do the same. Warmth and rigor are not in conflict.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-letter">H</div>
+          <div class="value-title">Honesty</div>
+          <p class="value-desc">We do not overpromise. We tell students what they need to hear — about their application, their chances, and what still needs work.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-letter">C</div>
+          <div class="value-title">Community</div>
+          <p class="value-desc">Every student who goes through Ascensia becomes part of something permanent. The program gets better because people give back.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="rule-warm"></div>
+
+    <!-- TEAM -->
+    <section class="pad" id="team">
+      <p class="eyebrow r">The team</p>
+      <h2 class="section-h r r-d1">Six people.<br>One shared experience.</h2>
+      <p class="r r-d2" style="font-size:17px;line-height:1.88;color:var(--ink-2);margin-bottom:44px;max-width:480px;">
+        Our team spans Egypt, Kenya, and Venezuela. Each of us either lived the international admissions process from the underserved side, or has dedicated real work to understanding what students like us need.
+      </p>
+
+      <div class="people-grid">
+        <div class="person r">
+          <div class="person-photo"><img src="images/mash.png" alt="Mohamed Mashhour" loading="lazy"></div>
+          <div class="person-info">
+            <div class="person-name">Mohamed Mashhour</div>
+            <div class="person-role">CEO</div>
+            <div class="person-univ">[University]</div>
+            <a href="https://linkedin.com/in/mohammedmashhour/" target="_blank" rel="noopener" class="person-li"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
+          </div>
+        </div>
+        <div class="person r r-d1">
+          <div class="person-photo"><img src="images/jer.png" alt="Jeremy Muchilwa" loading="lazy"></div>
+          <div class="person-info">
+            <div class="person-name">Jeremy Muchilwa</div>
+            <div class="person-role">COO</div>
+            <div class="person-univ">[University]</div>
+            <a href="https://linkedin.com/in/jeremy-muchilwa-109b62213/" target="_blank" rel="noopener" class="person-li"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
+          </div>
+        </div>
+        <div class="person r r-d2">
+          <div class="person-photo"><img src="images/camila.png" alt="Camila Caruso" loading="lazy"></div>
+          <div class="person-info">
+            <div class="person-name">Camila Caruso</div>
+            <div class="person-role">CCO</div>
+            <div class="person-univ">[University]</div>
+            <a href="https://linkedin.com/in/camila-caruso-3951131b0/" target="_blank" rel="noopener" class="person-li"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
+          </div>
+        </div>
+        <div class="person r">
+          <div class="person-photo"><img src="images/bassem.png" alt="Youssef Taleb" loading="lazy"></div>
+          <div class="person-info">
+            <div class="person-name">Youssef Taleb</div>
+            <div class="person-role">CPO</div>
+            <div class="person-univ">[University]</div>
+            <a href="https://linkedin.com/in/yusuftaleb/" target="_blank" rel="noopener" class="person-li"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
+          </div>
+        </div>
+        <div class="person r r-d1">
+          <div class="person-photo"><img src="images/youssef.png" alt="Youssef Nassar" loading="lazy"></div>
+          <div class="person-info">
+            <div class="person-name">Youssef Nassar</div>
+            <div class="person-role">CTO</div>
+            <div class="person-univ">[University]</div>
+            <a href="https://linkedin.com/in/youssef-nassar-50b735233/" target="_blank" rel="noopener" class="person-li"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
+          </div>
+        </div>
+        <div class="person r r-d2">
+          <div class="person-photo"><img src="images/ismail.jpg" alt="Ismail Aboelmagd" loading="lazy"></div>
+          <div class="person-info">
+            <div class="person-name">Ismail Aboelmagd</div>
+            <div class="person-role">CSO</div>
+            <div class="person-univ">[University]</div>
+            <a href="https://linkedin.com/in/ismailaboelmagd/" target="_blank" rel="noopener" class="person-li"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
+          </div>
+        </div>
+      </div>
+        <div class="t-card r r-d1">
+          <div class="t-photo"><img src="images/jer.png" alt="Jeremy Muchilwa" loading="lazy"></div>
+          <div class="t-role">Chief Operating Officer</div>
+          <div class="t-name">Jeremy Muchilwa</div>
+          <div class="t-origin">Kenya</div>
+          <p style="font-family:var(--sans);font-size:13px;font-weight:300;line-height:1.7;color:var(--ink-2);margin:10px 0 12px;">Oversees cohort management and program delivery. Brings lived experience of navigating access gaps across East Africa.</p>
+          <a href="https://linkedin.com/in/jeremy-muchilwa-109b62213/" target="_blank" rel="noopener" class="t-li">
+            <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+          </a>
+        </div>
+        <div class="t-card r r-d2">
+          <div class="t-photo"><img src="images/camila.png" alt="Camila Caruso" loading="lazy"></div>
+          <div class="t-role">Chief Communications Officer</div>
+          <div class="t-name">Camila Caruso</div>
+          <div class="t-origin">Venezuela</div>
+          <p style="font-family:var(--sans);font-size:13px;font-weight:300;line-height:1.7;color:var(--ink-2);margin:10px 0 12px;">Leads communications, brand, and outreach. Shapes how Ascensia reaches students and funders around the world.</p>
+          <a href="https://linkedin.com/in/camila-caruso-3951131b0/" target="_blank" rel="noopener" class="t-li">
+            <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+          </a>
+        </div>
+        <div class="t-card r">
+          <div class="t-photo"><img src="images/bassem.png" alt="Youssef Taleb" loading="lazy"></div>
+          <div class="t-role">Chief Program Officer</div>
+          <div class="t-name">Youssef Taleb</div>
+          <div class="t-origin">Egypt</div>
+          <p style="font-family:var(--sans);font-size:13px;font-weight:300;line-height:1.7;color:var(--ink-2);margin:10px 0 12px;">Designed Ascensia's 9-track curriculum. Understands exactly what international students need to navigate global admissions from the ground up.</p>
+          <a href="https://linkedin.com/in/yusuftaleb/" target="_blank" rel="noopener" class="t-li">
+            <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+          </a>
+        </div>
+        <div class="t-card r r-d1">
+          <div class="t-photo"><img src="images/youssef.png" alt="Youssef Nassar" loading="lazy"></div>
+          <div class="t-role">Chief Technology Officer</div>
+          <div class="t-name">Youssef Nassar</div>
+          <div class="t-origin">Egypt</div>
+          <p style="font-family:var(--sans);font-size:13px;font-weight:300;line-height:1.7;color:var(--ink-2);margin:10px 0 12px;">Leads technical infrastructure underpinning Ascensia's platforms, matching systems, and curriculum delivery.</p>
+          <a href="https://linkedin.com/in/youssef-nassar-50b735233/" target="_blank" rel="noopener" class="t-li">
+            <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+          </a>
+        </div>
+        <div class="t-card r r-d2">
+          <div class="t-photo"><img src="images/ismail.jpg" alt="Ismail Aboelmagd" loading="lazy"></div>
+          <div class="t-role">Chief Strategy Officer</div>
+          <div class="t-name">Ismail Aboelmagd</div>
+          <div class="t-origin">Egypt</div>
+          <p style="font-family:var(--sans);font-size:13px;font-weight:300;line-height:1.7;color:var(--ink-2);margin:10px 0 12px;">Shapes the long-term vision driving Ascensia's growth — from new regions and partnerships to the students the program will serve next.</p>
+          <a href="https://linkedin.com/in/ismailaboelmagd/" target="_blank" rel="noopener" class="t-li">
+            <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+          </a>
+        </div>
+      </div>
+
+      <div class="team-tagline r">
+        <p>"We built the program we needed and did not have."</p>
+      </div>
+    </section>
+
+    <!-- CLOSING -->
+    <section class="closing">
+      <p class="closing-label">Get in touch</p>
+      <a href="mailto:team@ascensia.foundation" class="closing-email r">team@ascensia.foundation</a>
+      <p class="closing-note r r-d1">We read every message.</p>
+      <nav class="closing-nav r r-d2">
+        <a href="index.html">Home</a>
+        <a href="program.html">Program</a>
+      </nav>
+      <p class="closing-copy">&copy; 2026 Ascensia. Nonprofit. All rights reserved.</p>
+    </section>
+
+  </div><!-- /sheet -->
+</div><!-- /page-wrap -->
+
 <div class="nav-mobile">
   <a href="program.html">Program</a>
   <a href="about.html">About</a>
-  <a href="mailto:team@ascensia.foundation">Get in touch</a>
+  <a href="mailto:team@ascensia.foundation">Contact</a>
 </div>
 
-<!-- Hero -->
-<section class="page-hero">
-  <canvas class="page-hero-canvas" id="about-canvas"></canvas>
-  <div class="page-hero-inner">
-    <p class="page-hero-label">About Ascensia</p>
-    <h1>
-      <span class="hero-line-wrap"><span class="hero-line-inner" style="animation-delay:.4s">Built by people</span></span>
-      <span class="hero-line-wrap"><span class="hero-line-inner" style="animation-delay:.56s;font-style:italic;color:var(--gold)">who lived the gap.</span></span>
-    </h1>
-    <p class="page-hero-sub">
-      Every member of the Ascensia team either navigated the international admissions process
-      from an underserved region, or has spent their career working to close the gap that defines it.
-    </p>
-  </div>
-</section>
-
-<!-- Story -->
-<section class="story-section" id="story">
-  <div class="reveal">
-    <div class="section-eyebrow">Our story</div>
-    <h2 class="section-heading">Why we<br>built this.</h2>
-  </div>
-  <div class="story-body reveal r-d2">
-    <p>
-      Ascensia started with a simple, frustrating observation: universities in the United States,
-      Canada, and Europe have billions of dollars in financial aid reserved for students from
-      exactly the regions we come from. <em>Most of those students never apply</em> — because
-      they have no idea the money exists, no one to guide them through a complicated process,
-      and no model of what success looks like.
-    </p>
-    <p>
-      The members of this team applied to top universities from Egypt, Kenya, and Venezuela.
-      We know what that process looks like without a counselor, without money for consultants,
-      without a single person in your school who has done it before. We built Ascensia because
-      we spent years wishing it existed.
-    </p>
-    <p>
-      The program is free. <em>It will always be free.</em> The problem is not that students
-      lack motivation — it is that they lack access to the infrastructure that makes the process
-      legible. That is what we are building.
-    </p>
-  </div>
-</section>
-
-<!-- Values -->
-<section class="values-section">
-  <div class="reveal">
-    <div class="section-eyebrow">What we believe</div>
-    <h2 class="section-heading">Four principles<br>that shape everything.</h2>
-  </div>
-  <div class="values-grid">
-    <div class="value-card reveal">
-      <div class="value-letter">A</div>
-      <div class="value-title">Access</div>
-      <p class="value-desc">Admission should reflect talent, effort, and potential — not geography, income, or luck of network. We exist to make that more true.</p>
-    </div>
-    <div class="value-card reveal r-d1">
-      <div class="value-letter">R</div>
-      <div class="value-title">Rigor</div>
-      <p class="value-desc">We hold our students to a high standard, because the universities we prepare them for do the same. Warmth and rigor are not in conflict here.</p>
-    </div>
-    <div class="value-card reveal r-d2">
-      <div class="value-letter">H</div>
-      <div class="value-title">Honesty</div>
-      <p class="value-desc">We do not overpromise. We tell students what they need to hear — about their application, their chances, and the things they still need to work on.</p>
-    </div>
-    <div class="value-card reveal r-d3">
-      <div class="value-letter">C</div>
-      <div class="value-title">Community</div>
-      <p class="value-desc">Every student who goes through Ascensia becomes part of something permanent. The program gets better because people give back to those who come next.</p>
-    </div>
-  </div>
-</section>
-
-<!-- Team -->
-<section id="team">
-  <div class="team-intro">
-    <div class="reveal">
-      <div class="section-eyebrow">The team</div>
-      <h2 class="section-heading">Six people.<br>One shared<br><em>experience.</em></h2>
-    </div>
-    <p class="reveal r-d2">
-      Our team spans Egypt, Kenya, and Venezuela. Each of us either lived the international
-      admissions process from the underserved side, or has dedicated real work to understanding
-      what students like us need.
-    </p>
-  </div>
-
-  <div class="team-grid">
-
-    <div class="tcard reveal">
-      <div class="tcard-bar"></div>
-      <div class="tcard-photo">
-        <img src="images/mash.png" alt="Mohamed Mashhour">
-        <div class="tcard-photo-fade"></div>
-      </div>
-      <div class="tcard-body">
-        <div class="tcard-role">Chief Executive Officer</div>
-        <h3 class="tcard-name">Mohamed Mashhour</h3>
-        <span class="tcard-univ">Egypt</span>
-        <p class="tcard-bio">Leads Ascensia's strategy, partnerships, and program design. Navigated the international admissions process from Egypt and built the infrastructure he had to construct for himself.</p>
-        <a href="https://www.linkedin.com/in/mohammedmashhour/" target="_blank" rel="noopener" class="tcard-linkedin">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-          LinkedIn
-        </a>
-      </div>
-    </div>
-
-    <div class="tcard reveal r-d1">
-      <div class="tcard-bar"></div>
-      <div class="tcard-photo">
-        <img src="images/jer.png" alt="Jeremy Muchilwa">
-        <div class="tcard-photo-fade"></div>
-      </div>
-      <div class="tcard-body">
-        <div class="tcard-role">Chief Operating Officer</div>
-        <h3 class="tcard-name">Jeremy Muchilwa</h3>
-        <span class="tcard-univ">Kenya</span>
-        <p class="tcard-bio">Oversees cohort management and program delivery. Brings lived experience of navigating access gaps across East Africa.</p>
-        <a href="https://www.linkedin.com/in/jeremy-muchilwa-109b62213/" target="_blank" rel="noopener" class="tcard-linkedin">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-          LinkedIn
-        </a>
-      </div>
-    </div>
-
-    <div class="tcard reveal r-d2">
-      <div class="tcard-bar"></div>
-      <div class="tcard-photo">
-        <img src="images/camila.png" alt="Camila Caruso">
-        <div class="tcard-photo-fade"></div>
-      </div>
-      <div class="tcard-body">
-        <div class="tcard-role">Chief Communications Officer</div>
-        <h3 class="tcard-name">Camila Caruso</h3>
-        <span class="tcard-univ">Venezuela</span>
-        <p class="tcard-bio">Leads communications, brand, and outreach. Shapes how Ascensia reaches students and funders around the world from her base in Venezuela.</p>
-        <a href="https://www.linkedin.com/in/camila-caruso-3951131b0/" target="_blank" rel="noopener" class="tcard-linkedin">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-          LinkedIn
-        </a>
-      </div>
-    </div>
-
-    <div class="tcard reveal">
-      <div class="tcard-bar"></div>
-      <div class="tcard-photo">
-        <img src="images/bassem.png" alt="Youssef Taleb">
-        <div class="tcard-photo-fade"></div>
-      </div>
-      <div class="tcard-body">
-        <div class="tcard-role">Chief Program Officer</div>
-        <h3 class="tcard-name">Youssef Taleb</h3>
-        <span class="tcard-univ">Egypt</span>
-        <p class="tcard-bio">Designed Ascensia's 9-track curriculum. Understands exactly what international students need to navigate global admissions from the ground up.</p>
-        <a href="https://www.linkedin.com/in/yusuftaleb/" target="_blank" rel="noopener" class="tcard-linkedin">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-          LinkedIn
-        </a>
-      </div>
-    </div>
-
-    <div class="tcard reveal r-d1">
-      <div class="tcard-bar"></div>
-      <div class="tcard-photo">
-        <img src="images/youssef.png" alt="Youssef Nassar">
-        <div class="tcard-photo-fade"></div>
-      </div>
-      <div class="tcard-body">
-        <div class="tcard-role">Chief Technology Officer</div>
-        <h3 class="tcard-name">Youssef Nassar</h3>
-        <span class="tcard-univ">Egypt</span>
-        <p class="tcard-bio">Leads the technical infrastructure underpinning Ascensia's platforms, matching systems, and curriculum delivery. Builds what makes the program scalable.</p>
-        <a href="https://www.linkedin.com/in/youssef-nassar-50b735233/" target="_blank" rel="noopener" class="tcard-linkedin">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-          LinkedIn
-        </a>
-      </div>
-    </div>
-
-    <div class="tcard reveal r-d2">
-      <div class="tcard-bar"></div>
-      <div class="tcard-photo">
-        <img src="images/ismail.jpg" alt="Ismail Aboelmagd">
-        <div class="tcard-photo-fade"></div>
-      </div>
-      <div class="tcard-body">
-        <div class="tcard-role">Chief Strategy Officer</div>
-        <h3 class="tcard-name">Ismail Aboelmagd</h3>
-        <span class="tcard-univ">Egypt</span>
-        <p class="tcard-bio">Shapes the long-term vision driving Ascensia's growth — from new regions and partnerships to the students the program will serve next.</p>
-        <a href="https://www.linkedin.com/in/ismailaboelmagd/" target="_blank" rel="noopener" class="tcard-linkedin">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-          LinkedIn
-        </a>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="team-tagline reveal">
-    <p class="team-tagline-text">"We built the program we needed and did not have."</p>
-  </div>
-</section>
-
-<footer id="main-footer"></footer>
-<script src="js/main.js"></script>
 <script src="js/cursor.js"></script>
 <script src="js/scroll.js"></script>
-<script>
-/* Lightweight star canvas for page hero */
-(function() {
-  const canvas = document.getElementById('about-canvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  let W, H, stars = [], particles = [];
-  function resize() { W = canvas.width = canvas.offsetWidth; H = canvas.height = canvas.offsetHeight; }
-  function init() {
-    stars = Array.from({length:90}, () => ({
-      x:Math.random()*W, y:Math.random()*H,
-      r:Math.random()*1.1+0.2,
-      base:Math.random()*0.4+0.05,
-      phase:Math.random()*Math.PI*2,
-      speed:Math.random()*0.01+0.004
-    }));
-    particles = Array.from({length:25}, () => ({
-      x:Math.random()*W, y:Math.random()*H,
-      r:Math.random()*1.6+0.5,
-      vy:Math.random()*0.35+0.1,
-      vx:(Math.random()-0.5)*0.1,
-      life:Math.random()*300, maxLife:Math.random()*200+240
-    }));
-  }
-  function frame() {
-    ctx.fillStyle='#080910'; ctx.fillRect(0,0,W,H);
-    stars.forEach(s => {
-      s.phase += s.speed;
-      const a = s.base*(0.5+0.5*Math.sin(s.phase));
-      ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
-      ctx.fillStyle=`rgba(255,255,255,${a})`; ctx.fill();
-    });
-    particles.forEach((p,i) => {
-      p.life++; p.x+=p.vx; p.y-=p.vy;
-      const prog=p.life/p.maxLife;
-      const a=prog<0.12?prog/0.12*0.5:prog>0.72?(1-prog)/0.28*0.5:0.5;
-      if(p.life>=p.maxLife||p.y<-6){
-        particles[i]={x:Math.random()*W,y:H+4,r:Math.random()*1.6+0.5,vy:Math.random()*0.35+0.1,vx:(Math.random()-0.5)*0.1,life:0,maxLife:Math.random()*200+240};
-        return;
-      }
-      const g=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*2.8);
-      g.addColorStop(0,`rgba(217,185,106,${a})`); g.addColorStop(1,'rgba(217,185,106,0)');
-      ctx.beginPath(); ctx.arc(p.x,p.y,p.r*2.8,0,Math.PI*2);
-      ctx.fillStyle=g; ctx.fill();
-    });
-    requestAnimationFrame(frame);
-  }
-  window.addEventListener('resize',()=>{resize();init()});
-  resize(); init(); frame();
-})();
-</script>
 </body>
 </html>
