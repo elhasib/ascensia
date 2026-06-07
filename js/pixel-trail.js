@@ -5,7 +5,7 @@
    Playful, not distracting — opacity kept low.
 */
 (function () {
-  const PIXEL   = 28;        // px per square
+  const PIXEL   = 44;        // px per square — increase this number for larger pixels
   const FADE_MS = 900;       // fade duration
   const OPACITY = 0.55;      // peak opacity of each square
   // warm cream palette — rotate through these
@@ -62,7 +62,7 @@
       // ease: quick appear, slow fade
       const a = OPACITY * (t < 0.12 ? t / 0.12 : 1 - Math.pow((t - 0.12) / 0.88, 0.6));
       ctx.fillStyle = p.color.replace('X', a.toFixed(3));
-      ctx.fillRect(p.gx * PIXEL, p.gy * PIXEL, PIXEL - 1, PIXEL - 1);
+      ctx.fillRect(p.gx * PIXEL, p.gy * PIXEL, PIXEL - 2, PIXEL - 2);
     }
     requestAnimationFrame(frame);
   }

@@ -3,9 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="The Ascensia advisor network — students currently enrolled at universities across the world.">
 <title>Advisors | Ascensia</title>
-<link rel="icon" type="image/png" href="/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -14,211 +12,164 @@
 <link rel="stylesheet" href="css/animations.css">
 <link rel="stylesheet" href="css/main.css">
 <style>
-/* ── ADVISORS PAGE ── */
-
-.map-section {
-  padding: 0;
-  position: relative;
-}
-
-/* Map container — full width of sheet */
-.map-wrap {
+/* ── MAP ── */
+.map-outer {
   position: relative;
   width: 100%;
-  background: var(--sheet-bg-alt);
+  background: #F0EAE0;
   overflow: hidden;
+  border-top: var(--rule);
   border-bottom: var(--rule);
-  user-select: none;
 }
-
-/* The SVG world map background */
-.map-svg-bg {
+/* dotted map image sits here, grayscale + faded */
+#map-img {
   width: 100%;
   height: auto;
   display: block;
-  opacity: .32;
-  /* mask top/bottom edges to blend into the sheet */
-  -webkit-mask-image: linear-gradient(to bottom, transparent, rgba(0,0,0,.7) 12%, rgba(0,0,0,.7) 88%, transparent);
-  mask-image: linear-gradient(to bottom, transparent, rgba(0,0,0,.7) 12%, rgba(0,0,0,.7) 88%, transparent);
+  opacity: .28;
+  filter: sepia(.4) contrast(.9);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+  pointer-events: none;
+  user-select: none;
 }
-
-/* Pin SVG overlay */
-.map-pins {
+/* SVG pins overlay — same dimensions as the image */
+#map-pins {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   overflow: visible;
-}
-
-/* Individual pin */
-.pin {
   cursor: none;
 }
-.pin circle.pulse {
-  animation: pinPulse 2.6s ease-out infinite;
-  transform-origin: center;
-}
-@keyframes pinPulse {
-  0%   { r: 3.5; opacity: .5; }
-  60%  { r: 9;   opacity: 0; }
-  100% { r: 9;   opacity: 0; }
-}
-.pin circle.dot {
-  transition: r .2s, fill .2s;
-}
-.pin.active circle.dot { fill: var(--rose); r: 5; }
-.pin.active circle.pulse { animation: none; opacity: 0; }
-
-/* Tooltip card */
-.map-tooltip {
+/* tooltip */
+.mtt {
   position: absolute;
-  z-index: 20;
   pointer-events: none;
+  z-index: 30;
   opacity: 0;
-  transform: translateY(4px) scale(.97);
-  transition: opacity .18s, transform .18s;
-  will-change: transform, opacity;
+  transform: translateY(6px);
+  transition: opacity .15s, transform .15s;
+  white-space: nowrap;
 }
-.map-tooltip.show {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-  pointer-events: auto;
-}
-.tooltip-card {
+.mtt.on { opacity: 1; transform: translateY(0); }
+.mtt-card {
   background: var(--sheet-bg);
   border: var(--rule);
   border-radius: 10px;
-  box-shadow: 0 4px 24px rgba(28,20,9,.12), 0 1px 4px rgba(28,20,9,.06);
-  padding: 14px 18px 16px;
-  min-width: 190px;
-  max-width: 240px;
-  position: relative;
+  box-shadow: 0 6px 28px rgba(28,20,9,.13);
+  padding: 12px 16px 14px;
+  display: flex; align-items: center; gap: 12px;
+  min-width: 180px;
 }
-/* little arrow pointing down to the pin */
-.tooltip-card::after {
+.mtt-card::after {
   content: '';
   position: absolute;
-  bottom: -6px; left: 50%;
-  transform: translateX(-50%);
+  bottom: -6px; left: 24px;
   width: 10px; height: 6px;
   background: var(--sheet-bg);
   clip-path: polygon(0 0, 100% 0, 50% 100%);
   border-top: none;
+  filter: drop-shadow(0 1px 0 rgba(28,20,9,.08));
 }
-.tt-location {
-  font-family: var(--sans);
-  font-size: 9px; font-weight: 400;
-  letter-spacing: .22em; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 5px;
+.mtt-logo {
+  width: 32px; height: 32px;
+  border-radius: 6px; overflow: hidden;
+  background: var(--sheet-bg-alt);
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
 }
-.tt-name {
-  font-family: var(--serif);
-  font-size: 15px; font-weight: 400; line-height: 1.25;
-  color: var(--ink); margin-bottom: 8px;
+.mtt-logo img { width: 100%; height: 100%; object-fit: contain; }
+.mtt-logo-fb {
+  font-family: var(--serif); font-size: 13px;
+  color: var(--gold); font-weight: 600;
 }
-.tt-advisors {
-  font-family: var(--sans);
-  font-size: 12px; font-weight: 300;
-  color: var(--ink-2);
-  display: flex; align-items: center; gap: 6px;
+.mtt-body {}
+.mtt-name {
+  font-family: var(--serif); font-size: 13px; font-weight: 400;
+  color: var(--ink); line-height: 1.2; margin-bottom: 2px;
+  white-space: normal; max-width: 180px;
 }
-.tt-count {
-  font-family: var(--serif);
-  font-size: 20px; font-weight: 400; line-height: 1;
+.mtt-sub {
+  font-family: var(--sans); font-size: 10px; font-weight: 300;
+  color: var(--ink-3); letter-spacing: .04em;
+}
+.mtt-count {
+  font-family: var(--serif); font-size: 14px; font-weight: 400;
   color: var(--rose);
 }
-.tt-label { color: var(--ink-3); font-size: 11px; }
 
-/* region filter */
-.region-tabs {
-  display: flex; gap: 2px;
-  padding: var(--sheet-pad);
-  padding-top: 36px; padding-bottom: 0;
-  flex-wrap: wrap;
+/* region tabs */
+.rtabs {
+  display: flex; gap: 2px; flex-wrap: wrap;
+  padding: 32px var(--sheet-pad) 0;
 }
 .rtab {
-  font-family: var(--sans); font-size: 10px; font-weight: 400;
-  letter-spacing: .18em; text-transform: uppercase;
-  color: var(--ink-3);
-  padding: 7px 16px; border-radius: 2px;
-  border: var(--rule); background: transparent;
-  cursor: none; transition: all .2s;
+  font-family: var(--sans); font-size: 9px; font-weight: 400;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: var(--ink-3); padding: 6px 14px;
+  border-radius: 2px; border: var(--rule);
+  background: transparent; cursor: none; transition: all .2s;
 }
 .rtab:hover { color: var(--ink); background: var(--ink-faint); }
-.rtab.active {
-  color: var(--ink); background: var(--ink);
-  color: var(--sheet-bg); border-color: var(--ink);
-}
+.rtab.active { color: var(--sheet-bg); background: var(--ink); border-color: var(--ink); }
 
-/* university list below map */
-.uni-list {
-  padding: 48px var(--sheet-pad);
+/* uni grid with logos */
+.uni-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 1px;
   background: var(--ink-faint);
+  margin-top: 2px;
 }
-.uni-row {
+.uni-card {
   background: var(--sheet-bg);
-  padding: 18px 20px;
-  display: flex; align-items: center; gap: 14px;
+  padding: 20px 18px;
+  display: flex; align-items: center; gap: 12px;
   transition: background .2s;
   cursor: none;
 }
-.uni-row:hover { background: var(--sheet-bg-alt); }
-.uni-row.highlight { background: rgba(201,164,74,.07); }
-.uni-dot {
-  width: 8px; height: 8px; border-radius: 50%;
-  background: var(--gold); flex-shrink: 0;
-  transition: background .2s, transform .2s;
+.uni-card:hover { background: rgba(201,164,74,.06); }
+.uni-card.hl { background: rgba(201,164,74,.12); }
+.uni-logo {
+  width: 36px; height: 36px; flex-shrink: 0;
+  border-radius: 6px; overflow: hidden;
+  background: var(--sheet-bg-alt);
+  display: flex; align-items: center; justify-content: center;
 }
-.uni-row:hover .uni-dot { background: var(--rose); transform: scale(1.4); }
-.uni-row-name {
-  font-family: var(--sans); font-size: 13px; font-weight: 300;
-  color: var(--ink-2); line-height: 1.3; flex: 1;
+.uni-logo img { width: 100%; height: 100%; object-fit: contain; }
+.uni-logo-fb {
+  font-family: var(--serif); font-size: 14px; font-weight: 600;
+  color: var(--gold);
 }
-.uni-row-count {
-  font-family: var(--serif); font-size: 16px; font-weight: 400;
+.uni-info { flex: 1; min-width: 0; }
+.uni-name {
+  font-family: var(--sans); font-size: 12px; font-weight: 400;
+  color: var(--ink-2); line-height: 1.3;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.uni-adv {
+  font-family: var(--serif); font-size: 13px;
   color: rgba(28,20,9,.2); flex-shrink: 0;
+  transition: color .2s;
 }
-.uni-row:hover .uni-row-count { color: var(--rose); }
+.uni-card:hover .uni-adv { color: var(--rose); }
 
-/* stats bar */
-.advisors-stats {
-  display: grid; grid-template-columns: repeat(3, 1fr);
+/* stats */
+.adv-stats {
+  display: grid; grid-template-columns: repeat(3,1fr);
   gap: .5px; background: var(--ink-faint);
-  margin: 0;
 }
-.astat {
-  background: var(--sheet-bg);
-  padding: 36px var(--sheet-pad);
-  display: flex; align-items: baseline; gap: 10px;
-}
-.astat-n {
-  font-family: var(--serif);
-  font-size: clamp(38px, 5vw, 58px); font-weight: 400;
-  line-height: 1; letter-spacing: -.03em; color: var(--ink);
-}
-.astat-l {
-  font-family: var(--sans); font-size: 12px; font-weight: 300;
-  color: var(--ink-3); max-width: 140px; line-height: 1.5;
-}
+.ast { background: var(--sheet-bg); padding: 36px var(--sheet-pad); display: flex; align-items: baseline; gap: 10px; }
+.ast-n { font-family: var(--serif); font-size: clamp(36px,5vw,56px); font-weight: 400; line-height:1; letter-spacing:-.03em; color: var(--ink); }
+.ast-l { font-family: var(--sans); font-size: 12px; font-weight: 300; color: var(--ink-3); max-width: 130px; line-height: 1.5; }
 
-@media (max-width: 860px) {
-  .uni-list { grid-template-columns: 1fr 1fr; }
-  .advisors-stats { grid-template-columns: 1fr 1fr; }
-}
-@media (max-width: 600px) {
-  .uni-list { grid-template-columns: 1fr; }
-  .advisors-stats { grid-template-columns: 1fr; }
-  .region-tabs { padding: 24px clamp(24px,6vw,40px) 0; }
-}
+@media(max-width:860px){ .uni-grid{grid-template-columns:repeat(3,1fr);} .adv-stats{grid-template-columns:1fr 1fr;} }
+@media(max-width:600px){ .uni-grid{grid-template-columns:1fr 1fr;} .adv-stats{grid-template-columns:1fr;} .rtabs{padding:20px clamp(24px,6vw,40px) 0;} }
 </style>
 </head>
 <body>
-<div id="cur"></div>
-<div id="cur-r"></div>
+<div id="cur"></div><div id="cur-r"></div>
 
 <div class="page-wrap">
   <div class="blob blob-1"><!-- <img src="images/gradients/Grad_14.png" alt=""> --></div>
@@ -239,60 +190,44 @@
       <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
     </nav>
 
-    <!-- PAGE HERO -->
     <div class="page-hero">
       <p class="page-hero-label">The network</p>
       <h1>
         <span class="hero-line"><span>People already inside</span></span>
         <span class="hero-line"><span>the doors you're aiming for.</span></span>
       </h1>
-      <p class="page-hero-sub">
-        Every Ascensia advisor is a current student or recent graduate at one of these universities. They went through the same process, from similar starting points, not long ago.
-      </p>
+      <p class="page-hero-sub">Every Ascensia advisor is a current student or recent graduate at one of these universities. They went through the same process, from similar starting points, not long ago.</p>
     </div>
 
-    <!-- STATS -->
-    <div class="advisors-stats r">
-      <div class="astat">
-        <div class="astat-n">126</div>
-        <div class="astat-l">active and recruiting advisors</div>
-      </div>
-      <div class="astat">
-        <div class="astat-n">94</div>
-        <div class="astat-l">universities across 6 continents</div>
-      </div>
-      <div class="astat">
-        <div class="astat-n">38</div>
-        <div class="astat-l">countries represented in the network</div>
-      </div>
+    <div class="adv-stats r">
+      <div class="ast"><div class="ast-n">126</div><div class="ast-l">active and recruiting advisors</div></div>
+      <div class="ast"><div class="ast-n">113</div><div class="ast-l">universities across six continents</div></div>
+      <div class="ast"><div class="ast-n">38</div><div class="ast-l">countries represented</div></div>
     </div>
 
-    <!-- REGION FILTER -->
-    <div class="region-tabs r r-d1" id="region-tabs">
-      <button class="rtab active" data-region="all">All</button>
-      <button class="rtab" data-region="usa">North America</button>
-      <button class="rtab" data-region="uk">United Kingdom</button>
-      <button class="rtab" data-region="middle-east">Middle East</button>
-      <button class="rtab" data-region="africa">Africa</button>
-      <button class="rtab" data-region="asia">Asia</button>
-      <button class="rtab" data-region="europe">Europe</button>
+    <!-- REGION TABS -->
+    <div class="rtabs r r-d1" id="rtabs">
+      <button class="rtab active" data-r="all">All</button>
+      <button class="rtab" data-r="usa">Americas</button>
+      <button class="rtab" data-r="uk">United Kingdom</button>
+      <button class="rtab" data-r="middle-east">Middle East</button>
+      <button class="rtab" data-r="africa">Africa</button>
+      <button class="rtab" data-r="asia">Asia</button>
+      <button class="rtab" data-r="europe">Europe</button>
     </div>
 
     <!-- MAP -->
-    <div class="pad-sm map-section">
-      <div class="map-wrap" id="map-wrap">
-        <!-- dotted SVG world map background — generated inline -->
-        <svg class="map-svg-bg" id="map-bg" viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg"></svg>
-        <!-- pins overlay -->
-        <svg class="map-pins" id="map-pins" viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet"></svg>
-        <!-- tooltip -->
-        <div class="map-tooltip" id="map-tooltip">
-          <div class="tooltip-card">
-            <div class="tt-location" id="tt-loc"></div>
-            <div class="tt-name" id="tt-name"></div>
-            <div class="tt-advisors">
-              <span class="tt-count" id="tt-count"></span>
-              <span class="tt-label" id="tt-label"></span>
+    <div class="pad-sm" style="padding-top:24px;padding-bottom:0;">
+      <div class="map-outer" id="map-outer">
+        <!-- dotted world map — uses the SVG from dotted-map library output style -->
+        <img id="map-img" src="images/world-map.svg" alt="world map" draggable="false">
+        <svg id="map-pins" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet"></svg>
+        <div class="mtt" id="mtt">
+          <div class="mtt-card">
+            <div class="mtt-logo" id="mtt-logo"><span class="mtt-logo-fb" id="mtt-fb"></span></div>
+            <div class="mtt-body">
+              <div class="mtt-name" id="mtt-name"></div>
+              <div class="mtt-sub"><span class="mtt-count" id="mtt-count"></span> <span id="mtt-word"></span></div>
             </div>
           </div>
         </div>
@@ -301,44 +236,33 @@
 
     <div class="rule-warm"></div>
 
-    <!-- INTRO TEXT -->
-    <section class="pad">
+    <!-- UNI GRID -->
+    <section style="padding: 48px 0 0;">
+      <div style="padding: 0 var(--sheet-pad) 28px;">
+        <p class="eyebrow r">Where our advisors are</p>
+        <h2 class="section-h r r-d1" style="font-size:clamp(22px,3vw,34px);">Sorted by prestige. Hover the map or browse below.</h2>
+      </div>
+      <div class="uni-grid" id="uni-grid"></div>
+    </section>
+
+    <section class="pad" style="padding-bottom:0;">
       <p class="eyebrow r">How it works</p>
       <h2 class="section-h r r-d1">Not a directory.<br>An actual relationship.</h2>
       <p class="r r-d2" style="font-size:17px;line-height:1.88;color:var(--ink-2);max-width:560px;margin-bottom:18px;">
-        Each Ascensia student is matched with an advisor who attended or currently attends one of their target universities. The match is based on school, academic field, and region of origin — so the person you're talking to has actually navigated something close to what you're navigating.
+        Each Ascensia student is matched with an advisor who attended or currently attends one of their target universities. The match is based on school, academic field, and where you're applying from, so the person you're talking to has actually navigated something close to what you're navigating.
       </p>
       <p class="r r-d3" style="font-size:17px;line-height:1.88;color:var(--ink-2);max-width:560px;">
-        Advisors hold biweekly sessions with their matched students and are available asynchronously throughout the application cycle. They review essays, share their own materials where relevant, and answer the questions you'd feel awkward asking anyone else.
+        Advisors hold biweekly sessions with matched students, review essays, share their own materials where relevant, and are available asynchronously throughout the application cycle.
       </p>
-
-      <!--
-        ILLUSTRATION ZONE — "two people across a map / a call"
-        Artistic direction: two figures on opposite sides of a simple
-        hand-drawn globe or dotted line. Warm ink. Sparse.
-        Suggested size: wide, ~700×160px.
-      -->
       <div class="illus-zone" style="padding:0;margin:40px 0 0;">
-        <div class="illus-box wide r" data-label="Illustration — advisor / student connection across distance"></div>
+        <div class="illus-box wide r" data-label="Illustration — advisor / student connection"></div>
       </div>
     </section>
 
-    <div class="rule"></div>
-
-    <!-- UNIVERSITY LIST -->
-    <section style="padding:48px 0 0;">
-      <div style="padding:0 var(--sheet-pad) 32px;">
-        <p class="eyebrow r">Where our advisors are</p>
-        <h2 class="section-h r r-d1" style="font-size:clamp(24px,3.2vw,36px);">94 universities. Click the map or browse below.</h2>
-      </div>
-      <div class="uni-list" id="uni-list"></div>
-    </section>
-
-    <!-- CLOSING -->
-    <section class="closing" style="margin-top:2px;">
+    <section class="closing" style="margin-top:72px;">
       <p class="closing-label">Become an advisor</p>
       <a href="mailto:team@ascensia.foundation" class="closing-email r">team@ascensia.foundation</a>
-      <p class="closing-note r r-d1">If you're a current student at any of these universities and want to be part of the network, reach out.</p>
+      <p class="closing-note r r-d1">If you're a current student at any of these universities and want to join the network, reach out.</p>
       <nav class="closing-nav r r-d2">
         <a href="index.html">Home</a>
         <a href="program.html">Program</a>
@@ -346,9 +270,8 @@
       </nav>
       <p class="closing-copy">&copy; 2026 Ascensia. Nonprofit. All rights reserved.</p>
     </section>
-
-  </div><!-- /sheet -->
-</div><!-- /page-wrap -->
+  </div>
+</div>
 
 <div class="nav-mobile">
   <a href="program.html">Program</a>
@@ -358,282 +281,299 @@
 </div>
 
 <script>
-/* ── UNIVERSITY DATA (from real CSV) ── */
 const UNIS = [
-  { name: "American University of Beirut", lat: 33.9003, lng: 35.4784, advisors: 10, location: "Beirut, Lebanon", region: "middle-east" },
-  { name: "Ritsumeikan Asia Pacific University", lat: 33.2927, lng: 131.5044, advisors: 8, location: "Beppu, Japan", region: "asia" },
-  { name: "Yale University", lat: 41.3163, lng: -72.9223, advisors: 6, location: "New Haven, USA", region: "usa" },
-  { name: "Skidmore College", lat: 43.0934, lng: -73.7834, advisors: 5, location: "Saratoga Springs, USA", region: "usa" },
-  { name: "Vanderbilt University", lat: 36.1447, lng: -86.8027, advisors: 5, location: "Nashville, USA", region: "usa" },
-  { name: "University of Notre Dame", lat: 41.7056, lng: -86.2353, advisors: 5, location: "Notre Dame, USA", region: "usa" },
-  { name: "Bowdoin College", lat: 43.9073, lng: -69.9642, advisors: 4, location: "Brunswick, USA", region: "usa" },
-  { name: "Macalester College", lat: 44.9389, lng: -93.1687, advisors: 4, location: "St. Paul, USA", region: "usa" },
-  { name: "University of Pennsylvania", lat: 39.9522, lng: -75.1932, advisors: 4, location: "Philadelphia, USA", region: "usa" },
-  { name: "Constructor University Bremen", lat: 53.1678, lng: 8.6503, advisors: 4, location: "Bremen, Germany", region: "europe" },
-  { name: "Georgetown University in Qatar", lat: 25.3548, lng: 51.1839, advisors: 4, location: "Doha, Qatar", region: "middle-east" },
-  { name: "University of North Carolina", lat: 35.9049, lng: -79.0469, advisors: 3, location: "Chapel Hill, USA", region: "usa" },
-  { name: "University of Chicago", lat: 41.7886, lng: -87.5987, advisors: 3, location: "Chicago, USA", region: "usa" },
-  { name: "Tufts University", lat: 42.4075, lng: -71.119, advisors: 3, location: "Medford, USA", region: "usa" },
-  { name: "Northwestern University", lat: 42.0565, lng: -87.6753, advisors: 3, location: "Evanston, USA", region: "usa" },
-  { name: "Dartmouth College", lat: 43.7044, lng: -72.2887, advisors: 3, location: "Hanover, USA", region: "usa" },
-  { name: "University of British Columbia", lat: 49.2606, lng: -123.246, advisors: 3, location: "Vancouver, Canada", region: "usa" },
-  { name: "Grambling State University", lat: 32.527, lng: -92.7199, advisors: 3, location: "Grambling, USA", region: "usa" },
-  { name: "The African Leadership University", lat: -1.9441, lng: 30.0619, advisors: 3, location: "Kigali, Rwanda", region: "africa" },
-  { name: "Princeton University", lat: 40.343, lng: -74.6514, advisors: 3, location: "Princeton, USA", region: "usa" },
-  { name: "Oberlin College", lat: 41.2934, lng: -82.2218, advisors: 3, location: "Oberlin, USA", region: "usa" },
-  { name: "Pomona College", lat: 34.0967, lng: -117.7131, advisors: 2, location: "Claremont, USA", region: "usa" },
-  { name: "Hult International Business School", lat: 51.5074, lng: -0.1278, advisors: 2, location: "London, UK", region: "uk" },
-  { name: "Duke University", lat: 36.0014, lng: -78.9382, advisors: 2, location: "Durham, USA", region: "usa" },
-  { name: "Bates College", lat: 44.1053, lng: -70.2046, advisors: 2, location: "Lewiston, USA", region: "usa" },
-  { name: "Fordham University", lat: 40.8611, lng: -73.8854, advisors: 2, location: "New York, USA", region: "usa" },
-  { name: "Williams College", lat: 42.7127, lng: -73.2032, advisors: 2, location: "Williamstown, USA", region: "usa" },
-  { name: "University of Rochester", lat: 43.1284, lng: -77.6276, advisors: 2, location: "Rochester, USA", region: "usa" },
-  { name: "Harvard University", lat: 42.377, lng: -71.1167, advisors: 2, location: "Cambridge, USA", region: "usa" },
-  { name: "Smith College", lat: 42.3181, lng: -72.6381, advisors: 2, location: "Northampton, USA", region: "usa" },
-  { name: "Northwestern University in Qatar", lat: 25.3737, lng: 51.488, advisors: 2, location: "Doha, Qatar", region: "middle-east" },
-  { name: "Washington and Lee University", lat: 37.7887, lng: -79.4423, advisors: 2, location: "Lexington, USA", region: "usa" },
-  { name: "University of Calgary", lat: 51.0767, lng: -114.1327, advisors: 2, location: "Calgary, Canada", region: "usa" },
-  { name: "Cornell University", lat: 42.4534, lng: -76.4735, advisors: 2, location: "Ithaca, USA", region: "usa" },
-  { name: "University of St Andrews", lat: 56.3398, lng: -2.7967, advisors: 1, location: "St Andrews, UK", region: "uk" },
-  { name: "Syracuse University", lat: 43.0389, lng: -76.1356, advisors: 1, location: "Syracuse, USA", region: "usa" },
-  { name: "Northeastern University", lat: 42.3398, lng: -71.0892, advisors: 1, location: "Boston, USA", region: "usa" },
-  { name: "New York University Abu Dhabi", lat: 24.5247, lng: 54.4348, advisors: 1, location: "Abu Dhabi, UAE", region: "middle-east" },
-  { name: "Lehigh University", lat: 40.6065, lng: -75.3783, advisors: 1, location: "Bethlehem, USA", region: "usa" },
-  { name: "Case Western Reserve University", lat: 41.5042, lng: -81.6093, advisors: 1, location: "Cleveland, USA", region: "usa" },
-  { name: "The University of Hong Kong", lat: 22.2839, lng: 114.1364, advisors: 1, location: "Hong Kong", region: "asia" },
-  { name: "Brandeis University", lat: 42.3663, lng: -71.2601, advisors: 1, location: "Waltham, USA", region: "usa" },
-  { name: "UC Berkeley", lat: 37.8719, lng: -122.2585, advisors: 1, location: "Berkeley, USA", region: "usa" },
-  { name: "Durham University", lat: 54.7661, lng: -1.5755, advisors: 1, location: "Durham, UK", region: "uk" },
-  { name: "University of Aberdeen", lat: 57.1645, lng: -2.0999, advisors: 1, location: "Aberdeen, UK", region: "uk" },
-  { name: "Emory University", lat: 33.7945, lng: -84.3245, advisors: 1, location: "Atlanta, USA", region: "usa" },
-  { name: "The American University in Cairo", lat: 30.0219, lng: 31.4998, advisors: 1, location: "Cairo, Egypt", region: "middle-east" },
-  { name: "Minerva University", lat: 37.7749, lng: -122.4194, advisors: 1, location: "San Francisco, USA", region: "usa" },
-  { name: "University of Florida", lat: 29.6465, lng: -82.3533, advisors: 1, location: "Gainesville, USA", region: "usa" },
-  { name: "University of Leeds", lat: 53.8067, lng: -1.555, advisors: 1, location: "Leeds, UK", region: "uk" },
-  { name: "Lancaster University", lat: 54.0104, lng: -2.7878, advisors: 1, location: "Lancaster, UK", region: "uk" },
-  { name: "University of Exeter", lat: 50.7352, lng: -3.5335, advisors: 1, location: "Exeter, UK", region: "uk" },
-  { name: "Villanova University", lat: 40.036, lng: -75.3441, advisors: 1, location: "Villanova, USA", region: "usa" },
-  { name: "Reed College", lat: 45.481, lng: -122.6282, advisors: 1, location: "Portland, USA", region: "usa" },
-  { name: "Washington University in St Louis", lat: 38.6488, lng: -90.3108, advisors: 1, location: "St Louis, USA", region: "usa" },
-  { name: "Westlake University", lat: 30.2741, lng: 120.1551, advisors: 1, location: "Hangzhou, China", region: "asia" },
-  { name: "The University of Manchester", lat: 53.4668, lng: -2.2339, advisors: 1, location: "Manchester, UK", region: "uk" },
-  { name: "Wesleyan University", lat: 41.5555, lng: -72.6586, advisors: 1, location: "Middletown, USA", region: "usa" },
-  { name: "Concordia University", lat: 45.4944, lng: -73.5775, advisors: 1, location: "Montreal, Canada", region: "usa" },
-  { name: "University of East London", lat: 51.5074, lng: 0.0553, advisors: 1, location: "London, UK", region: "uk" },
-  { name: "Kwame Nkrumah Univ of Science & Technology", lat: 6.6745, lng: -1.5716, advisors: 1, location: "Kumasi, Ghana", region: "africa" },
-  { name: "Bocconi University", lat: 45.4548, lng: 9.19, advisors: 1, location: "Milan, Italy", region: "europe" },
-  { name: "University of Cape Town", lat: -33.9575, lng: 18.4612, advisors: 1, location: "Cape Town, South Africa", region: "africa" },
-  { name: "Leiden University", lat: 52.1601, lng: 4.497, advisors: 1, location: "Leiden, Netherlands", region: "europe" },
-  { name: "Brown University", lat: 41.8268, lng: -71.4025, advisors: 1, location: "Providence, USA", region: "usa" },
-  { name: "Pan-Atlantic University", lat: 6.5244, lng: 3.3792, advisors: 1, location: "Lagos, Nigeria", region: "africa" },
-  { name: "Ashoka University", lat: 28.9842, lng: 77.1025, advisors: 1, location: "Sonipat, India", region: "asia" },
-  { name: "The University of Sheffield", lat: 53.3811, lng: -1.4701, advisors: 1, location: "Sheffield, UK", region: "uk" },
-  { name: "Georgian Technical University", lat: 41.7151, lng: 44.8271, advisors: 1, location: "Tbilisi, Georgia", region: "europe" },
-  { name: "Wellesley College", lat: 42.2956, lng: -71.3056, advisors: 1, location: "Wellesley, USA", region: "usa" },
-  { name: "University of Essex", lat: 51.8783, lng: 0.9408, advisors: 1, location: "Colchester, UK", region: "uk" },
-  { name: "American University", lat: 38.9374, lng: -77.0862, advisors: 1, location: "Washington DC, USA", region: "usa" },
-  { name: "California Institute of Technology", lat: 34.1377, lng: -118.1253, advisors: 1, location: "Pasadena, USA", region: "usa" },
-  { name: "Columbia University", lat: 40.8075, lng: -73.9626, advisors: 1, location: "New York, USA", region: "usa" },
-  { name: "Monash University Malaysia", lat: 2.929, lng: 101.784, advisors: 1, location: "Subang Jaya, Malaysia", region: "asia" },
-  { name: "Ashesi University", lat: 5.7587, lng: -0.22, advisors: 1, location: "Berekuso, Ghana", region: "africa" },
-  { name: "University of Lusaka", lat: -15.4166, lng: 28.2833, advisors: 1, location: "Lusaka, Zambia", region: "africa" },
-  { name: "German University in Cairo", lat: 30.0059, lng: 31.7222, advisors: 1, location: "Cairo, Egypt", region: "middle-east" },
-  { name: "Claremont McKenna College", lat: 34.1015, lng: -117.71, advisors: 1, location: "Claremont, USA", region: "usa" },
-  { name: "Bard College", lat: 42.0264, lng: -73.9102, advisors: 1, location: "Annandale, USA", region: "usa" },
-  { name: "American University in Paris", lat: 48.8566, lng: 2.3104, advisors: 1, location: "Paris, France", region: "europe" },
-  { name: "MIT", lat: 42.3601, lng: -71.0942, advisors: 1, location: "Cambridge, USA", region: "usa" },
-  { name: "Imperial College London", lat: 51.4988, lng: -0.1749, advisors: 1, location: "London, UK", region: "uk" },
-  { name: "University of Warwick", lat: 52.3794, lng: -1.561, advisors: 1, location: "Coventry, UK", region: "uk" },
-  { name: "University of Cambridge", lat: 52.2054, lng: 0.1132, advisors: 1, location: "Cambridge, UK", region: "uk" },
-  { name: "University of Bristol", lat: 51.4584, lng: -2.6032, advisors: 1, location: "Bristol, UK", region: "uk" },
-  { name: "National University of Singapore", lat: 1.2966, lng: 103.7764, advisors: 1, location: "Singapore", region: "asia" },
-  { name: "University of Edinburgh", lat: 55.9445, lng: -3.1892, advisors: 1, location: "Edinburgh, UK", region: "uk" },
-  { name: "Haverford College", lat: 40.0093, lng: -75.3057, advisors: 1, location: "Haverford, USA", region: "usa" },
-  { name: "University of Texas at Austin", lat: 30.2849, lng: -97.7341, advisors: 1, location: "Austin, USA", region: "usa" },
-  { name: "Universidad EARTH", lat: 10.2147, lng: -83.773, advisors: 1, location: "Guácimo, Costa Rica", region: "usa" },
-  { name: "University of Debrecen", lat: 47.5597, lng: 21.5831, advisors: 2, location: "Debrecen, Hungary", region: "europe" },
-  { name: "Texas Christian University", lat: 32.7096, lng: -97.3625, advisors: 2, location: "Fort Worth, USA", region: "usa" },
+  { name: "MIT", lat: 42.3601, lng: -71.0942, advisors: 1, region: "usa", rank: 1, logo: "https://logo.clearbit.com/mit.edu" },
+  { name: "Harvard University", lat: 42.377, lng: -71.1167, advisors: 2, region: "usa", rank: 2, logo: "https://logo.clearbit.com/harvard.edu" },
+  { name: "University of Cambridge", lat: 52.2054, lng: 0.1132, advisors: 1, region: "uk", rank: 3, logo: "https://logo.clearbit.com/cam.ac.uk" },
+  { name: "Princeton University", lat: 40.343, lng: -74.6514, advisors: 3, region: "usa", rank: 4, logo: "https://logo.clearbit.com/princeton.edu" },
+  { name: "Yale University", lat: 41.3163, lng: -72.9223, advisors: 6, region: "usa", rank: 5, logo: "https://logo.clearbit.com/yale.edu" },
+  { name: "Columbia University", lat: 40.8075, lng: -73.9626, advisors: 1, region: "usa", rank: 6, logo: "https://logo.clearbit.com/columbia.edu" },
+  { name: "University of Pennsylvania", lat: 39.9522, lng: -75.1932, advisors: 4, region: "usa", rank: 7, logo: "https://logo.clearbit.com/upenn.edu" },
+  { name: "Imperial College London", lat: 51.4988, lng: -0.1749, advisors: 1, region: "uk", rank: 8, logo: "https://logo.clearbit.com/imperial.ac.uk" },
+  { name: "Caltech", lat: 34.1377, lng: -118.1253, advisors: 1, region: "usa", rank: 9, logo: "https://logo.clearbit.com/caltech.edu" },
+  { name: "University of Chicago", lat: 41.7886, lng: -87.5987, advisors: 3, region: "usa", rank: 10, logo: "https://logo.clearbit.com/uchicago.edu" },
+  { name: "UC Berkeley", lat: 37.8719, lng: -122.2585, advisors: 1, region: "usa", rank: 11, logo: "https://logo.clearbit.com/berkeley.edu" },
+  { name: "Duke University", lat: 36.0014, lng: -78.9382, advisors: 2, region: "usa", rank: 12, logo: "https://logo.clearbit.com/duke.edu" },
+  { name: "Northwestern University", lat: 42.0565, lng: -87.6753, advisors: 3, region: "usa", rank: 13, logo: "https://logo.clearbit.com/northwestern.edu" },
+  { name: "Dartmouth College", lat: 43.7044, lng: -72.2887, advisors: 3, region: "usa", rank: 14, logo: "https://logo.clearbit.com/dartmouth.edu" },
+  { name: "Brown University", lat: 41.8268, lng: -71.4025, advisors: 1, region: "usa", rank: 15, logo: "https://logo.clearbit.com/brown.edu" },
+  { name: "Cornell University", lat: 42.4534, lng: -76.4735, advisors: 2, region: "usa", rank: 16, logo: "https://logo.clearbit.com/cornell.edu" },
+  { name: "Vanderbilt University", lat: 36.1447, lng: -86.8027, advisors: 5, region: "usa", rank: 17, logo: "https://logo.clearbit.com/vanderbilt.edu" },
+  { name: "WashU St. Louis", lat: 38.6488, lng: -90.3108, advisors: 1, region: "usa", rank: 18, logo: "https://logo.clearbit.com/wustl.edu" },
+  { name: "University of Notre Dame", lat: 41.7056, lng: -86.2353, advisors: 5, region: "usa", rank: 19, logo: "https://logo.clearbit.com/nd.edu" },
+  { name: "Tufts University", lat: 42.4075, lng: -71.119, advisors: 3, region: "usa", rank: 20, logo: "https://logo.clearbit.com/tufts.edu" },
+  { name: "Emory University", lat: 33.7945, lng: -84.3245, advisors: 1, region: "usa", rank: 21, logo: "https://logo.clearbit.com/emory.edu" },
+  { name: "UNC Chapel Hill", lat: 35.9049, lng: -79.0469, advisors: 3, region: "usa", rank: 22, logo: "https://logo.clearbit.com/unc.edu" },
+  { name: "National University of Singapore", lat: 1.2966, lng: 103.7764, advisors: 1, region: "asia", rank: 23, logo: "https://logo.clearbit.com/nus.edu.sg" },
+  { name: "University of Edinburgh", lat: 55.9445, lng: -3.1892, advisors: 1, region: "uk", rank: 24, logo: "https://logo.clearbit.com/ed.ac.uk" },
+  { name: "University of Manchester", lat: 53.4668, lng: -2.2339, advisors: 1, region: "uk", rank: 25, logo: "https://logo.clearbit.com/manchester.ac.uk" },
+  { name: "University of Warwick", lat: 52.3794, lng: -1.561, advisors: 1, region: "uk", rank: 26, logo: "https://logo.clearbit.com/warwick.ac.uk" },
+  { name: "University of Bristol", lat: 51.4584, lng: -2.6032, advisors: 1, region: "uk", rank: 27, logo: "https://logo.clearbit.com/bristol.ac.uk" },
+  { name: "University of St Andrews", lat: 56.3398, lng: -2.7967, advisors: 1, region: "uk", rank: 28, logo: "https://logo.clearbit.com/st-andrews.ac.uk" },
+  { name: "Durham University", lat: 54.7661, lng: -1.5755, advisors: 1, region: "uk", rank: 29, logo: "https://logo.clearbit.com/durham.ac.uk" },
+  { name: "Bocconi University", lat: 45.4548, lng: 9.19, advisors: 1, region: "europe", rank: 30, logo: "https://logo.clearbit.com/unibocconi.it" },
+  { name: "Northeastern University", lat: 42.3398, lng: -71.0892, advisors: 1, region: "usa", rank: 31, logo: "https://logo.clearbit.com/northeastern.edu" },
+  { name: "Case Western Reserve", lat: 41.5042, lng: -81.6093, advisors: 1, region: "usa", rank: 32, logo: "https://logo.clearbit.com/case.edu" },
+  { name: "Brandeis University", lat: 42.3663, lng: -71.2601, advisors: 1, region: "usa", rank: 33, logo: "https://logo.clearbit.com/brandeis.edu" },
+  { name: "Lehigh University", lat: 40.6065, lng: -75.3783, advisors: 1, region: "usa", rank: 34, logo: "https://logo.clearbit.com/lehigh.edu" },
+  { name: "Syracuse University", lat: 43.0389, lng: -76.1356, advisors: 1, region: "usa", rank: 35, logo: "https://logo.clearbit.com/syr.edu" },
+  { name: "Fordham University", lat: 40.8611, lng: -73.8854, advisors: 2, region: "usa", rank: 36, logo: "https://logo.clearbit.com/fordham.edu" },
+  { name: "Villanova University", lat: 40.036, lng: -75.3441, advisors: 1, region: "usa", rank: 37, logo: "https://logo.clearbit.com/villanova.edu" },
+  { name: "Texas Christian University", lat: 32.7096, lng: -97.3625, advisors: 2, region: "usa", rank: 38, logo: "https://logo.clearbit.com/tcu.edu" },
+  { name: "University of Florida", lat: 29.6465, lng: -82.3533, advisors: 1, region: "usa", rank: 39, logo: "https://logo.clearbit.com/ufl.edu" },
+  { name: "University of Oklahoma", lat: 35.2058, lng: -97.4448, advisors: 1, region: "usa", rank: 40, logo: "https://logo.clearbit.com/ou.edu" },
+  { name: "University of South Florida", lat: 28.0587, lng: -82.4139, advisors: 1, region: "usa", rank: 41, logo: "https://logo.clearbit.com/usf.edu" },
+  { name: "UW Green Bay", lat: 44.5264, lng: -88.0606, advisors: 1, region: "usa", rank: 42, logo: "https://logo.clearbit.com/uwgb.edu" },
+  { name: "UT Austin", lat: 30.2849, lng: -97.7341, advisors: 1, region: "usa", rank: 43, logo: "https://logo.clearbit.com/utexas.edu" },
+  { name: "American University", lat: 38.9374, lng: -77.0862, advisors: 1, region: "usa", rank: 44, logo: "https://logo.clearbit.com/american.edu" },
+  { name: "Grambling State University", lat: 32.527, lng: -92.7199, advisors: 3, region: "usa", rank: 45, logo: "https://logo.clearbit.com/gram.edu" },
+  { name: "University of Rochester", lat: 43.1284, lng: -77.6276, advisors: 2, region: "usa", rank: 46, logo: "https://logo.clearbit.com/rochester.edu" },
+  { name: "UC Davis", lat: 38.5382, lng: -121.7617, advisors: 1, region: "usa", rank: 47, logo: "https://logo.clearbit.com/ucdavis.edu" },
+  { name: "Williams College", lat: 42.7127, lng: -73.2032, advisors: 2, region: "usa", rank: 48, logo: "https://logo.clearbit.com/williams.edu" },
+  { name: "Pomona College", lat: 34.0967, lng: -117.7131, advisors: 2, region: "usa", rank: 50, logo: "https://logo.clearbit.com/pomona.edu" },
+  { name: "Wellesley College", lat: 42.2956, lng: -71.3056, advisors: 1, region: "usa", rank: 51, logo: "https://logo.clearbit.com/wellesley.edu" },
+  { name: "Bowdoin College", lat: 43.9073, lng: -69.9642, advisors: 4, region: "usa", rank: 52, logo: "https://logo.clearbit.com/bowdoin.edu" },
+  { name: "Wesleyan University", lat: 41.5555, lng: -72.6586, advisors: 1, region: "usa", rank: 56, logo: "https://logo.clearbit.com/wesleyan.edu" },
+  { name: "Haverford College", lat: 40.0093, lng: -75.3057, advisors: 1, region: "usa", rank: 57, logo: "https://logo.clearbit.com/haverford.edu" },
+  { name: "Claremont McKenna", lat: 34.1015, lng: -117.71, advisors: 1, region: "usa", rank: 58, logo: "https://logo.clearbit.com/cmc.edu" },
+  { name: "Smith College", lat: 42.3181, lng: -72.6381, advisors: 2, region: "usa", rank: 59, logo: "https://logo.clearbit.com/smith.edu" },
+  { name: "Bates College", lat: 44.1053, lng: -70.2046, advisors: 2, region: "usa", rank: 62, logo: "https://logo.clearbit.com/bates.edu" },
+  { name: "Hamilton College", lat: 43.0556, lng: -75.4021, advisors: 1, region: "usa", rank: 63, logo: "https://logo.clearbit.com/hamilton.edu" },
+  { name: "Oberlin College", lat: 41.2934, lng: -82.2218, advisors: 3, region: "usa", rank: 64, logo: "https://logo.clearbit.com/oberlin.edu" },
+  { name: "Macalester College", lat: 44.9389, lng: -93.1687, advisors: 4, region: "usa", rank: 65, logo: "https://logo.clearbit.com/macalester.edu" },
+  { name: "Reed College", lat: 45.481, lng: -122.6282, advisors: 1, region: "usa", rank: 66, logo: "https://logo.clearbit.com/reed.edu" },
+  { name: "Skidmore College", lat: 43.0934, lng: -73.7834, advisors: 5, region: "usa", rank: 67, logo: "https://logo.clearbit.com/skidmore.edu" },
+  { name: "Washington and Lee", lat: 37.7887, lng: -79.4423, advisors: 2, region: "usa", rank: 68, logo: "https://logo.clearbit.com/wlu.edu" },
+  { name: "Kenyon College", lat: 40.3673, lng: -82.4007, advisors: 1, region: "usa", rank: 69, logo: "https://logo.clearbit.com/kenyon.edu" },
+  { name: "Franklin & Marshall", lat: 40.0448, lng: -76.3024, advisors: 1, region: "usa", rank: 70, logo: "https://logo.clearbit.com/fandm.edu" },
+  { name: "St. Olaf College", lat: 44.4606, lng: -93.1826, advisors: 1, region: "usa", rank: 71, logo: "https://logo.clearbit.com/stolaf.edu" },
+  { name: "Cornell College", lat: 41.9214, lng: -91.4168, advisors: 3, region: "usa", rank: 72, logo: "https://logo.clearbit.com/cornellcollege.edu" },
+  { name: "Centre College", lat: 37.6803, lng: -84.723, advisors: 3, region: "usa", rank: 73, logo: "https://logo.clearbit.com/centre.edu" },
+  { name: "Bard College", lat: 42.0264, lng: -73.9102, advisors: 1, region: "usa", rank: 74, logo: "https://logo.clearbit.com/bard.edu" },
+  { name: "Gettysburg College", lat: 39.8326, lng: -77.2312, advisors: 1, region: "usa", rank: 75, logo: "https://logo.clearbit.com/gettysburg.edu" },
+  { name: "Concordia University", lat: 45.4944, lng: -73.5775, advisors: 2, region: "usa", rank: 76, logo: "https://logo.clearbit.com/concordia.ca" },
+  { name: "Lake Forest College", lat: 42.2578, lng: -87.8411, advisors: 1, region: "usa", rank: 77, logo: "https://logo.clearbit.com/lakeforest.edu" },
+  { name: "The College of Wooster", lat: 40.8098, lng: -81.9366, advisors: 1, region: "usa", rank: 78, logo: "https://logo.clearbit.com/wooster.edu" },
+  { name: "Berea College", lat: 37.5686, lng: -84.294, advisors: 1, region: "usa", rank: 79, logo: "https://logo.clearbit.com/berea.edu" },
+  { name: "Rhodes College", lat: 35.1538, lng: -90.0412, advisors: 1, region: "usa", rank: 80, logo: "https://logo.clearbit.com/rhodes.edu" },
+  { name: "Westminster College", lat: 39.2012, lng: -91.8665, advisors: 1, region: "usa", rank: 81, logo: "https://logo.clearbit.com/westminster-mo.edu" },
+  { name: "Xavier University", lat: 39.1481, lng: -84.4744, advisors: 1, region: "usa", rank: 82, logo: "https://logo.clearbit.com/xavier.edu" },
+  { name: "American Univ. of Beirut", lat: 33.9003, lng: 35.4784, advisors: 10, region: "middle-east", rank: 84, logo: "https://logo.clearbit.com/aub.edu.lb" },
+  { name: "Georgetown Univ. Qatar", lat: 25.3548, lng: 51.1839, advisors: 4, region: "middle-east", rank: 85, logo: "https://logo.clearbit.com/qatar.georgetown.edu" },
+  { name: "Northwestern Univ. Qatar", lat: 25.3737, lng: 51.488, advisors: 2, region: "middle-east", rank: 86, logo: "https://logo.clearbit.com/qatar.northwestern.edu" },
+  { name: "NYU Abu Dhabi", lat: 24.5247, lng: 54.4348, advisors: 1, region: "middle-east", rank: 87, logo: "https://logo.clearbit.com/nyuad.nyu.edu" },
+  { name: "American Univ. in Cairo", lat: 30.0219, lng: 31.4998, advisors: 1, region: "middle-east", rank: 88, logo: "https://logo.clearbit.com/aucegypt.edu" },
+  { name: "German Univ. in Cairo", lat: 30.0059, lng: 31.7222, advisors: 1, region: "middle-east", rank: 89, logo: "https://logo.clearbit.com/guc.edu.eg" },
+  { name: "Ritsumeikan APU", lat: 33.2927, lng: 131.5044, advisors: 8, region: "asia", rank: 90, logo: "https://logo.clearbit.com/apu.ac.jp" },
+  { name: "University of Hong Kong", lat: 22.2839, lng: 114.1364, advisors: 1, region: "asia", rank: 91, logo: "https://logo.clearbit.com/hku.hk" },
+  { name: "Ashoka University", lat: 28.9842, lng: 77.1025, advisors: 1, region: "asia", rank: 92, logo: "https://logo.clearbit.com/ashoka.edu.in" },
+  { name: "Monash University Malaysia", lat: 2.929, lng: 101.784, advisors: 1, region: "asia", rank: 93, logo: "https://logo.clearbit.com/monash.edu.my" },
+  { name: "Westlake University", lat: 30.2741, lng: 120.1551, advisors: 1, region: "asia", rank: 94, logo: "https://logo.clearbit.com/westlake.edu.cn" },
+  { name: "Yamanashi Gakuin Univ.", lat: 35.6631, lng: 138.5681, advisors: 1, region: "asia", rank: 95, logo: "https://logo.clearbit.com/ygu.ac.jp" },
+  { name: "Univ. of British Columbia", lat: 49.2606, lng: -123.246, advisors: 3, region: "usa", rank: 96, logo: "https://logo.clearbit.com/ubc.ca" },
+  { name: "University of Calgary", lat: 51.0767, lng: -114.1327, advisors: 2, region: "usa", rank: 97, logo: "https://logo.clearbit.com/ucalgary.ca" },
+  { name: "Constructor Univ. Bremen", lat: 53.1678, lng: 8.6503, advisors: 4, region: "europe", rank: 98, logo: "https://logo.clearbit.com/constructor.university" },
+  { name: "University of Debrecen", lat: 47.5597, lng: 21.5831, advisors: 2, region: "europe", rank: 99, logo: "https://logo.clearbit.com/unideb.hu" },
+  { name: "Leiden University", lat: 52.1601, lng: 4.497, advisors: 1, region: "europe", rank: 100, logo: "https://logo.clearbit.com/leidenuniv.nl" },
+  { name: "American Univ. in Paris", lat: 48.8566, lng: 2.3104, advisors: 1, region: "europe", rank: 101, logo: "https://logo.clearbit.com/aup.edu" },
+  { name: "Georgian Technical Univ.", lat: 41.7151, lng: 44.8271, advisors: 1, region: "europe", rank: 102, logo: "https://logo.clearbit.com/gtu.ge" },
+  { name: "Novia University", lat: 60.4513, lng: 22.2666, advisors: 1, region: "europe", rank: 103, logo: "https://logo.clearbit.com/novia.fi" },
+  { name: "Hult Business School", lat: 51.5074, lng: -0.1278, advisors: 2, region: "uk", rank: 104, logo: "https://logo.clearbit.com/hult.edu" },
+  { name: "University of Leeds", lat: 53.8067, lng: -1.555, advisors: 1, region: "uk", rank: 105, logo: "https://logo.clearbit.com/leeds.ac.uk" },
+  { name: "Lancaster University", lat: 54.0104, lng: -2.7878, advisors: 1, region: "uk", rank: 106, logo: "https://logo.clearbit.com/lancaster.ac.uk" },
+  { name: "University of Exeter", lat: 50.7352, lng: -3.5335, advisors: 1, region: "uk", rank: 107, logo: "https://logo.clearbit.com/exeter.ac.uk" },
+  { name: "University of Aberdeen", lat: 57.1645, lng: -2.0999, advisors: 1, region: "uk", rank: 108, logo: "https://logo.clearbit.com/abdn.ac.uk" },
+  { name: "Univ. of East London", lat: 51.5074, lng: 0.0553, advisors: 1, region: "uk", rank: 109, logo: "https://logo.clearbit.com/uel.ac.uk" },
+  { name: "University of Sheffield", lat: 53.3811, lng: -1.4701, advisors: 1, region: "uk", rank: 110, logo: "https://logo.clearbit.com/sheffield.ac.uk" },
+  { name: "University of Essex", lat: 51.8783, lng: 0.9408, advisors: 1, region: "uk", rank: 111, logo: "https://logo.clearbit.com/essex.ac.uk" },
+  { name: "African Leadership Univ.", lat: -1.9441, lng: 30.0619, advisors: 3, region: "africa", rank: 112, logo: "https://logo.clearbit.com/alueducation.org" },
+  { name: "University of Cape Town", lat: -33.9575, lng: 18.4612, advisors: 1, region: "africa", rank: 113, logo: "https://logo.clearbit.com/uct.ac.za" },
+  { name: "KNUST", lat: 6.6745, lng: -1.5716, advisors: 1, region: "africa", rank: 114, logo: "https://logo.clearbit.com/knust.edu.gh" },
+  { name: "Pan-Atlantic University", lat: 6.5244, lng: 3.3792, advisors: 1, region: "africa", rank: 115, logo: "https://logo.clearbit.com/pau.edu.ng" },
+  { name: "Ashesi University", lat: 5.7587, lng: -0.22, advisors: 1, region: "africa", rank: 116, logo: "https://logo.clearbit.com/ashesi.edu.gh" },
+  { name: "USIU Africa", lat: -1.2315, lng: 36.8831, advisors: 1, region: "africa", rank: 117, logo: "https://logo.clearbit.com/usiu.ac.ke" },
+  { name: "University of Lusaka", lat: -15.4166, lng: 28.2833, advisors: 1, region: "africa", rank: 118, logo: "https://logo.clearbit.com/unilus.ac.zm" },
+  { name: "Minerva University", lat: 37.7749, lng: -122.4194, advisors: 1, region: "usa", rank: 119, logo: "https://logo.clearbit.com/minerva.edu" },
+  { name: "Universidad EARTH", lat: 10.2147, lng: -83.773, advisors: 1, region: "usa", rank: 120, logo: "https://logo.clearbit.com/earth.ac.cr" },
 ];
-
-/* ── MAP RENDERING ── */
-const VW = 1000, VH = 500;
+/* ── MAP LOGIC ── */
+const VW = 800, VH = 400;
 
 function project(lat, lng) {
-  // Mercator-ish simple projection
-  const x = (lng + 180) * (VW / 360);
-  const latRad = lat * Math.PI / 180;
-  const y = (VH / 2) - (VW * Math.log(Math.tan(Math.PI / 4 + latRad / 2)) / (2 * Math.PI));
-  return { x: Math.round(x * 10) / 10, y: Math.round(Math.max(0, Math.min(VH, y)) * 10) / 10 };
+  // exact projection from original WorldMap component
+  const x = (lng + 180) * (800 / 360);
+  const y = (90 - lat) * (400 / 180);
+  return { x, y };
 }
 
-/* Generate simple dotted world map pattern */
-function buildDottedBg() {
-  const svg = document.getElementById('map-bg');
-  // Simple grid of dots representing land masses (approximate)
-  // We'll use a subtle grid pattern instead of full land data
-  const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
-  const pattern = document.createElementNS('http://www.w3.org/2000/svg', 'pattern');
-  pattern.setAttribute('id', 'dots');
-  pattern.setAttribute('x', '0'); pattern.setAttribute('y', '0');
-  pattern.setAttribute('width', '8'); pattern.setAttribute('height', '8');
-  pattern.setAttribute('patternUnits', 'userSpaceOnUse');
-  const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-  circle.setAttribute('cx', '1.5'); circle.setAttribute('cy', '1.5');
-  circle.setAttribute('r', '1'); circle.setAttribute('fill', 'rgba(28,20,9,0.18)');
-  pattern.appendChild(circle);
-  defs.appendChild(pattern);
-  svg.appendChild(defs);
-  const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-  rect.setAttribute('width', '100%'); rect.setAttribute('height', '100%');
-  rect.setAttribute('fill', 'url(#dots)');
-  svg.appendChild(rect);
-}
+/* Init map image */
+
+
+/* Build pins */
+const pinsSVG = document.getElementById('map-pins');
+const mtt = document.getElementById('mtt');
+const mttName = document.getElementById('mtt-name');
+const mttCount = document.getElementById('mtt-count');
+const mttWord = document.getElementById('mtt-word');
+const mttLogo = document.getElementById('mtt-logo');
+const mttFb = document.getElementById('mtt-fb');
 
 let activeRegion = 'all';
-let activePin = null;
-const pinEls = [];
+let pinData = [];
 
 function buildPins() {
-  const svg = document.getElementById('map-pins');
-  svg.innerHTML = '';
+  pinsSVG.innerHTML = '';
+  pinData = [];
   UNIS.forEach((u, i) => {
     const { x, y } = project(u.lat, u.lng);
     const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-    g.setAttribute('class', 'pin');
-    g.dataset.index = i;
+    g.style.cursor = 'none';
 
-    // Size based on advisor count
-    const r = Math.min(2.5 + u.advisors * 0.5, 6);
-    const gold = 'rgba(201,164,74,1)';
+    // size: 2.5 base + scaled by advisors, max 5.5
+    const r = Math.min(2.5 + Math.sqrt(u.advisors) * 0.8, 5.5);
 
-    // pulse ring
+    // pulse
     const pulse = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    pulse.setAttribute('class', 'pulse');
     pulse.setAttribute('cx', x); pulse.setAttribute('cy', y);
-    pulse.setAttribute('r', r); pulse.setAttribute('fill', gold);
-    pulse.setAttribute('opacity', '0.4');
-    // stagger pulse animation
-    pulse.style.animationDelay = `${(i * 0.18) % 2.6}s`;
+    pulse.setAttribute('r', r); pulse.setAttribute('fill', 'rgba(201,164,74,0.35)');
+    const aR = document.createElementNS('http://www.w3.org/2000/svg', 'animate');
+    aR.setAttribute('attributeName','r'); aR.setAttribute('from', r); aR.setAttribute('to', r * 3.2);
+    aR.setAttribute('dur','2.4s'); aR.setAttribute('begin', `${(i*0.22)%2.4}s`);
+    aR.setAttribute('repeatCount','indefinite');
+    const aO = document.createElementNS('http://www.w3.org/2000/svg', 'animate');
+    aO.setAttribute('attributeName','opacity'); aO.setAttribute('from','0.5'); aO.setAttribute('to','0');
+    aO.setAttribute('dur','2.4s'); aO.setAttribute('begin', `${(i*0.22)%2.4}s`);
+    aO.setAttribute('repeatCount','indefinite');
+    pulse.appendChild(aR); pulse.appendChild(aO);
 
     // core dot
     const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    dot.setAttribute('class', 'dot');
     dot.setAttribute('cx', x); dot.setAttribute('cy', y);
-    dot.setAttribute('r', r); dot.setAttribute('fill', gold);
+    dot.setAttribute('r', r); dot.setAttribute('fill', 'rgba(201,164,74,1)');
+    dot.style.transition = 'r .15s, fill .15s';
 
-    // hit area (larger for clicking)
+    // invisible hit target (large for easy hovering)
     const hit = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
     hit.setAttribute('cx', x); hit.setAttribute('cy', y);
-    hit.setAttribute('r', Math.max(r + 6, 10));
-    hit.setAttribute('fill', 'transparent');
+    hit.setAttribute('r', Math.max(r + 7, 10)); hit.setAttribute('fill', 'transparent');
 
-    g.appendChild(pulse);
-    g.appendChild(dot);
-    g.appendChild(hit);
-    svg.appendChild(g);
-    pinEls.push({ el: g, uni: u, x, y });
+    g.appendChild(pulse); g.appendChild(dot); g.appendChild(hit);
+    pinsSVG.appendChild(g);
+    pinData.push({ el: g, dot, pulse, uni: u, x, y, r });
 
-    g.addEventListener('mouseenter', () => showTooltip(i));
-    g.addEventListener('mouseleave', hideTooltip);
-    g.addEventListener('click', () => highlightUni(i));
+    g.addEventListener('mouseenter', () => showTT(i));
+    g.addEventListener('mouseleave', hideTT);
+    g.addEventListener('click', () => flashCard(i));
   });
 }
 
-const tooltip = document.getElementById('map-tooltip');
-const ttLoc = document.getElementById('tt-loc');
-const ttName = document.getElementById('tt-name');
-const ttCount = document.getElementById('tt-count');
-const ttLabel = document.getElementById('tt-label');
-
-function showTooltip(idx) {
-  const { uni, x, y } = pinEls[idx];
-  const wrap = document.getElementById('map-wrap');
-  const rect = wrap.getBoundingClientRect();
-  const svgEl = document.getElementById('map-pins');
-  const svgRect = svgEl.getBoundingClientRect();
-
-  // Convert SVG coords to pixel coords
-  const scaleX = svgRect.width / VW;
-  const scaleY = svgRect.height / VH;
-  const px = x * scaleX;
-  const py = y * scaleY;
-
-  ttLoc.textContent = uni.location;
-  ttName.textContent = uni.name;
-  ttCount.textContent = uni.advisors;
-  ttLabel.textContent = uni.advisors === 1 ? 'advisor' : 'advisors';
-
-  // position above the pin
-  tooltip.style.left = (px - 100) + 'px';
-  tooltip.style.top = (py - 90) + 'px';
-  tooltip.classList.add('show');
+function svgToPage(svgX, svgY) {
+  const rect = pinsSVG.getBoundingClientRect();
+  return {
+    px: rect.left + (svgX / VW) * rect.width,
+    py: rect.top + (svgY / VH) * rect.height,
+  };
 }
 
-function hideTooltip() {
-  tooltip.classList.remove('show');
+function showTT(i) {
+  const { uni, x, y, r } = pinData[i];
+  mttName.textContent = uni.name;
+  mttCount.textContent = uni.advisors;
+  mttWord.textContent = uni.advisors === 1 ? 'advisor' : 'advisors';
+
+  // logo
+  mttFb.textContent = '';
+  mttLogo.innerHTML = '';
+  const img = document.createElement('img');
+  img.src = uni.logo;
+  img.alt = uni.name;
+  img.onerror = () => {
+    img.remove();
+    mttLogo.innerHTML = `<span class="mtt-logo-fb">${uni.name[0]}</span>`;
+  };
+  mttLogo.appendChild(img);
+
+  // position: above the pin, left-anchored at pin
+  const outer = document.getElementById('map-outer');
+  const outerRect = outer.getBoundingClientRect();
+  const svgRect = pinsSVG.getBoundingClientRect();
+  const px = (x / VW) * svgRect.width + (svgRect.left - outerRect.left);
+  const py = (y / VH) * svgRect.height + (svgRect.top - outerRect.top);
+
+  mtt.style.left = Math.max(8, Math.min(px - 20, outer.clientWidth - 240)) + 'px';
+  mtt.style.top = (py - 82) + 'px';
+  mtt.classList.add('on');
 }
 
-function highlightUni(idx) {
-  // highlight the row in the list
-  document.querySelectorAll('.uni-row').forEach(r => r.classList.remove('highlight'));
-  const row = document.getElementById(`urow-${idx}`);
-  if (row) {
-    row.classList.add('highlight');
-    row.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }
-  // flash pin
-  pinEls.forEach(p => p.el.classList.remove('active'));
-  pinEls[idx].el.classList.add('active');
-  setTimeout(() => pinEls[idx].el.classList.remove('active'), 1800);
+function hideTT() { mtt.classList.remove('on'); }
+
+function flashCard(i) {
+  // highlight grid card
+  document.querySelectorAll('.uni-card').forEach(c => c.classList.remove('hl'));
+  const card = document.getElementById(`uc-${i}`);
+  if (card) { card.classList.add('hl'); card.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+  // briefly enlarge pin
+  const { dot, r } = pinData[i];
+  dot.setAttribute('r', r * 2.2); dot.setAttribute('fill', 'rgba(160,98,74,1)');
+  setTimeout(() => { dot.setAttribute('r', r); dot.setAttribute('fill', 'rgba(201,164,74,1)'); }, 900);
 }
 
-function filterRegion(region) {
+/* region filter */
+function applyFilter(region) {
   activeRegion = region;
-  pinEls.forEach(({ el, uni }) => {
+  pinData.forEach(({ el, dot, pulse, uni, r }) => {
     const show = region === 'all' || uni.region === region;
-    el.style.opacity = show ? '1' : '0.1';
+    el.style.opacity = show ? '1' : '0.07';
     el.style.pointerEvents = show ? 'auto' : 'none';
   });
-  document.querySelectorAll('.uni-row').forEach(row => {
-    const r = row.dataset.region;
-    row.style.display = (region === 'all' || r === region) ? 'flex' : 'none';
+  document.querySelectorAll('.uni-card').forEach(c => {
+    const show = region === 'all' || c.dataset.region === region;
+    c.style.display = show ? 'flex' : 'none';
   });
 }
 
-/* Build the uni list below the map */
-function buildUniList() {
-  const list = document.getElementById('uni-list');
-  const sorted = [...UNIS].sort((a, b) => b.advisors - a.advisors || a.name.localeCompare(b.name));
-  sorted.forEach((u, si) => {
-    // find original index for highlight linking
-    const origIdx = UNIS.indexOf(u);
-    const row = document.createElement('div');
-    row.className = 'uni-row';
-    row.id = `urow-${origIdx}`;
-    row.dataset.region = u.region;
-    row.innerHTML = `
-      <div class="uni-dot"></div>
-      <div class="uni-row-name">${u.name}<br><span style="font-size:11px;color:var(--ink-3);letter-spacing:.04em;">${u.location}</span></div>
-      <div class="uni-row-count">${u.advisors}</div>
-    `;
-    row.addEventListener('click', () => highlightUni(origIdx));
-    list.appendChild(row);
-  });
-}
-
-/* Region tabs */
 document.querySelectorAll('.rtab').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.rtab').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    filterRegion(btn.dataset.region);
+    applyFilter(btn.dataset.r);
   });
 });
 
-/* Init */
-buildDottedBg();
+/* build uni grid with logos */
+function buildGrid() {
+  const grid = document.getElementById('uni-grid');
+  UNIS.forEach((u, i) => {
+    const card = document.createElement('div');
+    card.className = 'uni-card';
+    card.id = `uc-${i}`;
+    card.dataset.region = u.region;
+
+    const logoDiv = document.createElement('div');
+    logoDiv.className = 'uni-logo';
+    const img = document.createElement('img');
+    img.src = u.logo; img.alt = u.name;
+    img.onerror = () => { img.remove(); logoDiv.innerHTML = `<span class="uni-logo-fb">${u.name[0]}</span>`; };
+    logoDiv.appendChild(img);
+
+    const info = document.createElement('div');
+    info.className = 'uni-info';
+    info.innerHTML = `<div class="uni-name">${u.name}</div>`;
+
+    const adv = document.createElement('div');
+    adv.className = 'uni-adv';
+    adv.textContent = u.advisors;
+
+    card.appendChild(logoDiv);
+    card.appendChild(info);
+    card.appendChild(adv);
+    card.addEventListener('click', () => flashCard(i));
+    grid.appendChild(card);
+  });
+}
+
 buildPins();
-buildUniList();
+buildGrid();
 </script>
 
 <script src="js/pixel-trail.js"></script>
