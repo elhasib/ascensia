@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="/favicon.png">
 <title>Advisors | Ascensia</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -396,13 +397,39 @@ const UNIS = [
   { name: "Minerva University", lat: 37.7749, lng: -122.4194, advisors: 1, region: "usa", rank: 119, logo: "https://logo.clearbit.com/minerva.edu" },
   { name: "Universidad EARTH", lat: 10.2147, lng: -83.773, advisors: 1, region: "usa", rank: 120, logo: "https://logo.clearbit.com/earth.ac.cr" },
 ];
+/* ── LOGO LOADING ── */
+function logoSources(url) {
+  const domain = url.replace('https://logo.clearbit.com/', '');
+  return [
+    url,
+    `https://www.google.com/s2/favicons?sz=64&domain=${domain}`,
+    `https://logo.clearbit.com/${domain}?size=64`,
+  ];
+}
+
+function loadLogoWithFallback(imgEl, fallbackEl, url, fallbackLetter) {
+  const sources = logoSources(url);
+  let attempt = 0;
+  function tryNext() {
+    if (attempt >= sources.length) {
+      imgEl.remove();
+      fallbackEl.innerHTML = `<span class="mtt-logo-fb">${fallbackLetter}</span>`;
+      return;
+    }
+    imgEl.src = sources[attempt++];
+  }
+  imgEl.onerror = tryNext;
+  tryNext();
+}
+
 /* ── MAP LOGIC ── */
 const VW = 800, VH = 400;
 
 function project(lat, lng) {
-  // exact projection from original WorldMap component
-  const x = (lng + 180) * (800 / 360);
-  const y = (90 - lat) * (400 / 180);
+  // Empirically fitted to match the dotted-map SVG coordinate system (198x100 natural earth, scaled to 800x400)
+  const x = (lng + 180) * 2.21419 + 0.2962;
+  const d = 90 - lat;
+  const y = d * 2.13556 + d * d * 0.00065116 - 7.8732;
   return { x, y };
 }
 
@@ -485,13 +512,9 @@ function showTT(i) {
   mttFb.textContent = '';
   mttLogo.innerHTML = '';
   const img = document.createElement('img');
-  img.src = uni.logo;
   img.alt = uni.name;
-  img.onerror = () => {
-    img.remove();
-    mttLogo.innerHTML = `<span class="mtt-logo-fb">${uni.name[0]}</span>`;
-  };
   mttLogo.appendChild(img);
+  loadLogoWithFallback(img, mttLogo, uni.logo, uni.name[0]);
 
   // position: above the pin, left-anchored at pin
   const outer = document.getElementById('map-outer');
@@ -552,9 +575,9 @@ function buildGrid() {
     const logoDiv = document.createElement('div');
     logoDiv.className = 'uni-logo';
     const img = document.createElement('img');
-    img.src = u.logo; img.alt = u.name;
-    img.onerror = () => { img.remove(); logoDiv.innerHTML = `<span class="uni-logo-fb">${u.name[0]}</span>`; };
+    img.alt = u.name;
     logoDiv.appendChild(img);
+    loadLogoWithFallback(img, logoDiv, u.logo, u.name[0]);
 
     const info = document.createElement('div');
     info.className = 'uni-info';
