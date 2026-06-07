@@ -23,7 +23,6 @@
 .story-body em{font-style:italic;color:var(--gold-dim);}
 .story-body:last-of-type{margin-bottom:0;}
 
-/* values grid */
 .values-grid{
   display:grid;grid-template-columns:repeat(4,1fr);
   gap:1px;background:rgba(28,20,9,.07);
@@ -50,15 +49,11 @@
   line-height:1.8;color:var(--ink-2);
 }
 
-
-
 @media(max-width:860px){
   .values-grid{grid-template-columns:1fr 1fr;}
-  .team-grid-3{grid-template-columns:1fr 1fr;}
 }
 @media(max-width:520px){
   .values-grid{grid-template-columns:1fr;}
-  .team-grid-3{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -67,19 +62,8 @@
 <div id="cur-r"></div>
 
 <div class="page-wrap">
-
-  <!--
-    BLOB GRADIENTS — artistic direction:
-    Grad_01 (blue/pink blob) top-right at .10 opacity.
-    Grad_14 (yellow/purple) bottom-left at .08 opacity.
-    Rotate Grad_01 about 20deg so it half-bleeds off the right edge.
-  -->
-  <div class="blob blob-1">
-    <!-- <img src="images/gradients/Grad_01.png" alt=""> -->
-  </div>
-  <div class="blob blob-2">
-    <!-- <img src="images/gradients/Grad_14.png" alt=""> -->
-  </div>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
 
   <div class="sheet">
     <nav class="nav">
@@ -91,6 +75,7 @@
       </a>
       <ul class="nav-links">
         <li><a href="program.html">Program</a></li>
+        <li><a href="advisors.html">Advisors</a></li>
         <li><a href="about.html" class="active">About</a></li>
         <li><a href="mailto:team@ascensia.foundation" class="nav-cta">Get in touch</a></li>
       </ul>
@@ -116,14 +101,6 @@
       <p class="eyebrow r">Our story</p>
       <h2 class="section-h r r-d1">Why we built this.</h2>
 
-      <!--
-        ILLUSTRATION ZONE — "the origin story"
-        Artistic direction: a small figure alone at a desk, surrounded by question marks
-        or closed doors, contrasted with an open window or a hand reaching through.
-        Conveys the feeling of navigating something without a guide.
-        Keep it sparse and ink-only. Could be two panels side by side.
-        Suggested size: short square pair, or a wide 700×160px banner.
-      -->
       <div class="illus-zone" style="padding:0;margin:32px 0;">
         <div class="illus-box wide r" data-label="Illustration — alone at the desk / question marks / no guide"></div>
       </div>
@@ -154,7 +131,7 @@
         <div class="value-card">
           <div class="value-letter">R</div>
           <div class="value-title">Rigor</div>
-          <p class="value-desc">We hold our students to a high standard, because the universities we prepare them for do the same. Warmth and rigor are not in conflict.</p>
+          <p class="value-desc">We hold our curriculum, mentors, and students to a high standard, because the universities we prepare them for do the same. Warmth and rigor are not in conflict.</p>
         </div>
         <div class="value-card">
           <div class="value-letter">H</div>
@@ -235,8 +212,9 @@
           </div>
         </div>
       </div>
-        <div class="team-tagline r">
-        <p>"We built the program we needed and did not have."</p>
+
+      <div class="team-tagline r" style="margin-top:52px;padding:32px 0;border-top:var(--rule);">
+        <p style="font-family:var(--serif);font-size:clamp(18px,2.5vw,26px);font-weight:400;color:var(--ink-3);font-style:italic;">"We built the program we needed and did not have."</p>
       </div>
     </section>
 
@@ -248,6 +226,7 @@
       <nav class="closing-nav r r-d2">
         <a href="index.html">Home</a>
         <a href="program.html">Program</a>
+        <a href="advisors.html">Advisors</a>
       </nav>
       <p class="closing-copy">&copy; 2026 Ascensia. Nonprofit. All rights reserved.</p>
     </section>

@@ -16,7 +16,6 @@
 <style>
 /* ── PROGRAM-SPECIFIC ── */
 
-/* track cards */
 .tracks-wrap{
   overflow-x:auto;scrollbar-width:none;
   padding:0 var(--sheet-pad) 8px;
@@ -54,7 +53,6 @@
   line-height:1.72;color:var(--ink-3);
 }
 
-/* timeline */
 .timeline{position:relative;padding-left:0;}
 .tl-item{
   display:grid;grid-template-columns:80px 1fr;
@@ -83,7 +81,6 @@
   border:.5px solid rgba(201,164,74,.2);
 }
 
-/* who-grid */
 .who-grid{
   display:grid;grid-template-columns:1fr 1fr;
   gap:2px;background:rgba(28,20,9,.07);
@@ -119,19 +116,8 @@
 <div id="cur-r"></div>
 
 <div class="page-wrap">
-
-  <!--
-    BLOB GRADIENTS — artistic direction:
-    Grad_15 (blue/purple) floating top-right at .11 opacity.
-    Grad_17 (teal/blue crescent) bottom-left at .08 opacity.
-    Let them drift off the page edges — they're ambient, not focal.
-  -->
-  <div class="blob blob-1">
-    <!-- <img src="images/gradients/Grad_15.png" alt=""> -->
-  </div>
-  <div class="blob blob-2">
-    <!-- <img src="images/gradients/Grad_17.png" alt=""> -->
-  </div>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
 
   <div class="sheet">
     <nav class="nav">
@@ -143,6 +129,7 @@
       </a>
       <ul class="nav-links">
         <li><a href="program.html" class="active">Program</a></li>
+        <li><a href="advisors.html">Advisors</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="mailto:team@ascensia.foundation" class="nav-cta">Get in touch</a></li>
       </ul>
@@ -177,14 +164,6 @@
 
     <div class="rule"></div>
 
-    <!--
-      ILLUSTRATION ZONE — "the 4 pillars"
-      Artistic direction: four small hand-drawn icons in a loose row,
-      one for each pillar: a book (curriculum), two figures (mentorship),
-      a pen/paper (application), a circle of dots (community).
-      Rough, sketch-like. No fill, just ink lines. Spaced generously.
-      Suggested size: banner, 700×130px.
-    -->
     <div class="illus-zone">
       <div class="illus-box short r" data-label="Illustration — four pillars (curriculum / mentorship / support / community)"></div>
     </div>
@@ -292,13 +271,6 @@
       </div>
     </section>
 
-    <!--
-      ILLUSTRATION ZONE — "open door / eligibility"
-      Artistic direction: a simple hand-drawn open gate or doorway,
-      with a gentle path leading toward it. Minimal line art.
-      Could include a small figure walking through.
-      Suggested size: short banner, 700×140px.
-    -->
     <div class="illus-zone">
       <div class="illus-box short r" data-label="Illustration — open door / eligibility / welcome"></div>
     </div>
@@ -310,6 +282,7 @@
       <p class="closing-note r r-d1">Applications open soon.</p>
       <nav class="closing-nav r r-d2">
         <a href="index.html">Home</a>
+        <a href="advisors.html">Advisors</a>
         <a href="about.html">About</a>
       </nav>
       <p class="closing-copy">&copy; 2026 Ascensia. Nonprofit. All rights reserved.</p>
@@ -329,7 +302,6 @@
 <script src="js/cursor.js"></script>
 <script src="js/scroll.js"></script>
 <script>
-/* drag scroll on tracks */
 (function(){
   const el=document.querySelector('.tracks-wrap');
   if(!el)return;
