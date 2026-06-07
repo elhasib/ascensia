@@ -11,10 +11,12 @@
   /* The floating sheet */
   --sheet-bg:     #FAF6EF;
   --sheet-bg-alt: #F5F0E8;
-  --sheet-radius: 20px;
-  --sheet-shadow: 0 2px 4px rgba(60,38,10,.04), 0 8px 32px rgba(60,38,10,.08), 0 32px 80px rgba(60,38,10,.10);
-  --sheet-max:    940px;
-  --sheet-pad:    clamp(40px, 6vw, 72px);
+  --sheet-radius: 18px;
+  --sheet-shadow: 0 2px 4px rgba(60,38,10,.03), 0 8px 28px rgba(60,38,10,.07), 0 28px 72px rgba(60,38,10,.09);
+  --sheet-max:    1100px;
+  --sheet-pad:    clamp(36px, 5.5vw, 80px);
+  --sheet-glass:  rgba(250,246,239,.80);
+  --sheet-blur:   20px;
 
   /* Ink */
   --ink:          #1C1409;
@@ -33,9 +35,9 @@
   --rose-wash:    rgba(160,98,74,.14);
 
   /* Typography */
-  --serif:        'DM Serif Display', Georgia, serif;
-  --sans:         'Jost', system-ui, sans-serif;
-  --body:         'Lora', Georgia, serif;
+  --serif:        'Fraunces', Georgia, serif;
+  --sans:         'Plus Jakarta Sans', system-ui, sans-serif;
+  --body:         'Plus Jakarta Sans', system-ui, sans-serif;
 
   /* Spacing */
   --sp-xs:  8px;

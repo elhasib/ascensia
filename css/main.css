@@ -49,15 +49,19 @@
   position:relative;z-index:10;
   max-width:var(--sheet-max);
   margin:0 auto;
-  background:var(--sheet-bg);
+  background:var(--sheet-glass);
+  backdrop-filter:blur(var(--sheet-blur));
+  -webkit-backdrop-filter:blur(var(--sheet-blur));
   border-radius:var(--sheet-radius);
   box-shadow:var(--sheet-shadow);
   overflow:hidden;
+  /* fade at left/right edges so animation bleeds through softly */
+  -webkit-mask-image:linear-gradient(to right,rgba(0,0,0,.7) 0%,rgba(0,0,0,1) 6%,rgba(0,0,0,1) 94%,rgba(0,0,0,.7) 100%);
+  mask-image:linear-gradient(to right,rgba(0,0,0,.7) 0%,rgba(0,0,0,1) 6%,rgba(0,0,0,1) 94%,rgba(0,0,0,.7) 100%);
 
   /* paper grain on the sheet */
   background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='.025'/%3E%3C/svg%3E"),
-    linear-gradient(160deg,#FAF6EF 0%,#F5EFE5 55%,#EFE8DA 100%);
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='.025'/%3E%3C/svg%3E");
 }
 
 /* ── SECTION PADDING ── */
