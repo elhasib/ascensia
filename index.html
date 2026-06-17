@@ -441,18 +441,26 @@ function doSignup(e){
   e.preventDefault();
   const form = e.target;
   const data = new FormData(form);
+  const successMsg = document.getElementById('ok-closing'); // ← fixed ID
+
   fetch(form.action, {
     method: 'POST',
     body: data,
     headers: { 'Accept': 'application/json' }
-  }).then(r => {
+  })
+  .then(r => {
     if (r.ok) {
       form.style.display = 'none';
-      document.getElementById('ok').style.display = 'block';
+      successMsg.style.display = 'block';
+    } else {
+      // optional: show an error state
+      successMsg.textContent = 'Something went wrong. Please try again.';
+      successMsg.style.display = 'block';
     }
-  }).catch(() => {
-    form.style.display = 'none';
-    document.getElementById('ok').style.display = 'block';
+  })
+  .catch(() => {
+    successMsg.textContent = 'Network error. Please check your connection.';
+    successMsg.style.display = 'block';
   });
 }
 </script>
