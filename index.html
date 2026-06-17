@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Ascensia is a free admissions preparation program built by people who went through the same process without a guide.">
+<meta name="description" content="Ascensia is a free admissions preparation program for students who are ready for the world's top universities.">
 <title>Ascensia</title>
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,11 +13,11 @@
 <link rel="stylesheet" href="css/nav.css">
 <link rel="stylesheet" href="css/animations.css">
 <link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/svg-decorations.css">
 <style>
 /* ── INDEX-SPECIFIC ── */
 
-/* hero */
-.hero{padding:80px var(--sheet-pad) 72px;border-bottom:var(--rule);}
+.hero{padding:80px var(--sheet-pad) 72px;border-bottom:var(--rule);position:relative;overflow:hidden;}
 .hero-tag{
   font-family:var(--sans);font-size:10px;font-weight:400;
   letter-spacing:.36em;text-transform:uppercase;color:rgba(28,20,9,.32);
@@ -31,43 +31,59 @@
 }
 .hero-sub{
   font-size:18px;font-weight:400;line-height:1.8;
-  color:var(--ink-2);max-width:440px;margin-bottom:52px;
+  color:var(--ink-2);max-width:460px;margin-bottom:52px;
   opacity:0;animation:fadeUp .8s .9s both;
 }
 
-/* interest form */
-.interest-form{opacity:0;animation:fadeUp .8s 1.1s both;}
-.interest-form form{
-  display:flex;max-width:400px;
+/* cta row */
+.hero-ctas{
+  display:flex;flex-wrap:wrap;gap:12px;align-items:center;
+  opacity:0;animation:fadeUp .8s 1.1s both;
+  margin-bottom:40px;
+}
+.btn-gold{
+  background:var(--gold);color:#fff;
+  font-family:var(--sans);font-size:10px;font-weight:500;
+  letter-spacing:.2em;text-transform:uppercase;
+  padding:14px 36px;border-radius:3px;cursor:none;
+  transition:transform .3s var(--ease),box-shadow .3s,background .2s;
+  display:inline-block;
+}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,164,74,.35);background:#b8922e;}
+.btn-ghost{
+  background:transparent;color:var(--ink-3);
+  font-family:var(--sans);font-size:10px;font-weight:400;
+  letter-spacing:.2em;text-transform:uppercase;
+  padding:14px 28px;border-radius:3px;cursor:none;
+  border:var(--rule);transition:color .2s,background .2s;
+  display:inline-block;
+}
+.btn-ghost:hover{color:var(--ink);background:var(--ink-faint);}
+
+/* mailing list */
+.mailing-row{opacity:0;animation:fadeUp .8s 1.25s both;display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.mailing-form{
+  display:flex;max-width:360px;
   border:var(--rule);border-radius:4px;overflow:hidden;
   background:#fff;transition:border-color .2s,box-shadow .2s;
 }
-.interest-form form:focus-within{
-  border-color:var(--gold);
-  box-shadow:0 0 0 3px var(--gold-faint);
-}
-.interest-form input{
-  flex:1;padding:14px 18px;
-  font-family:var(--sans);font-size:14px;font-weight:300;
+.mailing-form:focus-within{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-faint);}
+.mailing-form input{
+  flex:1;padding:12px 16px;
+  font-family:var(--sans);font-size:13px;font-weight:300;
   color:var(--ink);background:transparent;border:none;outline:none;
 }
-.interest-form input::placeholder{color:var(--ink-3);}
-.interest-form button{
-  padding:14px 22px;
-  font-family:var(--sans);font-size:10px;font-weight:500;
+.mailing-form input::placeholder{color:var(--ink-3);}
+.mailing-form button{
+  padding:12px 18px;
+  font-family:var(--sans);font-size:9px;font-weight:500;
   letter-spacing:.2em;text-transform:uppercase;
   color:var(--sheet-bg);background:var(--ink);
-  border:none;cursor:none;transition:background .2s;
+  border:none;cursor:none;transition:background .2s;white-space:nowrap;
 }
-.interest-form button:hover{background:#2E2210;}
-.form-note{
-  margin-top:10px;font-family:var(--sans);
-  font-size:11px;font-weight:300;letter-spacing:.04em;color:var(--ink-3);
-}
-.form-ok{
-  display:none;font-family:var(--sans);
-  font-size:13px;color:var(--rose);padding:14px 0;
-}
+.mailing-form button:hover{background:#2E2210;}
+.mailing-note{font-family:var(--sans);font-size:11px;font-weight:300;color:var(--ink-3);}
+.form-ok{display:none;font-family:var(--sans);font-size:13px;color:var(--rose);padding:12px 0;}
 
 /* about body */
 .about-body{
@@ -75,8 +91,81 @@
   color:var(--ink-2);margin-bottom:20px;
 }
 
-/* nav scrolled state (index only — sheet has no separate bg) */
+/* pillars */
+.pillars-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1px;background:rgba(28,20,9,.07);
+  margin-top:44px;
+}
+.pillar-card{
+  background:var(--sheet-bg);padding:40px 32px;
+  position:relative;overflow:hidden;
+  transition:background .3s;
+}
+.pillar-card:hover{background:var(--sheet-bg-alt);}
+.pillar-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1.5px;
+  background:var(--gold);transform:scaleX(0);transform-origin:left;
+  transition:transform .5s var(--ease);
+}
+.pillar-card:hover::before{transform:scaleX(1);}
+.pillar-num{
+  font-family:var(--serif);font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;color:rgba(28,20,9,.18);margin-bottom:20px;
+}
+.pillar-title{
+  font-family:var(--serif);font-size:clamp(19px,2.5vw,24px);font-weight:400;
+  color:var(--ink);margin-bottom:12px;line-height:1.2;
+}
+.pillar-body{
+  font-family:var(--sans);font-size:14px;font-weight:300;
+  line-height:1.82;color:var(--ink-2);
+}
+.pillar-link{
+  display:inline-flex;align-items:center;gap:6px;
+  margin-top:16px;font-family:var(--sans);font-size:10px;font-weight:400;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--gold-dim);
+  transition:gap .2s;cursor:none;
+}
+.pillar-link:hover{gap:10px;}
+.pillar-link::after{content:'→';}
+
+/* advisors strip */
+.advisor-strip{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:36px var(--sheet-pad);background:var(--sheet-bg-alt);
+  border-top:var(--rule);border-bottom:var(--rule);
+  gap:32px;flex-wrap:wrap;
+}
+.advisor-strip-stat{display:flex;align-items:baseline;gap:10px;}
+.advisor-strip-n{
+  font-family:var(--serif);font-size:clamp(36px,5vw,52px);font-weight:400;
+  letter-spacing:-.03em;color:var(--ink);
+}
+.advisor-strip-l{
+  font-family:var(--sans);font-size:12px;font-weight:300;
+  color:var(--ink-3);max-width:160px;line-height:1.5;
+}
+
+/* team teaser */
+.team-teaser{
+  padding:clamp(56px,7vw,84px) var(--sheet-pad);
+  background:linear-gradient(to bottom,var(--sheet-bg),var(--sheet-bg-alt));
+  border-top:var(--rule);
+  position:relative;overflow:hidden;
+}
+
+/* nav scrolled */
 .nav.scrolled{border-bottom-color:rgba(201,164,74,.14);}
+
+@media(max-width:860px){
+  .pillars-grid{grid-template-columns:1fr;}
+}
+@media(max-width:600px){
+  .hero-ctas{flex-direction:column;align-items:flex-start;}
+  .mailing-row{flex-direction:column;align-items:flex-start;}
+  .advisor-strip{flex-direction:column;gap:20px;}
+}
 </style>
 </head>
 <body>
@@ -84,27 +173,13 @@
 <div id="cur-r"></div>
 
 <div class="page-wrap">
-
-  <!--
-    BLOB GRADIENTS — artistic direction:
-    Place 2 of your Grad PNGs here. They float behind the sheet at low opacity.
-    Recommended: Grad_14 (warm yellow/purple) top-right, Grad_03 (orange/purple) bottom-left.
-    Opacity is controlled in main.css (.blob-1: .13, .blob-2: .09).
-    Keep them large and half-cropped at the page edge for that ambient-light feel.
-  -->
-  <div class="blob blob-1">
-    <!-- <img src="images/gradients/Grad_14.png" alt=""> -->
-  </div>
-  <div class="blob blob-2">
-    <!-- <img src="images/gradients/Grad_03.png" alt=""> -->
-  </div>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
 
   <div class="sheet">
     <nav class="nav">
       <a href="index.html" class="nav-logo">
-        <div class="nav-logo-mark">
-          <span></span><span></span><span></span><span></span>
-        </div>
+        <div class="nav-logo-mark"><span></span><span></span><span></span><span></span></div>
         Ascensia
       </a>
       <ul class="nav-links">
@@ -113,218 +188,214 @@
         <li><a href="about.html">About</a></li>
         <li><a href="mailto:team@ascensia.foundation" class="nav-cta">Get in touch</a></li>
       </ul>
-      <button class="nav-burger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
     </nav>
 
     <!-- HERO -->
     <section class="hero">
-      <p class="hero-tag">Cohort I · 2026</p>
+      <!-- deco: faint spiral top-right -->
+      <div class="deco sz-xxl a-spin-r-slow op-vf" style="top:-30px;right:-60px;pointer-events:none;">
+        <img src="assets/HandDrawn/09_Spirals/Spiral%202.svg" alt="" aria-hidden="true">
+      </div>
+      <!-- deco: small sprinkle near headline -->
+      <div class="deco sz-sm a-float-slow op-m r-n10 delay-3" style="top:64px;right:clamp(120px,18vw,280px);pointer-events:none;">
+        <img src="assets/HandDrawn/10_Sprinkles/Sprinkle%203.svg" alt="" aria-hidden="true">
+      </div>
+
+      
       <h1>
-        <span class="hero-line"><span>The gap is not</span></span>
-        <span class="hero-line"><span><span class="mk">talent.</span></span></span>
-        <span class="hero-line"><span>It is information.</span></span>
+        <span class="hero-line"><span>Talent is universal.</span></span>
+        <span class="hero-line"><span><span class="mk">Opportunity is not.</span>
+        <!-- <span class="hero-line"><span>Not yet.</span></span> -->
       </h1>
       <p class="hero-sub">
-        A free admissions preparation program for students from underserved regions, built by people who went through the same process without a guide.
+        Ascensia is a free admissions program for students who are ready for the world's top universities. Fellowship spots are limited. Applications are open.
       </p>
-      <div class="interest-form">
-        <form onsubmit="doSignup(event)">
-          <input id="email-in" type="email" placeholder="your@email.com" required>
-          <button type="submit">Express interest</button>
-        </form>
-        <p id="ok" class="form-ok">Got it; we'll be in touch.</p>
-        <p class="form-note">No commitment. We'll reach out when applications open.</p>
+
+      <div class="hero-ctas">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfr8SFoyS2i_I8z2vsLQq4CiEXCLO1sGfCweQ2VDV7r_1DvnQ/viewform?usp=dialog" target="_blank" rel="noopener" class="btn btn-gold">Apply as a Fellow</a>
+        <a href="https://forms.gle/YOUR_ADVISOR_FORM" target="_blank" rel="noopener" class="btn-ghost">Join as an Advisor</a>
       </div>
+
+      <div class="mailing-row">
+  <form class="mailing-form" action="https://formsubmit.co/team@ascensia.foundation" method="POST" onsubmit="doSignup(event)">
+    <input type="email" name="email" placeholder="your@email.com" required>
+    <button type="submit">Stay updated</button>
+    
+    <!-- Optional: Disable CAPTCHA for smoother signup -->
+    <input type="hidden" name="_captcha" value="false">
+    
+    <!-- Optional: Redirect to a specific 'Thank You' page instead of default -->
+    <!-- <input type="hidden" name="_next" value="https://yourdomain.com/thanks.html"> -->
+    
+    <!-- Optional: Set email subject -->
+    <input type="hidden" name="_subject" value="New Subscriber!">
+  </form>
+  <p id="ok" class="form-ok">Got it. We'll be in touch.</p>
+  <p class="mailing-note">No commitment. We'll reach out when we have something worth saying.</p>
+</div>   
     </section>
 
     <div class="rule-warm"></div>
 
-    <!--
-      ILLUSTRATION ZONE 1 — "the open door / journey begins"
-      Artistic direction: a hand-drawn illustration of a figure at a threshold,
-      or a winding path with a destination. Sparse, linework-only style.
-      Warm ink color (#1C1409) on transparent/cream background.
-      Suggested size: wide banner, roughly 700×200px.
-    -->
-    <div class="illus-zone">
-      <div class="illus-box wide r"0></div>
-    </div>
+    <!-- WHAT THIS IS -->
+    <section class="pad" style="position:relative;overflow:hidden;">
+      <!-- deco: underline near the heading -->
+      <div class="deco sz-xl a-draw-slow op-m delay-1" style="top:80px;left:var(--sheet-pad);pointer-events:none;">
+        <img src="assets/HandDrawn/02_Underlines/Underline%203.svg" alt="" aria-hidden="true">
+      </div>
+      <!-- deco: blob background faint -->
+      <div class="deco sz-xxl a-breathe-slow op-vf" style="bottom:-40px;right:-20px;pointer-events:none;">
+        <img src="assets/HandDrawn/04_Blobs/Blob%204.svg" alt="" aria-hidden="true">
+      </div>
 
-    <div class="rule-warm"></div>
-
-    <!-- ABOUT -->
-    <section class="pad">
       <p class="eyebrow r">What this is</p>
       <h2 class="section-h r r-d1">
-        The gap is not talent.<br>It is access.
+        The gap is not ability.<br>It is information and access.
       </h2>
-      <!-- PHILOSOPHY STATEMENT -->
       <p class="about-body r r-d2">
-        Every year, thousands of students from underserved regions finish at the top of their class — academically ready, full of drive — and never reach the universities that would have taken them, covered their costs, and changed the arc of their lives. Not because they weren't strong enough. Because the information, the networks, and the preparation required to navigate this system were never distributed equally.
+        Thousands of students finish at the top of their class every year with everything it takes to get into the world's leading universities. Many of them never apply, not out of indifference, but because the process is genuinely opaque without a network that has been through it. Ascensia is the attempt to close that gap, not by lowering any bar, but by making the system legible to the people it was not designed to serve.
       </p>
       <p class="about-body r r-d3">
-        We believe access to social-mobility institutions should be determined by your potential and your work, not by where you were born or who happened to be around you. That is not a radical idea. It is just currently untrue for most of the world. Ascensia exists to make it a little more true, one cohort at a time.
-      </p>
-      <p class="about-body r r-d4" style="font-style:italic;color:var(--ink-3);font-size:16px;border-left:2px solid var(--gold-wash);padding-left:20px;margin-top:28px;">
-        "Knowledge about this process is open. The doors should be too."
+        The program is free. The curriculum, the mentorship, the network, and the tools are all included. What we ask for in return is seriousness of purpose and the willingness to give back when you get through.
       </p>
 
-      <div class="stats-row r r-d4">
+      <div class="stats-row r r-d4" style="margin-top:44px;">
         <div class="stat-cell">
           <div class="stat-n">87%</div>
-          <div class="stat-l">of surveyed students had no college counselor</div>
+          <div class="stat-l">of surveyed students had no college counselor of any kind</div>
         </div>
         <div class="stat-cell">
-          <div class="stat-n">74%</div>
-          <div class="stat-l">had never spoken to anyone at a target university</div>
+          <div class="stat-n">160+</div>
+          <div class="stat-l">universities represented in our advisors network</div>
         </div>
         <div class="stat-cell">
-          <div class="stat-n">8+</div>
-          <div class="stat-l">Universities that meet 100% of demonstrated financial need for internationals</div>
+          <div class="stat-n">1:1</div>
+          <div class="stat-l">mentor-to-fellow ratio, matched before day one</div>
         </div>
-      </div>
-
-      <div class="pullquote r">
-        <p class="pullquote-text">
-          "We came to the conclusion that we weren't reaching all the talented students who might think of us as an opportunity."
-        </p>
-        <p class="pullquote-attr">Harvard Griffin Director of Financial Aid, 2018</p>
       </div>
     </section>
 
-    <!--
-      ILLUSTRATION ZONE 2 — "the network / mentor connection"
-      Artistic direction: a loose constellation of small figures connected by
-      hand-drawn dashed lines. Think physical, not digital — like a sketch on a whiteboard.
-      One figure slightly larger or different (the mentor).
-      Suggested size: wide banner, roughly 700×180px.
-    -->
-    <div class="illus-zone">
-      <div class="illus-box wide r" data-label="Illustration — network / mentor connection"></div>
+    <div class="rule"></div>
+
+    <!-- ADVISOR STRIP -->
+    <div class="advisor-strip r">
+      <div class="advisor-strip-stat">
+        <span class="advisor-strip-n">126</span>
+        <span class="advisor-strip-l">active advisors across six continents</span>
+      </div>
+      <div class="advisor-strip-stat">
+        <span class="advisor-strip-n">113</span>
+        <span class="advisor-strip-l">universities in the network</span>
+      </div>
+      <a href="advisors.html" class="btn-ghost r r-d1">See the full network</a>
     </div>
 
     <div class="rule"></div>
 
-    <!-- PROGRAM PILLARS -->
-    <section class="pad" id="program-prev">
-      <p class="eyebrow r">The program</p>
-      <h2 class="section-h r r-d1">
-        One system.<br><span class="mk-r">Nothing left out.</span>
-      </h2>
-      <div class="pillar-list" style="margin-top:36px;">
-        <div class="pi r r-d1">
-          <span class="pi-n">i.</span>
-          <div>
-            <h3 class="pi-title">Curriculum</h3>
-            <p class="pi-desc">Nine tracks. Essays, testing, financial aid, college list, activities, application platforms, non-US systems. Built for international students, not adapted from something else.</p>
-          </div>
-        </div>
-        <div class="pi r r-d2">
-          <span class="pi-n">ii.</span>
-          <div>
-            <h3 class="pi-title">Mentorship</h3>
-            <p class="pi-desc">Each student is matched with someone currently enrolled at one of their target universities. The same starting point. The same process. One cycle earlier.</p>
-          </div>
-        </div>
-        <div class="pi r r-d3">
-          <span class="pi-n">iii.</span>
-          <div>
-            <h3 class="pi-title">Application support</h3>
-            <p class="pi-desc">Essays, financial aid forms, activity lists, recommendations. Every submission, handled together.</p>
-          </div>
-        </div>
-        <div class="pi r r-d4">
-          <span class="pi-n">iv.</span>
-          <div>
-            <h3 class="pi-title">Community</h3>
-            <p class="pi-desc">Students move through as a cohort. Every graduate enters the mentor network. The program compounds with every year.</p>
-          </div>
-        </div>
+    <!-- FOUR PILLARS -->
+    <section style="padding:72px 0;position:relative;overflow:hidden;">
+      <!-- deco: arrow pointing into section -->
+      <div class="deco sz-md a-wiggle-slow op-h r-n15 delay-2" style="top:32px;right:var(--sheet-pad);pointer-events:none;">
+        <img src="assets/HandDrawn/01_Arrows/Arrow%205.svg" alt="" aria-hidden="true">
       </div>
 
-      <div style="margin-top:44px;" class="r r-d4">
-        <a href="program.html" class="btn btn-ink">See the full program</a>
+      <div style="padding:0 var(--sheet-pad);margin-bottom:40px;">
+        <p class="eyebrow r">The Fellowship</p>
+        <h2 class="section-h r r-d1">Four things that work<br>together, not separately.</h2>
+      </div>
+
+      <div class="pillars-grid">
+        <!-- Pillar 1: Curriculum -->
+        <div class="pillar-card r" style="position:relative;overflow:hidden;">
+          <div class="deco sz-sm a-float-slow op-f r-5 delay-0" style="top:12px;right:16px;pointer-events:none;">
+            <img src="assets/HandDrawn/11_Punctuation/Punctuation%201.svg" alt="" aria-hidden="true">
+          </div>
+          <div class="pillar-num">i. Curriculum</div>
+          <h3 class="pillar-title">Nine tracks, built for international students.</h3>
+          <p class="pillar-body">
+            Bi-weekly sessions covering standardized tests, essays, financial aid, college lists, activities, application platforms, and more. Instructors are students from a broad range of top global universities and backgrounds who have been through exactly this.
+          </p>
+          <a href="program.html" class="pillar-link">See the program</a>
+        </div>
+
+        <!-- Pillar 2: Mentorship -->
+        <div class="pillar-card r r-d1" style="position:relative;overflow:hidden;">
+          <div class="deco sz-sm a-float-slow op-f r-n8 delay-2" style="top:12px;right:16px;pointer-events:none;">
+            <img src="assets/HandDrawn/03_Loops/Loop%202.svg" alt="" aria-hidden="true">
+          </div>
+          <div class="pillar-num">ii. Mentorship</div>
+          <h3 class="pillar-title">One mentor. One fellow. No exceptions.</h3>
+          <p class="pillar-body">
+            Each Fellow is matched 1:1 with a mentor currently enrolled at one of their target universities. Bi-weekly sessions, essay reviews, and the kind of honest guidance that can only come from someone who navigated this a cycle or two ago.
+          </p>
+        </div>
+
+        <!-- Pillar 3: Advisors -->
+        <div class="pillar-card r r-d2" style="position:relative;overflow:hidden;">
+          <div class="deco sz-sm a-breathe-slow op-f delay-1" style="top:12px;right:16px;pointer-events:none;">
+            <img src="assets/HandDrawn/12_Doodles/Doodle%206.svg" alt="" aria-hidden="true">
+          </div>
+          <div class="pillar-num">iii. Advisors network</div>
+          <h3 class="pillar-title">If your target school is on the map, someone there is in our network.</h3>
+          <p class="pillar-body">
+            Our advisors network spans 160+ universities across every major region. If you are building a college list, there is likely someone at each of those schools who applied from a background not unlike yours and is willing to talk.
+          </p>
+          <a href="advisors.html" class="pillar-link">Explore the network</a>
+        </div>
+
+        <!-- Pillar 4: Counselle -->
+        <div class="pillar-card r r-d3" style="position:relative;overflow:hidden;">
+          <div class="deco sz-sm a-spin-slow op-f delay-3" style="top:12px;right:16px;pointer-events:none;">
+            <img src="assets/HandDrawn/09_Spirals/Spiral%201.svg" alt="" aria-hidden="true">
+          </div>
+          <div class="pillar-num">iv. Counselle</div>
+          <h3 class="pillar-title">Your admission companion, all in one place.</h3>
+          <p class="pillar-body">
+            Fellows get full access to Counselle, Ascensia's AI-powered admissions platform. It pulls directly from official university Common Data Sets, financial aid records, and anonymized profiles of admitted students in the network. Deadline tracking, essay tools, university fit analysis, and communication with network students are all built in. There is nothing else like it available for free.
+          </p>
+        </div>
       </div>
     </section>
 
-    <!--
-      ILLUSTRATION ZONE 3 — "the ascent / steps"
-      Artistic direction: a staircase or ascending path with a small figure
-      partway up. Simple, linework. Label each step loosely (orientation, profile,
-      essays, submission, admission). Warm ink + gold for the top step.
-      Suggested size: wide banner, roughly 700×180px.
-    -->
-    <div class="illus-zone">
-      <div class="illus-box wide r" data-label="Illustration — ascent / application steps"></div>
-    </div>
+    <div class="rule-warm"></div>
 
-    <div class="rule"></div>
+    <!-- WHO WE'RE LOOKING FOR -->
+    <section class="pad" style="position:relative;overflow:hidden;">
+      <!-- deco: scattered sprinkles -->
+      <div class="deco sz-xs a-float op-m r-15 delay-0" style="top:40px;right:80px;pointer-events:none;">
+        <img src="assets/HandDrawn/10_Sprinkles/Sprinkle%201.svg" alt="" aria-hidden="true">
+      </div>
+      <div class="deco sz-xs a-float-slow op-m r-n10 delay-2" style="top:110px;right:140px;pointer-events:none;">
+        <img src="assets/HandDrawn/10_Sprinkles/Sprinkle%205.svg" alt="" aria-hidden="true">
+      </div>
 
-    <!-- TEAM -->
-    <section class="pad">
-      <p class="eyebrow r">The team</p>
-      <h2 class="section-h r r-d1">Six people who <span class="mk-r">lived the gap.</span></h2>
-      <p class="r r-d2" style="font-size:18px;font-weight:400;line-height:1.8;color:var(--ink-2);margin-bottom:40px;max-width:480px;">
-        Built by people from Egypt, Kenya, and Venezuela who navigated this process without a counselor, without money for consultants, without a single person at their school who had done it before.
+      <p class="eyebrow r">Who this is for</p>
+      <h2 class="section-h r r-d1">Students who are ready, <span class="mk">regardless of where they started.</span></h2>
+      <p class="about-body r r-d2" style="max-width:540px;">
+        Ascensia is not a scholarship for the underprivileged, and it is not a recruiting pipeline for elite universities. It is a program for students who have what it takes to compete for the world's top institutions and who would benefit from having the right information, the right network, and the right guidance at the right time. We are looking for the next generation of changemakers and global citizens, wherever they come from.
       </p>
-      <div class="people-grid">
-        <div class="person r">
-          <div class="person-photo"><img src="images/mash.png" alt="Mohamed Mashhour" loading="lazy"></div>
-          <div class="person-info">
-            <div class="person-name">Mohamed Mashhour</div>
-            <div class="person-role">CEO</div>
-            <div class="person-univ">[University]</div>
-            <a href="https://linkedin.com/in/mohammedmashhour/" target="_blank" rel="noopener" class="person-li"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
-          </div>
-        </div>
-        <div class="person r r-d1">
-          <div class="person-photo"><img src="images/jer.png" alt="Jeremy Muchilwa" loading="lazy"></div>
-          <div class="person-info">
-            <div class="person-name">Jeremy Muchilwa</div>
-            <div class="person-role">COO</div>
-            <div class="person-univ">[University]</div>
-            <a href="https://linkedin.com/in/jeremy-muchilwa-109b62213/" target="_blank" rel="noopener" class="person-li"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
-          </div>
-        </div>
-        <div class="person r r-d2">
-          <div class="person-photo"><img src="images/camila.png" alt="Camila Caruso" loading="lazy"></div>
-          <div class="person-info">
-            <div class="person-name">Camila Caruso</div>
-            <div class="person-role">CCO</div>
-            <div class="person-univ">[University]</div>
-            <a href="https://linkedin.com/in/camila-caruso-3951131b0/" target="_blank" rel="noopener" class="person-li"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
-          </div>
-        </div>
-        <div class="person r">
-          <div class="person-photo"><img src="images/bassem.png" alt="Youssef Taleb" loading="lazy"></div>
-          <div class="person-info">
-            <div class="person-name">Youssef Taleb</div>
-            <div class="person-role">CPO</div>
-            <div class="person-univ">[University]</div>
-            <a href="https://linkedin.com/in/yusuftaleb/" target="_blank" rel="noopener" class="person-li"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
-          </div>
-        </div>
-        <div class="person r r-d1">
-          <div class="person-photo"><img src="images/youssef.png" alt="Youssef Nassar" loading="lazy"></div>
-          <div class="person-info">
-            <div class="person-name">Youssef Nassar</div>
-            <div class="person-role">CTO</div>
-            <div class="person-univ">[University]</div>
-            <a href="https://linkedin.com/in/youssef-nassar-50b735233/" target="_blank" rel="noopener" class="person-li"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
-          </div>
-        </div>
-        <div class="person r r-d2">
-          <div class="person-photo"><img src="images/ismail.jpg" alt="Ismail Aboelmagd" loading="lazy"></div>
-          <div class="person-info">
-            <div class="person-name">Ismail Aboelmagd</div>
-            <div class="person-role">CSO</div>
-            <div class="person-univ">[University]</div>
-            <a href="https://linkedin.com/in/ismailaboelmagd/" target="_blank" rel="noopener" class="person-li"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
-          </div>
-        </div>
+      <p class="about-body r r-d3" style="max-width:540px;font-style:italic;color:var(--ink-3);font-size:16px;border-left:2px solid var(--gold-wash);padding-left:20px;margin-top:28px;">
+        "Admissions are need-blind. No student is turned away for financial reasons."
+      </p>
+      <div style="margin-top:40px;" class="r r-d4">
+        <a href="https://forms.gle/YOUR_FELLOWS_FORM" target="_blank" rel="noopener" class="btn btn-ink">Apply as an Ascensia Fellow</a>
       </div>
+    </section>
+
+    <!-- TEAM TEASER -->
+    <section class="team-teaser">
+      <!-- deco: whirl background -->
+      <div class="deco sz-xxl a-spin-r-slow op-vf" style="bottom:-40px;left:-60px;pointer-events:none;">
+        <img src="assets/HandDrawn/05_Whirls/Whirl%202.svg" alt="" aria-hidden="true">
+      </div>
+
+      <p class="eyebrow r">Built by</p>
+      <h2 class="section-h r r-d1" style="max-width:560px;">Students at top universities on merit scholarships, who went through this without a guide.</h2>
+      <p class="r r-d2" style="font-size:17px;line-height:1.88;color:var(--ink-2);max-width:500px;margin-bottom:36px;">
+        The team spans Egypt, Kenya, and Venezuela. Every person on it either navigated international admissions from an underserved region, or has spent real time working to close the gap it leaves behind.
+      </p>
+      <a href="about.html" class="btn-ghost r r-d3">Meet the team</a>
     </section>
 
     <!-- CLOSING -->
@@ -334,14 +405,14 @@
       <p class="closing-note r r-d1">We read every message.</p>
       <nav class="closing-nav r r-d2">
         <a href="program.html">Program</a>
+        <a href="advisors.html">Advisors</a>
         <a href="about.html">About</a>
-        <a href="mailto:team@ascensia.foundation">Contact</a>
       </nav>
       <p class="closing-copy">&copy; 2026 Ascensia. Nonprofit. All rights reserved.</p>
     </section>
 
-  </div><!-- /sheet -->
-</div><!-- /page-wrap -->
+  </div>
+</div>
 
 <div class="nav-mobile">
   <a href="program.html">Program</a>
@@ -356,8 +427,21 @@
 <script>
 function doSignup(e){
   e.preventDefault();
-  document.getElementById('email-in').closest('form').style.display='none';
-  document.getElementById('ok').style.display='block';
+  const form = e.target;
+  const data = new FormData(form);
+  fetch(form.action, {
+    method: 'POST',
+    body: data,
+    headers: { 'Accept': 'application/json' }
+  }).then(r => {
+    if (r.ok) {
+      form.style.display = 'none';
+      document.getElementById('ok').style.display = 'block';
+    }
+  }).catch(() => {
+    form.style.display = 'none';
+    document.getElementById('ok').style.display = 'block';
+  });
 }
 </script>
 </body>
