@@ -13,9 +13,8 @@
 <link rel="stylesheet" href="css/nav.css">
 <link rel="stylesheet" href="css/animations.css">
 <link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/svg-decorations.css">
 <style>
-/* ── PROGRAM-SPECIFIC ── */
-
 .tracks-wrap{
   overflow-x:auto;scrollbar-width:none;
   padding:0 var(--sheet-pad) 8px;
@@ -105,9 +104,36 @@
   line-height:1.8;color:var(--ink-2);
 }
 
+/* counselle section */
+.counselle-card{
+  background:linear-gradient(135deg,var(--sheet-bg-alt) 0%,rgba(201,164,74,.06) 100%);
+  border:var(--rule);border-radius:10px;
+  padding:48px 44px;margin-top:44px;
+  position:relative;overflow:hidden;
+}
+.counselle-features{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1px;background:rgba(28,20,9,.07);
+  margin-top:32px;border-radius:4px;overflow:hidden;
+}
+.cf-item{
+  background:var(--sheet-bg);padding:22px 20px;
+  font-family:var(--sans);font-size:13px;font-weight:300;
+  line-height:1.7;color:var(--ink-2);
+  transition:background .2s;
+}
+.cf-item:hover{background:var(--sheet-bg-alt);}
+.cf-label{
+  font-family:var(--sans);font-size:9px;font-weight:400;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--gold-dim);
+  margin-bottom:6px;
+}
+
 @media(max-width:700px){
   .tl-item{grid-template-columns:60px 1fr;gap:16px;}
   .who-grid{grid-template-columns:1fr;}
+  .counselle-features{grid-template-columns:1fr;}
+  .counselle-card{padding:32px 24px;}
 }
 </style>
 </head>
@@ -122,9 +148,7 @@
   <div class="sheet">
     <nav class="nav">
       <a href="index.html" class="nav-logo">
-        <div class="nav-logo-mark">
-          <span></span><span></span><span></span><span></span>
-        </div>
+        <div class="nav-logo-mark"><span></span><span></span><span></span><span></span></div>
         Ascensia
       </a>
       <ul class="nav-links">
@@ -134,45 +158,56 @@
         <li><a href="about.html">About</a></li>
         <li><a href="mailto:team@ascensia.foundation" class="nav-cta">Get in touch</a></li>
       </ul>
-      <button class="nav-burger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
     </nav>
 
     <!-- HERO -->
-    <div class="page-hero">
+    <div class="page-hero" style="position:relative;overflow:hidden;">
+      <!-- deco: whirl background faint -->
+      <div class="deco sz-xxl a-spin-r-slow op-vf" style="top:-40px;right:-60px;pointer-events:none;">
+        <img src="assets/HandDrawn/05_Whirls/Whirl%201.svg" alt="" aria-hidden="true">
+      </div>
+      <!-- deco: small arrow accent -->
+      <div class="deco sz-md a-wiggle op-h r-15 delay-4" style="bottom:32px;right:clamp(80px,14vw,200px);pointer-events:none;">
+        <img src="assets/HandDrawn/01_Arrows/Arrow%203.svg" alt="" aria-hidden="true">
+      </div>
+
       <p class="page-hero-label">The Program</p>
       <h1>
         <span class="hero-line"><span>9 tracks.</span></span>
         <span class="hero-line"><span>Everything you need.</span></span>
       </h1>
       <p class="page-hero-sub">
-        A free mentorship and curriculum program built for international students from underserved regions. Structured, personal, and built to last.
+        A free mentorship and curriculum program for students who are ready for the world's top universities, regardless of where they are coming from or how much support they have had until now.
       </p>
     </div>
 
     <!-- INTRO -->
-    <section class="pad">
+    <section class="pad" style="position:relative;overflow:hidden;">
+      <!-- deco: underline near heading -->
+      <div class="deco sz-xl a-draw op-m delay-1" style="top:68px;left:var(--sheet-pad);pointer-events:none;">
+        <img src="assets/HandDrawn/02_Underlines/Underline%201.svg" alt="" aria-hidden="true">
+      </div>
+
       <p class="eyebrow r">What it is</p>
       <h2 class="section-h r r-d1">One system.<br><span class="mk">Nothing left out.</span></h2>
       <p class="r r-d2" style="font-size:17px;line-height:1.88;color:var(--ink-2);margin-bottom:18px;">
-        Ascensia is a 14-month cohort program built from scratch for international students from underrepresented regions. A 9-track curriculum, matched 1:1 mentorship, hands-on application support, and a cohort community — all working together, at no cost to the student.
+        Ascensia is a 14-month cohort program built specifically for international students from underrepresented regions. A 9-track curriculum, matched 1:1 mentorship, hands-on application support, access to the Counselle platform, and a cohort community — all working together, at no cost to the student.
       </p>
       <p class="r r-d3" style="font-size:17px;line-height:1.88;color:var(--ink-2);">
-        Admissions are need-blind. The pilot cohort will onboard 20 students from Egypt and South Africa, matched with 20 mentors from top universities globally.
+        Admissions are need-blind. The pilot cohort will onboard students from Egypt and South Africa, matched with mentors from top universities globally. Grade 10 students are prioritized, though Grade 11 students with strong profiles are also considered.
       </p>
     </section>
 
     <div class="rule"></div>
 
-    <div class="illus-zone">
-      <div class="illus-box short r" data-label="Illustration — four pillars (curriculum / mentorship / support / community)"></div>
-    </div>
-
-    <div class="rule"></div>
-
     <!-- TIMELINE -->
-    <section class="pad" id="timeline">
+    <section class="pad" id="timeline" style="position:relative;overflow:hidden;">
+      <!-- deco: loop accent -->
+      <div class="deco sz-lg a-float-slow op-f r-10 delay-2" style="top:20px;right:var(--sheet-pad);pointer-events:none;">
+        <img src="assets/HandDrawn/03_Loops/Loop%204.svg" alt="" aria-hidden="true">
+      </div>
+
       <p class="eyebrow r">The journey</p>
       <h2 class="section-h r r-d1">Structured around<br>the student's year.</h2>
       <div class="timeline" style="margin-top:40px;">
@@ -204,7 +239,7 @@
           <div class="tl-phase">Phase 4</div>
           <div>
             <h3 class="tl-title">Decisions and Transition</h3>
-            <p class="tl-body">Financial aid comparison, appeals support, and decision guidance. Students transition into the alumni mentor network, trained to guide the next cohort through the same process.</p>
+            <p class="tl-body">Financial aid comparison, appeals support, and decision guidance. Students transition into the alumni mentor network, where they become the people guiding the next cohort through the same process.</p>
             <span class="tl-tag">Decisions · Appeals · Alumni network</span>
           </div>
         </div>
@@ -214,26 +249,31 @@
     <div class="rule-warm"></div>
 
     <!-- CURRICULUM TRACKS -->
-    <section id="curriculum" style="padding:72px 0;">
+    <section id="curriculum" style="padding:72px 0;position:relative;overflow:hidden;">
+      <!-- deco: scribble faint background -->
+      <div class="deco sz-xxl a-breathe-slow op-vf" style="bottom:-20px;right:-40px;pointer-events:none;">
+        <img src="assets/HandDrawn/06_Scribbles/Scribble%2012.svg" alt="" aria-hidden="true">
+      </div>
+
       <div style="padding:0 var(--sheet-pad);margin-bottom:36px;">
         <p class="eyebrow r">What we teach</p>
         <h2 class="section-h r r-d1">9 tracks.<br>Built from scratch.</h2>
         <p class="r r-d2" style="font-size:16px;line-height:1.8;color:var(--ink-2);max-width:480px;">
-          Every track was designed for international students from underserved backgrounds. Nothing here is adapted from a US domestic program.
+          Every track was designed for international students. None of this is adapted from a US domestic program, because that is not who this is for.
         </p>
       </div>
 
       <div class="tracks-wrap">
         <div class="tracks-row">
-          <div class="track-card r"><div class="track-num">T1</div><h4 class="track-title">Standardized Tests</h4><p class="track-desc">SAT, ACT, AP, IB, A-Level, and international equivalents. Strategy, preparation, and how scores are actually read.</p></div>
+          <div class="track-card r"><div class="track-num">T1</div><h4 class="track-title">Standardized Tests</h4><p class="track-desc">SAT, ACT, AP, IB, A-Level, and international equivalents. Strategy, preparation, and how scores are actually read by admissions offices.</p></div>
           <div class="track-card r r-d1"><div class="track-num">T2</div><h4 class="track-title">Academic Courses</h4><p class="track-desc">Transcripts, GPA, course rigor, and academic positioning across every major school system globally.</p></div>
-          <div class="track-card r r-d2"><div class="track-num">T3</div><h4 class="track-title">Essays and Writing</h4><p class="track-desc">Personal statement, all supplement types, UCAS personal statement. Finding and communicating a genuine story.</p></div>
-          <div class="track-card r r-d3"><div class="track-num">T4</div><h4 class="track-title">Activities</h4><p class="track-desc">Building, describing, and presenting an activity profile with clarity and precision across every platform.</p></div>
-          <div class="track-card r r-d4"><div class="track-num">T5</div><h4 class="track-title">Honors and Awards</h4><p class="track-desc">Competitions, olympiads, recognition programs. How to find them, present them, and how they're evaluated.</p></div>
-          <div class="track-card r"><div class="track-num">T6</div><h4 class="track-title">Application Platforms</h4><p class="track-desc">Common App, QuestBridge, UCAS, Coalition, and all major platforms. Every section, every deadline.</p></div>
-          <div class="track-card r r-d1"><div class="track-num">T7</div><h4 class="track-title">College List</h4><p class="track-desc">Building a balanced, financially viable list that matches ambition with strategy. Fit, selectivity, and aid policies.</p></div>
-          <div class="track-card r r-d2"><div class="track-num">T8</div><h4 class="track-title">Non-US Admissions</h4><p class="track-desc">UK, Canada, Europe, Australia, and other systems. Complete coverage for students building a global list.</p></div>
-          <div class="track-card r r-d3"><div class="track-num">T9</div><h4 class="track-title">Financial Aid</h4><p class="track-desc">Need-blind vs need-aware, CSS Profile, appeals, aid comparison. What full coverage actually means in practice.</p></div>
+          <div class="track-card r r-d2"><div class="track-num">T3</div><h4 class="track-title">Essays and Writing</h4><p class="track-desc">Personal statement, all supplement types, UCAS personal statement. Finding and communicating a genuine story without losing yourself in the process.</p></div>
+          <div class="track-card r r-d3"><div class="track-num">T4</div><h4 class="track-title">Activities</h4><p class="track-desc">Building, describing, and presenting an activity profile with clarity and precision across every application platform.</p></div>
+          <div class="track-card r r-d4"><div class="track-num">T5</div><h4 class="track-title">Honors and Awards</h4><p class="track-desc">Competitions, olympiads, recognition programs. How to find them, present them, and how admissions offices evaluate them.</p></div>
+          <div class="track-card r"><div class="track-num">T6</div><h4 class="track-title">Application Platforms</h4><p class="track-desc">Common App, QuestBridge, UCAS, Coalition, and all major platforms. Every section, every deadline, no surprises.</p></div>
+          <div class="track-card r r-d1"><div class="track-num">T7</div><h4 class="track-title">College List</h4><p class="track-desc">Building a balanced, financially viable list that matches ambition with strategy. Fit, selectivity, and aid policies for international students.</p></div>
+          <div class="track-card r r-d2"><div class="track-num">T8</div><h4 class="track-title">Non-US Admissions</h4><p class="track-desc">UK, Canada, Europe, Australia, and other systems. Complete coverage for students building a genuinely global list.</p></div>
+          <div class="track-card r r-d3"><div class="track-num">T9</div><h4 class="track-title">Financial Aid</h4><p class="track-desc">Need-blind vs need-aware, CSS Profile, appeals, aid comparison. What full coverage actually means and how to get it.</p></div>
         </div>
       </div>
       <p style="padding:12px var(--sheet-pad) 0;font-family:var(--sans);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);">→ drag to explore</p>
@@ -241,18 +281,58 @@
 
     <div class="rule"></div>
 
+    <!-- COUNSELLE -->
+    <section class="pad" id="counselle" style="position:relative;overflow:hidden;">
+      <!-- deco: spiral faint -->
+      <div class="deco sz-xl a-spin-slow op-vf" style="top:0;right:0;pointer-events:none;">
+        <img src="assets/HandDrawn/09_Spirals/Spiral%203.svg" alt="" aria-hidden="true">
+      </div>
+
+      <p class="eyebrow r">Included with the fellowship</p>
+      <h2 class="section-h r r-d1">Counselle, our admissions platform.</h2>
+      <p class="r r-d2" style="font-size:17px;line-height:1.88;color:var(--ink-2);max-width:540px;">
+        Fellows get full access to Counselle, an AI-powered admissions platform built specifically for this process. It pulls from official university Common Data Sets, financial aid records, and anonymized admitted-student profiles from within the Ascensia network. Everything you need in one place, and none of it available anywhere else for free.
+      </p>
+
+      <div class="counselle-card r r-d3">
+        <!-- deco inside card -->
+        <div class="deco sz-lg a-float-slow op-f r-n5" style="top:-8px;right:-8px;pointer-events:none;">
+          <img src="assets/HandDrawn/13_Corners/Corner%202.svg" alt="" aria-hidden="true">
+        </div>
+        <p class="eyebrow" style="margin-bottom:8px;">What's inside Counselle</p>
+        <div class="counselle-features">
+          <div class="cf-item"><div class="cf-label">University data</div>Common Data Sets and financial aid records for hundreds of universities, updated continuously.</div>
+          <div class="cf-item"><div class="cf-label">Admitted profiles</div>Anonymized profiles of students in the network who were accepted, searchable by school and background.</div>
+          <div class="cf-item"><div class="cf-label">Deadlines dashboard</div>Every deadline, every requirement, tracked in one place across your entire college list.</div>
+          <div class="cf-item"><div class="cf-label">Network communication</div>Direct access to students at your target universities through the Ascensia advisor network.</div>
+          <div class="cf-item"><div class="cf-label">Generative AI tools</div>Essay drafting, activity description writing, financial aid letter review — purpose-built for the admissions process.</div>
+          <div class="cf-item"><div class="cf-label">Fit analysis</div>What each university is actually looking for in international students, drawn from official sources, not guesswork.</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="rule-warm"></div>
+
     <!-- WHO WE SERVE -->
-    <section class="pad" id="who">
+    <section class="pad" id="who" style="position:relative;overflow:hidden;">
+      <!-- deco: small doodle scatter -->
+      <div class="deco sz-sm a-float op-m r-20 delay-1" style="top:32px;right:80px;pointer-events:none;">
+        <img src="assets/HandDrawn/12_Doodles/Doodle%202.svg" alt="" aria-hidden="true">
+      </div>
+      <div class="deco sz-xs a-float-slow op-m r-n12 delay-3" style="top:90px;right:140px;pointer-events:none;">
+        <img src="assets/HandDrawn/10_Sprinkles/Sprinkle%202.svg" alt="" aria-hidden="true">
+      </div>
+
       <p class="eyebrow r">Who we serve</p>
       <h2 class="section-h r r-d1">Need-blind.<br>Open to all.</h2>
       <p class="r r-d2" style="font-size:17px;line-height:1.88;color:var(--ink-2);max-width:520px;margin-bottom:8px;">
-        Any student with the ambition and academic foundation to compete for top global universities is eligible to apply. No student is turned away for financial reasons.
+        Any student with the ambition and academic foundation to compete for top global universities is eligible to apply. We are looking for the next generation of global leaders and changemakers, wherever they are coming from. No student is turned away for financial reasons.
       </p>
       <div class="who-grid r r-d3">
         <div class="who-fact">
           <div class="who-bar"></div>
-          <h4 class="who-title">Any grade, any school</h4>
-          <p class="who-text">Students in Grades 10 and 11 are prioritized. Grade 12 students with strong profiles may be considered on a case-by-case basis.</p>
+          <h4 class="who-title">Grade 10 prioritized</h4>
+          <p class="who-text">The program is designed as a multi-phase preparation journey. Grade 11 students with strong profiles may also be considered on a case-by-case basis.</p>
         </div>
         <div class="who-fact">
           <div class="who-bar"></div>
@@ -262,19 +342,15 @@
         <div class="who-fact">
           <div class="who-bar"></div>
           <h4 class="who-title">Need-blind admissions</h4>
-          <p class="who-text">Full need-based and merit-based financial aid is available. No student is turned away due to financial circumstances.</p>
+          <p class="who-text">Full need-based and merit-based aid is available. The students who most need this program are often the last ones to find it, and that asymmetry is the reason we exist.</p>
         </div>
         <div class="who-fact">
           <div class="who-bar"></div>
           <h4 class="who-title">Potential first</h4>
-          <p class="who-text">We select students who, with the program's support, can become competitive applicants — not only those who already are.</p>
+          <p class="who-text">We select students who, with the program's support, can become genuinely competitive applicants — not only those who already are. That distinction matters.</p>
         </div>
       </div>
     </section>
-
-    <div class="illus-zone">
-      <div class="illus-box short r" data-label="Illustration — open door / eligibility / welcome"></div>
-    </div>
 
     <!-- CLOSING -->
     <section class="closing">
@@ -289,8 +365,8 @@
       <p class="closing-copy">&copy; 2026 Ascensia. Nonprofit. All rights reserved.</p>
     </section>
 
-  </div><!-- /sheet -->
-</div><!-- /page-wrap -->
+  </div>
+</div>
 
 <div class="nav-mobile">
   <a href="program.html">Program</a>
