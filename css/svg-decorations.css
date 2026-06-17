@@ -1,0 +1,183 @@
+/* ═══════════════════════════════════════
+   ASCENSIA — SVG DECORATION CONTROL SYSTEM
+   Flexible positioning, sizing, and animation management
+═══════════════════════════════════════ */
+
+/* Place this in a new file: css/svg-decorations.css */
+/* Or add to existing stylesheet */
+
+/* ── SVG BASE STYLES ── */
+.deco {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  z-index: 2;
+}
+
+.deco img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ── ANIMATION DEFINITIONS ── */
+@keyframes svgFloat {
+  0%, 100% { transform: translateY(0px) rotate(var(--rot, 0deg)); }
+  50% { transform: translateY(-9px) rotate(var(--rot, 0deg)); }
+}
+
+@keyframes svgWiggle {
+  0%, 100% { transform: rotate(calc(var(--rot, 0deg) - 5deg)); }
+  50% { transform: rotate(calc(var(--rot, 0deg) + 5deg)); }
+}
+
+@keyframes svgBreathe {
+  0%, 100% { opacity: var(--op, 0.45); transform: scale(1) rotate(var(--rot, 0deg)); }
+  50% { opacity: calc(var(--op, 0.45) + 0.15); transform: scale(1.05) rotate(var(--rot, 0deg)); }
+}
+
+@keyframes svgSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes svgDrift {
+  0%, 100% { transform: translateX(0px) rotate(var(--rot, 0deg)); }
+  50% { transform: translateX(7px) rotate(var(--rot, 0deg)); }
+}
+
+@keyframes svgDraw {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0% 0 0); }
+}
+
+@keyframes svgPulse {
+  0%, 100% { transform: scale(1) rotate(var(--rot, 0deg)); opacity: var(--op, 0.45); }
+  50% { transform: scale(1.15) rotate(var(--rot, 0deg)); opacity: calc(var(--op, 0.45) + 0.2); }
+}
+
+@keyframes svgPopIn {
+  0% { transform: scale(0.3) rotate(-15deg); opacity: 0; }
+  70% { transform: scale(1.08) rotate(3deg); }
+  100% { transform: scale(1) rotate(var(--rot, 0deg)); opacity: 1; }
+}
+
+@keyframes svgSlideIn {
+  from { transform: translateX(-40px) rotate(var(--rot, 0deg)); opacity: 0; }
+  to { transform: translateX(0) rotate(var(--rot, 0deg)); opacity: 1; }
+}
+
+/* ── ANIMATION CLASSES ── */
+.a-float { animation: svgFloat 5s ease-in-out infinite; }
+.a-float-slow { animation: svgFloat 7.5s ease-in-out infinite; }
+.a-float-fast { animation: svgFloat 3.5s ease-in-out infinite; }
+
+.a-wiggle { animation: svgWiggle 3.5s ease-in-out infinite; }
+.a-wiggle-slow { animation: svgWiggle 5s ease-in-out infinite; }
+.a-wiggle-fast { animation: svgWiggle 2.5s ease-in-out infinite; }
+
+.a-breathe { animation: svgBreathe 4.5s ease-in-out infinite; }
+.a-breathe-slow { animation: svgBreathe 6s ease-in-out infinite; }
+.a-breathe-fast { animation: svgBreathe 3s ease-in-out infinite; }
+
+.a-spin { animation: svgSpin 16s linear infinite; }
+.a-spin-slow { animation: svgSpin 24s linear infinite; }
+.a-spin-fast { animation: svgSpin 10s linear infinite; }
+.a-spin-r { animation: svgSpin 16s linear infinite reverse; }
+.a-spin-r-slow { animation: svgSpin 24s linear infinite reverse; }
+.a-spin-r-fast { animation: svgSpin 10s linear infinite reverse; }
+
+.a-drift { animation: svgDrift 6s ease-in-out infinite; }
+.a-drift-slow { animation: svgDrift 8s ease-in-out infinite; }
+.a-drift-fast { animation: svgDrift 4s ease-in-out infinite; }
+
+.a-pulse { animation: svgPulse 4s ease-in-out infinite; }
+.a-pulse-slow { animation: svgPulse 6s ease-in-out infinite; }
+.a-pulse-fast { animation: svgPulse 2.5s ease-in-out infinite; }
+
+.a-draw { animation: svgDraw 1.1s var(--ease) both; }
+.a-draw-slow { animation: svgDraw 2s var(--ease) both; }
+.a-draw-fast { animation: svgDraw 0.6s var(--ease) both; }
+
+.a-pop { animation: svgPopIn 0.8s var(--ease) both; }
+.a-pop-slow { animation: svgPopIn 1.2s var(--ease) both; }
+.a-pop-fast { animation: svgPopIn 0.5s var(--ease) both; }
+
+.a-slide { animation: svgSlideIn 0.9s var(--ease) both; }
+.a-slide-slow { animation: svgSlideIn 1.3s var(--ease) both; }
+.a-slide-fast { animation: svgSlideIn 0.6s var(--ease) both; }
+
+.a-none { animation: none; }
+
+/* ── OPACITY CONTROL ── */
+.op-vf { --op: 0.08; }
+.op-f { --op: 0.12; }
+.op-m { --op: 0.20; }
+.op-h { --op: 0.30; }
+.op-vh { --op: 0.40; }
+
+/* ── ROTATION HELPERS ── */
+.r-0 { --rot: 0deg; }
+.r-5 { --rot: 5deg; }
+.r-10 { --rot: 10deg; }
+.r-15 { --rot: 15deg; }
+.r-20 { --rot: 20deg; }
+.r-25 { --rot: 25deg; }
+.r-n5 { --rot: -5deg; }
+.r-n10 { --rot: -10deg; }
+.r-n15 { --rot: -15deg; }
+.r-n20 { --rot: -20deg; }
+
+/* ── ANIMATION DELAY CONTROL ── */
+.delay-0 { animation-delay: 0s; }
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.4s; }
+.delay-3 { animation-delay: 0.6s; }
+.delay-4 { animation-delay: 0.8s; }
+.delay-5 { animation-delay: 1s; }
+
+/* ── SIZE PRESETS ── */
+.sz-xs { width: 30px; }
+.sz-sm { width: 50px; }
+.sz-md { width: 75px; }
+.sz-lg { width: 110px; }
+.sz-xl { width: 150px; }
+.sz-xxl { width: 200px; }
+
+/* ── POSITION ANCHORS ── */
+/* Use with inline styles or CSS custom properties */
+/* Example: style="--pos-x: 10px; --pos-y: 20px;" */
+
+/* Top-left corner anchors */
+.anchor-tl { top: 0; left: 0; }
+.anchor-tm { top: 0; left: 50%; transform: translateX(-50%); }
+.anchor-tr { top: 0; right: 0; }
+
+/* Middle anchors */
+.anchor-ml { top: 50%; left: 0; transform: translateY(-50%); }
+.anchor-mm { top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.anchor-mr { top: 50%; right: 0; transform: translateY(-50%); }
+
+/* Bottom anchors */
+.anchor-bl { bottom: 0; left: 0; }
+.anchor-bm { bottom: 0; left: 50%; transform: translateX(-50%); }
+.anchor-br { bottom: 0; right: 0; }
+
+/* ── RESPONSIVE SIZING ── */
+@media (max-width: 700px) {
+  .deco {
+    transform: scale(0.8);
+  }
+  .sz-lg { width: 90px; }
+  .sz-xl { width: 120px; }
+  .sz-xxl { width: 160px; }
+}
+
+@media (max-width: 480px) {
+  .deco {
+    transform: scale(0.65);
+  }
+  .sz-lg { width: 70px; }
+  .sz-xl { width: 95px; }
+  .sz-xxl { width: 130px; }
+}
