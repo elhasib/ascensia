@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Meet the Ascensia team — people who experienced the global admissions gap firsthand.">
+<meta name="description" content="Meet the Ascensia team — students at top universities who navigated the global admissions gap firsthand.">
 <title>About | Ascensia</title>
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,46 +13,48 @@
 <link rel="stylesheet" href="css/nav.css">
 <link rel="stylesheet" href="css/animations.css">
 <link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/svg-decorations.css">
 <style>
-/* ── ABOUT-SPECIFIC ── */
-
 .story-body{
   font-size:18px;font-weight:400;line-height:1.88;
   color:var(--ink-2);margin-bottom:22px;
 }
 .story-body em{font-style:italic;color:var(--gold-dim);}
-.story-body:last-of-type{margin-bottom:0;}
 
 .values-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);
+  display:grid;grid-template-columns:repeat(5,1fr);
   gap:1px;background:rgba(28,20,9,.07);
   margin-top:40px;
 }
 .value-card{
-  background:var(--sheet-bg);padding:36px 26px;
+  background:var(--sheet-bg);padding:36px 24px;
   transition:background .3s;
+  position:relative;overflow:hidden;
 }
 .value-card:hover{background:var(--sheet-bg-alt);}
 .value-letter{
-  font-family:var(--serif);font-size:48px;font-weight:400;
+  font-family:var(--serif);font-size:44px;font-weight:400;
   line-height:1;margin-bottom:14px;
   color:transparent;
   background:linear-gradient(135deg,var(--gold) 0%,var(--rose) 100%);
   -webkit-background-clip:text;background-clip:text;
 }
 .value-title{
-  font-family:var(--serif);font-size:18px;font-weight:400;
+  font-family:var(--serif);font-size:17px;font-weight:400;
   color:var(--ink);margin-bottom:10px;
 }
 .value-desc{
-  font-family:var(--sans);font-size:14px;font-weight:300;
-  line-height:1.8;color:var(--ink-2);
+  font-family:var(--sans);font-size:13px;font-weight:300;
+  line-height:1.82;color:var(--ink-2);
 }
 
-@media(max-width:860px){
+@media(max-width:900px){
+  .values-grid{grid-template-columns:repeat(3,1fr);}
+}
+@media(max-width:600px){
   .values-grid{grid-template-columns:1fr 1fr;}
 }
-@media(max-width:520px){
+@media(max-width:400px){
   .values-grid{grid-template-columns:1fr;}
 }
 </style>
@@ -68,9 +70,7 @@
   <div class="sheet">
     <nav class="nav">
       <a href="index.html" class="nav-logo">
-        <div class="nav-logo-mark">
-          <span></span><span></span><span></span><span></span>
-        </div>
+        <div class="nav-logo-mark"><span></span><span></span><span></span><span></span></div>
         Ascensia
       </a>
       <ul class="nav-links">
@@ -80,82 +80,119 @@
         <li><a href="about.html" class="active">About</a></li>
         <li><a href="mailto:team@ascensia.foundation" class="nav-cta">Get in touch</a></li>
       </ul>
-      <button class="nav-burger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
     </nav>
 
     <!-- HERO -->
-    <div class="page-hero">
+    <div class="page-hero" style="position:relative;overflow:hidden;">
+      <!-- deco: spiral background -->
+      <div class="deco sz-xxl a-spin-slow op-vf" style="top:-20px;right:-80px;pointer-events:none;">
+        <img src="assets/HandDrawn/09_Spirals/Spiral%204.svg" alt="" aria-hidden="true">
+      </div>
       <p class="page-hero-label">About Ascensia</p>
       <h1>
         <span class="hero-line"><span>Built by people</span></span>
         <span class="hero-line"><span>who lived the gap.</span></span>
       </h1>
       <p class="page-hero-sub">
-        Every member of the team either navigated international admissions from an underserved region, or has spent their career working to close the gap that defines it.
+        Every member of the founding team navigated international admissions from an underserved background, on merit scholarships, without a counselor and without a network that could tell them what they were walking into.
       </p>
     </div>
 
     <!-- STORY -->
-    <section class="pad" id="story">
+    <section class="pad" id="story" style="position:relative;overflow:hidden;">
+      <!-- deco: blob faint left -->
+      <div class="deco sz-xxl a-breathe-slow op-vf" style="top:0;left:-80px;pointer-events:none;">
+        <img src="assets/HandDrawn/04_Blobs/Blob%207.svg" alt="" aria-hidden="true">
+      </div>
+      <!-- deco: underline near heading -->
+      <div class="deco sz-xl a-draw op-m delay-2" style="top:72px;left:var(--sheet-pad);pointer-events:none;">
+        <img src="assets/HandDrawn/02_Underlines/Underline%205.svg" alt="" aria-hidden="true">
+      </div>
+
       <p class="eyebrow r">Our story</p>
       <h2 class="section-h r r-d1">Why we built this.</h2>
 
-      <div class="illus-zone" style="padding:0;margin:32px 0;">
-        <div class="illus-box wide r" data-label="Illustration — alone at the desk / question marks / no guide"></div>
-      </div>
-
       <p class="story-body r r-d2">
-        Ascensia started with a simple observation: universities in the United States, Canada, and Europe have billions of dollars in financial aid reserved for students from exactly the regions we come from. <em>Most of those students never apply</em> — because they have no idea the money exists, no one to guide them through the process, and no model of what success looks like.
+        The members of this team applied to top universities from Egypt, Kenya, and Venezuela. We know what that process looks like without a counselor, without money for consultants, and without a single person in your school who had done it before. The information existed. The financial aid existed. The opportunity was there. What was missing was access to the network and knowledge that makes it possible to actually act on any of it.
       </p>
       <p class="story-body r r-d3">
-        The members of this team applied to top universities from Egypt, Kenya, and Venezuela. We know what that process looks like without a counselor, without money for consultants, without a single person in your school who has done it before. We built Ascensia because we spent years wishing it existed.
+        Ascensia was not built as a charity. It was built as a correction. The university admissions system in most of the world distributes outcomes that track closely with socioeconomic advantage. That is not a natural law. It is a structural problem, and it is one that a well-designed program can meaningfully push back against, one cohort at a time.
       </p>
       <p class="story-body r r-d4">
-        The program is free. <em>It will always be free.</em> The problem is not that students lack motivation — it is that they lack access to the infrastructure that makes the process legible. That is what we are building.
+        The program is free and will stay free. What we ask in return is seriousness, presence, and eventually, the willingness to become a mentor to whoever comes next. That is the only way this compounds.
       </p>
     </section>
 
     <div class="rule"></div>
 
     <!-- VALUES -->
-    <section class="pad">
+    <section class="pad" style="position:relative;overflow:hidden;">
+      <!-- deco: whirl faint background -->
+      <div class="deco sz-xxl a-spin-r-slow op-vf" style="bottom:-60px;right:-40px;pointer-events:none;">
+        <img src="assets/HandDrawn/05_Whirls/Whirl%204.svg" alt="" aria-hidden="true">
+      </div>
+      <!-- deco: small punctuation accent -->
+      <div class="deco sz-sm a-float op-h r-10 delay-1" style="top:28px;right:var(--sheet-pad);pointer-events:none;">
+        <img src="assets/HandDrawn/11_Punctuation/Punctuation%204.svg" alt="" aria-hidden="true">
+      </div>
+
       <p class="eyebrow r">What we believe</p>
-      <h2 class="section-h r r-d1">Four principles<br>that shape everything.</h2>
-      <div class="values-grid r r-d2">
+      <h2 class="section-h r r-d1">Five values that are not words on a wall.</h2>
+      <p class="r r-d2" style="font-size:16px;line-height:1.8;color:var(--ink-2);max-width:520px;">
+        These are the things we actually ask of everyone in the program, including ourselves. They are behavioral, not aspirational.
+      </p>
+
+      <div class="values-grid r r-d3">
         <div class="value-card">
-          <div class="value-letter">A</div>
-          <div class="value-title">Access</div>
-          <p class="value-desc">Admission should reflect talent, effort, and potential — not geography, income, or luck of network. We exist to make that more true.</p>
-        </div>
-        <div class="value-card">
-          <div class="value-letter">R</div>
-          <div class="value-title">Rigor</div>
-          <p class="value-desc">We hold our curriculum, mentors, and students to the highest standard, because the universities we prepare them for do the same. Warmth and rigor are not in conflict.</p>
-        </div>
-        <div class="value-card">
-          <div class="value-letter">H</div>
-          <div class="value-title">Honesty</div>
-          <p class="value-desc">We do not overpromise. We tell students what they need to hear — about their application, their chances, and what still needs work.</p>
-        </div>
-        <div class="value-card">
+          <div class="deco sz-xs a-float-slow op-f delay-0" style="top:10px;right:10px;pointer-events:none;">
+            <img src="assets/HandDrawn/10_Sprinkles/Sprinkle%202.svg" alt="" aria-hidden="true">
+          </div>
           <div class="value-letter">C</div>
-          <div class="value-title">Community</div>
-          <p class="value-desc">Every student who goes through Ascensia becomes part of something permanent. The program gets better because people give back.</p>
+          <div class="value-title">Curiosity</div>
+          <p class="value-desc">We do not pretend to have all the answers. We ask better questions. Our learning is about understanding, not only performance.</p>
+        </div>
+        <div class="value-card">
+          <div class="deco sz-xs a-float-slow op-f delay-1" style="top:10px;right:10px;pointer-events:none;">
+            <img src="assets/HandDrawn/10_Sprinkles/Sprinkle%204.svg" alt="" aria-hidden="true">
+          </div>
+          <div class="value-letter">P</div>
+          <div class="value-title">Perseverance</div>
+          <p class="value-desc">We finish what we start. Setbacks are part of the process. The willingness to keep going when it gets hard is not optional — it is the whole thing.</p>
+        </div>
+        <div class="value-card">
+          <div class="deco sz-xs a-float-slow op-f delay-2" style="top:10px;right:10px;pointer-events:none;">
+            <img src="assets/HandDrawn/10_Sprinkles/Sprinkle%206.svg" alt="" aria-hidden="true">
+          </div>
+          <div class="value-letter">I</div>
+          <div class="value-title">Integrity</div>
+          <p class="value-desc">We tell the truth. We do not promise what we cannot deliver. We are people of our word, even when it is easier not to be.</p>
+        </div>
+        <div class="value-card">
+          <div class="deco sz-xs a-float-slow op-f delay-3" style="top:10px;right:10px;pointer-events:none;">
+            <img src="assets/HandDrawn/10_Sprinkles/Sprinkle%207.svg" alt="" aria-hidden="true">
+          </div>
+          <div class="value-letter">E</div>
+          <div class="value-title">Excellence</div>
+          <p class="value-desc">We hold a high standard. We do the work carefully, not just quickly. The universities we prepare students for hold that same standard, and so do we.</p>
+        </div>
+        <div class="value-card">
+          <div class="deco sz-xs a-float-slow op-f delay-4" style="top:10px;right:10px;pointer-events:none;">
+            <img src="assets/HandDrawn/10_Sprinkles/Sprinkle%208.svg" alt="" aria-hidden="true">
+          </div>
+          <div class="value-letter">R</div>
+          <div class="value-title">Reciprocity</div>
+          <p class="value-desc">We do not take resources for granted. Someone helped us. We help the next person. That is how a community compounds over time.</p>
         </div>
       </div>
     </section>
-
     <div class="rule-warm"></div>
 
     <!-- TEAM -->
     <section class="pad" id="team">
       <p class="eyebrow r">The team</p>
       <h2 class="section-h r r-d1">Six people.<br>One shared experience.</h2>
-      <p class="r r-d2" style="font-size:17px;line-height:1.88;color:var(--ink-2);margin-bottom:44px;max-width:480px;">
-        Our team spans Egypt, Kenya, and Venezuela. Each of us either lived the international admissions process from the underserved side, or has dedicated real work to understanding what students like us need.
-      </p>
+
 
       <div class="people-grid">
         <div class="person r">
@@ -233,9 +270,6 @@
 
       </div>
 
-      <div class="team-tagline r" style="margin-top:52px;padding:32px 0;border-top:var(--rule);">
-        <p style="font-family:var(--serif);font-size:clamp(18px,2.5vw,26px);font-weight:400;color:var(--ink-3);font-style:italic;">"We built the program we needed and did not have."</p>
-      </div>
     </section>
 
     <!-- CLOSING -->
