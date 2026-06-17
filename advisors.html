@@ -206,6 +206,36 @@
   }
 }
 
+
+/* fix box sizing for all elements (if not already globally set) */
+* {
+  box-sizing: border-box;
+}
+
+/* ensure the grid itself does not overflow */
+.uni-grid {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* card – allow shrinking below content size */
+.uni-card {
+  box-sizing: border-box;
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* portrait: two columns + tighter padding on small screens */
+@media (orientation: portrait) {
+  .uni-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .uni-card {
+    padding: 16px 12px;   /* slightly smaller padding on very narrow screens */
+  }
+}
+
 </style>
 </head>
 <body>
@@ -241,9 +271,9 @@
     </div>
 
     <div class="adv-stats r">
-      <div class="ast"><div class="ast-n">15</div><div class="ast-l">active advisors</div></div>
-      <div class="ast"><div class="ast-n">39</div><div class="ast-l">universities represented</div></div>
-      <div class="ast"><div class="ast-n">11</div><div class="ast-l">countries represented</div></div>
+      <div class="ast"><div class="ast-n">121</div><div class="ast-l">active advisors</div></div>
+      <div class="ast"><div class="ast-n">151</div><div class="ast-l">universities represented</div></div>
+      <div class="ast"><div class="ast-n">21</div><div class="ast-l">countries represented</div></div>
     </div>
 
     <!-- REGION TABS -->
@@ -320,7 +350,9 @@
 </div>
 
 <script>
+
 const UNIS = [
+  // --- Original working list (kept as-is, these take priority) ---
   { name: "MIT", x: 57.5, y: 32.91, advisors: 1, region: "usa", rank: 1, logo: "assets/unis/mit.svg", initial: "M" },
   { name: "Harvard University", x: 57.5, y: 32.91, advisors: 2, region: "usa", rank: 2, logo: "assets/unis/harv.svg", initial: "H" },
   { name: "University of Cambridge", x: 99.5, y: 24.25, advisors: 1, region: "uk", rank: 3, logo: "assets/unis/cam.png", initial: "U" },
@@ -357,8 +389,135 @@ const UNIS = [
   { name: "Lancaster University", x: 97.5, y: 22.52, advisors: 1, region: "uk", rank: 83, logo: "https://logo.clearbit.com/lancaster.ac.uk", initial: "L" },
   { name: "University of Exeter", x: 97, y: 25.11, advisors: 1, region: "uk", rank: 84, logo: "https://logo.clearbit.com/exeter.ac.uk", initial: "U" },
   { name: "University of Aberdeen", x: 97.5, y: 19.05, advisors: 1, region: "uk", rank: 85, logo: "https://logo.clearbit.com/abdn.ac.uk", initial: "U" },
-  { name: "Minerva University", x: 26.5, y: 36.37, advisors: 1, region: "usa", rank: 95, logo: "https://logo.clearbit.com/minerva.edu", initial: "M" }
+  { name: "Minerva University", x: 26.5, y: 36.37, advisors: 1, region: "usa", rank: 95, logo: "https://logo.clearbit.com/minerva.edu", initial: "M" },
+
+  // --- New additions from expanded list (advisors: 0 → 1 fixed) ---
+  { name: "Stanford University", x: 25, y: 37.24, advisors: 1, region: "usa", rank: 4, logo: "https://logo.clearbit.com/stanford.edu", initial: "S" },
+  { name: "University of Oxford", x: 98.5, y: 24.25, advisors: 1, region: "uk", rank: 6, logo: "https://logo.clearbit.com/ox.ac.uk", initial: "O" },
+  { name: "Princeton University", x: 55.5, y: 34.64, advisors: 3, region: "usa", rank: 7, logo: "https://logo.clearbit.com/princeton.edu", initial: "P" },
+  { name: "UCL", x: 100, y: 25.97, advisors: 1, region: "uk", rank: 9, logo: "https://logo.clearbit.com/ucl.ac.uk", initial: "U" },
+  { name: "ETH Zurich", x: 104, y: 28.58, advisors: 1, region: "europe", rank: 10, logo: "https://logo.clearbit.com/ethz.ch", initial: "E" },
+  { name: "University of Chicago", x: 47.5, y: 32.91, advisors: 3, region: "usa", rank: 12, logo: "https://logo.clearbit.com/uchicago.edu", initial: "U" },
+  { name: "Columbia University", x: 55, y: 33.77, advisors: 1, region: "usa", rank: 13, logo: "https://logo.clearbit.com/columbia.edu", initial: "C" },
+  { name: "University of Pennsylvania", x: 54.5, y: 34.64, advisors: 4, region: "usa", rank: 15, logo: "https://logo.clearbit.com/upenn.edu", initial: "U" },
+  { name: "Caltech", x: 29, y: 38.97, advisors: 1, region: "usa", rank: 16, logo: "https://logo.clearbit.com/caltech.edu", initial: "C" },
+  { name: "Cornell University", x: 53.5, y: 32.91, advisors: 2, region: "usa", rank: 19, logo: "https://logo.clearbit.com/cornell.edu", initial: "C" },
+  { name: "Duke University", x: 52, y: 37.24, advisors: 2, region: "usa", rank: 20, logo: "https://logo.clearbit.com/duke.edu", initial: "D" },
+  { name: "Northwestern University", x: 47.5, y: 32.91, advisors: 3, region: "usa", rank: 28, logo: "https://logo.clearbit.com/northwestern.edu", initial: "N" },
+  { name: "University of Notre Dame", x: 48.5, y: 32.91, advisors: 5, region: "usa", rank: 30, logo: "https://logo.clearbit.com/nd.edu", initial: "U" },
+  { name: "Brown University", x: 56.5, y: 32.91, advisors: 1, region: "usa", rank: 31, logo: "https://logo.clearbit.com/brown.edu", initial: "B" },
+  { name: "Johns Hopkins University", x: 54, y: 34.64, advisors: 1, region: "usa", rank: 32, logo: "https://logo.clearbit.com/jhu.edu", initial: "J" },
+  { name: "UCLA", x: 28.5, y: 38.1, advisors: 1, region: "usa", rank: 34, logo: "https://logo.clearbit.com/ucla.edu", initial: "U" },
+  { name: "University of Michigan", x: 50, y: 32.04, advisors: 1, region: "usa", rank: 35, logo: "https://logo.clearbit.com/umich.edu", initial: "U" },
+  { name: "NYU", x: 55.5, y: 33.77, advisors: 1, region: "usa", rank: 38, logo: "https://logo.clearbit.com/nyu.edu", initial: "N" },
+  { name: "Carnegie Mellon University", x: 52, y: 32.91, advisors: 1, region: "usa", rank: 41, logo: "https://logo.clearbit.com/cmu.edu", initial: "C" },
+  { name: "Tufts University", x: 57.5, y: 32.91, advisors: 3, region: "usa", rank: 42, logo: "https://logo.clearbit.com/tufts.edu", initial: "T" },
+  { name: "University of Southern California", x: 29, y: 38.97, advisors: 1, region: "usa", rank: 43, logo: "https://logo.clearbit.com/usc.edu", initial: "U" },
+  { name: "Boston University", x: 57.5, y: 32.91, advisors: 1, region: "usa", rank: 46, logo: "https://logo.clearbit.com/bu.edu", initial: "B" },
+  { name: "Georgia Tech", x: 49, y: 38.97, advisors: 1, region: "usa", rank: 47, logo: "https://logo.clearbit.com/gatech.edu", initial: "G" },
+  { name: "University of Washington", x: 27, y: 28.58, advisors: 1, region: "usa", rank: 49, logo: "https://logo.clearbit.com/washington.edu", initial: "U" },
+  { name: "University of Toronto", x: 52, y: 27.71, advisors: 1, region: "usa", rank: 50, logo: "https://logo.clearbit.com/utoronto.ca", initial: "U" },
+  { name: "McGill University", x: 53, y: 30.31, advisors: 1, region: "usa", rank: 51, logo: "https://logo.clearbit.com/mcgill.ca", initial: "M" },
+  { name: "Amherst College", x: 56.5, y: 32.91, advisors: 1, region: "usa", rank: 52, logo: "https://logo.clearbit.com/amherst.edu", initial: "A" },
+  { name: "Swarthmore College", x: 54.5, y: 34.64, advisors: 1, region: "usa", rank: 53, logo: "https://logo.clearbit.com/swarthmore.edu", initial: "S" },
+  { name: "Pomona College", x: 30, y: 38.97, advisors: 2, region: "usa", rank: 54, logo: "https://logo.clearbit.com/pomona.edu", initial: "P" },
+  { name: "Wellesley College", x: 56.5, y: 32.91, advisors: 1, region: "usa", rank: 57, logo: "https://logo.clearbit.com/wellesley.edu", initial: "W" },
+  { name: "Claremont McKenna College", x: 30, y: 38.97, advisors: 1, region: "usa", rank: 58, logo: "https://logo.clearbit.com/cmc.edu", initial: "C" },
+  { name: "Haverford College", x: 54.5, y: 34.64, advisors: 1, region: "usa", rank: 59, logo: "https://logo.clearbit.com/haverford.edu", initial: "H" },
+  { name: "Smith College", x: 56.5, y: 32.91, advisors: 2, region: "usa", rank: 60, logo: "https://logo.clearbit.com/smith.edu", initial: "S" },
+  { name: "Bates College", x: 57.5, y: 31.18, advisors: 2, region: "usa", rank: 61, logo: "https://logo.clearbit.com/bates.edu", initial: "B" },
+  { name: "Oberlin College", x: 51, y: 33.77, advisors: 3, region: "usa", rank: 62, logo: "https://logo.clearbit.com/oberlin.edu", initial: "O" },
+  { name: "Skidmore College", x: 56, y: 32.04, advisors: 5, region: "usa", rank: 64, logo: "https://logo.clearbit.com/skidmore.edu", initial: "S" },
+  { name: "Wesleyan University", x: 56.5, y: 32.91, advisors: 1, region: "usa", rank: 65, logo: "https://logo.clearbit.com/wesleyan.edu", initial: "W" },
+  { name: "Washington and Lee University", x: 52.5, y: 36.37, advisors: 2, region: "usa", rank: 66, logo: "https://logo.clearbit.com/wlu.edu", initial: "W" },
+  { name: "Centre College", x: 49.5, y: 36.37, advisors: 3, region: "usa", rank: 68, logo: "", initial: "C" },
+  { name: "Bard College", x: 55.5, y: 32.91, advisors: 1, region: "usa", rank: 69, logo: "https://logo.clearbit.com/bard.edu", initial: "B" },
+  { name: "Northeastern University", x: 57.5, y: 32.91, advisors: 1, region: "usa", rank: 70, logo: "https://logo.clearbit.com/northeastern.edu", initial: "N" },
+  { name: "Case Western Reserve", x: 51, y: 33.77, advisors: 1, region: "usa", rank: 71, logo: "https://logo.clearbit.com/case.edu", initial: "C" },
+  { name: "Lehigh University", x: 55, y: 33.77, advisors: 1, region: "usa", rank: 72, logo: "https://logo.clearbit.com/lehigh.edu", initial: "L" },
+  { name: "Syracuse University", x: 54, y: 32.04, advisors: 1, region: "usa", rank: 75, logo: "https://logo.clearbit.com/syr.edu", initial: "S" },
+  { name: "Texas Christian University", x: 41.5, y: 39.84, advisors: 2, region: "usa", rank: 77, logo: "https://logo.clearbit.com/tcu.edu", initial: "T" },
+  { name: "UT Austin", x: 41.5, y: 41.57, advisors: 1, region: "usa", rank: 78, logo: "https://logo.clearbit.com/utexas.edu", initial: "U" },
+  { name: "American University", x: 54, y: 35.51, advisors: 1, region: "usa", rank: 79, logo: "https://logo.clearbit.com/american.edu", initial: "A" },
+  { name: "Grambling State University", x: 44.5, y: 39.84, advisors: 3, region: "usa", rank: 80, logo: "", initial: "G" },
+  { name: "University of Massachusetts Amherst", x: 56.5, y: 32.04, advisors: 1, region: "usa", rank: 81, logo: "https://logo.clearbit.com/umass.edu", initial: "U" },
+  { name: "University of Illinois Urbana-Champaign", x: 46.5, y: 34.64, advisors: 1, region: "usa", rank: 86, logo: "https://logo.clearbit.com/illinois.edu", initial: "U" },
+  { name: "University of Wisconsin-Madison", x: 44, y: 32.04, advisors: 1, region: "usa", rank: 87, logo: "https://logo.clearbit.com/wisc.edu", initial: "U" },
+  { name: "University of Minnesota", x: 45, y: 31.18, advisors: 1, region: "usa", rank: 88, logo: "https://logo.clearbit.com/umn.edu", initial: "U" },
+  { name: "Ohio State University", x: 50, y: 34.64, advisors: 1, region: "usa", rank: 89, logo: "https://logo.clearbit.com/osu.edu", initial: "O" },
+  { name: "University of Pittsburgh", x: 52, y: 35.51, advisors: 1, region: "usa", rank: 90, logo: "https://logo.clearbit.com/pitt.edu", initial: "U" },
+  { name: "Penn State University", x: 53, y: 33.77, advisors: 1, region: "usa", rank: 91, logo: "https://logo.clearbit.com/psu.edu", initial: "P" },
+  { name: "University of Maryland", x: 54, y: 34.64, advisors: 1, region: "usa", rank: 92, logo: "https://logo.clearbit.com/umd.edu", initial: "U" },
+  { name: "Purdue University", x: 48, y: 34.64, advisors: 1, region: "usa", rank: 93, logo: "https://logo.clearbit.com/purdue.edu", initial: "P" },
+  { name: "University of Virginia", x: 53, y: 37.24, advisors: 1, region: "usa", rank: 94, logo: "https://logo.clearbit.com/virginia.edu", initial: "U" },
+  { name: "University of Colorado Boulder", x: 34, y: 34.64, advisors: 1, region: "usa", rank: 96, logo: "https://logo.clearbit.com/colorado.edu", initial: "U" },
+  { name: "Arizona State University", x: 29, y: 40.71, advisors: 1, region: "usa", rank: 97, logo: "https://logo.clearbit.com/asu.edu", initial: "A" },
+  { name: "University of Arizona", x: 30, y: 41.57, advisors: 1, region: "usa", rank: 98, logo: "https://logo.clearbit.com/arizona.edu", initial: "U" },
+  { name: "University of Utah", x: 31, y: 31.18, advisors: 1, region: "usa", rank: 99, logo: "https://logo.clearbit.com/utah.edu", initial: "U" },
+  { name: "Concordia University", x: 56, y: 30.31, advisors: 2, region: "usa", rank: 100, logo: "https://logo.clearbit.com/concordia.ca", initial: "C" },
+  { name: "University of Calgary", x: 32, y: 25.11, advisors: 2, region: "usa", rank: 101, logo: "https://logo.clearbit.com/ucalgary.ca", initial: "U" },
+  { name: "Cornell College", x: 45.5, y: 32.91, advisors: 3, region: "usa", rank: 102, logo: "", initial: "C" },
+  { name: "Universidad EARTH", x: 50, y: 54.56, advisors: 1, region: "usa", rank: 103, logo: "", initial: "U" },
+  { name: "University of São Paulo", x: 48, y: 72.74, advisors: 1, region: "usa", rank: 104, logo: "https://logo.clearbit.com/usp.br", initial: "U" },
+
+  // --- UK additions ---
+  { name: "LSE", x: 100.5, y: 25.11, advisors: 1, region: "uk", rank: 105, logo: "https://logo.clearbit.com/lse.ac.uk", initial: "L" },
+  { name: "King's College London", x: 99.5, y: 25.97, advisors: 1, region: "uk", rank: 106, logo: "https://logo.clearbit.com/kcl.ac.uk", initial: "K" },
+  { name: "University of Glasgow", x: 96.5, y: 20.78, advisors: 1, region: "uk", rank: 107, logo: "https://logo.clearbit.com/gla.ac.uk", initial: "U" },
+  { name: "University of Birmingham", x: 98.5, y: 23.38, advisors: 1, region: "uk", rank: 108, logo: "https://logo.clearbit.com/bham.ac.uk", initial: "U" },
+  { name: "University of Sheffield", x: 98, y: 23.38, advisors: 1, region: "uk", rank: 109, logo: "https://logo.clearbit.com/sheffield.ac.uk", initial: "U" },
+  { name: "University of St Andrews", x: 97, y: 19.92, advisors: 1, region: "uk", rank: 110, logo: "https://logo.clearbit.com/st-andrews.ac.uk", initial: "U" },
+  { name: "University of Essex", x: 99.5, y: 24.25, advisors: 1, region: "uk", rank: 111, logo: "https://logo.clearbit.com/essex.ac.uk", initial: "U" },
+  { name: "Hult Business School", x: 99, y: 25.11, advisors: 2, region: "uk", rank: 112, logo: "https://logo.clearbit.com/hult.edu", initial: "H" },
+
+  // --- Europe additions ---
+  { name: "EPFL", x: 105, y: 28.58, advisors: 1, region: "europe", rank: 113, logo: "https://logo.clearbit.com/epfl.ch", initial: "E" },
+  { name: "Technical University of Munich", x: 105, y: 26.85, advisors: 1, region: "europe", rank: 114, logo: "https://logo.clearbit.com/tum.de", initial: "T" },
+  { name: "LMU Munich", x: 105, y: 26.85, advisors: 1, region: "europe", rank: 115, logo: "https://logo.clearbit.com/lmu.de", initial: "L" },
+  { name: "Bocconi University", x: 104, y: 30.31, advisors: 1, region: "europe", rank: 116, logo: "https://logo.clearbit.com/unibocconi.it", initial: "B" },
+  { name: "Leiden University", x: 101.5, y: 24.25, advisors: 1, region: "europe", rank: 117, logo: "https://logo.clearbit.com/leidenuniv.nl", initial: "L" },
+  { name: "University of Debrecen", x: 112, y: 28.58, advisors: 2, region: "europe", rank: 118, logo: "", initial: "U" },
+  { name: "American Univ. in Paris", x: 100, y: 26.85, advisors: 1, region: "europe", rank: 119, logo: "https://logo.clearbit.com/aup.edu", initial: "A" },
+  { name: "Georgian Technical Univ.", x: 125.5, y: 32.91, advisors: 1, region: "europe", rank: 120, logo: "", initial: "G" },
+
+  // --- Asia additions ---
+  { name: "Peking University", x: 167, y: 39.84, advisors: 1, region: "asia", rank: 121, logo: "https://logo.clearbit.com/pku.edu.cn", initial: "P" },
+  { name: "Tsinghua University", x: 168, y: 40.71, advisors: 1, region: "asia", rank: 122, logo: "https://logo.clearbit.com/tsinghua.edu.cn", initial: "T" },
+  { name: "Fudan University", x: 169, y: 40.71, advisors: 1, region: "asia", rank: 123, logo: "https://logo.clearbit.com/fudan.edu.cn", initial: "F" },
+  { name: "Zhejiang University", x: 170, y: 40.71, advisors: 1, region: "asia", rank: 124, logo: "https://logo.clearbit.com/zju.edu.cn", initial: "Z" },
+  { name: "University of Tokyo", x: 183.5, y: 39.84, advisors: 1, region: "asia", rank: 125, logo: "https://logo.clearbit.com/u-tokyo.ac.jp", initial: "U" },
+  { name: "University of Hong Kong", x: 166.5, y: 46.77, advisors: 1, region: "asia", rank: 126, logo: "https://logo.clearbit.com/hku.hk", initial: "U" },
+  { name: "Nanyang Technological University", x: 161, y: 58.89, advisors: 1, region: "asia", rank: 127, logo: "https://logo.clearbit.com/ntu.edu.sg", initial: "N" },
+  { name: "Ashoka University", x: 144, y: 42.44, advisors: 1, region: "asia", rank: 128, logo: "", initial: "A" },
+  { name: "Monash University Malaysia", x: 159, y: 58.02, advisors: 1, region: "asia", rank: 129, logo: "", initial: "M" },
+  { name: "Ritsumeikan APU", x: 176.5, y: 39.84, advisors: 8, region: "asia", rank: 130, logo: "", initial: "R" },
+  { name: "University of Melbourne", x: 177, y: 78.81, advisors: 1, region: "asia", rank: 131, logo: "https://logo.clearbit.com/unimelb.edu.au", initial: "U" },
+  { name: "University of Sydney", x: 180, y: 80.54, advisors: 1, region: "asia", rank: 132, logo: "https://logo.clearbit.com/sydney.edu.au", initial: "U" },
+  { name: "University of Queensland", x: 179, y: 79.68, advisors: 1, region: "asia", rank: 133, logo: "https://logo.clearbit.com/uq.edu.au", initial: "U" },
+  { name: "Monash University", x: 178, y: 79.68, advisors: 1, region: "asia", rank: 134, logo: "https://logo.clearbit.com/monash.edu", initial: "M" },
+  { name: "Australian National University", x: 180, y: 79.68, advisors: 1, region: "asia", rank: 135, logo: "https://logo.clearbit.com/anu.edu.au", initial: "A" },
+  { name: "University of Adelaide", x: 178, y: 81.41, advisors: 1, region: "asia", rank: 136, logo: "https://logo.clearbit.com/adelaide.edu.au", initial: "U" },
+  { name: "University of Western Australia", x: 165, y: 79.68, advisors: 1, region: "asia", rank: 137, logo: "https://logo.clearbit.com/uwa.edu.au", initial: "U" },
+  { name: "University of Technology Sydney", x: 180, y: 80.54, advisors: 1, region: "asia", rank: 138, logo: "https://logo.clearbit.com/uts.edu.au", initial: "U" },
+  { name: "Macquarie University", x: 180, y: 79.68, advisors: 1, region: "asia", rank: 139, logo: "https://logo.clearbit.com/mq.edu.au", initial: "M" },
+  { name: "University of New South Wales", x: 180, y: 80.54, advisors: 1, region: "asia", rank: 140, logo: "https://logo.clearbit.com/unsw.edu.au", initial: "U" },
+
+  // --- Middle East additions ---
+  { name: "Georgetown Univ. Qatar", x: 129.5, y: 45.03, advisors: 4, region: "middle-east", rank: 141, logo: "", initial: "G" },
+  { name: "Northwestern Univ. Qatar", x: 129.5, y: 45.03, advisors: 2, region: "middle-east", rank: 142, logo: "", initial: "N" },
+  { name: "NYU Abu Dhabi", x: 131.5, y: 45.03, advisors: 1, region: "middle-east", rank: 143, logo: "", initial: "N" },
+  { name: "German Univ. in Cairo", x: 117.5, y: 41.57, advisors: 1, region: "middle-east", rank: 144, logo: "", initial: "G" },
+
+  // --- Africa additions ---
+  { name: "African Leadership Univ.", x: 117, y: 61.49, advisors: 3, region: "africa", rank: 145, logo: "", initial: "A" },
+  { name: "University of Cape Town", x: 109.5, y: 81.41, advisors: 1, region: "africa", rank: 146, logo: "https://logo.clearbit.com/uct.ac.za", initial: "U" },
+  { name: "KNUST", x: 98, y: 56.29, advisors: 1, region: "africa", rank: 147, logo: "", initial: "K" },
+  { name: "Pan-Atlantic University", x: 101, y: 56.29, advisors: 1, region: "africa", rank: 148, logo: "", initial: "P" },
+  { name: "Ashesi University", x: 98.5, y: 57.16, advisors: 1, region: "africa", rank: 149, logo: "", initial: "A" },
+  { name: "USIU Africa", x: 120.5, y: 60.62, advisors: 1, region: "africa", rank: 150, logo: "", initial: "U" },
+  { name: "University of Lusaka", x: 115.5, y: 69.28, advisors: 1, region: "africa", rank: 151, logo: "", initial: "U" }
 ];
+
 
 /* ── MAP LOGIC ── */
 const pinsSVG = document.getElementById('map-pins');
