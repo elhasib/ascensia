@@ -20,7 +20,7 @@
 }
 
 /* hero line reveal */
-.hero-line{display:block;overflow:hidden;}
+.hero-line{display:block;overflow:visible;}
 .hero-line span{display:block;transform:translateY(110%);}
 .hero-line span.go{animation:slideUp 1s var(--ease) both;}
 .hero-line:nth-child(1) span.go{animation-delay:.38s;}
