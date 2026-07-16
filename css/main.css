@@ -201,7 +201,7 @@
 }
 .person-photo img{
   width:100%;height:100%;
-  object-fit:cover;object-position:center 10%;
+  object-fit:cover;object-position:center top;
   filter:grayscale(1) contrast(1.08) brightness(.98);
   transition:filter .55s var(--ease), transform .55s var(--ease);
   display:block;
@@ -329,3 +329,57 @@
   .team-grid{grid-template-columns:1fr;}
   .page-wrap{padding:20px 12px;}
 }
+
+
+/* Style for advsiry network */
+
+
+.adv-sample-num{font-family:var(--serif);color:var(--gold-dim);}
+
+.adv-cards-row{
+  display:flex;gap:2px;background:rgba(28,20,9,.07);
+  margin-top:32px;flex-wrap:wrap;border-radius:4px;overflow:hidden;
+}
+.adv-card{
+  position:relative;flex:1 1 240px;background:var(--sheet-bg);
+  cursor:none;
+}
+.adv-card-photo{
+  position:relative;width:100%;aspect-ratio:11/11;
+  background:var(--sheet-bg-alt);overflow:hidden;
+}
+.adv-card-photo::before{
+  content:attr(data-initial);
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:44px;color:var(--gold-dim);
+  background:var(--sheet-bg-alt);
+}
+.adv-card-photo img{
+  position:relative;z-index:1;width:100%;height:100%;
+  object-fit:cover;object-position:center top;
+  filter:grayscale(1) contrast(1.05) brightness(.98);
+  transition:filter .5s var(--ease),transform .5s var(--ease);
+}
+.adv-card:hover .adv-card-photo img{
+  filter:grayscale(0) contrast(1.02) brightness(1);
+  transform:scale(1.02);
+}
+.adv-card-uni{
+  padding:14px 18px 0;
+  font-family:var(--sans);font-size:11px;font-weight:400;
+  letter-spacing:.04em;color:var(--gold-dim);line-height:1.4;
+}
+.adv-card-info{padding:4px 18px 20px;}
+.adv-card-name{font-family:var(--serif);font-size:16px;color:var(--ink);margin-bottom:3px;}
+.adv-card-country{
+  font-family:var(--sans);font-size:10px;font-weight:400;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);
+}
+
+@media(max-width:700px){
+  .adv-cards-row{flex-direction:column;}
+}
+
+
+
+
