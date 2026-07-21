@@ -5,29 +5,32 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Page Not Found | Ascensia</title>
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#1E1714">
+<meta name="theme-color" content="#F5F0EB">
 <!-- Security meta tags -->
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta http-equiv="X-Frame-Options" content="DENY">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <!-- Favicon -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%231E1714'/><line x1='23' y1='7'  x2='29' y2='7'  stroke='%23D4A853' stroke-width='2.2' stroke-linecap='square'/><line x1='17' y1='13' x2='29' y2='13' stroke='%23D4A853' stroke-width='2.2' stroke-linecap='square'/><line x1='11' y1='19' x2='29' y2='19' stroke='%23D4A853' stroke-width='2.2' stroke-linecap='square'/><line x1='3'  y1='25' x2='29' y2='25' stroke='%23D4A853' stroke-width='2.2' stroke-linecap='square'/></svg>">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23F5F0EB'/><line x1='23' y1='7'  x2='29' y2='7'  stroke='%23D4A853' stroke-width='2.2' stroke-linecap='square'/><line x1='17' y1='13' x2='29' y2='13' stroke='%23D4A853' stroke-width='2.2' stroke-linecap='square'/><line x1='11' y1='19' x2='29' y2='19' stroke='%23D4A853' stroke-width='2.2' stroke-linecap='square'/><line x1='3'  y1='25' x2='29' y2='25' stroke='%23D4A853' stroke-width='2.2' stroke-linecap='square'/></svg>">
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Jost:wght@200;300;400;500&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Jost:wght@200;300;400;500&display=swap"></noscript>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Outfit:wght@200;300;400;500&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Outfit:wght@200;300;400;500&display=swap"></noscript>
 <style>
   :root {
-    --cream: #F5F0EB; --charcoal: #1E1714; --gold: #D4A853;
-    --copper: #A67C68; --rose: #C4A491;
+    --cream: #F5F0EB;
+    --charcoal: #1E1714;
+    --gold: #D4A853;
+    --copper: #A67C68;
+    --rose: #C4A491;
     --serif: 'Cormorant Garamond', Georgia, serif;
     --sans: 'Outfit', system-ui, sans-serif;
   }
   * { margin:0; padding:0; box-sizing:border-box; }
   body {
-    background: var(--ink-2);
-    color: var(--cream);
+    background: var(--cream);
+    color: var(--charcoal);
     font-family: var(--sans);
     min-height: 100vh;
     display: flex;
@@ -59,7 +62,7 @@
   .ring {
     position: absolute;
     border-radius: 50%;
-    border: 0.5px solid rgba(196,164,145,0.06);
+    border: 0.5px solid rgba(30,23,20,0.06);
     top: 50%; left: 50%;
     transform: translate(-50%,-50%);
     pointer-events: none;
@@ -71,7 +74,7 @@
     font-weight: 300;
     line-height: 1;
     letter-spacing: -0.06em;
-    color: rgba(196,164,145,0.08);
+    color: rgba(30,23,20,0.06);
     position: absolute;
     top: 50%; left: 50%;
     transform: translate(-50%,-50%);
@@ -82,7 +85,7 @@
 
   .content { position: relative; z-index: 1; max-width: 560px; }
 
-  /* Logo */
+  /* Logo - REVERSED SHAPE (tallest line on RIGHT) */
   .logo {
     display: flex; align-items: center; gap: 12px;
     text-decoration: none; justify-content: center;
@@ -90,16 +93,18 @@
   }
   .logo-lines {
     display: flex; flex-direction: column;
-    gap: 3.5px; align-items: flex-start;
+    gap: 3.5px;
+    align-items: flex-end; /* Tallest line on the right */
   }
   .logo-lines span {
     display: block; height: 1.5px;
-    background: var(--gold); border-radius: 1px;
+    background: var(--gold);
+    border-radius: 1px;
   }
   .logo-wordmark {
     font-family: var(--serif); font-size: 14px;
     font-weight: 400; letter-spacing: 0.28em;
-    text-transform: uppercase; color: var(--cream);
+    text-transform: uppercase; color: var(--charcoal);
   }
 
   .eyebrow {
@@ -120,26 +125,34 @@
     line-height: 1.15;
     letter-spacing: -0.01em;
     margin-bottom: 20px;
-    color: var(--cream);
+    color: var(--charcoal);
   }
   h1 em { font-style: italic; color: var(--gold); }
 
   p {
-    font-size: 16px; font-weight: 300; line-height: 1.8;
-    color: rgba(245,240,235,0.4);
+    font-size: 17px;
+    font-weight: 350;
+    line-height: 1.8;
+    color: rgba(30,23,20,0.7);
     margin-bottom: 44px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .home-link {
     display: inline-flex; align-items: center; gap: 10px;
     font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
-    text-decoration: none; color: var(--ink-2);
-    background: var(--gold); padding: 14px 36px;
+    text-decoration: none; color: var(--cream);
+    background: var(--charcoal); padding: 14px 36px;
     border-radius: 1px; font-weight: 400;
-    transition: background 0.2s;
+    transition: background 0.2s, transform 0.2s;
     font-family: var(--sans);
   }
-  .home-link:hover { background: var(--cream); }
+  .home-link:hover {
+    background: #2d2420;
+    transform: translateY(-1px);
+  }
   .home-link .arr { transition: transform 0.2s; }
   .home-link:hover .arr { transform: translateX(4px); }
 
@@ -156,13 +169,20 @@
   .content h1          { animation-delay: 0.4s; }
   .content p           { animation-delay: 0.55s; }
   .content .home-link  { animation-delay: 0.7s; }
+
+  /* Mobile adjustments */
+  @media (max-width: 480px) {
+    body { padding: 40px 24px; }
+    p { font-size: 15px; }
+    .home-link { padding: 12px 28px; font-size: 10px; }
+  }
 </style>
 </head>
 <body>
 
 <div class="ring" style="width:500px;height:500px"></div>
-<div class="ring" style="width:800px;height:800px;border-color:rgba(196,164,145,0.03)"></div>
-<div class="ring" style="width:1100px;height:1100px;border-color:rgba(196,164,145,0.02)"></div>
+<div class="ring" style="width:800px;height:800px;border-color:rgba(30,23,20,0.04)"></div>
+<div class="ring" style="width:1100px;height:1100px;border-color:rgba(30,23,20,0.03)"></div>
 
 <div class="bg-sculpture" aria-hidden="true">
   <span style="width:40px"></span>
@@ -178,6 +198,7 @@
 <div class="content">
   <a href="index.html" class="logo">
     <div class="logo-lines">
+      <!-- Lines align to the right - tallest at bottom = triangle points right -->
       <span style="width:6px"></span>
       <span style="width:11px"></span>
       <span style="width:17px"></span>
