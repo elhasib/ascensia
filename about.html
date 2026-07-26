@@ -68,11 +68,12 @@
   min-height:140px;
   text-decoration:none;
   color:inherit;
-  cursor:pointer;
+  cursor:none !important;
 }
 .partner-card:hover{
   transform:translateY(-4px);
   box-shadow:0 12px 40px rgba(28,20,9,0.06);
+  cursor:none !important;
 }
 .partner-logo{
   width:100%;
@@ -86,6 +87,18 @@
   max-width:100%;
   max-height:100%;
   object-fit:contain;
+}
+
+/* OVERRIDE ALL CURSORS */
+a, button, .partner-card, .nav-cta, .person-li, .home-link, .closing-email, 
+[role="button"], [type="submit"], .nav-links a, .nav-mobile a, .logo, .nav-logo {
+  cursor: none !important;
+}
+
+a:hover, button:hover, .partner-card:hover, .nav-cta:hover, .person-li:hover, 
+.home-link:hover, .closing-email:hover, .nav-links a:hover, .nav-mobile a:hover,
+.logo:hover, .nav-logo:hover {
+  cursor: none !important;
 }
 
 @media(max-width:900px){
