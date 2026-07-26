@@ -85,26 +85,18 @@
 
   .content { position: relative; z-index: 1; max-width: 560px; }
 
-  /* Logo - REVERSED SHAPE (tallest line on RIGHT) */
+  /* Logo - using image */
   .logo {
-    display: flex; align-items: center; gap: 12px;
-    text-decoration: none; justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
     margin-bottom: 64px;
   }
-  .logo-lines {
-    display: flex; flex-direction: column;
-    gap: 3.5px;
-    align-items: flex-end; /* Tallest line on the right */
-  }
-  .logo-lines span {
-    display: block; height: 1.5px;
-    background: var(--gold);
-    border-radius: 1px;
-  }
-  .logo-wordmark {
-    font-family: var(--serif); font-size: 14px;
-    font-weight: 400; letter-spacing: 0.28em;
-    text-transform: uppercase; color: var(--charcoal);
+  .logo img {
+    max-height: 50px;
+    width: auto;
+    display: block;
   }
 
   .eyebrow {
@@ -175,6 +167,7 @@
     body { padding: 40px 24px; }
     p { font-size: 15px; }
     .home-link { padding: 12px 28px; font-size: 10px; }
+    .logo img { max-height: 38px; }
   }
 </style>
 </head>
@@ -197,15 +190,7 @@
 
 <div class="content">
   <a href="index.html" class="logo">
-    <div class="logo-lines">
-      <!-- Lines align to the right - tallest at bottom = triangle points right -->
-      <span style="width:6px"></span>
-      <span style="width:11px"></span>
-      <span style="width:17px"></span>
-      <span style="width:23px"></span>
-      <span style="width:30px"></span>
-    </div>
-    <span class="logo-wordmark">Ascensia</span>
+    <img src="images/logo-white.png" alt="Ascensia">
   </a>
 
   <div class="eyebrow">Page not found</div>

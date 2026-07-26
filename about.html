@@ -48,20 +48,58 @@
   line-height:1.82;color:var(--ink-2);
 }
 
+/* PARTNERS STYLES */
+.partners-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:40px;
+  margin-top:40px;
+}
+.partner-card{
+  background:var(--sheet-bg-alt);
+  border-radius:12px;
+  padding:48px 32px;
+  text-align:center;
+  transition:transform 0.3s ease, box-shadow 0.3s ease;
+  border:1px solid rgba(28,20,9,0.06);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:140px;
+  text-decoration:none;
+  color:inherit;
+  cursor:pointer;
+}
+.partner-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 12px 40px rgba(28,20,9,0.06);
+}
+.partner-logo{
+  width:100%;
+  max-width:200px;
+  height:100px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.partner-logo img{
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+}
+
 @media(max-width:900px){
   .values-grid{grid-template-columns:repeat(3,1fr);}
+  .partners-grid{grid-template-columns:repeat(2,1fr);}
 }
 @media(max-width:600px){
   .values-grid{grid-template-columns:1fr 1fr;}
+  .partners-grid{grid-template-columns:1fr;}
 }
 @media(max-width:400px){
   .values-grid{grid-template-columns:1fr;}
 }
 </style>
-
-
-
-
 
 <script type="application/ld+json">
 {
@@ -75,9 +113,6 @@
   ]
 }
 </script>
-
-
-
 
 </head>
 <body>
@@ -106,10 +141,6 @@
 
     <!-- HERO -->
     <div class="page-hero" style="position:relative;overflow:hidden;">
-      <!-- deco: spiral background -->
-      <!-- <div class="deco sz-xxl a-spin-slow op-vf" style="top:-20px;right:-80px;pointer-events:none;">
-        <img src="assets/HandDrawn/09_Spirals/Spiral%204.svg" alt="" aria-hidden="true">
-      </div> -->
       <p class="page-hero-label">About Ascensia</p>
       <h1>
         <span class="hero-line"><span>Built by people</span></span>
@@ -120,8 +151,6 @@
       </p>
     </div>
 
-
-
 <!-- TEAM -->
 <section class="pad" id="team">
   <p class="eyebrow r">The team</p>
@@ -129,7 +158,7 @@
 
   <div class="people-grid">
     <div class="person r">
-      <div class="person-photo"><img src="images/mash.png" alt="Mohamed Mashhour" loading="lazy"></div>
+      <div class="person-photo"><img src="images/mash.png" alt="Mohamed Mashhour" loading="lazy" style="filter:none;"></div>
       <div class="person-info">
         <div class="person-name">Mohamed Mashhour</div>
         <div class="person-role">Chief Executive Officer</div>
@@ -139,7 +168,7 @@
     </div>
 
     <div class="person r r-d2">
-      <div class="person-photo"><img src="images/haile.JPG" alt="Haile Adane" loading="lazy"></div>
+      <div class="person-photo"><img src="images/haile.JPG" alt="Haile Adane" loading="lazy" style="filter:none;"></div>
       <div class="person-info">
         <div class="person-name">Haile Adane</div>
         <div class="person-role">Chief Learning Officer</div>
@@ -149,7 +178,7 @@
     </div>
 
     <div class="person r r-d2">
-      <div class="person-photo"><img src="images/camila.png" alt="Camila Caruso" loading="lazy"></div>
+      <div class="person-photo"><img src="images/camila.png" alt="Camila Caruso" loading="lazy" style="filter:none;"></div>
       <div class="person-info">
         <div class="person-name">Camila Caruso</div>
         <div class="person-role">Chief Media Officer</div>
@@ -159,7 +188,7 @@
     </div>
 
     <div class="person r r-d2">
-      <div class="person-photo"><img src="images/ismail.jpeg" alt="Ismail Aboelmagd" loading="lazy"></div>
+      <div class="person-photo"><img src="images/ismail.jpeg" alt="Ismail Aboelmagd" loading="lazy" style="filter:none;"></div>
       <div class="person-info">
         <div class="person-name">Ismail Aboelmagd</div>
         <div class="person-role">Chief Strategy Officer</div>
@@ -169,7 +198,7 @@
     </div>
 
     <div class="person r r-d1">
-      <div class="person-photo"><img src="images/youssef.png" alt="Youssef Nassar" loading="lazy"></div>
+      <div class="person-photo"><img src="images/youssef.png" alt="Youssef Nassar" loading="lazy" style="filter:none;"></div>
       <div class="person-info">
         <div class="person-name">Youssef Nassar</div>
         <div class="person-role">Chief of Staff</div>
@@ -179,7 +208,7 @@
     </div>
 
     <div class="person r r-d1">
-      <div class="person-photo"><img src="images/jer.png" alt="Jeremy Muchilwa" loading="lazy"></div>
+      <div class="person-photo"><img src="images/jer.png" alt="Jeremy Muchilwa" loading="lazy" style="filter:none;"></div>
       <div class="person-info">
         <div class="person-name">Jeremy Muchilwa</div>
         <div class="person-role">Chief Relations Officer</div>
@@ -189,7 +218,7 @@
     </div>
 
     <div class="person r">
-      <div class="person-photo"><img src="images/bassem.png" alt="Youssef Taleb" loading="lazy"></div>
+      <div class="person-photo"><img src="images/bassem.png" alt="Youssef Taleb" loading="lazy" style="filter:none;"></div>
       <div class="person-info">
         <div class="person-name">Youssef Taleb</div>
         <div class="person-role">Chief Programs Officer</div>
@@ -199,7 +228,7 @@
     </div>
 
     <div class="person r r-d1">
-      <div class="person-photo"><img src="images/saif.jpg" alt="Saif Abdelhamid" loading="lazy"></div>
+      <div class="person-photo"><img src="images/saif.jpg" alt="Saif Abdelhamid" loading="lazy" style="filter:none;"></div>
       <div class="person-info">
         <div class="person-name">Saif Abdelhamid</div>
         <div class="person-role">Chief Technology Officer</div>
@@ -210,7 +239,7 @@
 
     <!-- Ayanfe -->
     <div class="person r r-d2">
-      <div class="person-photo"><img src="images/ayanfe-final.jpg" alt="Ayanfe" loading="lazy"></div>
+      <div class="person-photo"><img src="images/ayanfe-final.jpg" alt="Ayanfe" loading="lazy" style="filter:none;"></div>
       <div class="person-info">
         <div class="person-name">Ayanfeoluwa Ayanlade</div>
         <div class="person-role">Director of Teaching</div>
@@ -221,7 +250,7 @@
 
     <!-- Dawit - Now at the bottom center -->
     <div class="person r" style="grid-column: 1 / -1; justify-self: center; max-width: 280px;">
-      <div class="person-photo"><img src="images/dawit.jpg" alt="Dawit Dagne" loading="lazy"></div>
+      <div class="person-photo"><img src="images/dawit.jpg" alt="Dawit Dagne" loading="lazy" style="filter:none;"></div>
       <div class="person-info">
         <div class="person-name">Dawit Dagne</div>
         <div class="person-role">Director of Advisory Network</div>
@@ -234,18 +263,39 @@
 
 </section>
 
+<!-- PARTNERS -->
+<section class="pad" id="partners" style="position:relative;overflow:hidden;">
+  <p class="eyebrow r">Our partners</p>
+  <h2 class="section-h r r-d1">Organizations we work with.</h2>
+
+  <div class="partners-grid r r-d3">
+
+    <!-- Abaarso -->
+    <a href="https://www.abaarsonetwork.org/" target="_blank" rel="noopener" class="partner-card">
+      <div class="partner-logo">
+        <img src="images/Abaarso-Network-logo.png" alt="Abaarso" loading="lazy">
+      </div>
+    </a>
+
+    <!-- Non-Trivial -->
+    <a href="https://www.non-trivial.org/" target="_blank" rel="noopener" class="partner-card">
+      <div class="partner-logo">
+        <img src="images/non-trivial-logo.png" alt="Non-Trivial" loading="lazy">
+      </div>
+    </a>
+
+    <!-- Ciyota -->
+    <a href="https://www.ciyota.org/" target="_blank" rel="noopener" class="partner-card">
+      <div class="partner-logo">
+        <img src="images/ciyota-logo.png" alt="Ciyota" loading="lazy">
+      </div>
+    </a>
+
+  </div>
+</section>
 
     <!-- STORY -->
     <section class="pad" id="story" style="position:relative;overflow:hidden;">
-      <!-- deco: blob faint left -->
-      <!-- <div class="deco sz-xxl a-breathe-slow op-vf" style="top:0;left:-80px;pointer-events:none;">
-        <img src="assets/HandDrawn/04_Blobs/Blob%207.svg" alt="" aria-hidden="true">
-      </div> -->
-      <!-- deco: underline near heading -->
-      <!-- <div class="deco sz-xl a-draw op-m delay-2" style="top:72px;left:var(--sheet-pad);pointer-events:none;">
-        <img src="assets/HandDrawn/02_Underlines/Underline%205.svg" alt="" aria-hidden="true">
-      </div> -->
-
       <p class="eyebrow r">Our story</p>
       <h2 class="section-h r r-d1">Why we built this.</h2>
 
@@ -262,15 +312,6 @@
 
     <!-- VALUES -->
     <section class="pad" style="position:relative;overflow:hidden;">
-      <!-- deco: whirl faint background -->
-      <!-- <div class="deco sz-xxl a-spin-r-slow op-vf" style="bottom:-60px;right:-40px;pointer-events:none;">
-        <img src="assets/HandDrawn/05_Whirls/Whirl%204.svg" alt="" aria-hidden="true">
-      </div> -->
-      <!-- deco: small punctuation accent -->
-      <!-- <div class="deco sz-sm a-float op-h r-10 delay-1" style="top:28px;right:var(--sheet-pad);pointer-events:none;">
-        <img src="assets/HandDrawn/11_Punctuation/Punctuation%204.svg" alt="" aria-hidden="true">
-      </div> -->
-
       <p class="eyebrow r">What we believe</p>
       <h2 class="section-h r r-d1">We believe in CIPER.</h2>
       <p class="r r-d2" style="font-size:16px;line-height:1.8;color:var(--ink-2);max-width:520px;">
@@ -279,47 +320,29 @@
 
       <div class="values-grid r r-d3">
         <div class="value-card">
-          <!-- <div class="deco sz-xs a-float-slow op-f delay-0" style="top:10px;right:10px;pointer-events:none;">
-            <img src="assets/HandDrawn/10_Sprinkles/Sprinkle%202.svg" alt="" aria-hidden="true">
-          </div> -->
           <div class="value-letter">C</div>
           <div class="value-title">Curiosity</div>
           <p class="value-desc">We try to keep our child-like curiousity alive. There is no such thing as a "stupid" question.</p>
         </div>
 
-
-
        <div class="value-card">
-          <!-- <div class="deco sz-xs a-float-slow op-f delay-2" style="top:10px;right:10px;pointer-events:none;">
-            <img src="assets/HandDrawn/10_Sprinkles/Sprinkle%206.svg" alt="" aria-hidden="true">
-          </div> -->
           <div class="value-letter">I</div>
           <div class="value-title">Integrity</div>
           <p class="value-desc">We tell the truth. We do not promise what we cannot deliver. We are people of our word, even when it is easier not to be.</p>
         </div>
 
-
         <div class="value-card">
-          <!-- <div class="deco sz-xs a-float-slow op-f delay-1" style="top:10px;right:10px;pointer-events:none;">
-            <img src="assets/HandDrawn/10_Sprinkles/Sprinkle%204.svg" alt="" aria-hidden="true">
-          </div> -->
           <div class="value-letter">P</div>
           <div class="value-title">Perseverance</div>
           <p class="value-desc">We are grateful for the challenges that face our reality, for we are sure we are more than capable of cracking them.</p>
         </div>
  
         <div class="value-card">
-          <!-- <div class="deco sz-xs a-float-slow op-f delay-3" style="top:10px;right:10px;pointer-events:none;">
-            <img src="assets/HandDrawn/10_Sprinkles/Sprinkle%207.svg" alt="" aria-hidden="true">
-          </div> -->
           <div class="value-letter">E</div>
           <div class="value-title">Excellence</div>
           <p class="value-desc">High standard. The universities we prepare students for hold that same standard, and so do we.</p>
         </div>
         <div class="value-card">
-          <!-- <div class="deco sz-xs a-float-slow op-f delay-4" style="top:10px;right:10px;pointer-events:none;">
-            <img src="assets/HandDrawn/10_Sprinkles/Sprinkle%208.svg" alt="" aria-hidden="true">
-          </div> -->
           <div class="value-letter">R</div>
           <div class="value-title">Reciprocity</div>
           <p class="value-desc">Privilege is generational; people helped us. We help the next person. Meritocracy for life!</p>
@@ -327,8 +350,6 @@
       </div>
     </section>
     <div class="rule-warm"></div>
-
-
 
     <!-- CLOSING -->
     <section class="closing">
@@ -339,12 +360,8 @@
     <div style="display:flex;justify-content:center;gap:24px;">
       <a href="https://www.instagram.com/ascensia.foundation/" target="_blank" rel="noopener" style="font-family:var(--sans);font-size:11px;color:var(--ink-2);text-decoration:none;transition:color .2s;cursor:none;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ink-2)'">Instagram</a>
       <a href="https://www.linkedin.com/company/ascensia-fellowship" target="_blank" rel="noopener" style="font-family:var(--sans);font-size:11px;color:var(--ink-2);text-decoration:none;transition:color .2s;cursor:none;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ink-2)'">LinkedIn</a>
-      <!-- <a href="https://tiktok.com/@ascensia" target="_blank" rel="noopener" style="font-family:var(--sans);font-size:11px;color:var(--ink-2);text-decoration:none;transition:color .2s;cursor:none;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ink-2)'">TikTok</a> -->
     </div>
   </div>
-
-
-
 
       <p class="closing-copy">&copy; 2026 Ascensia Fellowship</p>
     </section>
