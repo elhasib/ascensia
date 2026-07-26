@@ -39,7 +39,6 @@
   width: 100%;
   height: 100%;
   overflow: visible;
-  cursor: none;
 }
 .mtt {
   position: absolute;
@@ -106,9 +105,10 @@
   letter-spacing: .2em; text-transform: uppercase;
   color: var(--ink-3); padding: 6px 14px;
   border-radius: 2px; border: var(--rule);
-  background: transparent; cursor: none; transition: all .2s;
+  background: transparent; transition: all .2s;
+  cursor: none !important;
 }
-.rtab:hover { color: var(--ink); background: var(--ink-faint); }
+.rtab:hover { color: var(--ink); background: var(--ink-faint); cursor: none !important; }
 .rtab.active { color: var(--sheet-bg); background: var(--ink); border-color: var(--ink); }
 
 /* uni grid */
@@ -124,9 +124,9 @@
   padding: 20px 18px;
   display: flex; align-items: center; gap: 12px;
   transition: background .2s;
-  cursor: none;
+  cursor: none !important;
 }
-.uni-card:hover { background: rgba(201,164,74,.06); }
+.uni-card:hover { background: rgba(201,164,74,.06); cursor: none !important; }
 .uni-card.hl { background: rgba(201,164,74,.12); }
 .uni-logo {
   width: 36px; height: 36px; flex-shrink: 0;
@@ -166,12 +166,13 @@
   border: var(--rule);
   border-radius: 4px;
   padding: 10px 26px;
-  cursor: pointer;
   transition: all 0.2s;
+  cursor: none !important;
 }
 .show-more-btn:hover {
   background: var(--ink-faint);
   color: var(--ink);
+  cursor: none !important;
 }
 
 /* stats */
@@ -236,10 +237,20 @@
   }
 }
 
+/* OVERRIDE ALL CURSORS */
+a, button, .partner-card, .nav-cta, .person-li, .home-link, .closing-email, 
+[role="button"], [type="submit"], .nav-links a, .nav-mobile a, .logo, .nav-logo,
+.rtab, .uni-card, .show-more-btn {
+  cursor: none !important;
+}
+
+a:hover, button:hover, .partner-card:hover, .nav-cta:hover, .person-li:hover, 
+.home-link:hover, .closing-email:hover, .nav-links a:hover, .nav-mobile a:hover,
+.logo:hover, .nav-logo:hover, .rtab:hover, .uni-card:hover, .show-more-btn:hover {
+  cursor: none !important;
+}
+
 </style>
-
-
-
 
 <script type="application/ld+json">
 {
@@ -254,14 +265,13 @@
 }
 </script>
 
-
 </head>
 <body>
 <div id="cur"></div><div id="cur-r"></div>
 
 <div class="page-wrap">
-  <div class="blob blob-1"><!-- <img src="images/gradients/Grad_14.png" alt=""> --></div>
-  <div class="blob blob-2"><!-- <img src="images/gradients/Grad_03.png" alt=""> --></div>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
 
   <div class="sheet">
     <nav class="nav">
@@ -305,7 +315,7 @@
 
         <div class="adv-card">
       <div class="adv-card-photo" data-initial="S">
-        <img src="images/april.jpeg" alt="" loading="eager" onerror="this.remove()">
+        <img src="images/april.jpeg" alt="" loading="eager" onerror="this.remove()" style="filter:none;">
       </div>
       <div class="adv-card-uni">University of Toronto</div>
       <div class="adv-card-info">
@@ -316,7 +326,7 @@
 
     <div class="adv-card">
       <div class="adv-card-photo" data-initial="M">
-        <img src="images/manya.jpg" alt="" loading="eager" onerror="this.remove()">
+        <img src="images/manya.jpg" alt="" loading="eager" onerror="this.remove()" style="filter:none;">
       </div>
       <div class="adv-card-uni">National University of Singapore</div>
       <div class="adv-card-info">
@@ -328,7 +338,7 @@
 
     <div class="adv-card">
       <div class="adv-card-photo" data-initial="C">
-        <img src="images/sid.jpeg" alt="" loading="eager" onerror="this.remove()">
+        <img src="images/sid.jpeg" alt="" loading="eager" onerror="this.remove()" style="filter:none;">
       </div>
       <div class="adv-card-uni">Oxford University</div>
       <div class="adv-card-info">
@@ -339,7 +349,7 @@
 
     <div class="adv-card">
       <div class="adv-card-photo" data-initial="C">
-        <img src="images/may-crop.jpg" alt="" loading="eager" onerror="this.remove()">
+        <img src="images/may-crop.jpg" alt="" loading="eager" onerror="this.remove()" style="filter:none;">
       </div>
       <div class="adv-card-uni">Vanderbilt University</div>
       <div class="adv-card-info">
@@ -350,7 +360,7 @@
 
     <div class="adv-card">
       <div class="adv-card-photo" data-initial="C">
-        <img src="images/kat.jpg" alt="" loading="eager" onerror="this.remove()">
+        <img src="images/kat.jpg" alt="" loading="eager" onerror="this.remove()" style="filter:none;">
       </div>
       <div class="adv-card-uni">Yale University</div>
       <div class="adv-card-info">
@@ -361,7 +371,7 @@
 
     <div class="adv-card">
       <div class="adv-card-photo" data-initial="T">
-        <img src="images/tony.jpg" alt="" loading="eager" onerror="this.remove()">
+        <img src="images/tony.jpg" alt="" loading="eager" onerror="this.remove()" style="filter:none;">
       </div>
       <div class="adv-card-uni">Massachusetts Institute of Technology</div>
       <div class="adv-card-info">
@@ -369,21 +379,6 @@
         <div class="adv-card-country">Kenya</div>
       </div>
     </div>
-
-
-    <!-- <div class="adv-card">
-      <div class="adv-card-photo" data-initial="C">
-        <img src="images/sid.jpg" alt="" loading="eager" onerror="this.remove()">
-      </div>
-      <div class="adv-card-uni">Oxford University</div>
-      <div class="adv-card-info">
-        <div class="adv-card-name">Siddharth Gopal</div>
-        <div class="adv-card-country">India</div>
-      </div>
-    </div> -->
-
-
-
 
   </div>
 </section>
@@ -447,15 +442,11 @@
 
       <a href="mailto:team@ascensia.foundation" class="closing-email r">team@ascensia.foundation</a>
 
-
-
-
         <div style="margin-top:28px;margin-bottom:28px;">
     <p style="font-family:var(--sans);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);margin-bottom:16px;">Follow</p>
     <div style="display:flex;justify-content:center;gap:24px;">
       <a href="https://www.instagram.com/ascensia.foundation/" target="_blank" rel="noopener" style="font-family:var(--sans);font-size:11px;color:var(--ink-2);text-decoration:none;transition:color .2s;cursor:none;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ink-2)'">Instagram</a>
       <a href="https://www.linkedin.com/company/ascensia-fellowship" target="_blank" rel="noopener" style="font-family:var(--sans);font-size:11px;color:var(--ink-2);text-decoration:none;transition:color .2s;cursor:none;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ink-2)'">LinkedIn</a>
-      <!-- <a href="https://tiktok.com/@ascensia" target="_blank" rel="noopener" style="font-family:var(--sans);font-size:11px;color:var(--ink-2);text-decoration:none;transition:color .2s;cursor:none;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ink-2)'">TikTok</a> -->
     </div>
   </div>
       <p class="closing-copy">&copy; 2026 Ascensia Fellowship</p>
@@ -610,38 +601,7 @@ const UNIS = [
   { name: "African Leadership Univ.", x: 117.2, y: 61.5, advisors: 3, region: "africa", rank: 145, logo: "assets/unis/african leadership university.png", initial: "A" },
   { name: "University of Cape Town", x: 109.6, y: 81.4, advisors: 1, region: "africa", rank: 146, logo: "assets/unis/uni of cape town.jpg", initial: "U" },
   { name: "Ashesi University", x: 98.6, y: 57.2, advisors: 1, region: "africa", rank: 149, logo: "assets/unis/ashesi uni.png", initial: "A" },
-
-  // --- Commented entries (grouped at the end) ---
-  // { name: "Texas Christian University", x: 41.5, y: 39.8, advisors: 2, region: "usa", rank: 77, logo: "assets/unis/tcu.png", initial: "T" },
-  // { name: "University of Massachusetts Amherst", x: 56.5, y: 32.0, advisors: 1, region: "usa", rank: 81, logo: "assets/unis/", initial: "U" },
-  // { name: "University of Minnesota", x: 45.3, y: 31.3, advisors: 1, region: "usa", rank: 88, logo: "assets/unis/university-of-minnesota", initial: "U" },
-  // { name: "Ohio State University", x: 50.2, y: 34.7, advisors: 1, region: "usa", rank: 89, logo: "assets/unis/ohio-state-university", initial: "O" },
-  // { name: "Penn State University", x: 53.2, y: 33.8, advisors: 1, region: "usa", rank: 91, logo: "assets/unis/penn-state-university", initial: "P" },
-  // { name: "University of Maryland", x: 54.0, y: 34.6, advisors: 1, region: "usa", rank: 92, logo: "assets/unis/university-of-maryland", initial: "U" },
-  // { name: "Purdue University", x: 48.3, y: 34.7, advisors: 1, region: "usa", rank: 93, logo: "assets/unis/purdue-university", initial: "P" },
-  // { name: "University of Colorado Boulder", x: 34.2, y: 34.6, advisors: 1, region: "usa", rank: 96, logo: "assets/unis/university-of-colorado-boulder", initial: "U" },
-  // { name: "Arizona State University", x: 29.3, y: 40.8, advisors: 1, region: "usa", rank: 97, logo: "assets/unis/arizona-state-university", initial: "A" },
-  // { name: "University of Arizona", x: 30.2, y: 41.7, advisors: 1, region: "usa", rank: 98, logo: "assets/unis/university-of-arizona", initial: "U" },
-  // { name: "University of Utah", x: 31.2, y: 31.2, advisors: 1, region: "usa", rank: 99, logo: "assets/unis/university-of-utah", initial: "U" },
-  // { name: "University of São Paulo", x: 48.2, y: 72.7, advisors: 1, region: "usa", rank: 104, logo: "assets/unis/", initial: "U" },
-  // { name: "American Univ. in Paris", x: 100.2, y: 26.8, advisors: 1, region: "europe", rank: 119, logo: "assets/unis/", initial: "A" },
-  // { name: "Georgian Technical Univ.", x: 125.6, y: 32.9, advisors: 1, region: "europe", rank: 120, logo: "assets/unis/georgian-technical-univ", initial: "G" },
-  // { name: "University of Adelaide", x: 178.2, y: 81.4, advisors: 1, region: "asia", rank: 136, logo: "assets/unis/university-of-adelaide", initial: "U" },
-  // { name: "University of Western Australia", x: 165.2, y: 79.7, advisors: 1, region: "asia", rank: 137, logo: "assets/unis/university-of-western-australia", initial: "U" },
-  // { name: "University of Technology Sydney", x: 180.1, y: 80.5, advisors: 1, region: "asia", rank: 138, logo: "assets/unis/university-of-technology-sydney", initial: "U" },
-  // { name: "Macquarie University", x: 180.0, y: 79.7, advisors: 1, region: "asia", rank: 139, logo: "assets/unis/macquarie-university", initial: "M" },
-  // { name: "German Univ. in Cairo", x: 117.7, y: 41.6, advisors: 1, region: "middle-east", rank: 144, logo: "assets/unis/", initial: "G" },
-  // { name: "KNUST", x: 98.2, y: 56.3, advisors: 1, region: "africa", rank: 147, logo: "assets/unis/knust", initial: "K" },
-  // { name: "Pan-Atlantic University", x: 101.2, y: 56.3, advisors: 1, region: "africa", rank: 148, logo: "assets/unis/pan-atlantic-university", initial: "P" },
-  // { name: "USIU Africa", x: 120.6, y: 60.6, advisors: 1, region: "africa", rank: 150, logo: "assets/unis/usiu-africa", initial: "U" },
-  // { name: "University of Lusaka", x: 115.6, y: 69.3, advisors: 1, region: "africa", rank: 151, logo: "assets/unis/university-of-lusaka", initial: "U" }
 ];
-
-
-
-
-
-
 
 /* ── MAP LOGIC ── */
 const pinsSVG = document.getElementById('map-pins');
@@ -660,7 +620,6 @@ function buildPins() {
   UNIS.forEach((u, i) => {
     const x = u.x, y = u.y;
     const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-    g.style.cursor = 'none';
 
     const r = Math.min(0.35 + Math.sqrt(u.advisors) * 0.12, 1.0);
 
@@ -777,8 +736,6 @@ function buildGrid() {
     const info = document.createElement('div');
     info.className = 'uni-info';
     info.innerHTML = `<div class="uni-name">${u.name}</div>`;
-
-    // No advisor count element
 
     card.appendChild(logoDiv);
     card.appendChild(info);
