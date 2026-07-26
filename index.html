@@ -45,20 +45,22 @@
   background:var(--gold);color:#fff;
   font-family:var(--sans);font-size:10px;font-weight:500;
   letter-spacing:.2em;text-transform:uppercase;
-  padding:14px 36px;border-radius:3px;cursor:none;
+  padding:14px 36px;border-radius:3px;
   transition:transform .3s var(--ease),box-shadow .3s,background .2s;
   display:inline-block;
+  cursor:none !important;
 }
-.btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,164,74,.35);background:#b8922e;}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,164,74,.35);background:#b8922e;cursor:none !important;}
 .btn-ghost{
   background:transparent;color:var(--ink-3);
   font-family:var(--sans);font-size:10px;font-weight:400;
   letter-spacing:.2em;text-transform:uppercase;
-  padding:14px 28px;border-radius:3px;cursor:none;
+  padding:14px 28px;border-radius:3px;
   border:var(--rule);transition:color .2s,background .2s;
   display:inline-block;
+  cursor:none !important;
 }
-.btn-ghost:hover{color:var(--ink);background:var(--ink-faint);}
+.btn-ghost:hover{color:var(--ink);background:var(--ink-faint);cursor:none !important;}
 
 /* mailing list */
 .mailing-row{opacity:0;animation:fadeUp .8s 1.25s both;display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
@@ -79,9 +81,10 @@
   font-family:var(--sans);font-size:9px;font-weight:500;
   letter-spacing:.2em;text-transform:uppercase;
   color:var(--sheet-bg);background:var(--ink);
-  border:none;cursor:none;transition:background .2s;white-space:nowrap;
+  border:none;transition:background .2s;white-space:nowrap;
+  cursor:none !important;
 }
-.mailing-form button:hover{background:#2E2210;}
+.mailing-form button:hover{background:#2E2210;cursor:none !important;}
 .mailing-note{font-family:var(--sans);font-size:11px;font-weight:300;color:var(--ink-3);}
 .form-ok{display:none;font-family:var(--sans);font-size:13px;color:var(--rose);padding:12px 0;}
 
@@ -125,9 +128,10 @@
   display:inline-flex;align-items:center;gap:6px;
   margin-top:16px;font-family:var(--sans);font-size:10px;font-weight:400;
   letter-spacing:.18em;text-transform:uppercase;color:var(--gold-dim);
-  transition:gap .2s;cursor:none;
+  transition:gap .2s;
+  cursor:none !important;
 }
-.pillar-link:hover{gap:10px;}
+.pillar-link:hover{gap:10px;cursor:none !important;}
 .pillar-link::after{content:'→';}
 
 /* advisors strip */
@@ -158,6 +162,20 @@
 /* nav scrolled */
 .nav.scrolled{border-bottom-color:rgba(201,164,74,.14);}
 
+/* OVERRIDE ALL CURSORS */
+a, button, .partner-card, .nav-cta, .person-li, .home-link, .closing-email, 
+[role="button"], [type="submit"], .nav-links a, .nav-mobile a, .logo, .nav-logo,
+.btn-gold, .btn-ghost, .btn-ink, .pillar-link, .mailing-form button {
+  cursor: none !important;
+}
+
+a:hover, button:hover, .partner-card:hover, .nav-cta:hover, .person-li:hover, 
+.home-link:hover, .closing-email:hover, .nav-links a:hover, .nav-mobile a:hover,
+.logo:hover, .nav-logo:hover, .btn-gold:hover, .btn-ghost:hover, .btn-ink:hover,
+.pillar-link:hover, .mailing-form button:hover {
+  cursor: none !important;
+}
+
 @media(max-width:860px){
   .pillars-grid{grid-template-columns:1fr;}
 }
@@ -167,13 +185,7 @@
   .advisor-strip{flex-direction:column;gap:20px;}
 }
 
-
-
-
-
 </style>
-
-
 
 <script type="application/ld+json">
 {
@@ -212,9 +224,6 @@
 }
 </script>
 
-
-
-
 </head>
 <body>
 <div id="cur"></div>
@@ -241,17 +250,8 @@
 
     <!-- HERO -->
     <section class="hero">
-      <!-- deco: faint spiral top-right -->
-      <!-- <div class="deco sz-xl a-float-slow op-vh" style="top:20px;right:-10px;pointer-events:none;">
-        <img src="assets/HandDrawn/12_Doodles/Doodle 8.svg" alt="" aria-hidden="true">
-      </div> -->
-
-
-      
       <h1>
-        <span class="hero-line"><span>Talent, not opportunity, is<span class="mk">everywhere.</span></span>
-        
-        <!-- <span class="hero-line"><span>Not yet.</span></span> -->
+        <span class="hero-line"><span>Talent, not opportunity, is <span class="mk">everywhere.</span></span>
       </h1>
 
       <p class="hero-sub">
@@ -265,30 +265,12 @@
 
       </div>
 
-    <!-- <div class="mailing-row">
-    <form class="mailing-form" action="https://formsubmit.co/team@ascensia.foundation" method="POST" onsubmit="doSignup(event)">
-    <input type="email" name="email" placeholder="your@email.com" required>
-    <button type="submit">Stay updated</button>
-    
-
-    <input type="hidden" name="_captcha" value="false">
-
-
-    <input type="hidden" name="_subject" value="New Subscriber!">
-  </form>
-  <p id="ok" class="form-ok">Got it. We'll be in touch.</p>
-  <p class="mailing-note">No commitment. We'll reach out when we have something worth saying.</p>
-  </div>    -->
     </section>
 
     <div class="rule-warm"></div>
 
     <!-- WHAT THIS IS -->
    <section class="pad" style="position:relative;overflow:hidden;">
-  <!-- deco: underline near the heading -->
-  <!-- <div class="deco sz-xl a-draw-slow op-m delay-1" style="top:80px;left:var(--sheet-pad);pointer-events:none;">
-    <img src="assets/HandDrawn/02_Underlines/Underline%203.svg" alt="" aria-hidden="true">
-  </div> -->
 
   <p class="eyebrow r">What this is</p>
   <h2 class="section-h r r-d1">
@@ -318,10 +300,6 @@
     </div>
   </div>
 
-    <!-- Button - relaxed in the middle -->
-  <!-- <div style="display:flex;justify-content:center;margin:32px 0 28px 0;">
-    <a href="advisors.html" class="btn-ghost r r-d1">See the full network</a>
-  </div> -->
 </section>
 
     <div class="rule"></div>
@@ -337,7 +315,7 @@
   <div class="adv-cards-row r r-d3">
     <div class="adv-card">
       <div class="adv-card-photo" data-initial="A">
-        <img src="images/tony.jpg" alt="" loading="lazy" onerror="this.remove()">
+        <img src="images/tony.jpg" alt="" loading="lazy" onerror="this.remove()" style="filter:none;">
       </div>
       <div class="adv-card-uni">Massachusetts Institute of Technology</div>
       <div class="adv-card-info">
@@ -347,7 +325,7 @@
     </div>
     <div class="adv-card">
       <div class="adv-card-photo" data-initial="B">
-        <img src="images/april.jpeg" alt="" loading="lazy" onerror="this.remove()">
+        <img src="images/april.jpeg" alt="" loading="lazy" onerror="this.remove()" style="filter:none;">
       </div>
       <div class="adv-card-uni">University of Toronto</div>
       <div class="adv-card-info">
@@ -360,7 +338,7 @@
     
     <div class="adv-card">
       <div class="adv-card-photo" data-initial="C">
-        <img src="images/sid.jpeg" alt="" loading="lazy" onerror="this.remove()">
+        <img src="images/sid.jpeg" alt="" loading="lazy" onerror="this.remove()" style="filter:none;">
       </div>
       <div class="adv-card-uni">Oxford University</div>
       <div class="adv-card-info">
@@ -382,10 +360,6 @@
 
     <!-- FOUR PILLARS -->
     <section style="padding:72px 0;position:relative;overflow:hidden;">
-      <!-- deco: arrow pointing into section -->
-      <!-- <div class="deco sz-md a-wiggle-slow op-h r-n15 delay-2" style="top:32px;right:var(--sheet-pad);pointer-events:none;">
-        <img src="assets/HandDrawn/01_Arrows/Arrow%205.svg" alt="" aria-hidden="true">
-      </div> -->
 
       <div style="padding:0 var(--sheet-pad);margin-bottom:40px;">
         <p class="eyebrow r">The Fellowship</p>
@@ -395,9 +369,6 @@
       <div class="pillars-grid">
         <!-- Pillar 1: Curriculum -->
         <div class="pillar-card r" style="position:relative;overflow:hidden;">
-          <!-- <div class="deco sz-sm a-float-slow op-f r-5 delay-0" style="top:12px;right:16px;pointer-events:none;">
-            <img src="assets/HandDrawn/11_Punctuation/Punctuation%201.svg" alt="" aria-hidden="true">
-          </div> -->
           <div class="pillar-num">i. Curriculum</div>
           <h3 class="pillar-title">Nine tracks, built for international students.</h3>
           <p class="pillar-body">
@@ -408,9 +379,6 @@
 
         <!-- Pillar 2: Mentorship -->
         <div class="pillar-card r r-d1" style="position:relative;overflow:hidden;">
-          <!-- <div class="deco sz-sm a-float-slow op-f r-n8 delay-2" style="top:12px;right:16px;pointer-events:none;">
-            <img src="assets/HandDrawn/03_Loops/Loop%202.svg" alt="" aria-hidden="true">
-          </div> -->
           <div class="pillar-num">ii. Mentorship</div>
           <h3 class="pillar-title">One mentor. One fellow.</h3>
           <p class="pillar-body">
@@ -421,9 +389,6 @@
 
         <!-- Pillar 3: Advisors -->
         <div class="pillar-card r r-d2" style="position:relative;overflow:hidden;">
-          <!-- <div class="deco sz-sm a-breathe-slow op-f delay-1" style="top:12px;right:16px;pointer-events:none;">
-            <img src="assets/HandDrawn/12_Doodles/Doodle%206.svg" alt="" aria-hidden="true">
-          </div> -->
           <div class="pillar-num">iii. Advisors network</div>
           <h3 class="pillar-title">If your target school is on the map, someone there is in our network.</h3>
           <p class="pillar-body">
@@ -434,9 +399,6 @@
 
         <!-- Pillar 4: Counselle -->
         <div class="pillar-card r r-d3" style="position:relative;overflow:hidden;">
-          <!-- <div class="deco sz-sm a-spin-slow op-f delay-3" style="top:12px;right:16px;pointer-events:none;">
-            <img src="assets/HandDrawn/09_Spirals/Spiral%201.svg" alt="" aria-hidden="true">
-          </div> -->
           <div class="pillar-num">iv. Counselle AI</div>
           <h3 class="pillar-title">Your admission companion, all in one place.</h3>
           <p class="pillar-body">
@@ -450,13 +412,6 @@
 
     <!-- WHO WE'RE LOOKING FOR -->
     <section class="pad" style="position:relative;overflow:hidden;">
-      <!-- deco: scattered sprinkles -->
-      <!-- <div class="deco sz-xs a-float op-m r-15 delay-0" style="top:40px;right:80px;pointer-events:none;">
-        <img src="assets/HandDrawn/10_Sprinkles/Sprinkle%201.svg" alt="" aria-hidden="true">
-      </div>
-      <div class="deco sz-xs a-float-slow op-m r-n10 delay-2" style="top:110px;right:140px;pointer-events:none;">
-        <img src="assets/HandDrawn/10_Sprinkles/Sprinkle%205.svg" alt="" aria-hidden="true">
-      </div> -->
 
       <p class="eyebrow r">Who this is for</p>
       <h2 class="section-h r r-d1">Students who are ready, <span class="mk">regardless of where they started.</span></h2>
@@ -496,7 +451,7 @@
   <div style="max-width:360px;margin:0 auto 32px;">
     <form class="mailing-form" action="https://formsubmit.co/team@ascensia.foundation" method="POST" onsubmit="doSignup(event)" style="max-width:100%;">
       <input type="email" name="email" placeholder="your@email.com" required style="flex:1;padding:12px 16px;font-family:var(--sans);font-size:13px;font-weight:300;color:var(--ink);background:transparent;border:none;outline:none;">
-      <button type="submit" style="padding:12px 18px;font-family:var(--sans);font-size:9px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--sheet-bg);background:var(--ink);border:none;cursor:none;transition:background .2s;white-space:nowrap;">Stay updated</button>
+      <button type="submit" style="padding:12px 18px;font-family:var(--sans);font-size:9px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--sheet-bg);background:var(--ink);border:none;transition:background .2s;white-space:nowrap;cursor:none !important;">Stay updated</button>
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_subject" value="New Subscriber!">
     </form>
@@ -511,7 +466,6 @@
     <div style="display:flex;justify-content:center;gap:24px;">
       <a href="https://www.instagram.com/ascensia.foundation/" target="_blank" rel="noopener" style="font-family:var(--sans);font-size:11px;color:var(--ink-2);text-decoration:none;transition:color .2s;cursor:none;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ink-2)'">Instagram</a>
       <a href="https://www.linkedin.com/company/ascensia-fellowship" target="_blank" rel="noopener" style="font-family:var(--sans);font-size:11px;color:var(--ink-2);text-decoration:none;transition:color .2s;cursor:none;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ink-2)'">LinkedIn</a>
-      <!-- <a href="https://tiktok.com/@ascensia" target="_blank" rel="noopener" style="font-family:var(--sans);font-size:11px;color:var(--ink-2);text-decoration:none;transition:color .2s;cursor:none;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ink-2)'">TikTok</a> -->
     </div>
   </div>
 
@@ -537,7 +491,7 @@ function doSignup(e){
   e.preventDefault();
   const form = e.target;
   const data = new FormData(form);
-  const successMsg = document.getElementById('ok-closing'); // ← fixed ID
+  const successMsg = document.getElementById('ok-closing');
 
   fetch(form.action, {
     method: 'POST',
@@ -549,7 +503,6 @@ function doSignup(e){
       form.style.display = 'none';
       successMsg.style.display = 'block';
     } else {
-      // optional: show an error state
       successMsg.textContent = 'Something went wrong. Please try again.';
       successMsg.style.display = 'block';
     }
