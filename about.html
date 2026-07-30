@@ -101,8 +101,20 @@ a:hover, button:hover, .partner-card:hover, .nav-cta:hover, .person-li:hover,
   cursor: none !important;
 }
 
-/* Two-person row at bottom - matching the same shape as others */
-.people-row-two {
+/* Single person row at bottom */
+.people-row-single {
+  display: flex;
+  justify-content: center;
+  grid-column: 1 / -1;
+  margin-top: 1px;
+}
+.people-row-single .person {
+  flex: 0 0 280px;
+  max-width: 280px;
+}
+
+/* Three-person row */
+.people-row-three {
   display: flex;
   justify-content: center;
   gap: 32px;
@@ -110,7 +122,7 @@ a:hover, button:hover, .partner-card:hover, .nav-cta:hover, .person-li:hover,
   grid-column: 1 / -1;
   margin-top: 1px;
 }
-.people-row-two .person {
+.people-row-three .person {
   flex: 0 0 280px;
   max-width: 280px;
 }
@@ -122,7 +134,8 @@ a:hover, button:hover, .partner-card:hover, .nav-cta:hover, .person-li:hover,
 @media(max-width:600px){
   .values-grid{grid-template-columns:1fr 1fr;}
   .partners-grid{grid-template-columns:1fr;}
-  .people-row-two .person {
+  .people-row-three .person,
+  .people-row-single .person {
     flex: 0 0 100%;
     max-width: 100%;
   }
@@ -255,7 +268,7 @@ a:hover, button:hover, .partner-card:hover, .nav-cta:hover, .person-li:hover,
       </div>
     </div>
 
-    <!-- Row 3: Youssef Nassar -->
+    <!-- Row 3: Youssef Nassar, Jeremy, Youssef Taleb -->
     <div class="person r r-d1">
       <div class="person-photo"><img src="images/youssef.png" alt="Youssef Nassar" loading="lazy" style="filter:none;"></div>
       <div class="person-info">
@@ -286,19 +299,18 @@ a:hover, button:hover, .partner-card:hover, .nav-cta:hover, .person-li:hover,
       </div>
     </div>
 
-    <div class="person r r-d1">
-      <div class="person-photo"><img src="images/ayanfe-final.jpg" alt="Saif Abdelhamid" loading="lazy" style="filter:none;"></div>
-      <div class="person-info">
-        <div class="person-name">Ayanfeoluwa Ayanlade</div>
-        <div class="person-role">Director of Teaching</div>
-        <div class="person-univ">Dartmouth College</div>
-        <a href="https://www.linkedin.com/in/ayanfeoluwa-ayanlade-4455a328a/" target="_blank" rel="noopener" class="person-li"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
-      </div>
-    </div>
-
-    <!-- Ayanfe and Dawit - side by side with matching square shape -->
+    <!-- Row 4: Ayanfe, Saif, Omar (3 in a row) -->
       <div class="person">
-        <div class="person-photo"><img src="images/saif.jpg" alt="Ayanfe" loading="lazy" style="filter:none;"></div>
+        <div class="person-photo"><img src="images/ayanfe-final.jpg" alt="Ayanfe" loading="lazy" style="filter:none;"></div>
+        <div class="person-info">
+          <div class="person-name">Ayanfeoluwa Ayanlade</div>
+          <div class="person-role">Director of Teaching</div>
+          <div class="person-univ">Dartmouth College</div>
+          <a href="https://www.linkedin.com/in/ayanfeoluwa-ayanlade-4455a328a/" target="_blank" rel="noopener" class="person-li"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
+        </div>
+      </div>
+      <div class="person">
+        <div class="person-photo"><img src="images/saif.jpg" alt="Saif Abdelhamid" loading="lazy" style="filter:none;"></div>
         <div class="person-info">
           <div class="person-name">Saif Abdelhamid</div>
           <div class="person-role">Chief Technology Officer</div>
@@ -306,6 +318,19 @@ a:hover, button:hover, .partner-card:hover, .nav-cta:hover, .person-li:hover,
           <a href="https://www.linkedin.com/in/mohamedd-abdelhamid/" target="_blank" rel="noopener" class="person-li"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
         </div>
       </div>
+      <div class="person">
+        <div class="person-photo"><img src="images/omar.jpg" alt="Omar Negm" loading="lazy" style="filter:none;"></div>
+        <div class="person-info">
+          <div class="person-name">Omar Negm</div>
+          <div class="person-role">Chief Media Officer</div>
+          <div class="person-univ">E-JUST</div>
+          <a href="https://www.linkedin.com/in/omar-negm-9b805726b/" target="_blank" rel="noopener" class="person-li"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dawit - bottom row by himself -->
+    <div class="people-row-single r r-d2">
       <div class="person">
         <div class="person-photo"><img src="images/dawit.jpg" alt="Dawit Dagne" loading="lazy" style="filter:none;"></div>
         <div class="person-info">
