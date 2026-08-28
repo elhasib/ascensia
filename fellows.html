@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Meet the 2026 Ascensia Fellows">
+<title>Fellows | Ascensia</title>
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/nav.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/svg-decorations.css">
+<style>
+/* SEARCH BAR */
+.fellows-search {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+  margin-bottom: 8px;
+}
+.fellows-search input {
+  width: 100%;
+  max-width: 420px;
+  padding: 12px 20px;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--ink);
+  background: var(--sheet-bg);
+  border: var(--rule);
+  border-radius: 6px;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+.fellows-search input::placeholder {
+  color: var(--ink-3);
+}
+.fellows-search input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(212,168,83,0.15);
+}
+
+/* FELLOWS GRID - same as team format */
+.fellows-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:rgba(28,20,9,.07);
+  margin-top:40px;
+}
+.fellow-card{
+  background:var(--sheet-bg);
+  padding:28px 24px;
+  display:flex;
+  align-items:center;
+  gap:16px;
+  transition:background .3s;
+  position:relative;
+  overflow:hidden;
+}
+.fellow-card:hover{
+  background:var(--sheet-bg-alt);
+}
+.fellow-photo{
+  width:72px;
+  height:72px;
+  flex-shrink:0;
+  border-radius:6px;
+  overflow:hidden;
+  background:var(--ink-faint);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.fellow-photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.fellow-photo .initials{
+  font-family:var(--serif);
+  font-size:20px;
+  color:var(--gold);
+  font-weight:400;
+}
+.fellow-info{
+  flex:1;
+  min-width:0;
+}
+.fellow-name{
+  font-family:var(--serif);
+  font-size:16px;
+  font-weight:400;
+  color:var(--ink);
+  margin-bottom:2px;
+  line-height:1.2;
+}
+.fellow-country{
+  font-family:var(--sans);
+  font-size:12px;
+  font-weight:300;
+  color:var(--ink-2);
+  line-height:1.4;
+}
+.fellow-number{
+  font-family:var(--sans);
+  font-size:10px;
+  font-weight:400;
+  letter-spacing:.06em;
+  color:rgba(28,20,9,.15);
+  margin-right:4px;
+  flex-shrink:0;
+}
+
+/* Search result highlight */
+.fellow-card.hidden {
+  display: none !important;
+}
+
+.no-results {
+  display: none;
+  text-align: center;
+  padding: 60px 20px;
+  font-family: var(--serif);
+  font-size: 20px;
+  color: var(--ink-3);
+  grid-column: 1 / -1;
+}
+.no-results.show {
+  display: block;
+}
+
+@media(max-width:900px){
+  .fellows-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:600px){
+  .fellows-grid{grid-template-columns:1fr;}
+  .fellow-card{
+    padding:20px 16px;
+  }
+  .fellow-photo{
+    width:60px;
+    height:60px;
+  }
+  .fellow-name{
+    font-size:14px;
+  }
+}
+@media(max-width:400px){
+  .fellow-photo{
+    width:50px;
+    height:50px;
+  }
+  .fellow-name{
+    font-size:13px;
+  }
+  .fellow-country{
+    font-size:11px;
+  }
+}
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SiteNavigationElement",
+  "name": ["Program", "Advisors", "Fellows", "About"],
+  "url": [
+    "https://ascensia.foundation/program.html",
+    "https://ascensia.foundation/advisors.html",
+    "https://ascensia.foundation/fellows.html",
+    "https://ascensia.foundation/about.html"
+  ]
+}
+</script>
+
+</head>
+<body>
+<div id="cur"></div>
+<div id="cur-r"></div>
+
+<div class="page-wrap">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+
+  <div class="sheet">
+    <nav class="nav">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-mark"><span></span><span></span><span></span><span></span></div>
+        Ascensia
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="program.html">Program</a></li>
+        <li><a href="advisors.html">Advisors</a></li>
+        <li><a href="fellows.html" class="active">Fellows</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="mailto:team@ascensia.foundation" class="nav-cta">Get in touch</a></li>
+      </ul>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </nav>
+
+    <!-- HERO -->
+    <div class="page-hero" style="position:relative;overflow:hidden;">
+      <p class="page-hero-label">The Fellowship</p>
+      <h1>
+        <span class="hero-line"><span>Meet the</span></span>
+        <span class="hero-line"><span>Ascensia Fellows.</span></span>
+      </h1>
+      <p class="page-hero-sub">
+        24 students from across the globe, united by ambition and ready to take on the world's top universities.
+      </p>
+    </div>
+
+    <!-- FELLOWS -->
+    <section class="pad" id="fellows" style="position:relative;overflow:hidden;">
+      <p class="eyebrow r">The cohort</p>
+      <h2 class="section-h r r-d1">Class of 2026.</h2>
+
+      <!-- Search Bar -->
+      <div class="fellows-search r r-d2">
+        <input type="text" id="searchInput" placeholder="Search by name or country..." oninput="filterFellows()">
+      </div>
+
+      <div class="fellows-grid r r-d3" id="fellowsGrid">
+        <!-- Fellows will be populated by JavaScript -->
+        <div class="no-results" id="noResults">No fellows found.</div>
+      </div>
+    </section>
+
+    <div class="rule-warm"></div>
+
+    <!-- CLOSING -->
+    <section class="closing">
+      <p class="closing-label">Get in touch</p>
+      <a href="mailto:team@ascensia.foundation" class="closing-email r">team@ascensia.foundation</a>
+      <div style="margin-top:28px;margin-bottom:28px;">
+        <p style="font-family:var(--sans);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);margin-bottom:16px;">Follow</p>
+        <div style="display:flex;justify-content:center;gap:24px;">
+          <a href="https://www.instagram.com/ascensia.foundation/" target="_blank" rel="noopener" style="font-family:var(--sans);font-size:11px;color:var(--ink-2);text-decoration:none;transition:color .2s;cursor:none;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ink-2)'">Instagram</a>
+          <a href="https://www.linkedin.com/company/ascensia-fellowship" target="_blank" rel="noopener" style="font-family:var(--sans);font-size:11px;color:var(--ink-2);text-decoration:none;transition:color .2s;cursor:none;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ink-2)'">LinkedIn</a>
+        </div>
+      </div>
+      <p class="closing-copy">&copy; 2026 Ascensia Fellowship</p>
+    </section>
+
+  </div><!-- /sheet -->
+</div><!-- /page-wrap -->
+
+<div class="nav-mobile">
+  <a href="index.html">Home</a>
+  <a href="program.html">Program</a>
+  <a href="advisors.html">Advisors</a>
+  <a href="fellows.html">Fellows</a>
+  <a href="about.html">About</a>
+  <a href="mailto:team@ascensia.foundation">Contact</a>
+</div>
+
+<script>
+// Wait for DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+  // Fellows data - sorted alphabetically by name
+  const fellowsData = [
+    { name: "Adior Kuer Bul", country: "South Sudan", image: "images/fellows/adior.jpg" },
+    { name: "Advika Gupta", country: "India", image: "images/fellows/advika.jpg" },
+    { name: "Alexandru-Dumitru Ardelean", country: "Romania", image: "images/fellows/alexandru.jpg" },
+    { name: "Anas Mamdouh Elwasifi", country: "Egypt", image: "images/fellows/anas.jpg" },
+    { name: "Arielainy Abigail Báez", country: "Dominican Republic", image: "images/fellows/arielainy.jpg" },
+    { name: "Aritro Ghosh", country: "India", image: "images/fellows/aritro.jpg" },
+    { name: "Arjun Gambhir", country: "India", image: "images/fellows/arjun.jpg" },
+    { name: "Cheng Xin Leong", country: "Macao", image: "images/fellows/cheng.jpg" },
+    { name: "Evan Salama", country: "Egypt", image: "images/fellows/evan.jpg" },
+    { name: "Fatma Ezzahra Jlali", country: "Tunisia", image: "images/fellows/fatma.jpg" },
+    { name: "Mahmoud Yassin", country: "Egypt", image: "images/fellows/mahmoud.jpg" },
+    { name: "Mihika Singhania", country: "India", image: "images/fellows/mihika.jpg" },
+    { name: "Mohamed Ali Tounsi", country: "Tunisia", image: "images/fellows/mohamed-ali.jpg" },
+    { name: "Mohamed Mehdi Mlaouah", country: "Tunisia", image: "images/fellows/mohamed-mehdi.jpg" },
+    { name: "Montaha Mansouri", country: "Tunisia", image: "images/fellows/montaha.jpg" },
+    { name: "Nahom Benyam Berhanu", country: "Ethiopia", image: "images/fellows/nahom.jpg" },
+    { name: "Natalia Espinoza", country: "Peru", image: "images/fellows/natalia.jpg" },
+    { name: "Roumak Das", country: "India", image: "images/fellows/roumak.jpg" },
+    { name: "Sarthak Kamalkishor Dholr", country: "India", image: "images/fellows/sarthak.jpg" },
+    { name: "Savyasachi Singh", country: "India", image: "images/fellows/savyasachi.jpg" },
+    { name: "Tala Samer Ahmed Mousa", country: "Palestine", image: "images/fellows/tala.jpg" },
+    { name: "Tang Oi Lam", country: "Hong Kong", image: "images/fellows/tang.jpg" },
+    { name: "Vivan Panda", country: "India", image: "images/fellows/vivan.jpg" },
+    { name: "Yuhang Wu", country: "China", image: "images/fellows/yuhang.jpg" }
+  ];
+
+  // Sort alphabetically by name
+  fellowsData.sort((a, b) => a.name.localeCompare(b.name));
+
+  function renderFellows(filter = '') {
+    const grid = document.getElementById('fellowsGrid');
+    const noResults = document.getElementById('noResults');
+    const searchTerm = filter.toLowerCase().trim();
+    
+    // Remove existing fellow cards (keep no-results)
+    const existingCards = grid.querySelectorAll('.fellow-card');
+    existingCards.forEach(card => card.remove());
+    
+    let visibleCount = 0;
+    
+    fellowsData.forEach((fellow, index) => {
+      const matchesName = fellow.name.toLowerCase().includes(searchTerm);
+      const matchesCountry = fellow.country.toLowerCase().includes(searchTerm);
+      const isVisible = searchTerm === '' || matchesName || matchesCountry;
+      
+      if (isVisible) visibleCount++;
+      
+      const card = document.createElement('div');
+      card.className = `fellow-card${isVisible ? '' : ' hidden'}`;
+      
+      // Number
+      const numSpan = document.createElement('span');
+      numSpan.className = 'fellow-number';
+      numSpan.textContent = String(index + 1).padStart(2, '0');
+      
+      // Photo
+      const photoDiv = document.createElement('div');
+      photoDiv.className = 'fellow-photo';
+      
+      const img = document.createElement('img');
+      img.src = fellow.image;
+      img.alt = fellow.name;
+      img.loading = 'lazy';
+      img.style.filter = 'none';
+      
+      // If image fails to load, show initials
+      img.onerror = function() {
+        this.style.display = 'none';
+        const initialsSpan = document.createElement('span');
+        initialsSpan.className = 'initials';
+        const nameParts = fellow.name.split(' ');
+        const initials = nameParts.map(n => n[0]).join('');
+        initialsSpan.textContent = initials;
+        photoDiv.appendChild(initialsSpan);
+      };
+      
+      photoDiv.appendChild(img);
+      
+      // Info
+      const infoDiv = document.createElement('div');
+      infoDiv.className = 'fellow-info';
+      
+      const nameDiv = document.createElement('div');
+      nameDiv.className = 'fellow-name';
+      nameDiv.textContent = fellow.name;
+      
+      const countryDiv = document.createElement('div');
+      countryDiv.className = 'fellow-country';
+      countryDiv.textContent = fellow.country;
+      
+      infoDiv.appendChild(nameDiv);
+      infoDiv.appendChild(countryDiv);
+      
+      card.appendChild(numSpan);
+      card.appendChild(photoDiv);
+      card.appendChild(infoDiv);
+      
+      grid.appendChild(card);
+    });
+    
+    // Show/hide no results message
+    if (visibleCount === 0 && searchTerm !== '') {
+      noResults.classList.add('show');
+    } else {
+      noResults.classList.remove('show');
+    }
+  }
+
+  function filterFellows() {
+    const input = document.getElementById('searchInput');
+    renderFellows(input.value);
+  }
+
+  // Make filterFellows global so oninput can call it
+  window.filterFellows = filterFellows;
+
+  // Initial render
+  renderFellows();
+});
+</script>
+
+<script src="js/pixel-trail.js"></script>
+<script src="js/cursor.js"></script>
+<script src="js/scroll.js"></script>
+</body>
+</html>
