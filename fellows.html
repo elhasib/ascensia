@@ -107,15 +107,6 @@
   color:var(--ink-2);
   line-height:1.4;
 }
-.fellow-number{
-  font-family:var(--sans);
-  font-size:10px;
-  font-weight:400;
-  letter-spacing:.06em;
-  color:rgba(28,20,9,.15);
-  margin-right:4px;
-  flex-shrink:0;
-}
 
 /* Search result highlight */
 .fellow-card.hidden {
@@ -316,11 +307,6 @@ document.addEventListener('DOMContentLoaded', function() {
       const card = document.createElement('div');
       card.className = `fellow-card${isVisible ? '' : ' hidden'}`;
       
-      // Number
-      const numSpan = document.createElement('span');
-      numSpan.className = 'fellow-number';
-      numSpan.textContent = String(index + 1).padStart(2, '0');
-      
       // Photo
       const photoDiv = document.createElement('div');
       photoDiv.className = 'fellow-photo';
@@ -359,7 +345,6 @@ document.addEventListener('DOMContentLoaded', function() {
       infoDiv.appendChild(nameDiv);
       infoDiv.appendChild(countryDiv);
       
-      card.appendChild(numSpan);
       card.appendChild(photoDiv);
       card.appendChild(infoDiv);
       
