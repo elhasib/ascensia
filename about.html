@@ -48,54 +48,59 @@
   line-height:1.82;color:var(--ink-2);
 }
 
-/* PARTNERS STYLES */
-.partners-grid{
+/* ── PARTNERS UNIFORM WALL ── */
+.partners-wall{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:40px;
-  margin-top:40px;
-}
-.partner-card{
-  background:var(--sheet-bg-alt);
-  border-radius:12px;
-  padding:48px 32px;
-  text-align:center;
-  transition:transform 0.3s ease, box-shadow 0.3s ease;
-  border:1px solid rgba(28,20,9,0.06);
-  display:flex;
+  grid-template-columns:repeat(4, 1fr);
+  gap:72px 56px;
+  margin-top:60px;
+  padding:20px 0;
   align-items:center;
-  justify-content:center;
-  min-height:140px;
-  text-decoration:none;
-  color:inherit;
-  cursor:none !important;
-}
-.partner-card:hover{
-  transform:translateY(-4px);
-  box-shadow:0 12px 40px rgba(28,20,9,0.06);
-  cursor:none !important;
-}
-.partner-logo{
-  width:100%;
-  max-width:280px;
-  height:140px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-.partner-logo img{
-  max-width:100%;
-  max-height:100%;
-  object-fit:contain;
+  justify-items:center;
 }
 
+.partner-tile{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  height:80px;
+  text-decoration:none;
+  cursor:none !important;
+}
+
+.partner-tile img{
+  max-width:100%;
+  max-height:70px;
+  width:auto;
+  object-fit:contain;
+  filter:none;
+  transition:transform .3s;
+}
+
+/* Force STEM Egypt logo to match the visual weight of others */
+.partner-tile img[alt="STEM Egypt"]{
+  max-height:90px;
+  transform:scale(1.15);
+}
+
+.partner-tile:hover img{
+  transform:scale(1.06);
+}
+
+.partner-tile:hover img[alt="STEM Egypt"]{
+  transform:scale(1.22);
+}
+
+a.partner-tile:hover{ cursor:none !important; }
+
 /* OVERRIDE ALL CURSORS */
-a, button, .partner-card, .nav-cta, .person-li, .home-link, .closing-email, 
+a, button, .partner-tile, .nav-cta, .person-li, .home-link, .closing-email, 
 [role="button"], [type="submit"], .nav-links a, .nav-mobile a, .logo, .nav-logo {
   cursor: none !important;
 }
 
-a:hover, button:hover, .partner-card:hover, .nav-cta:hover, .person-li:hover, 
+a:hover, button:hover, .partner-tile:hover, .nav-cta:hover, .person-li:hover, 
 .home-link:hover, .closing-email:hover, .nav-links a:hover, .nav-mobile a:hover,
 .logo:hover, .nav-logo:hover {
   cursor: none !important;
@@ -129,23 +134,36 @@ a:hover, button:hover, .partner-card:hover, .nav-cta:hover, .person-li:hover,
 
 @media(max-width:900px){
   .values-grid{grid-template-columns:repeat(3,1fr);}
-  .partners-grid{grid-template-columns:repeat(2,1fr);}
+  .partners-wall{
+    grid-template-columns:repeat(3, 1fr);
+    gap:56px 40px;
+    margin-top:48px;
+  }
+  .partner-tile{ height:68px; }
+  .partner-tile img{ max-height:60px; }
+  .partner-tile img[alt="STEM Egypt"]{ max-height:78px; }
 }
 @media(max-width:600px){
   .values-grid{grid-template-columns:1fr 1fr;}
-  .partners-grid{grid-template-columns:1fr;}
+  .partners-wall{
+    grid-template-columns:repeat(2, 1fr);
+    gap:44px 28px;
+    margin-top:40px;
+  }
+  .partner-tile{ height:56px; }
+  .partner-tile img{ max-height:50px; }
+  .partner-tile img[alt="STEM Egypt"]{ max-height:64px; }
   .people-row-three .person,
   .people-row-single .person {
     flex: 0 0 100%;
     max-width: 100%;
   }
-  .partner-logo{
-    max-width:200px;
-    height:100px;
-  }
 }
 @media(max-width:400px){
   .values-grid{grid-template-columns:1fr;}
+  .partner-tile{ height:48px; }
+  .partner-tile img{ max-height:42px; }
+  .partner-tile img[alt="STEM Egypt"]{ max-height:54px; }
 }
 </style>
 
@@ -238,7 +256,7 @@ a:hover, button:hover, .partner-card:hover, .nav-cta:hover, .person-li:hover,
       </div>
     </div>
 
-    <!-- Row 2: Sarah (left), Abigail (middle), Ismail (right) -->
+    <!-- Row 2 -->
     <div class="person r r-d1">
       <div class="person-photo"><img src="images/sarah-img.jpg" alt="Sarah Elgabery" loading="lazy" style="filter:none;"></div>
       <div class="person-info">
@@ -249,7 +267,6 @@ a:hover, button:hover, .partner-card:hover, .nav-cta:hover, .person-li:hover,
       </div>
     </div>
 
-    <!-- Abigail Maina -->
     <div class="person r r-d1">
       <div class="person-photo"><img src="images/abigail.jpg" alt="Abigail Maina" loading="lazy" style="filter:none;"></div>
       <div class="person-info">
@@ -270,7 +287,7 @@ a:hover, button:hover, .partner-card:hover, .nav-cta:hover, .person-li:hover,
       </div>
     </div>
 
-    <!-- Row 3: Youssef Nassar, Jeremy, Youssef Taleb -->
+    <!-- Row 3 -->
     <div class="person r r-d1">
       <div class="person-photo"><img src="images/youssef.png" alt="Youssef Nassar" loading="lazy" style="filter:none;"></div>
       <div class="person-info">
@@ -301,7 +318,7 @@ a:hover, button:hover, .partner-card:hover, .nav-cta:hover, .person-li:hover,
       </div>
     </div>
 
-    <!-- Row 4: Ayanfe, Saif, Omar (3 in a row) -->
+    <!-- Row 4 -->
     <div class="people-row-three r r-d1">
       <div class="person">
         <div class="person-photo"><img src="images/ayanfe-final.jpg" alt="Ayanfe" loading="lazy" style="filter:none;"></div>
@@ -332,7 +349,7 @@ a:hover, button:hover, .partner-card:hover, .nav-cta:hover, .person-li:hover,
       </div>
     </div>
 
-    <!-- Dawit - bottom row by himself -->
+    <!-- Dawit -->
     <div class="people-row-single r r-d2">
       <div class="person">
         <div class="person-photo"><img src="images/dawit.jpg" alt="Dawit Dagne" loading="lazy" style="filter:none;"></div>
@@ -354,55 +371,46 @@ a:hover, button:hover, .partner-card:hover, .nav-cta:hover, .person-li:hover,
   <p class="eyebrow r">Our partners</p>
   <h2 class="section-h r r-d1">Organizations we work with.</h2>
 
-  <div class="partners-grid r r-d3">
+  <div class="partners-wall r r-d3">
 
     <!-- Abaarso -->
-    <a href="https://www.abaarsonetwork.org/" target="_blank" rel="noopener" class="partner-card">
-      <div class="partner-logo">
-        <img src="images/Abaarso-Network-logo.png" alt="Abaarso" loading="lazy">
-      </div>
-    </a>
-
-    <!-- Non-Trivial -->
-    <a href="https://www.non-trivial.org/" target="_blank" rel="noopener" class="partner-card">
-      <div class="partner-logo">
-        <img src="images/non-trivial-logo.png" alt="Non-Trivial" loading="lazy">
-      </div>
-    </a>
-
-    <!-- Ciyota -->
-    <a href="https://www.ciyota.org/" target="_blank" rel="noopener" class="partner-card">
-      <div class="partner-logo">
-        <img src="images/ciyota-logo.png" alt="Ciyota" loading="lazy">
-      </div>
+    <a href="https://www.abaarsonetwork.org/" target="_blank" rel="noopener" class="partner-tile">
+      <img src="images/Abaarso-Network-logo.png" alt="Abaarso" loading="lazy">
     </a>
 
     <!-- EFAC -->
-    <a href="https://www.efac.org/" target="_blank" rel="noopener" class="partner-card">
-      <div class="partner-logo">
-        <img src="images/efac.png" alt="EFAC" loading="lazy">
-      </div>
+    <a href="https://www.efac.org/" target="_blank" rel="noopener" class="partner-tile">
+      <img src="images/efac.png" alt="EFAC" loading="lazy">
+    </a>
+
+    <!-- Non-Trivial -->
+    <a href="https://www.non-trivial.org/" target="_blank" rel="noopener" class="partner-tile">
+      <img src="images/non-trivial-logo.png" alt="Non-Trivial" loading="lazy">
+    </a>
+
+    <!-- Ciyota -->
+    <a href="https://www.ciyota.org/" target="_blank" rel="noopener" class="partner-tile">
+      <img src="images/ciyota-logo.png" alt="Ciyota" loading="lazy">
     </a>
 
     <!-- Daraja -->
-    <a href="https://daraja.org/" target="_blank" rel="noopener" class="partner-card">
-      <div class="partner-logo">
-        <img src="images/daraja-logo.png" alt="Daraja" loading="lazy">
-      </div>
+    <a href="https://daraja.org/" target="_blank" rel="noopener" class="partner-tile">
+      <img src="images/daraja-logo.png" alt="Daraja" loading="lazy">
     </a>
 
     <!-- Kigutu International Academy -->
-    <a href="https://www.kigutuinternationalacademy.org/" target="_blank" rel="noopener" class="partner-card">
-      <div class="partner-logo">
-        <img src="images/KIA-logo.png" alt="Kigutu International Academy" loading="lazy">
-      </div>
+    <a href="https://www.kigutuinternationalacademy.org/" target="_blank" rel="noopener" class="partner-tile">
+      <img src="images/KIA-logo.png" alt="Kigutu International Academy" loading="lazy">
     </a>
 
-    <!-- STEM Egypt Partnership -->
-    <a href="https://stemegypt.net/" target="_blank" rel="noopener" class="partner-card">
-      <div class="partner-logo">
-        <img src="images/STEM-logo.png" alt="STEM Egypt" loading="lazy">
-      </div>
+    <!-- STEM Egypt -->
+    <a href="https://stemegypt.net/" target="_blank" rel="noopener" class="partner-tile">
+      <img src="images/STEM-logo.png" alt="STEM Egypt" loading="lazy">
+    </a>
+
+    <!-- Flight School -->
+    <a href="https://theflightschool.org/" target="_blank" rel="noopener" class="partner-tile">
+      <img src="images/flight_school_final_logo.png" alt="Flight School" loading="lazy">
     </a>
 
   </div>
