@@ -189,7 +189,7 @@
   padding: 6px 0;
   cursor: none !important;
   transition: color .2s;
-  z-index: 3;
+  z-index: 4;
 }
 .fellow-modal-close:hover{
   color: var(--ink);
@@ -208,11 +208,12 @@
   transform: scaleX(1);
 }
 
+/* Two-column layout — photo LEFT (centered vertically), text RIGHT */
 .fellow-modal-grid{
   display: grid;
   grid-template-columns: 380px 1fr;
   gap: 48px;
-  align-items: start;
+  align-items: center;    /* ← centers the photo vertically next to the text */
   flex: 1;
   min-height: 0;
 }
@@ -225,9 +226,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  position: sticky;
-  top: 0;
-  align-self: start;
+  align-self: center;
 }
 .fellow-modal-photo img{
   width: 100%;
@@ -247,6 +246,10 @@
   overflow-y: auto;
   max-height: calc(90vh - 80px);
   padding-right: 8px;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .fellow-modal-label{
   font-family: var(--sans);
@@ -300,6 +303,52 @@
   margin-bottom: 0;
 }
 
+/* Prev / Next arrows — bottom center */
+.fellow-modal-nav{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: var(--rule);
+  flex-shrink: 0;
+}
+.fellow-modal-nav-btn{
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  background: transparent;
+  border: none;
+  padding: 8px 4px;
+  cursor: none !important;
+  transition: color .2s, transform .2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.fellow-modal-nav-btn:hover{
+  color: var(--ink);
+}
+.fellow-modal-nav-btn .arrow{
+  font-size: 14px;
+  line-height: 1;
+  transition: transform .2s;
+}
+.fellow-modal-nav-btn.prev:hover .arrow{ transform: translateX(-3px); }
+.fellow-modal-nav-btn.next:hover .arrow{ transform: translateX(3px); }
+.fellow-modal-nav-counter{
+  font-family: var(--serif);
+  font-size: 13px;
+  color: var(--ink-3);
+  letter-spacing: .08em;
+  min-width: 60px;
+  text-align: center;
+}
+
 @media(max-width:820px){
   .fellow-modal-inner{ padding: 32px 24px; overflow-y: auto; display: block; }
   .fellow-modal-grid{
@@ -310,12 +359,13 @@
   .fellow-modal-photo{
     max-width: 260px;
     margin: 0 auto 24px;
-    position: static;
+    align-self: auto;
   }
   .fellow-modal-content{
     overflow-y: visible;
     max-height: none;
     padding-right: 0;
+    display: block;
   }
   .fellow-modal-name{
     font-size: clamp(26px, 6vw, 36px);
@@ -323,6 +373,9 @@
   .fellow-modal-close{
     top: 16px;
     right: 18px;
+  }
+  .fellow-modal-nav{
+    margin-top: 20px;
   }
 }
 
@@ -457,6 +510,15 @@
         <div class="fellow-modal-body" id="fellowModalBody"></div>
       </div>
     </div>
+    <div class="fellow-modal-nav">
+      <button class="fellow-modal-nav-btn prev" onclick="goPrevFellow()">
+        <span class="arrow">←</span> Previous
+      </button>
+      <span class="fellow-modal-nav-counter" id="fellowModalCounter"></span>
+      <button class="fellow-modal-nav-btn next" onclick="goNextFellow()">
+        Next <span class="arrow">→</span>
+      </button>
+    </div>
   </div>
 </div>
 
@@ -473,256 +535,131 @@
 document.addEventListener('DOMContentLoaded', function() {
 
   const fellowsData = [
-    {
-      name: "Adior Kuer Bul",
-      country: "South Sudan",
-      flag: "https://flagcdn.com/w40/ss.png",
-      image: "images/fellows/adior.jpg",
+    { name: "Adior Kuer Bul", country: "South Sudan", flag: "https://flagcdn.com/w40/ss.png", image: "images/fellows/adior.jpg",
       bio: [
         "Adior is a youth advocate and community leader from South Sudan, raised in Kenya's Kakuma Refugee Camp. She is a 2024 Rise Fellow and co-founded Be Informed to Transform and Transcend (BITT) to eradicate forced child marriage in her community. Adior also pioneered the \"Ethic Code\" biometric framework to protect vulnerable young girls, while mentoring younger girls to pursue their dreams.",
         "Adior believes that no girl should be forced into marriage before she has the chance to decide her own future. Beyond academics, Adior is a basketball captain."
-      ]
-    },
-    {
-      name: "Advika Gupta",
-      country: "United Arab Emirates",
-      flag: "https://flagcdn.com/w40/ae.png",
-      image: "images/fellows/advika.jpg",
+      ] },
+    { name: "Advika Gupta", country: "United Arab Emirates", flag: "https://flagcdn.com/w40/ae.png", image: "images/fellows/advika.jpg",
       bio: [
         "Advika is a climate entrepreneur from Abu Dhabi. Her research on recycled textile fibres in building materials was published in the Journal of Emerging Investigators, and her work on memory retention was published in the Stanford Intersect Journal. She founded Trade My Carbon, a climate-tech carbon credit platform with 360,000+ credits traded and 90+ companies onboarded. She is a Youth Journalism International Top 4 Global Finalist and a John Locke Institute Essay Prize shortlist recipient.",
         "Advika believes that the materials we build with should not cost the planet more than they give. Beyond academics, Advika is an advanced yoga practitioner and a book reviewer for 10,000+ followers."
-      ]
-    },
-    {
-      name: "Alexandru-Dumitru Ardelean",
-      country: "Romania",
-      flag: "https://flagcdn.com/w40/ro.png",
-      image: "images/fellows/alexandru.jpg",
+      ] },
+    { name: "Alexandru-Dumitru Ardelean", country: "Romania", flag: "https://flagcdn.com/w40/ro.png", image: "images/fellows/alexandru.jpg",
       bio: [
         "Alexandru is a student researcher from Romania working at the intersection of generative AI and structural biology. He is a Bronze medalist at the International AI Olympiad 2026 and a Gold medalist at the Romanian National AI Olympiad 2026, where he qualified for two consecutive years. He also qualified for the International AI Innovation Olympiad Global Summit at MIT. Alexandru graduated from The Knowledge Society with Honours. His research focuses on conditioning protein diffusion models for ligand binding pockets and enzyme defluorination prediction, and he replicated FoldingDiff and built CrypticDiff.",
         "Alexandru believes that the most important advances happen when we use technology to solve real-world problems. Beyond academics, Alexandru is a photographer."
-      ]
-    },
-    {
-      name: "Anas Mamdouh Elwasifi",
-      country: "Egypt",
-      flag: "https://flagcdn.com/w40/eg.png",
-      image: "images/fellows/anas.jpg",
+      ] },
+    { name: "Anas Mamdouh Elwasifi", country: "Egypt", flag: "https://flagcdn.com/w40/eg.png", image: "images/fellows/anas.jpg",
       bio: [
         "Anas is a student researcher and physicist from Egypt. He left home in 9th grade to attend the country's most first-ranked high school. Anas also leads the Computational Physics track at the Egyptian Olympiad in Computational Science. He placed 3rd internationally out of 170 at the International Fair of Youth Research and ranked top 1% nationally in the STEM Schools Admission Test.",
         "Anas believes that the moment you realise your limits were only a starting point is the moment everything changes. Beyond academics, Anas swims and cycles."
-      ]
-    },
-    {
-      name: "Arielainy Abigail Báez",
-      country: "Dominican Republic",
-      flag: "https://flagcdn.com/w40/do.png",
-      image: "images/fellows/arielainy.jpg",
+      ] },
+    { name: "Arielainy Abigail Báez", country: "Dominican Republic", flag: "https://flagcdn.com/w40/do.png", image: "images/fellows/arielainy.jpg",
       bio: [
         "Arielainy is a STEM enthusiast and community leader from La Romana, Dominican Republic. She won 1st Place at the National World Robot Olympiad 2025 in the Future Innovators category. She received the International Pre-University FUNIBER Research Award and served as Local Lead for NASA Space Apps Challenge in La Romana. Arielainy also founded Juventus RD, a youth-led organisation empowering young people through STEM.",
         "Arielainy believes that curiosity and innovation can create opportunities where none existed before. Beyond academics, Arielainy works full-time and cares for her little sister."
-      ]
-    },
-    {
-      name: "Aritro Ghosh",
-      country: "Bahrain",
-      flag: "https://flagcdn.com/w40/bh.png",
-      image: "images/fellows/aritro.jpg",
+      ] },
+    { name: "Aritro Ghosh", country: "Bahrain", flag: "https://flagcdn.com/w40/bh.png", image: "images/fellows/aritro.jpg",
       bio: [
         "Aritro is a student researcher from Bahrain working at the intersection of quantum computing, AI safety, and biosecurity. He is a Research Fellow at Non-Trivial, where he works on consequence-weighted proteome-wide prion risk screening. He built a Quantum Support Vector Classifier for hate-speech detection achieving 98.7% accuracy versus a 95.2% baseline. He qualified for the British Mathematical Olympiad and won Gold in the UKMT Senior Maths Challenge. Aritro also rebuilt his F1 in Schools race car entirely from scratch, finishing 7th of 43 at World Finals.",
         "Aritro believes that the most important problems are the ones that sit between disciplines. Beyond academics, Aritro is a drummer and an amateur racing enthusiast."
-      ]
-    },
-    {
-      name: "Arjun Gambhir",
-      country: "Ireland",
-      flag: "https://flagcdn.com/w40/ie.png",
-      image: "images/fellows/arjun.jpg",
+      ] },
+    { name: "Arjun Gambhir", country: "Ireland", flag: "https://flagcdn.com/w40/ie.png", image: "images/fellows/arjun.jpg",
       bio: [
         "Arjun is a researcher and builder from Ireland working at the intersection of neuroscience, AI, and robotics. He received the Stripe Young Scientist Award '26 in Mathematics and was selected for the Stripe Young Scientist Bootcamp. He conducted award-winning research on the neurocognitive impacts of AI-generated content with 40+ human volunteers and built a physical swarm robotics system during an OpenAI and Stripe-supported fellowship. Arjun also founded the Dublin Tech Circuit, Ireland's first interschool tech league, supported by Google Ireland and the Raspberry Pi Foundation.",
         "Arjun believes that the best leadership is about creating the conditions for others to thrive. Beyond academics, Arjun is a lead drummer."
-      ]
-    },
-    {
-      name: "Biruk Habtamu Mamo",
-      country: "Ethiopia",
-      flag: "https://flagcdn.com/w40/et.png",
-      image: "images/biruk.jpg",
+      ] },
+    { name: "Biruk Habtamu Mamo", country: "Ethiopia", flag: "https://flagcdn.com/w40/et.png", image: "images/biruk.jpg",
       bio: [
         "Biruk is a researcher student from Ethiopia. He placed 6th in the Ethiopian National Maths Olympiad and 1st nationally in the International Chemistry Competition, receiving a Silver Honour. He is a Research Scholar at the Ethiopian Space Science Society and a Maths Olympiad Coach for 40 high school students in Ethiopia.",
         "Biruk believes that knowledge should be shared, not hoarded. Beyond academics, Biruk is a sketcher."
-      ]
-    },
-    {
-      name: "Cheng Xin Leong",
-      country: "Macao",
-      flag: "https://flagcdn.com/w40/mo.png",
-      image: "images/fellows/cheng.jpg",
+      ] },
+    { name: "Cheng Xin Leong", country: "Macao", flag: "https://flagcdn.com/w40/mo.png", image: "images/fellows/cheng.jpg",
       bio: [
         "Cheng Xin is a researcher student from Malaysia living in Macau SAR, China. She received a Very High Commendation in Economics from the John Locke Institute in 2025. She is also a two-time Macao Foundation Social Studies Award recipient and a World Scholar's Cup Regional Round 2nd Place winner in Writing. Cheng Xin also founded the First Mic Program, offering English and Model UN workshops to local students in Macau.",
         "Cheng Xin believes that education is the most powerful tool for breaking down barriers. Beyond academics, Cheng Xin is a freelance creative writer with a YouTube channel of 50,000+ views."
-      ]
-    },
-    {
-      name: "Evan Salama",
-      country: "Namibia",
-      flag: "https://flagcdn.com/w40/na.png",
-      image: "images/fellows/evan.jpg",
+      ] },
+    { name: "Evan Salama", country: "Namibia", flag: "https://flagcdn.com/w40/na.png", image: "images/fellows/evan.jpg",
       bio: [
         "Evan is a student researcher from Namibia and Egypt studying at African Leadership Academy. He is a Namibia Math Olympiad Gold medalist, an International Chemistry Competition Bronze medalist, and a Nelson Mandela Diplomacy Award recipient. Evan also ranked 4th in Namibia in archery and 13th in Africa in debate.",
         "Evan believes that the deepest questions are often found at the intersection of disciplines. Beyond academics, Evan is a church deacon of eight years and a peer counsellor."
-      ]
-    },
-    {
-      name: "Fatma Ezzahra Jlali",
-      country: "Tunisia",
-      flag: "https://flagcdn.com/w40/tn.png",
-      image: "images/fellows/fatma.jpg",
+      ] },
+    { name: "Fatma Ezzahra Jlali", country: "Tunisia", flag: "https://flagcdn.com/w40/tn.png", image: "images/fellows/fatma.jpg",
       bio: [
         "Fatma is a computer scientist from Tunisia who loves to build technology for underserved places. She is a silver medalist at the Pan-African Olympiad in Informatics 2026 and a two-time member of Tunisia's EGOI team. She maintains an open registry of 138 Tunisian Arabic NLP datasets with a DOI, and her first-author paper is under review at an MRL 2026 EMNLP workshop. She placed 12th worldwide in the ICPC AlgoQueen 2026 School division finals.",
         "Fatma believes that language and knowledge should not be lost simply because they were never written down. Beyond academics, Fatma harvests olives on her family farm every season."
-      ]
-    },
-    {
-      name: "Mahmoud Yassin",
-      country: "Egypt",
-      flag: "https://flagcdn.com/w40/eg.png",
-      image: "images/fellows/mahmoud.jpg",
+      ] },
+    { name: "Mahmoud Yassin", country: "Egypt", flag: "https://flagcdn.com/w40/eg.png", image: "images/fellows/mahmoud.jpg",
       bio: [
         "Mahmoud is a software engineer and builder from Egypt. He is a USACO Platinum Division competitor and a NASA Space Apps Global Nominee for Flood Lens, which won 1st Place in Port Said. He built TrueTutor, an EdTech platform serving 5,300+ students, and founded Flousy, an AI-powered financial planning app. He developed SquashVAR, a computer vision officiating system with high precision.",
         "Mahmoud believes that building enabling systems matters more than solving individual problems. Beyond academics, Mahmoud is a nationally ranked squash athlete and a first-dan black belt in karate."
-      ]
-    },
-    {
-      name: "Mihika Singhania",
-      country: "India",
-      flag: "https://flagcdn.com/w40/in.png",
-      image: "images/fellows/mihika.jpg",
+      ] },
+    { name: "Mihika Singhania", country: "India", flag: "https://flagcdn.com/w40/in.png", image: "images/fellows/mihika.jpg",
       bio: [
         "Mihika is a researcher and social entrepreneur from India. She founded Project Redline, which has installed over 500 certified reflectors on informal vehicles in Kanpur, working directly with the Traffic Police to reduce nighttime crashes for low-income drivers. She is a World Science Scholar, a Non-Trivial Research Fellow, and a Research Scholar at RSI India. She received the Outstanding Cambridge Learner Award for achieving the highest marks in India in IGCSE Business Studies.",
         "Mihika believes that progress should be equitable, not just efficient. Beyond academics, Mihika is a three-time World Scholar's Cup awardee and a Duke of Edinburgh Gold recipient."
-      ]
-    },
-    {
-      name: "Mohamed Ali Tounsi",
-      country: "Tunisia",
-      flag: "https://flagcdn.com/w40/tn.png",
-      image: "images/fellows/mohamed-ali.jpg",
+      ] },
+    { name: "Mohamed Ali Tounsi", country: "Tunisia", flag: "https://flagcdn.com/w40/tn.png", image: "images/fellows/mohamed-ali.jpg",
       bio: [
         "Mohamed Ali is a researcher student from Tunisia. He is the CEO of the African Research Program for Leaders and President of the Tunisian International Model United Nations. He graduated with the Highest Honors in the Tunisian Baccalaureate, ranking top 50 out of 180,000 students. Mohamed also won the Peerless Event Master Award for organizing TIMELINE, a 200-student, 10-workshop bootcamp.",
         "Beyond academics, Mohamed Ali is a basketball player."
-      ]
-    },
-    {
-      name: "Mohamed Mehdi Mlaouah",
-      country: "Tunisia",
-      flag: "https://flagcdn.com/w40/tn.png",
-      image: "images/fellows/mohamed-mehdi.jpg",
+      ] },
+    { name: "Mohamed Mehdi Mlaouah", country: "Tunisia", flag: "https://flagcdn.com/w40/tn.png", image: "images/fellows/mohamed-mehdi.jpg",
       bio: [
         "Mohamed Mehdi is an international relations researcher and political advisor from Tunisia. He serves as Lead Youth Affairs Advisor to a Tunisian political party, selected from over 200 applicants, where he has debated real-world resolutions with senior delegates at age 16. He is a USA Presidential Award recipient for Community Service and a FIDE International Chess Player with 7 international medals. Mehdi is also a Kennedy-Lugar YES Program alumnus and a scholarship awardee at African Leadership Academy.",
         "Mehdi believes that youth belong in the rooms where decisions are made. Beyond academics, Mohamed Mehdi is a TEDx speaker and FBLA public speaker."
-      ]
-    },
-    {
-      name: "Montaha Mansouri",
-      country: "Tunisia",
-      flag: "https://flagcdn.com/w40/tn.png",
-      image: "images/fellows/montaha.jpg",
+      ] },
+    { name: "Montaha Mansouri", country: "Tunisia", flag: "https://flagcdn.com/w40/tn.png", image: "images/fellows/montaha.jpg",
       bio: [
         "Montaha is a student-athlete and researcher from Tunisia. She is a Tunisian National Chess Championship Gold, Silver, and Bronze medalist across U12, U14, and U16 categories. She is a Tunisia Women's U18 National Soccer Champion and was the only girl and captain on her boys' team. Montaha also received Gold in the Tunisian National Math Olympiad 2024 and Silver in 2025.",
         "Montaha believes that discipline in sport builds discipline in everything. Beyond academics, Montaha is an AV Captain and a fashion club treasurer."
-      ]
-    },
-    {
-      name: "Nahom Benyam Berhanu",
-      country: "Ethiopia",
-      flag: "https://flagcdn.com/w40/et.png",
-      image: "images/fellows/nahom.jpg",
+      ] },
+    { name: "Nahom Benyam Berhanu", country: "Ethiopia", flag: "https://flagcdn.com/w40/et.png", image: "images/fellows/nahom.jpg",
       bio: [
         "Nahom is a computer science enthusiast from Ethiopia. He raised $2,000 for Cardiac Center Ethiopia to fund free heart surgery for children, pitching his entire high school to do it. Nahom also built Eye Can, an app that lets people without hand mobility control a computer using gaze and voice. He took first place in South Africa's NASA Space Apps Challenge with an AI weather prediction model.",
         "Nahom believes that technology should be built with African contexts and needs in mind from the start. Beyond academics, Nahom enjoys gaming and podcasts."
-      ]
-    },
-    {
-      name: "Natalia Espinoza",
-      country: "Peru",
-      flag: "https://flagcdn.com/w40/pe.png",
-      image: "images/fellows/natalia.jpg",
+      ] },
+    { name: "Natalia Espinoza", country: "Peru", flag: "https://flagcdn.com/w40/pe.png", image: "images/fellows/natalia.jpg",
       bio: [
         "Natalia is an entrepreneur and musician from Peru. She founded Sueños de Hogar, a social impact venture helping domestic workers in Peru achieve financial stability and housing improvements. She is a Global Finalist at the Diamond Challenge, placing in the top 4%, and a Top 100 Emerging Innovator. She was also selected from 4,000+ applicants for the Latin American Leadership Academy and later served as a Camp Guide.",
         "Natalia believes that business can be a tool for expanding opportunity. Beyond academics, Natalia is an urban dancer and a flutist of eight years."
-      ]
-    },
-    {
-      name: "Roumak Das",
-      country: "India",
-      flag: "https://flagcdn.com/w40/in.png",
-      image: "images/fellows/roumak.jpg",
+      ] },
+    { name: "Roumak Das", country: "India", flag: "https://flagcdn.com/w40/in.png", image: "images/fellows/roumak.jpg",
       bio: [
         "Roumak is an AI researcher and competitive programmer from India. He is a Gold medalist at the International Olympiad in Artificial Intelligence 2025 and a Silver medalist at IOAI 2026. Roumak is also a Gold medalist at the Indian National Olympiad in Informatics 2026 and a Meta Hacker Cup 2025 top-200 finalist out of 20,000+ competitors. His research on low-resource language models has been published at EACL as a solo author, and he received a $5,000 grant from Emergent Ventures. He also built Fur Buddies, an animal rescue app that has contributed to over 150 rescues.",
         "Roumak believes that intelligence without empathy is incomplete. Beyond academics, Roumak is a badminton state-level player and school cricket team captain."
-      ]
-    },
-    {
-      name: "Sarthak Kamalkishor Dholr",
-      country: "India",
-      flag: "https://flagcdn.com/w40/in.png",
-      image: "images/fellows/sarthak.jpg",
+      ] },
+    { name: "Sarthak Kamalkishor Dholr", country: "India", flag: "https://flagcdn.com/w40/in.png", image: "images/fellows/sarthak.jpg",
       bio: [
         "Sarthak is a philosopher and physicist from India. He believes knowledge is rhizomatic, spreading and connecting in ways that defy simple categories. He has represented India three times at the International Philosophy Olympiad, earning the country's first medal this decade, and twice at the International Young Physicists' Tournament, achieving the highest score in Indian history. He founded Philosium, a global philosophy education initiative now active in over 60 countries with 150+ volunteers, impacting more than 10,000 students. He has conducted fieldwork in tiger reserves and published research on folklore-based conservation.",
         "Beyond academics, Sarthak is a photographer and a Kathak dancer."
-      ]
-    },
-    {
-      name: "Savyasachi Singh",
-      country: "India",
-      flag: "https://flagcdn.com/w40/in.png",
-      image: "images/fellows/savyasachi.jpg",
+      ] },
+    { name: "Savyasachi Singh", country: "India", flag: "https://flagcdn.com/w40/in.png", image: "images/fellows/savyasachi.jpg",
       bio: [
         "Savyasachi is an AI researcher and community builder from India. He is a silver medalist at the International Olympiad in Artificial Intelligence 2026 and a two-time IOAI participant representing India. He founded the SOTA AI Community, a 500+ member organisation affiliated with ACM India. He placed 9th internationally at Cambridge Battlecode, 1st among high school participants, and is an INMO and INOI qualifier.",
         "Savyasachi believes that access to knowledge should not depend on where you happen to be born. Beyond academics, Savyasachi is a national gold medalist in taekwondo."
-      ]
-    },
-    {
-      name: "Tala Samer Ahmed Mousa",
-      country: "Palestine",
-      flag: "https://flagcdn.com/w40/ps.png",
-      image: "images/fellows/tala.jpg",
+      ] },
+    { name: "Tala Samer Ahmed Mousa", country: "Palestine", flag: "https://flagcdn.com/w40/ps.png", image: "images/fellows/tala.jpg",
       bio: [
         "Tala is a youth advocate from Gaza, Palestine. She believes that even in the darkest moments, hope can inspire us to build rather than break. Displaced after her home was destroyed, she founded Build Hope, a youth-led initiative transforming rubble into reusable building materials. The project won the Middle East Regional Earth Prize 2026 and has been featured by BBC, CBC News, TRT World, and The National.",
         "Tala also serves as Vice President of Girl Up Palestine, a media spokesperson for ICSPR, and a youth delegate at the Geneva Global Hub for Education in Emergencies. She has also represented Palestinian youth at the UNRWA Pledging Conference 2026 and internationally through organizations including Plan International. Tala's story was presented at the UN Pledging Conference 2026, attended by the UN Secretary-General, and mentioned during the 80th Anniversary of the UN Charter in New York, following addresses by the UN General Assembly President and UN Secretary-General."
-      ]
-    },
-    {
-      name: "Tang Oi Lam",
-      country: "Hong Kong",
-      flag: "https://flagcdn.com/w40/hk.png",
-      image: "images/fellows/tang.jpg",
+      ] },
+    { name: "Tang Oi Lam", country: "Hong Kong", flag: "https://flagcdn.com/w40/hk.png", image: "images/fellows/tang.jpg",
       bio: [
         "Tang is a student researcher and athlete from Hong Kong with a passion for dance, science, and community service. She is a Black Belt 4 Dan in Taekwondo and a World Champion with her dance troupe at the Get the Beat World Final. She earned Top 10 High School and a Gold Medal at iGEM 2025 and a Gold Award at the Silicon Valley International Invention Festival. She was a Hong Kong Representative at the 50th International Exhibition of Inventions Geneva.",
         "Oi Lam believes that discipline in one area of life strengthens everything else. Beyond academics, Oi Lam volunteers at Hong Kong Children's Hospital and United Christian Hospital."
-      ]
-    },
-    {
-      name: "Vivan Panda",
-      country: "United Arab Emirates",
-      flag: "https://flagcdn.com/w40/ae.png",
-      image: "images/fellows/vivan.jpg",
+      ] },
+    { name: "Vivan Panda", country: "United Arab Emirates", flag: "https://flagcdn.com/w40/ae.png", image: "images/fellows/vivan.jpg",
       bio: [
         "Vivan is a mathematician and physicist from the UAE. He is the first-ever high-school trainee at CERN's SND@LHC experiment, where he gained hands-on exposure to emulsion-based particle detectors. He placed 1st globally in the 40th PhysicsBowl with a perfect score of 40/40, earning the Asian Top Gold Award. He is also a Top Gold Award Winner at the British Physics Olympiad, invited to the Physics Camp at St Catherine's College, Cambridge, and holds the Highest Mark in the World for English Literature and History from Pearson.",
-        "Vivan is also a World Science Scholar, selected as one of ~50 students globally, and a Non-Trivial Research Fellow, selected as one of ~100 pre-collegiate students from over 9,000 applicants."
-      ]
-    },
-    {
-      name: "Yuhang Wu",
-      country: "China",
-      flag: "https://flagcdn.com/w40/cn.png",
-      image: "images/fellows/yuhang.jpg",
+        "Vivan is also a World Science Scholar and a Non-Trivial Research Fellow, selected as one of ~100 pre-collegiate students."
+      ] },
+    { name: "Yuhang Wu", country: "China", flag: "https://flagcdn.com/w40/cn.png", image: "images/fellows/yuhang.jpg",
       bio: [
         "Yuhang is a student researcher from China focused on mathematics and AI safety. He is a first-author researcher on GAN-based generation of thermally anisotropic microstructures. Yuhang is also a three-time AIME qualifier, a Citadel Innovation Prize recipient, and a National Merit Semifinalist. He placed 5th in Guts at the Stanford Math Tournament and 5th Individual at the Georgia Tech Math Tournament.",
         "Yuhang believes that rigorous thinking is the foundation of meaningful work. Beyond academics, Yuhang plays varsity tennis and volunteers at a retirement home."
-      ]
-    }
+      ] }
   ];
 
   fellowsData.sort((a, b) => a.name.localeCompare(b.name));
@@ -733,8 +670,16 @@ document.addEventListener('DOMContentLoaded', function() {
   const modalFlag = document.getElementById('fellowModalFlag');
   const modalCountryText = document.getElementById('fellowModalCountryText');
   const modalBody = document.getElementById('fellowModalBody');
+  const modalCounter = document.getElementById('fellowModalCounter');
 
-  function openFellowModal(fellow) {
+  // Track which fellow is currently open
+  let currentFellowIndex = 0;
+
+  function openFellowModal(index) {
+    currentFellowIndex = index;
+    const fellow = fellowsData[index];
+
+    // Photo
     modalPhoto.innerHTML = '';
     const img = document.createElement('img');
     img.src = fellow.image;
@@ -750,10 +695,12 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     modalPhoto.appendChild(img);
 
+    // Name + country + flag
     modalName.textContent = fellow.name;
     modalFlag.src = fellow.flag || '';
     modalCountryText.textContent = fellow.country;
 
+    // Bio
     modalBody.innerHTML = '';
     (fellow.bio || []).forEach(para => {
       const p = document.createElement('p');
@@ -761,9 +708,16 @@ document.addEventListener('DOMContentLoaded', function() {
       modalBody.appendChild(p);
     });
 
+    // Counter
+    modalCounter.textContent = `${index + 1} / ${fellowsData.length}`;
+
+    // Reset scroll of the content column
     const contentCol = modal.querySelector('.fellow-modal-content');
     if (contentCol) contentCol.scrollTop = 0;
+  }
 
+  function openModal(index) {
+    openFellowModal(index);
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
@@ -773,11 +727,25 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.style.overflow = '';
   };
 
+  window.goPrevFellow = function() {
+    const newIndex = (currentFellowIndex - 1 + fellowsData.length) % fellowsData.length;
+    openFellowModal(newIndex);
+  };
+
+  window.goNextFellow = function() {
+    const newIndex = (currentFellowIndex + 1) % fellowsData.length;
+    openFellowModal(newIndex);
+  };
+
+  // Close on backdrop click or Escape
   modal.addEventListener('click', function(e) {
     if (e.target === modal) closeFellowModal();
   });
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && modal.classList.contains('open')) closeFellowModal();
+    if (!modal.classList.contains('open')) return;
+    if (e.key === 'Escape') closeFellowModal();
+    if (e.key === 'ArrowLeft') goPrevFellow();
+    if (e.key === 'ArrowRight') goNextFellow();
   });
 
   function renderFellows(filter = '') {
@@ -790,7 +758,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let visibleCount = 0;
 
-    fellowsData.forEach((fellow) => {
+    fellowsData.forEach((fellow, index) => {
       const matchesName = fellow.name.toLowerCase().includes(searchTerm);
       const matchesCountry = fellow.country.toLowerCase().includes(searchTerm);
       const isVisible = searchTerm === '' || matchesName || matchesCountry;
@@ -798,11 +766,9 @@ document.addEventListener('DOMContentLoaded', function() {
       if (isVisible) visibleCount++;
 
       const card = document.createElement('div');
-      card.className = `fellow-card${isVisible ? '' : ' hidden'}${fellow.bio ? ' has-bio' : ''}`;
+      card.className = `fellow-card${isVisible ? '' : ' hidden'} has-bio`;
 
-      if (fellow.bio) {
-        card.addEventListener('click', () => openFellowModal(fellow));
-      }
+      card.addEventListener('click', () => openModal(index));
 
       const photoDiv = document.createElement('div');
       photoDiv.className = 'fellow-photo';
