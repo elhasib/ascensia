@@ -208,12 +208,12 @@
   transform: scaleX(1);
 }
 
-/* Two-column layout — photo LEFT (centered vertically), text RIGHT */
+/* Two-column layout — photo LEFT, text RIGHT (both top-aligned) */
 .fellow-modal-grid{
   display: grid;
   grid-template-columns: 380px 1fr;
   gap: 48px;
-  align-items: center;    /* ← centers the photo vertically next to the text */
+  align-items: start;
   flex: 1;
   min-height: 0;
 }
@@ -226,7 +226,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  align-self: center;
+  align-self: start;
+  position: sticky;
+  top: 0;
+  margin-top: 8px;
 }
 .fellow-modal-photo img{
   width: 100%;
@@ -244,12 +247,9 @@
 .fellow-modal-content{
   padding-top: 4px;
   overflow-y: auto;
-  max-height: calc(90vh - 80px);
+  max-height: calc(90vh - 200px);
   padding-right: 8px;
-  align-self: stretch;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  display: block;
 }
 .fellow-modal-label{
   font-family: var(--sans);
@@ -309,7 +309,7 @@
   justify-content: center;
   align-items: center;
   gap: 24px;
-  margin-top: 24px;
+  margin-top: 20px;
   padding-top: 20px;
   border-top: var(--rule);
   flex-shrink: 0;
@@ -360,12 +360,12 @@
     max-width: 260px;
     margin: 0 auto 24px;
     align-self: auto;
+    position: static;
   }
   .fellow-modal-content{
     overflow-y: visible;
     max-height: none;
     padding-right: 0;
-    display: block;
   }
   .fellow-modal-name{
     font-size: clamp(26px, 6vw, 36px);
@@ -672,14 +672,12 @@ document.addEventListener('DOMContentLoaded', function() {
   const modalBody = document.getElementById('fellowModalBody');
   const modalCounter = document.getElementById('fellowModalCounter');
 
-  // Track which fellow is currently open
   let currentFellowIndex = 0;
 
   function openFellowModal(index) {
     currentFellowIndex = index;
     const fellow = fellowsData[index];
 
-    // Photo
     modalPhoto.innerHTML = '';
     const img = document.createElement('img');
     img.src = fellow.image;
@@ -695,12 +693,10 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     modalPhoto.appendChild(img);
 
-    // Name + country + flag
     modalName.textContent = fellow.name;
     modalFlag.src = fellow.flag || '';
     modalCountryText.textContent = fellow.country;
 
-    // Bio
     modalBody.innerHTML = '';
     (fellow.bio || []).forEach(para => {
       const p = document.createElement('p');
@@ -708,10 +704,8 @@ document.addEventListener('DOMContentLoaded', function() {
       modalBody.appendChild(p);
     });
 
-    // Counter
     modalCounter.textContent = `${index + 1} / ${fellowsData.length}`;
 
-    // Reset scroll of the content column
     const contentCol = modal.querySelector('.fellow-modal-content');
     if (contentCol) contentCol.scrollTop = 0;
   }
@@ -737,7 +731,6 @@ document.addEventListener('DOMContentLoaded', function() {
     openFellowModal(newIndex);
   };
 
-  // Close on backdrop click or Escape
   modal.addEventListener('click', function(e) {
     if (e.target === modal) closeFellowModal();
   });
