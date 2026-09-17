@@ -4,22 +4,29 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For Partners and Funders | Ascensia</title>
+<link rel="canonical" href="https://ascensia.foundation/partners.html">
+<meta name="description" content="A model built to scale with capital. Every dollar produces a measurable result: a student placed at a top university who could not otherwise have gotten there.">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ascensia Fellowship">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://ascensia.foundation/partners.html">
+<meta property="og:title" content="For Partners and Funders | Ascensia">
+<meta property="og:description" content="A model built to scale with capital. Every dollar produces a measurable result: a student placed at a top university who could not otherwise have gotten there.">
+<meta property="og:image" content="https://ascensia.foundation/images/og-one.png">
+<meta property="og:image:alt" content="Ascensia Fellowship">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="For Partners and Funders | Ascensia">
+<meta name="twitter:description" content="A model built to scale with capital. Every dollar produces a measurable result: a student placed at a top university who could not otherwise have gotten there.">
+<meta name="twitter:image" content="https://ascensia.foundation/images/og-one.png">
   <!-- Primary meta -->
-  <meta name="description" content="A model built to scale with capital. Every dollar produces a measurable result: a student placed at a top university who could not otherwise have gotten there.">
-  <meta name="theme-color" content="#1E1714">
+<meta name="theme-color" content="#1E1714">
   <!-- Open Graph -->
-  <meta property="og:type"        content="website">
-  <meta property="og:url"         content="https://ascensia.org/partners.html">
-  <meta property="og:title"       content="For Partners and Funders: Ascensia">
-  <meta property="og:description" content="A model built to scale with capital. Every dollar produces a measurable result: a student placed at a top university who could not otherwise have gotten there.">
-  <meta property="og:image"       content="https://ascensia.org/og-image.jpg">
-  <meta property="og:site_name"   content="Ascensia">
-  <!-- Twitter / X -->
-  <meta name="twitter:card"        content="summary_large_image">
-  <meta name="twitter:title"       content="For Partners and Funders: Ascensia">
-  <meta name="twitter:description" content="A model built to scale with capital. Every dollar produces a measurable result: a student placed at a top university who could not otherwise have gotten there.">
-  <meta name="twitter:image"       content="https://ascensia.org/og-image.jpg">
-  <!-- Security meta tags -->
+<!-- Twitter / X -->
+<!-- Security meta tags -->
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <!-- Favicon: ascending lines mark -->
@@ -139,37 +146,116 @@
   .efficiency-grid{grid-template-columns:1fr;}
   #contact{grid-template-columns:1fr;gap:60px;}
 }
+/* ── ضبط التباين ──────────────────────────────────────────────────────
+   الصفحة اتصممت لثيم غامق لكن css/tokens.css بقى فاتح، فبقى فيه نص فاتح
+   على خلفية فاتحة والعكس. القاعدة هنا: كل نص ياخد لون خلفيته الحقيقية.
+   الدهبي على الفاتح اتغمّق (#7A5C20) عشان يعدي WCAG AA، وهو نفس الدهبي
+   بتاع البراند #D4A853 بس أغمق.                                        */
+
+/* أقسام بخلفية فاتحة -> نص غامق */
+.beta-banner      { color:#7A5C20; }
+.page-hero-label  { color:#7A5C20; }
+.model-big        { color:var(--ink); }
+.model-label      { color:#7A5C20; }
+
+/* أقسام بخلفية غامقة -> نص فاتح */
+.efficiency-section .section-eyebrow { color:#F7EDD2; }
+.efficiency-section .section-heading { color:#F5F0EB; }
+.efficiency-section .section-body    { color:rgba(245,240,235,.82); }
+.pcard-text { color:rgba(245,240,235,.96); }
+.eff-desc   { color:rgba(245,240,235,.85); }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://ascensia.foundation/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "For Partners and Funders",
+      "item": "https://ascensia.foundation/partners.html"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://ascensia.foundation/partners.html",
+  "url": "https://ascensia.foundation/partners.html",
+  "name": "For Partners and Funders",
+  "description": "How foundations, universities, corporations and ministries can partner with Ascensia.",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Ascensia Fellowship",
+    "url": "https://ascensia.foundation"
+  },
+  "about": {
+    "@id": "https://ascensia.foundation/#organization"
+  },
+  "inLanguage": "en"
+}
+</script>
+<style>
+/* ── تعريف المتغيرات الناقصة ─────────────────────────────────────────
+   الصفحة دي بتستخدم 6 متغيرات مش معرّفة في css/tokens.css، فكانت بترجع
+   فاضية. القيم دي مستخرجة من الـ rgba المكتوبة جوه الصفحة نفسها:
+     rgba(245,240,235,…)  ->  --cream   #F5F0EB
+     rgba(196,164,145,…)  ->  --copper  #C4A491
+   والـ alpha في --line / --line-dim مأخوذة من نفس الصفحة (0.08 و 0.05).
+   مفيش أي لون من اختياري هنا.                                        */
+:root{
+  --cream:    #F5F0EB;
+  --copper:   #C4A491;
+  --line:     0.5px solid rgba(196,164,145,0.08);
+  --line-dim: 0.5px solid rgba(196,164,145,0.05);
+  --sp-xl:    100px;   /* مكملة لسلسلة tokens.css: sm 20 / md 40 / lg 72 */
+  --sp-2xl:   140px;
+}
 </style>
 </head>
 <body>
 <div id="cursor"></div>
 <div id="cursor-ring"></div>
 <div class="beta-banner">Beta website. Ascensia has not yet launched. Content is subject to change.</div>
-<nav id="main-nav">
+<nav class="nav">
   <a href="index.html" class="nav-logo">
-    <div class="logo-mark static"><span></span><span></span><span></span><span></span><span></span></div>
-    <span class="logo-wordmark">Ascensia</span>
+    <div class="nav-logo-mark"><span></span><span></span><span></span><span></span></div>
+    Ascensia
   </a>
   <ul class="nav-links">
     <li><a href="program.html">Program</a></li>
+    <li><a href="advisors.html">Advisors</a></li>
+    <li><a href="fellows.html">Fellows</a></li>
     <li><a href="about.html">About</a></li>
-    <li><a href="partners.html" class="active">Partners</a></li>
-    <li><a href="mailto:team@ascensia.foundation">Contact</a></li>
+    <li><a href="mailto:team@ascensia.foundation" class="nav-cta">Get in touch</a></li>
   </ul>
-  <button class="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
+
 <div class="nav-mobile">
   <a href="program.html">Program</a>
+  <a href="advisors.html">Advisors</a>
+  <a href="fellows.html">Fellows</a>
   <a href="about.html">About</a>
-  <a href="partners.html">Partners</a>
   <a href="mailto:team@ascensia.foundation">Contact</a>
 </div>
+
+    <main id="main">
 
 <div class="page-hero">
   <p class="page-hero-label">For Partners and Funders</p>
   <h1>
     <span class="hero-line-wrap"><span class="hero-line-inner" style="animation-delay:.5s">A model built</span></span>
-    <span class="hero-line-wrap"><span class="hero-line-inner" style="animation-delay:.68s">to <span style="font-style:italic;color:var(--gold)">scale</span> with capital.</span></span>
+    <span class="hero-line-wrap"><span class="hero-line-inner" style="animation-delay:.68s">to <span style="font-style:italic;color:#7A5C20">scale</span> with capital.</span></span>
   </h1>
   <p class="page-hero-sub">Every dollar invested in Ascensia produces a measurable, verifiable result: a student placed at a top university who could not otherwise have gotten there. The cost per outcome is among the most efficient in global education.</p>
 </div>
@@ -264,10 +350,12 @@
       Whether you represent a foundation, a university, a corporation, or a government ministry: if the Ascensia mission is aligned with yours, we'd welcome a conversation about what partnership looks like.
     </p>
     <div style="margin-top:36px">
-      <p style="font-size:13px;color:var(--copper);letter-spacing:0.08em">hello@ascensia.org</p>
+      <p style="font-size:13px;color:#7A5C20;letter-spacing:0.08em">team@ascensia.foundation</p>
     </div>
   </div>
   </section>
+
+</main>
 
 <footer id="main-footer"></footer>
 <script src="js/main.js"></script>

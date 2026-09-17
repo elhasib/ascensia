@@ -3,8 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Meet the People of Ascensia">
-<title>About | Ascensia</title>
+<title>About Ascensia | Our Mission and Team</title>
+<link rel="canonical" href="https://ascensia.foundation/about.html">
+<meta name="description" content="Ascensia is a free admissions preparation program for students ready for the world's top universities. Meet the people and the mission behind the Fellowship.">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ascensia Fellowship">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://ascensia.foundation/about.html">
+<meta property="og:title" content="About Ascensia | Our Mission and Team">
+<meta property="og:description" content="Ascensia is a free admissions preparation program for students ready for the world's top universities. Meet the people and the mission behind the Fellowship.">
+<meta property="og:image" content="https://ascensia.foundation/images/og-one.png">
+<meta property="og:image:alt" content="Ascensia Fellowship">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="About Ascensia | Our Mission and Team">
+<meta name="twitter:description" content="Ascensia is a free admissions preparation program for students ready for the world's top universities. Meet the people and the mission behind the Fellowship.">
+<meta name="twitter:image" content="https://ascensia.foundation/images/og-one.png">
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -153,10 +170,29 @@ a:hover, button:hover, .partner-tile:hover, .nav-cta:hover, .person-li:hover,
   .partner-tile{ height:56px; }
   .partner-tile img{ max-height:50px; }
   .partner-tile img[alt="STEM Egypt"]{ max-height:64px; }
+}
+/* On mobile every person should flow as one continuous two-column grid.
+   The bottom rows are their own flex containers nested inside .people-grid,
+   so each one wrapped separately and left a gap at the end of it. Setting
+   them to display:contents dissolves the wrappers, letting all 14 cards
+   become direct items of .people-grid and run on with no holes.
+   The nth-child stagger is also dropped here: inside the old wrappers it
+   counted from the wrong parent and pushed single cards out of line. */
+@media(max-width:700px){
+  .people-row-three,
+  .people-row-single {
+    display: contents;
+  }
+  /* these mirror the nth-child selectors in css/main.css so they carry the
+     same specificity and win on order — a plain .people-grid .person loses */
+  .people-grid .person:nth-child(2n),
+  .people-grid .person:nth-child(3n+2),
+  .people-grid .person,
   .people-row-three .person,
   .people-row-single .person {
-    flex: 0 0 100%;
+    flex: initial;
     max-width: 100%;
+    margin-top: 0;
   }
 }
 @media(max-width:400px){
@@ -181,6 +217,45 @@ a:hover, button:hover, .partner-tile:hover, .nav-cta:hover, .person-li:hover,
 }
 </script>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://ascensia.foundation/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "About",
+      "item": "https://ascensia.foundation/about.html"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://ascensia.foundation/about.html",
+  "url": "https://ascensia.foundation/about.html",
+  "name": "About",
+  "description": "The mission, people and origins of Ascensia Fellowship.",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Ascensia Fellowship",
+    "url": "https://ascensia.foundation"
+  },
+  "about": {
+    "@id": "https://ascensia.foundation/#organization"
+  },
+  "inLanguage": "en"
+}
+</script>
 </head>
 <body>
 <div id="cur"></div>
@@ -206,6 +281,8 @@ a:hover, button:hover, .partner-tile:hover, .nav-cta:hover, .person-li:hover,
       </ul>
       <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
     </nav>
+
+    <main id="main">
 
     <!-- HERO -->
     <div class="page-hero" style="position:relative;overflow:hidden;">
@@ -339,6 +416,19 @@ a:hover, button:hover, .partner-tile:hover, .nav-cta:hover, .person-li:hover,
         </div>
       </div>
       <div class="person">
+        <div class="person-photo"><img src="images/mohamed-ramadan.jpeg" alt="Mohamed Ramadan" loading="lazy" style="filter:none;"></div>
+        <div class="person-info">
+          <div class="person-name">Mohamed Ramadan</div>
+          <div class="person-role">Chief Information Officer</div>
+          <div class="person-univ">UESTC</div>
+          <a href="https://www.linkedin.com/in/geno-ai/" target="_blank" rel="noopener" class="person-li"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Omar + Dawit -->
+    <div class="people-row-three r r-d2">
+      <div class="person">
         <div class="person-photo"><img src="images/omar.jpg" alt="Omar Negm" loading="lazy" style="filter:none;"></div>
         <div class="person-info">
           <div class="person-name">Omar Negm</div>
@@ -347,10 +437,6 @@ a:hover, button:hover, .partner-tile:hover, .nav-cta:hover, .person-li:hover,
           <a href="https://www.linkedin.com/in/omar-negm-9b805726b/" target="_blank" rel="noopener" class="person-li"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
         </div>
       </div>
-    </div>
-
-    <!-- Dawit -->
-    <div class="people-row-single r r-d2">
       <div class="person">
         <div class="person-photo"><img src="images/dawit.jpg" alt="Dawit Dagne" loading="lazy" style="filter:none;"></div>
         <div class="person-info">
@@ -474,6 +560,8 @@ a:hover, button:hover, .partner-tile:hover, .nav-cta:hover, .person-li:hover,
     <div class="rule-warm"></div>
 
     <!-- CLOSING -->
+    </main>
+
     <section class="closing">
       <p class="closing-label">Get in touch</p>
       <a href="mailto:team@ascensia.foundation" class="closing-email r">team@ascensia.foundation</a>
@@ -483,6 +571,30 @@ a:hover, button:hover, .partner-tile:hover, .nav-cta:hover, .person-li:hover,
       <a href="https://www.instagram.com/ascensia.foundation/" target="_blank" rel="noopener" style="font-family:var(--sans);font-size:11px;color:var(--ink-2);text-decoration:none;transition:color .2s;cursor:none;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ink-2)'">Instagram</a>
       <a href="https://www.linkedin.com/company/ascensia-fellowship" target="_blank" rel="noopener" style="font-family:var(--sans);font-size:11px;color:var(--ink-2);text-decoration:none;transition:color .2s;cursor:none;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ink-2)'">LinkedIn</a>
     </div>
+  </div>
+
+
+  <!-- Google Preferred Source -->
+  <div class="pref-source">
+    <a class="pref-source-btn"
+       href="https://www.google.com/preferences/source?q=ascensia.foundation"
+       target="_blank" rel="noopener"
+       aria-label="Add as preferred source: Ascensia in Google Search">
+      <svg class="pref-source-g" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path fill="#4285F4" d="M23.49 12.27c0-.79-.07-1.54-.19-2.27H12v4.51h6.47a5.54 5.54 0 0 1-2.4 3.58v3h3.86c2.26-2.09 3.56-5.17 3.56-8.82z"/>
+        <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.86-3c-1.08.72-2.45 1.16-4.07 1.16-3.13 0-5.78-2.11-6.73-4.96H1.29v3.09A11.99 11.99 0 0 0 12 24z"/>
+        <path fill="#FBBC05" d="M5.27 14.29c-.25-.72-.38-1.49-.38-2.29s.14-1.57.38-2.29V6.62H1.29A11.99 11.99 0 0 0 0 12c0 1.94.46 3.77 1.29 5.38l3.98-3.09z"/>
+        <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.7 0 3.99 2.47 1.29 6.62l3.98 3.09C6.22 6.86 8.87 4.75 12 4.75z"/>
+      </svg>
+      <span>Add as preferred source</span>
+    </a>
+      <button type="button" class="pref-source-close" aria-label="Dismiss this suggestion">
+        <svg viewBox="0 0 14 14" aria-hidden="true" focusable="false">
+          <path d="M3 3l8 8M11 3l-8 8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+        </svg>
+      </button>
+
+    <p class="pref-source-note">See Ascensia more often in Google Search, Discover and AI Overviews.</p>
   </div>
 
       <p class="closing-copy">&copy; 2026 Ascensia Fellowship</p>
@@ -503,5 +615,6 @@ a:hover, button:hover, .partner-tile:hover, .nav-cta:hover, .person-li:hover,
 <script src="js/pixel-trail.js"></script>
 <script src="js/cursor.js"></script>
 <script src="js/scroll.js"></script>
+<script src="js/preferred-source.js"></script>
 </body>
 </html>
